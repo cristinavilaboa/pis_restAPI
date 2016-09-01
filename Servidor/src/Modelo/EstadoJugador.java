@@ -1,5 +1,5 @@
 package Modelo;
-//HOLAAAAAAAAAAAAAAA22
+//Estado
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
