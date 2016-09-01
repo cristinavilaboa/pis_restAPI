@@ -1,5 +1,6 @@
 package Modelo;
-//Estado
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +9,8 @@ import java.util.Set;
 public class EstadoJugador {
 
 	private int puntos_exp;
-	private List<Logro> logros;
+	private List<Mundo> mundos_completos = new ArrayList<Mundo>();
+	private List<Logro> logros = new ArrayList<Logro>();
 	private Map<Mundo, Nivel> mundo_nivel = new HashMap<Mundo, Nivel>(); //CONSULTAR
 	private Map<Nivel, List<Problema>> nivel_problema = new HashMap<Nivel, List<Problema>>(); //CONSULTAR
 	
@@ -35,6 +37,8 @@ public class EstadoJugador {
 	public Set<Nivel> getNivelesActivos(){
 		return nivel_problema.keySet();
 	}
+	
+	
 
 	//METODOS A IMPLEMENTAR
 	public void ganarExperiencia(int exp) {
@@ -43,19 +47,33 @@ public class EstadoJugador {
 	}
 	
 	public void agregarPregunta(Problema p){
-		Nivel nivelPreg = p.getNivel();
-		List<Problema> listaP = nivel_problema.get(nivelPreg);
-		listaP.add(p);
-		nivel_problema.put(nivelPreg, listaP);
+		Nivel nivel_preg = p.getNivel();
+		if(nivel_problema.containsKey(nivel_preg)){
+			List<Problema> listaP = nivel_problema.get(nivel_preg);
+			listaP.add(p);
+			nivel_problema.put(nivel_preg, listaP);
+		}else{
+			List<Problema> nuevaLista = new ArrayList<Problema>();
+			nuevaLista.add(p);
+			nivel_problema.put(nivel_preg, nuevaLista);
+		}
 	}
 	
 	public void ganarLogro(Logro l){
 		logros.add(l);
 	}
 	
-	public void agregarMundoActivo(){}
+	public void agregarMundoActivo(Mundo mundo){//Se agrega un nuevo mundo, en su primer nivel
+		Nivel primer_nivel = mundo.getNiveles().get(0);
+		mundo_nivel.put(mundo, primer_nivel);
+	}
 	
-	public void agregarNivelActivo(){}
+	public void agregarNivelActivo(Mundo mundo){//PRECONDICION: EL MUNDO PERTENECE A mundo_nivel
+		Nivel nivel_actual = mundo_nivel.get(mundo);
+		Nivel siguiente_nivel = mundo.siguienteNivel(nivel_actual);
+		mundo_nivel.put(mundo, siguiente_nivel);
+		
+	}
 	
 		
 }

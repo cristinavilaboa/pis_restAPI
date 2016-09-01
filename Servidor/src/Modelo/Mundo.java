@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mundo {
@@ -10,7 +11,7 @@ public class Mundo {
 	private String descripcion;
 	private int puntos_exp;
 	private List<Mundo> mundos_siguientes;
-	private List<Nivel> niveles; 
+	private List<Nivel> niveles = new ArrayList<Nivel>(); 
 	
 	public int getId() {
 		return id;
@@ -70,5 +71,16 @@ public class Mundo {
 	
 	//METODOS A IMPLEMENTAR
 	public int ultimoNivelMundo(Nivel n){return 0;}
+	
+	
+	
+	
+	//////
+	
+	public Nivel siguienteNivel(Nivel nivel){//PRECONDICION nivel es un Nivel del MUNDO
+		
+		int nivel_actual = niveles.indexOf(nivel);
+		return niveles.get(nivel_actual+1);
+	}
 	
 }
