@@ -75,7 +75,9 @@ public class Problema {
 	}
 	
 	//METODOS A IMPLEMENTAR
-	public boolean verificarRespuesta(String respuesta){return false;}
+	public boolean verificarRespuesta(String respuesta){
+		return respuesta.equalsIgnoreCase(this.respuesta);
+	}
 	
 	public boolean enviarMensaje(String mensaje){return false;}
 	

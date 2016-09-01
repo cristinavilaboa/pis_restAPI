@@ -1,5 +1,5 @@
 package Modelo;
-
+//HOLAAAAAAAAAAAAAAA
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,11 +37,21 @@ public class EstadoJugador {
 	}
 
 	//METODOS A IMPLEMENTAR
-	public void ganarExperiencia(int exp) {}
+	public void ganarExperiencia(int exp) {
+		int total = exp + this.puntos_exp;
+		setPuntos_exp(total);
+	}
 	
-	public void agregarPregunta(Problema p){}
+	public void agregarPregunta(Problema p){
+		Nivel nivelPreg = p.getNivel();
+		List<Problema> listaP = nivel_problema.get(nivelPreg);
+		listaP.add(p);
+		nivel_problema.put(nivelPreg, listaP);
+	}
 	
-	public void ganarLogro(Logro l){}
+	public void ganarLogro(Logro l){
+		logros.add(l);
+	}
 	
 	public void agregarMundoActivo(){}
 	
