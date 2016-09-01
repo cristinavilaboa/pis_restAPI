@@ -7,4 +7,4 @@ public class ControladorProblema implements IControladorProblema{
 	public boolean enviarMensaje(int id_pregunta, String mensaje){return false;}
 	public String getAyuda(int id_pregunta){return null;}
 
-}
+}// jaja
