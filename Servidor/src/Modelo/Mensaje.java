@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Mensaje {
 
-	private int id;
+	private int id;             //mejor id autogenerado
 	private String contenido;
 	private String asunto;
 	private Date fecha;

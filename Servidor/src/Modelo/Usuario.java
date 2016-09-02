@@ -2,12 +2,12 @@ package Modelo;
 
 import java.util.List;
 
-public abstract class Usuario {
+public abstract class Usuario {  //mejor ponerle protected en los atributos para herencia
 	
-	private String nombre;
-	private String nick;
-	private List<Mensaje> mensajes_viejos;
-	private List<Mensaje> mensajes_nuevos;
+	protected String nombre;
+	protected String nick;
+	protected List<Mensaje> mensajes_viejos;
+	protected List<Mensaje> mensajes_nuevos;
 	
 	public String getNombre() {
 		return nombre;

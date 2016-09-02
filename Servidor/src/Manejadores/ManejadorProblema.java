@@ -22,9 +22,9 @@ public class ManejadorProblema {
 	public int verificarRespuesta(int id_pregunta, String respuesta){return 0;}
 	
 	public Problema buscarProblema(int id_pregunta){
-		
-		
-		return null;}
+		Problema p= problemas.get(id_pregunta);
+		return p;
+	}
 	
 	public String getAyuda(int id_pregunta){return null;}
 }

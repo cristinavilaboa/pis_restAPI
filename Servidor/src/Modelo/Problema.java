@@ -77,6 +77,9 @@ public class Problema {
 	//METODOS A IMPLEMENTAR
 	public boolean verificarRespuesta(String respuesta){return false;}
 	
-	public boolean enviarMensaje(String mensaje){return false;}
+	public boolean enviarMensaje(String mensaje){
+		boolean ok=autor.enviarMensaje(mensaje);
+		return ok;
+	}
 	
 }
