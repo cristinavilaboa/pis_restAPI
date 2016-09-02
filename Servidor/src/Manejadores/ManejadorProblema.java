@@ -21,6 +21,7 @@ public class ManejadorProblema {
 	public int verificarRespuesta(int id_pregunta, String respuesta){return 0;}
 	
 	public Problema buscarProblema(int id_pregunta){return null;}
+	//Prueba de git
 	
 	public String getAyuda(int id_pregunta){return null;}
 }
