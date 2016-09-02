@@ -1,8 +1,17 @@
 package Modelo;
 
+import java.util.Date;
+
 public class Profesor extends Usuario {
 	
 	private String password;
+	
+	
+
+	public Profesor(String nombre, String nick, String password) {
+		super(nombre, nick);
+		this.password = password;
+	}
 
 	public String getPassword() {
 		return password;
@@ -13,11 +22,8 @@ public class Profesor extends Usuario {
 	}
 	
 	//METODOS A IMPLEMENTAR
-	public boolean enviarMensaje(String mensaje){
-		Mensaje m=new Mensaje();
-		m.setContenido(mensaje);
-		m.setId(m.getId()+1);       //me parece mejor que el id sea autogenerado 
+	public void enviarMensaje(String mensaje,Date fecha, String asunto){
+		Mensaje m=new Mensaje(mensaje,asunto, fecha);
 		mensajes_nuevos.add(m);
-		return false;
 	}
 }

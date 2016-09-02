@@ -15,7 +15,9 @@ public class ManejadorProblema {
 	public static ManejadorProblema getInstancia(){
 		return instancia;
 	}
-	
+	public void agregarProblema(Problema p){
+		problemas.put(p.getId(), p);
+	}
 	//METODOS A IMPLEMENTAR
 	public boolean ultimaNivel(int id_pregunta){return false;}
 	

@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Usuario {  //mejor ponerle protected en los atributos para herencia
@@ -9,6 +10,17 @@ public abstract class Usuario {  //mejor ponerle protected en los atributos para
 	protected List<Mensaje> mensajes_viejos;
 	protected List<Mensaje> mensajes_nuevos;
 	
+
+	
+	public Usuario(String nombre, String nick) {
+		
+		this.nombre = nombre;
+		this.nick = nick;
+		mensajes_viejos= new ArrayList<Mensaje>();
+		mensajes_nuevos= new ArrayList<Mensaje>();
+		
+	}
+
 	public String getNombre() {
 		return nombre;
 	}

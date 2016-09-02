@@ -1,7 +1,9 @@
 package Modelo;
 
+import java.util.Date;
+
 public class Problema {
-	private int id;
+	private Integer id;
 	private String descripcion;
 	private String respuesta;
 	private int puntos_exp;
@@ -10,6 +12,20 @@ public class Problema {
 	private Nivel nivel;
 	private Profesor autor; 
 	
+	
+	
+	public Problema(Integer id, String descripcion, String respuesta, int puntos_exp, Ayuda ayuda, Contenido contenido,
+			Nivel nivel, Profesor autor) {
+		this.id = id;
+		this.descripcion = descripcion;
+		this.respuesta = respuesta;
+		this.puntos_exp = puntos_exp;
+		this.ayuda = ayuda;
+		this.contenido = contenido;
+		this.nivel = nivel;
+		this.autor = autor;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -77,9 +93,8 @@ public class Problema {
 	//METODOS A IMPLEMENTAR
 	public boolean verificarRespuesta(String respuesta){return false;}
 	
-	public boolean enviarMensaje(String mensaje){
-		boolean ok=autor.enviarMensaje(mensaje);
-		return ok;
+	public void enviarMensaje(String mensaje,Date fecha, String asunto){
+		autor.enviarMensaje(mensaje, fecha, asunto);
 	}
 	
 }
