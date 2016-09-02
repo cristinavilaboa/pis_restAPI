@@ -1,13 +1,14 @@
 package Manejadores;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import Modelo.Problema;
 
 public class ManejadorProblema {
 
 	private static ManejadorProblema instancia = new ManejadorProblema();
-	private List<Problema> problemas;
+	private Map<Integer,Problema> problemas= new HashMap<Integer,Problema>();
 	
 	private ManejadorProblema(){};
 	
@@ -20,7 +21,10 @@ public class ManejadorProblema {
 	
 	public int verificarRespuesta(int id_pregunta, String respuesta){return 0;}
 	
-	public Problema buscarProblema(int id_pregunta){return null;}
+	public Problema buscarProblema(int id_pregunta){
+		
+		
+		return null;}
 	
 	public String getAyuda(int id_pregunta){return null;}
 }
