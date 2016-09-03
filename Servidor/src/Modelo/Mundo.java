@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Mundo {
 	
-	private int id;
+	private Integer id;
 	private String nombre;
 	private String imagen;
 	private String descripcion;

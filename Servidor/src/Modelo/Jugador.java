@@ -7,6 +7,16 @@ public class Jugador extends Usuario{
 	private EstadoJugador estado;
 	private Clase clase;
 	
+	
+	
+	public Jugador(String nombre, String nick, String fBToken, String imagen, EstadoJugador estado, Clase clase) {
+		super(nombre, nick);
+		FBToken = fBToken;
+		this.imagen = imagen;
+		this.estado = estado;
+		this.clase = clase;
+	}
+
 	public String getFBToken() {
 		return FBToken;
 	}
