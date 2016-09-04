@@ -7,6 +7,10 @@ public class Nivel {
 	private int dificultad;
 	private List<Problema> problemas;
 	
+	public Nivel(int dificultad){
+		this.dificultad = dificultad;
+	}
+	
 	public int getDificultad() {
 		return dificultad;
 	}

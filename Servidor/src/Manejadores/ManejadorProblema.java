@@ -3,6 +3,7 @@ package Manejadores;
 import java.util.HashMap;
 import java.util.Map;
 
+import Modelo.Ayuda;
 import Modelo.Problema;
 
 public class ManejadorProblema {
@@ -27,7 +28,10 @@ public class ManejadorProblema {
 		Problema p= problemas.get(id_pregunta);
 		return p;
 	}
-	//Prueba de git
 	
-	public String getAyuda(int id_pregunta){return null;}
+	public String getAyuda(int id_pregunta){
+		Problema problema = problemas.get(id_pregunta);
+		Ayuda ayuda = problema.getAyuda();
+		return ayuda.getInfo();
+	}
 }
