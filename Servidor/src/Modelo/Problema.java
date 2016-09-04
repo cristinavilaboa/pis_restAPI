@@ -10,6 +10,19 @@ public class Problema {
 	private Nivel nivel;
 	private Profesor autor; 
 	
+	public Problema(int id, String descripcion, String respuesta, int puntos_exp, Ayuda ayuda, Contenido contenido,
+			Nivel nivel, Profesor autor) {
+		super();
+		this.id = id;
+		this.descripcion = descripcion;
+		this.respuesta = respuesta;
+		this.puntos_exp = puntos_exp;
+		this.ayuda = ayuda;
+		this.contenido = contenido;
+		this.nivel = nivel;
+		this.autor = autor;
+	}
+
 	public int getId() {
 		return id;
 	}

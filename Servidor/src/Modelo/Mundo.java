@@ -10,9 +10,21 @@ public class Mundo {
 	private String imagen;
 	private String descripcion;
 	private int puntos_exp;
-	private List<Mundo> mundos_siguientes;
+	private ArrayList<Mundo> mundos_siguientes;
 	private List<Nivel> niveles = new ArrayList<Nivel>(); 
 	
+	public Mundo(int id, String nombre, String imagen, String descripcion, int puntos_exp,
+			ArrayList<Mundo> mundos_siguientes, List<Nivel> niveles) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.imagen = imagen;
+		this.descripcion = descripcion;
+		this.puntos_exp = puntos_exp;
+		this.mundos_siguientes = mundos_siguientes;
+		this.niveles = niveles;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -53,11 +65,11 @@ public class Mundo {
 		this.puntos_exp = puntos_exp;
 	}
 
-	public List<Mundo> getMundos_siguientes() {
+	public ArrayList<Mundo> getMundos_siguientes() {
 		return mundos_siguientes;
 	}
 
-	public void setMundos_siguientes(List<Mundo> mundos_siguientes) {
+	public void setMundos_siguientes(ArrayList<Mundo> mundos_siguientes) {
 		this.mundos_siguientes = mundos_siguientes;
 	}
 
@@ -70,7 +82,11 @@ public class Mundo {
 	}
 	
 	//METODOS A IMPLEMENTAR
-	public int ultimoNivelMundo(Nivel n){return 0;}
+	public boolean ultimoNivelMundo(Nivel n){
+		int largoMundo = niveles.size();
+		Nivel ultimo_nivel = niveles.get(largoMundo - 1);
+		return (ultimo_nivel.getDificultad() == n.getDificultad());
+	}
 	
 	
 	
@@ -81,6 +97,10 @@ public class Mundo {
 		
 		int nivel_actual = niveles.indexOf(nivel);
 		return niveles.get(nivel_actual+1);
+	}
+	
+	public void agregarNivel(Nivel n){
+		niveles.add(n);
 	}
 	
 }

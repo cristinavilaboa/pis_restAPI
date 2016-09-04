@@ -5,6 +5,10 @@ public class Logro {
 	private int id;
 	private String descripcion;
 	
+	public Logro(String descripcion){
+		this.descripcion=descripcion;
+	}
+	
 	public int getId() {
 		return id;
 	}

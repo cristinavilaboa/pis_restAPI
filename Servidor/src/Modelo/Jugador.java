@@ -1,12 +1,23 @@
 package Modelo;
 
+import java.util.List;
+
 public class Jugador extends Usuario{
 
 	private String FBToken;
 	private String imagen;
 	private EstadoJugador estado;
 	private Clase clase;
-	
+
+	public Jugador(String nombre, String nick, List<Mensaje> mensajes_viejos, List<Mensaje> mensajes_nuevos,
+			String fBToken, String imagen, EstadoJugador estado, Clase clase) {
+		super(nombre, nick, mensajes_viejos, mensajes_nuevos);
+		FBToken = fBToken;
+		this.imagen = imagen;
+		this.estado = estado;
+		this.clase = clase;
+	}
+
 	public String getFBToken() {
 		return FBToken;
 	}

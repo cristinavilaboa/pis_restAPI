@@ -9,6 +9,14 @@ public abstract class Usuario {
 	private List<Mensaje> mensajes_viejos;
 	private List<Mensaje> mensajes_nuevos;
 	
+	public Usuario(String nombre, String nick, List<Mensaje> mensajes_viejos, List<Mensaje> mensajes_nuevos) {
+		super();
+		this.nombre = nombre;
+		this.nick = nick;
+		this.mensajes_viejos = mensajes_viejos;
+		this.mensajes_nuevos = mensajes_nuevos;
+	}
+
 	public String getNombre() {
 		return nombre;
 	}
