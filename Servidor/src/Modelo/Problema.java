@@ -1,7 +1,9 @@
 package Modelo;
 
+import java.util.Date;
+
 public class Problema {
-	private int id;
+	private Integer id;
 	private String descripcion;
 	private String respuesta;
 	private int puntos_exp;
@@ -10,9 +12,10 @@ public class Problema {
 	private Nivel nivel;
 	private Profesor autor; 
 	
-	public Problema(int id, String descripcion, String respuesta, int puntos_exp, Ayuda ayuda, Contenido contenido,
+	
+	
+	public Problema(Integer id, String descripcion, String respuesta, int puntos_exp, Ayuda ayuda, Contenido contenido,
 			Nivel nivel, Profesor autor) {
-		super();
 		this.id = id;
 		this.descripcion = descripcion;
 		this.respuesta = respuesta;
@@ -92,6 +95,8 @@ public class Problema {
 		return respuesta.equalsIgnoreCase(this.respuesta);
 	}
 	
-	public boolean enviarMensaje(String mensaje){return false;}
+	public void enviarMensaje(String mensaje,Date fecha, String asunto){
+		autor.enviarMensaje(mensaje, fecha, asunto);
+	}
 	
 }

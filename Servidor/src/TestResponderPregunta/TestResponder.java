@@ -41,7 +41,8 @@ public class TestResponder {
 	@Before
 	public void setUp() throws Exception {
 		estado = new EstadoJugador(0, mundos_completos, logros, mundo_nivel, nivel_problema);
-		jugador = new Jugador("n", "nick", null, null, "fBToken", "imagen", estado, clase);
+		jugador = new Jugador("n", "nick", "fBToken", "imagen", estado, clase);
+
 		mundo = new Mundo(1, "Jupiter", "imagen", "descripcion",0,mundos_siguientes, niveles);
 		nivel = new Nivel(0,listaP,mundo);
 		mundo.agregarNivel(nivel);

@@ -1,6 +1,10 @@
 package Controladores;
 
+
+import java.util.Date;
+
 import Manejadores.ManejadorProblema;
+import Modelo.Problema;
 
 public class ControladorProblema implements IControladorProblema{
 
@@ -18,11 +22,13 @@ public class ControladorProblema implements IControladorProblema{
 		return exp_ganada;
 	}
 	
+	public void enviarMensaje(int id_pregunta, String mensaje, Date fecha, String asunto){ 
+		ManejadorProblema mp=ManejadorProblema.getInstancia();
+		Problema p=mp.buscarProblema(id_pregunta);
+		p.enviarMensaje(mensaje, fecha, asunto);
+	}
 	
-	
-	
-	
-	public boolean enviarMensaje(int id_pregunta, String mensaje){return false;}
+
 	public String getAyuda(int id_pregunta){return null;}
 
-}
+}// 

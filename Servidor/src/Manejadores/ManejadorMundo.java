@@ -1,15 +1,21 @@
 package Manejadores;
 
+
 import java.util.ArrayList;
+
+import java.util.HashMap;
+
 import java.util.List;
+import java.util.Map;
 
 import Modelo.Mundo;
 import Modelo.Nivel;
+import Modelo.Problema;
 
 public class ManejadorMundo {
 	
 	private static ManejadorMundo instancia = new ManejadorMundo();
-	private List<Mundo> mundos = new ArrayList<Mundo>();
+	private  Map<Integer,Mundo> mundos= new HashMap<Integer,Mundo>();
 	
 	private ManejadorMundo(){};
 	
@@ -18,16 +24,11 @@ public class ManejadorMundo {
 	}
 	
 	public Mundo obtenerMundo(int id_mundo){
-		for(Mundo m: mundos){
-			if(m.getId() == id_mundo){
-				return m;
-			}
-		}
-		return null;//NO TENDRIA PORQUE ENTRAR ACA, SE SUPONE QUE NO TE PASAN UN ID INVENTADO
+		return mundos.get(id_mundo);
 	}
 	
 	public void agregarMundo(Mundo m){
-		mundos.add(m);
+		mundos.put(m.getId(), m);
 	}
 
 }

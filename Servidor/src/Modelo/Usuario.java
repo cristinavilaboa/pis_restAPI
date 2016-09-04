@@ -1,20 +1,23 @@
 package Modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Usuario {
+public abstract class Usuario {  //mejor ponerle protected en los atributos para herencia
 	
-	private String nombre;
-	private String nick;
-	private List<Mensaje> mensajes_viejos;
-	private List<Mensaje> mensajes_nuevos;
+	protected String nombre;
+	protected String nick;
+	protected List<Mensaje> mensajes_viejos;
+	protected List<Mensaje> mensajes_nuevos;
 	
-	public Usuario(String nombre, String nick, List<Mensaje> mensajes_viejos, List<Mensaje> mensajes_nuevos) {
-		super();
+
+	
+	public Usuario(String nombre, String nick) {
+		
 		this.nombre = nombre;
 		this.nick = nick;
-		this.mensajes_viejos = mensajes_viejos;
-		this.mensajes_nuevos = mensajes_nuevos;
+		mensajes_viejos= new ArrayList<Mensaje>();
+		mensajes_nuevos= new ArrayList<Mensaje>();
 	}
 
 	public String getNombre() {

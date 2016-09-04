@@ -1,21 +1,24 @@
 package Manejadores;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import Modelo.Problema;
 
 public class ManejadorProblema {
 
 	private static ManejadorProblema instancia = new ManejadorProblema();
-	private List<Problema> problemas = new ArrayList<Problema>();
-	
-	private ManejadorProblema(){};
-	
+
+	private Map<Integer,Problema> problemas= new HashMap<Integer,Problema>();	
+	private ManejadorProblema(){};	
 	public static ManejadorProblema getInstancia(){
 		return instancia;
 	}
 	
+	public void agregarProblema(Problema p){
+		problemas.put(p.getId(), p);
+	}
 	//METODOS A IMPLEMENTAR
 	public boolean ultimaNivel(int id_pregunta){
 		Problema pro = buscarProblema(id_pregunta);
@@ -32,17 +35,10 @@ public class ManejadorProblema {
 	}
 	
 	public Problema buscarProblema(int id_pregunta){
-		for(Problema pro: problemas){
-			if(pro.getId()==id_pregunta){
-				return pro;
-			}
-		}
-		return null;
+		Problema p= problemas.get(id_pregunta);
+		return p;
 	}
 	
 	public String getAyuda(int id_pregunta){return null;}
 	
-	public void agregarProblema(Problema p){
-		problemas.add(p);
-	}
 }

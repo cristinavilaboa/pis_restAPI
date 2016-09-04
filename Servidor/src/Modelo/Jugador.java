@@ -8,10 +8,9 @@ public class Jugador extends Usuario{
 	private String imagen;
 	private EstadoJugador estado;
 	private Clase clase;
-
-	public Jugador(String nombre, String nick, List<Mensaje> mensajes_viejos, List<Mensaje> mensajes_nuevos,
-			String fBToken, String imagen, EstadoJugador estado, Clase clase) {
-		super(nombre, nick, mensajes_viejos, mensajes_nuevos);
+	
+	public Jugador(String nombre, String nick, String fBToken, String imagen, EstadoJugador estado, Clase clase) {
+		super(nombre, nick);
 		FBToken = fBToken;
 		this.imagen = imagen;
 		this.estado = estado;
