@@ -1,11 +1,14 @@
 package Modelo;
 
+import Modelo.EstadoJugador;
+
 public class Jugador extends Usuario{
 
 	private String FBToken;
 	private String imagen;
 	private EstadoJugador estado;
 	private Clase clase;
+	private EstadoJugador estadoJugador;
 	
 	public String getFBToken() {
 		return FBToken;
@@ -37,6 +40,12 @@ public class Jugador extends Usuario{
 
 	public void setClase(Clase clase) {
 		this.clase = clase;
+	}
+	
+	public DataPuntosJugador obtenerDataPuntosJugador(String nombre){
+		int puntos = estadoJugador.getPuntos_exp();
+		DataPuntosJugador dpj = new DataPuntosJugador(nombre, puntos);
+		return dpj;
 	}
 	
 }
