@@ -1,5 +1,6 @@
 package Modelo;
 
+import Datatypes.DataPuntosJugador;
 import Modelo.EstadoJugador;
 
 public class Jugador extends Usuario{
@@ -8,7 +9,14 @@ public class Jugador extends Usuario{
 	private String imagen;
 	private EstadoJugador estado;
 	private Clase clase;
-	private EstadoJugador estadoJugador;
+	
+    public Jugador(String nick, String nombre, String FBToken, String imagen, EstadoJugador estado, Clase clase){
+        super(nick, nombre);
+        this.FBToken = FBToken;
+        this.imagen = imagen;
+        this.estado = estado;
+        this.clase = clase;
+    }
 	
 	public String getFBToken() {
 		return FBToken;
@@ -43,7 +51,7 @@ public class Jugador extends Usuario{
 	}
 	
 	public DataPuntosJugador obtenerDataPuntosJugador(String nombre){
-		int puntos = estadoJugador.getPuntos_exp();
+		int puntos = estado.getPuntos_exp();
 		DataPuntosJugador dpj = new DataPuntosJugador(nombre, puntos);
 		return dpj;
 	}

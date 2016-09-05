@@ -1,4 +1,4 @@
-package Modelo;
+package Datatypes;
 
 public class DataPuntosJugador{
 	

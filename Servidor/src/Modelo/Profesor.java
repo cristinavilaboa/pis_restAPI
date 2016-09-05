@@ -3,6 +3,11 @@ package Modelo;
 public class Profesor extends Usuario {
 	
 	private String password;
+	
+	public Profesor(String nick, String nombre, String password){
+		super (nick, nombre);
+		this.password = password;
+	}
 
 	public String getPassword() {
 		return password;

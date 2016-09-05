@@ -1,7 +1,8 @@
 package Controladores;
 
 import java.util.SortedSet;
-import Modelo.DataPuntosJugador;
+
+import Datatypes.DataPuntosJugador;
 import Manejadores.ManejadorUsuario;
 
 public class ControladorJugador implements IControladorJugador{

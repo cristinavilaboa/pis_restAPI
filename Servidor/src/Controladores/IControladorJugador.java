@@ -2,7 +2,7 @@ package Controladores;
 
 import java.util.SortedSet;
 
-import Modelo.DataPuntosJugador;
+import Datatypes.DataPuntosJugador;
 
 public interface IControladorJugador {
 	

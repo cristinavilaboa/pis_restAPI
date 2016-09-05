@@ -9,6 +9,11 @@ public abstract class Usuario {
 	private List<Mensaje> mensajes_viejos;
 	private List<Mensaje> mensajes_nuevos;
 	
+	public Usuario(String nombre, String nick){
+		this.nombre = nombre;
+		this.nick = nick;
+	}
+	
 	public String getNombre() {
 		return nombre;
 	}

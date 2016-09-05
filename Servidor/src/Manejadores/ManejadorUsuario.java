@@ -2,8 +2,9 @@ package Manejadores;
 
 import java.util.Set;
 import java.util.SortedSet;
-import Modelo.DataPuntosJugador;
 import java.util.TreeSet;
+
+import Datatypes.DataPuntosJugador;
 import Modelo.Usuario;
 import java.util.Iterator;
 import Modelo.Jugador;
