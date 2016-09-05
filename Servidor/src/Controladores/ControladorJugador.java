@@ -18,7 +18,7 @@ import Modelo.Problema;
 public class ControladorJugador implements IControladorJugador{
 	
 	//METODOS A IMPLEMENTAR
-	@RequestMapping("/sumarpuntos")
+	@RequestMapping(value="/sumarpuntos", method=RequestMethod.PUT)
 	public void sumarPuntos(@RequestParam(value="exp") int exp, @RequestParam(value="id_jugador")String id_jugador, @RequestParam(value="id_pregunta")int id_pregunta){
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
