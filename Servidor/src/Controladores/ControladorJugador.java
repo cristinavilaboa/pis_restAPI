@@ -3,16 +3,23 @@ package Controladores;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
 import Modelo.EstadoJugador;
 import Modelo.Logro;
 import Modelo.Problema;
 
+@RestController
 public class ControladorJugador implements IControladorJugador{
 	
 	//METODOS A IMPLEMENTAR
-	public void sumarPuntos(int exp, String id_jugador, int id_pregunta){
+	@RequestMapping("/sumarpuntos")
+	public void sumarPuntos(@RequestParam(value="exp") int exp, @RequestParam(value="id_jugador")String id_jugador, @RequestParam(value="id_pregunta")int id_pregunta){
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
 		EstadoJugador estado = mu.buscarJugador(id_jugador).getEstado();
