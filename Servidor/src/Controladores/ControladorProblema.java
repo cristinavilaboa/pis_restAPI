@@ -29,6 +29,9 @@ public class ControladorProblema implements IControladorProblema{
 	}
 	
 
-	public String getAyuda(int id_pregunta){return null;}
+	public String getAyuda(int id_pregunta){
+		ManejadorProblema manejador = ManejadorProblema.getInstancia();
+		return manejador.getAyuda(id_pregunta);
+	}
 
 }// 
