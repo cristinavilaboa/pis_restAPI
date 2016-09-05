@@ -22,9 +22,9 @@ public class ControladorProblema implements IControladorProblema{
 		return exp_ganada;
 	}
 	
-	public void enviarMensaje(int id_pregunta, String mensaje, Date fecha, String asunto){ 
+	public void enviarMensaje(int id_problema, String mensaje, Date fecha, String asunto){ 
 		ManejadorProblema mp=ManejadorProblema.getInstancia();
-		Problema p=mp.buscarProblema(id_pregunta);
+		Problema p=mp.buscarProblema(id_problema);
 		p.enviarMensaje(mensaje, fecha, asunto);
 	}
 	

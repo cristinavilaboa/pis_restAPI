@@ -34,8 +34,8 @@ public class ManejadorProblema {
 		}
 	}
 	
-	public Problema buscarProblema(int id_pregunta){
-		Problema p= problemas.get(id_pregunta);
+	public Problema buscarProblema(int id_problema){
+		Problema p= problemas.get(id_problema);
 		return p;
 	}
 	
