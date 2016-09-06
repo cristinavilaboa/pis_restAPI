@@ -14,7 +14,9 @@ import Modelo.Jugador;
 public class ManejadorUsuario {
 	
 	private static ManejadorUsuario instancia = new ManejadorUsuario();
-	private Map<Integer,Jugador> jugadores = new HashMap <Integer,Jugador> (); 
+	
+
+	private Map<String, Jugador> jugadores = new HashMap<String, Jugador>();
 	
 	private ManejadorUsuario(){};
 	
@@ -22,7 +24,7 @@ public class ManejadorUsuario {
 		return instancia;
 	}
 	
-	public DataJugador obtenerDatosJugador(int id_jugador)
+	public DataJugador obtenerDatosJugador(String id_jugador)
 	{
 		Jugador j = jugadores.get(id_jugador);
 		DataJugador dj = j.obtenerDataJugador();
@@ -30,25 +32,19 @@ public class ManejadorUsuario {
 	}
 	
 	public void agregarJugador(Jugador jugador){
-		jugadores.add(jugador);
+		jugadores.put(jugador.getNick(), jugador);
 	}
 	
-	public boolean existeJugador(String id_jugador){
-		for(Jugador j: jugadores){
-			if(j.getNick().equalsIgnoreCase(id_jugador)){
-				return true;
-			}
+	public boolean existeJugador(String nick){
+		Jugador j = jugadores.get(nick);
+		if (j!=null){
+			return true;	
 		}
 		return false;
 	}
 	
-	public Jugador buscarJugador(String id_jugador){
-		for(Jugador j: jugadores){
-			if(j.getNick().equalsIgnoreCase(id_jugador)){
-				return j;
-			}
-		}
-		return null;//SE SUPONE QUE EL JUGADOR YA EXISTE
+	public Jugador buscarJugador(String nick){
+		return jugadores.get(nick); //ver de tirar excepcion si es null
 	}
 
 }
