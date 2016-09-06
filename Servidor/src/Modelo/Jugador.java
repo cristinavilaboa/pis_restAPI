@@ -1,5 +1,16 @@
 package Modelo;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+
+import DataTypes.DataJugador;
+import DataTypes.DataLogro;
+import DataTypes.DataMundoNivel;
+
 public class Jugador extends Usuario{
 
 	private String FBToken;
@@ -47,6 +58,30 @@ public class Jugador extends Usuario{
 
 	public void setClase(Clase clase) {
 		this.clase = clase;
+	}
+	
+	//************OPERACIONES*************//
+	
+	public DataJugador obtenerDataJugador()
+	{
+		EstadoJugador e = this.estado;
+		List<Logro> logros = e.getLogros();
+		Map <Mundo,Nivel> mundos_niveles = e.getMundo_nivel();
+		int exp = e.getPuntos_exp();
+		List<DataLogro> dataLogros = new ArrayList<DataLogro>();
+		List<DataMundoNivel> dataMundosNiveles = new ArrayList<DataMundoNivel>();
+		int cant = logros.size();
+		for (int i = 0; i<cant; i++){
+			dataLogros.add(logros.get(i).obtenerDataLogro());
+		}
+		Iterator it = mundos_niveles.keySet().iterator();
+		while(it.hasNext()){
+		  Mundo key = (Mundo)it.next();
+		  dataMundosNiveles.add(new DataMundoNivel(key.getNombre(),mundos_niveles.get(key).getDificultad()));		
+		}
+		
+				
+		return new DataJugador(this.nick, this.imagen,dataMundosNiveles,exp,dataLogros);
 	}
 	
 }

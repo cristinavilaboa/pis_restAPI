@@ -35,6 +35,7 @@ public class EstadoJugador {
 	public Set<Nivel> getNivelesActivos(){
 		return nivel_problema.keySet();
 	}
+	
 
 	//METODOS A IMPLEMENTAR
 	public void ganarExperiencia(int exp) {}
@@ -46,6 +47,13 @@ public class EstadoJugador {
 	public void agregarMundoActivo(){}
 	
 	public void agregarNivelActivo(){}
+
+	public Map<Mundo, Nivel> getMundo_nivel() {
+		return mundo_nivel;
+	}	
 	
+	public void setMundo_nivel(Map<Mundo,Nivel> m_n){
+		this.mundo_nivel = m_n;
+	}
 		
 }
