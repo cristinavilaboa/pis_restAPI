@@ -18,7 +18,6 @@ public abstract class Usuario {  //mejor ponerle protected en los atributos para
 		this.nick = nick;
 		mensajes_viejos= new ArrayList<Mensaje>();
 		mensajes_nuevos= new ArrayList<Mensaje>();
-		
 	}
 
 	public String getNombre() {

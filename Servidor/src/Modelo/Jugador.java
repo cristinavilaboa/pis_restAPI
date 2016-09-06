@@ -10,6 +10,8 @@ import java.util.Map;
 import DataTypes.DataJugador;
 import DataTypes.DataLogro;
 import DataTypes.DataMundoNivel;
+import java.util.List;
+
 
 public class Jugador extends Usuario{
 
@@ -17,8 +19,6 @@ public class Jugador extends Usuario{
 	private String imagen;
 	private EstadoJugador estado;
 	private Clase clase;
-	
-	
 	
 	public Jugador(String nombre, String nick, String fBToken, String imagen, EstadoJugador estado, Clase clase) {
 		super(nombre, nick);

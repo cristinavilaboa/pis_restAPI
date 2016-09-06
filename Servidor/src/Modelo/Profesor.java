@@ -1,9 +1,18 @@
 package Modelo;
 
+
+import java.util.List;
 import java.util.Date;
 
 public class Profesor extends Usuario {
 	
+	
+
+	public Profesor(String nombre, String nick) {
+		super(nombre, nick);
+		// TODO Auto-generated constructor stub
+	}
+
 	private String password;
 	
 	
