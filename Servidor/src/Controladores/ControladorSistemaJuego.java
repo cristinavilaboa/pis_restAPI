@@ -3,6 +3,8 @@ package Controladores;
 
 import java.util.ArrayList;
 
+import org.springframework.web.bind.annotation.RestController;
+
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
@@ -10,7 +12,7 @@ import Modelo.EstadoJugador;
 import Modelo.Logro;
 import Modelo.Mundo;
 import Modelo.Nivel;
-
+@RestController
 public class ControladorSistemaJuego implements IControladorSistemaJuego {
 	
 	//METODOS A IMPLEMENTAR
