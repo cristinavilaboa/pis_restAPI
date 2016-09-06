@@ -83,5 +83,6 @@ public class Jugador extends Usuario{
 				
 		return new DataJugador(this.nick, this.imagen,dataMundosNiveles,exp,dataLogros);
 	}
+
 	
 }
