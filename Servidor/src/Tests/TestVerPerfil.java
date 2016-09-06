@@ -1,4 +1,4 @@
-package Test;
+package Tests;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +8,6 @@ import java.util.Map;
 import org.junit.Test;
 
 import DataTypes.DataJugador;
-import DataTypes.DataLogro;
 import Modelo.Clase;
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
@@ -19,7 +18,6 @@ import Modelo.Nivel;
 import static org.junit.Assert.*;
 
 public class TestVerPerfil {
-	private boolean resultado; 
 	
 	@Test
 	public void testVerPerfil(){

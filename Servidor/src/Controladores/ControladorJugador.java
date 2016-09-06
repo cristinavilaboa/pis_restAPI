@@ -1,10 +1,5 @@
 package Controladores;
 
-import DataTypes.DataJugador;
-import Manejadores.ManejadorProblema;
-import Manejadores.ManejadorUsuario;
-import Modelo.Problema;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import DataTypes.DataJugador;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
 import Modelo.EstadoJugador;

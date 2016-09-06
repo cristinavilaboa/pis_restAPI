@@ -1,16 +1,13 @@
 package Modelo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-
 import DataTypes.DataJugador;
 import DataTypes.DataLogro;
 import DataTypes.DataMundoNivel;
-import java.util.List;
 
 
 public class Jugador extends Usuario{
@@ -74,7 +71,7 @@ public class Jugador extends Usuario{
 		for (int i = 0; i<cant; i++){
 			dataLogros.add(logros.get(i).obtenerDataLogro());
 		}
-		Iterator it = mundos_niveles.keySet().iterator();
+		Iterator<Mundo> it = mundos_niveles.keySet().iterator();
 		while(it.hasNext()){
 		  Mundo key = (Mundo)it.next();
 		  dataMundosNiveles.add(new DataMundoNivel(key.getNombre(),mundos_niveles.get(key).getDificultad()));		
