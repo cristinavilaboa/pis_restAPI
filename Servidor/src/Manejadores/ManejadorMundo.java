@@ -1,16 +1,10 @@
 package Manejadores;
 
 
-import java.util.ArrayList;
-
 import java.util.HashMap;
-
-import java.util.List;
 import java.util.Map;
 
 import Modelo.Mundo;
-import Modelo.Nivel;
-import Modelo.Problema;
 
 public class ManejadorMundo {
 	

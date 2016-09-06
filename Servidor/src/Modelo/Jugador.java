@@ -1,7 +1,5 @@
 package Modelo;
 
-import java.util.List;
-
 public class Jugador extends Usuario{
 
 	private String FBToken;

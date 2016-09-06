@@ -34,7 +34,8 @@ public class ControladorJugador implements IControladorJugador{
 		
 	}
 	
-	public boolean yaRespondia(String id_jugador,int id_pregunta){
+	@RequestMapping(value="/yarespondia", method=RequestMethod.GET)
+	public boolean yaRespondia(@RequestParam(value="nick")String id_jugador,@RequestParam(value="id_pregunta")int id_pregunta){
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		EstadoJugador estado = mu.buscarJugador(id_jugador).getEstado();
 		for(List<Problema> n: estado.getNivel_problema().values()){
