@@ -30,6 +30,7 @@ public class TestSolicitarAyuda {
 	@Test
 	public void test() {
 		IControladorProblema cp= new ControladorProblema();
+		@SuppressWarnings("deprecation")
 		Date date =new Date(1,1,1);
 		cp.enviarMensaje(1, "contenido", date, "asunto");
 		Mensaje m=profesor.getMensajes_nuevos().get(0);

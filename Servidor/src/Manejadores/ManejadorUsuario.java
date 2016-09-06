@@ -1,18 +1,9 @@
 package Manejadores;
 
 import java.util.HashMap;
-
-import java.util.List;
 import java.util.Map;
 
 import DataTypes.DataJugador;
-import Modelo.Jugador;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import java.util.Map;
-
 import Modelo.Jugador;
 
 public class ManejadorUsuario {
