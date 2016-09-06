@@ -22,8 +22,8 @@ import Modelo.Problema;
 @RestController
 public class ControladorJugador implements IControladorJugador{
 	
-	
-	public DataJugador verPerfil(String id_jugador)
+	@RequestMapping(value="/verperfil", method=RequestMethod.GET)
+	public DataJugador verPerfil(@RequestParam(value="nick")String id_jugador)
 	{
 		ManejadorUsuario mu=ManejadorUsuario.getInstancia();
 		DataJugador dj=mu.obtenerDatosJugador(id_jugador);
