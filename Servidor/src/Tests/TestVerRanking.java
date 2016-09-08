@@ -24,28 +24,28 @@ public class TestVerRanking {
 		Clase clase1 = new Clase(1, "clase1", Juliana);
 		
 		EstadoJugador estadoFufi = new EstadoJugador(12);
-        Jugador j = new Jugador("fufi", "Estefania", "estefaniaD", "imagenA", estadoFufi, clase1);
+        Jugador j = new Jugador("Estefania", "fuffi", "estefaniaD", "imagenA", estadoFufi, clase1);
         
     	ManejadorUsuario manUs = ManejadorUsuario.getInstancia();
         manUs.agregarJugador(j);
         
         EstadoJugador estadoCaro = new EstadoJugador(33);
-        j = new Jugador("Caro", "Carolina", "carolinaC", "imagenB", estadoCaro, clase1);
+        j = new Jugador("Carolina", "Caro", "carolinaC", "imagenB", estadoCaro, clase1);
 		
         manUs.agregarJugador(j);
         
         EstadoJugador estadoPau = new EstadoJugador(2);
-        j = new Jugador("Pau", "Paula", "paulaM", "imagenC", estadoPau, clase1);
+        j = new Jugador("Paula", "Pau", "paulaM", "imagenC", estadoPau, clase1);
 
         manUs.agregarJugador(j);
         
         EstadoJugador estadoRodri = new EstadoJugador(2);
-        j = new Jugador("Rodri", "Rodrigo", "rodrigoH", "imagenD", estadoRodri, clase1);
+        j = new Jugador("Rodrigo", "Rodri", "rodrigoH", "imagenD", estadoRodri, clase1);
 
         manUs.agregarJugador(j);
         
         EstadoJugador estadoRau = new EstadoJugador(28);
-        j = new Jugador("Rau", "Raul", "raulF", "imagenE", estadoRau, clase1);
+        j = new Jugador("Raul", "Rau", "raulF", "imagenE", estadoRau, clase1);
 
         manUs.agregarJugador(j);
         
@@ -61,12 +61,16 @@ public class TestVerRanking {
 
 		assertEquals(array_res[0].getNombre(),"Carolina");
 		assertEquals(Integer.toString(array_res[0].getPuntos()),Integer.toString(33));
+		
 		assertEquals(array_res[1].getNombre(),"Raul");
 		assertEquals(Integer.toString(array_res[1].getPuntos()),Integer.toString(28));
+		
 		assertEquals(array_res[2].getNombre(),"Estefania");
 		assertEquals(Integer.toString(array_res[2].getPuntos()),Integer.toString(12));
+		
 		assertEquals(array_res[3].getNombre(),"Paula");
 		assertEquals(Integer.toString(array_res[3].getPuntos()),Integer.toString(2));
+		
 		assertEquals(array_res[4].getNombre(),"Rodrigo");
 		assertEquals(Integer.toString(array_res[4].getPuntos()),Integer.toString(2));
 		

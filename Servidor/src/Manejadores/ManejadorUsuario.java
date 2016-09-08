@@ -60,4 +60,11 @@ public class ManejadorUsuario {
 		Collections.sort(list_dpj);
 		return list_dpj;
 	}
+	
+	
+	public void borrar(){
+		
+		this.jugadores.clear();
+	}
+	
 }

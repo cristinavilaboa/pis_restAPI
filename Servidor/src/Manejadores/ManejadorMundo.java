@@ -22,5 +22,10 @@ public class ManejadorMundo {
 	public void agregarMundo(Mundo m){
 		mundos.put(m.getId(), m);
 	}
+	
+	public void borrar(){
+		
+		this.mundos.clear();
+	}
 
 }

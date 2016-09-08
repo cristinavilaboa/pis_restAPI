@@ -46,4 +46,9 @@ public class ManejadorProblema {
 		return ayuda.getInfo();
 	}
 	
+	public void borrar(){
+		
+		this.problemas.clear();
+	}
+	
 }

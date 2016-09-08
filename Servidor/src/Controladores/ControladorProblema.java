@@ -3,6 +3,7 @@ package Controladores;
 
 import java.util.Date;
 
+import org.springframework.util.SocketUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +21,8 @@ public class ControladorProblema implements IControladorProblema{
 		IControladorJugador cu = new ControladorJugador();
 		IControladorSistemaJuego csj = new ControladorSistemaJuego();
 		int exp_ganada = mp.verificarRespuesta(id_problema, respuesta);
+
+		
 		if(exp_ganada > 0 && !cu.yaRespondia(id_jugador, id_problema)){
 			cu.sumarPuntos(exp_ganada, id_jugador, id_problema);
 			int id_mundo = mp.buscarProblema(id_problema).getNivel().getMundo().getId();
