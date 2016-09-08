@@ -1,6 +1,18 @@
 package Modelo;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name = "AYUDA")
 public class Ayuda {
+	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
 	private String info;
 	
 	public Ayuda(String info){

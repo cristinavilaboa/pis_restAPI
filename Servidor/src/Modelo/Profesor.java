@@ -3,6 +3,13 @@ package Modelo;
 
 import java.util.Date;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
+@Entity
+@Table(name = "PROFESOR")
+@PrimaryKeyJoinColumn(name="nick")
 public class Profesor extends Usuario {
 	
 	

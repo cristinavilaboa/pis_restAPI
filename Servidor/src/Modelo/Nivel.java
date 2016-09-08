@@ -3,14 +3,30 @@ package Modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Table;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+@Entity
+@Table(name = "NIVEL")
 public class Nivel {
-
+	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
+	private int id;
 	private int dificultad;
+	@OneToMany (cascade = CascadeType.ALL, mappedBy = "nivel")
 	private List<Problema> problemas = new ArrayList<Problema>();
+	@ManyToOne
 	private Mundo mundo;
 	
 	public Nivel(int dificultad, List<Problema> problemas, Mundo mundo) {
-		super();
 		this.dificultad = dificultad;
 		this.problemas = problemas;
 		this.mundo = mundo;

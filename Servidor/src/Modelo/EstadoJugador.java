@@ -6,13 +6,33 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.MapKey;
+import javax.persistence.MapKeyJoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+@Entity
+@Table(name = "ESTADO")
 public class EstadoJugador {
-
+	@Id
+	private int id;
 	private int puntos_exp;
+	@ManyToMany
 	private List<Mundo> mundos_completos = new ArrayList<Mundo>();
+	@OneToMany
 	private List<Logro> logros = new ArrayList<Logro>();
+	@ManyToMany
+	@MapKeyJoinColumn(name="id")
 	private Map<Mundo, Nivel> mundo_nivel = new HashMap<Mundo, Nivel>(); //CONSULTAR
-	private Map<Nivel, List<Problema>> nivel_problema = new HashMap<Nivel, List<Problema>>(); //CONSULTAR
+	@ManyToMany
+	@MapKeyJoinColumn(name="id")
+	private Map<Nivel,ListaDeNivel> nivel_problema = new HashMap<Nivel, ListaDeNivel>(); //CONSULTAR
 	
 	public EstadoJugador(int puntos_exp, List<Mundo> mundos_completos, List<Logro> logros,
 			Map<Mundo, Nivel> mundo_nivel, Map<Nivel, List<Problema>> nivel_problema) {
@@ -20,8 +40,8 @@ public class EstadoJugador {
 		this.puntos_exp = puntos_exp;
 		this.mundos_completos = mundos_completos;
 		this.logros = logros;
-		this.mundo_nivel = mundo_nivel;
-		this.nivel_problema = nivel_problema;
+		//this.mundo_nivel = mundo_nivel;
+		//this.nivel_problema = nivel_problema;
 	}
 	
 	public EstadoJugador(){}
@@ -69,11 +89,29 @@ public class EstadoJugador {
 	}
 
 	public Map<Nivel, List<Problema>> getNivel_problema() {
-		return nivel_problema;
+		
+		Map<Nivel, List<Problema>> mapa = new HashMap<Nivel, List<Problema>>();
+		Set<Nivel> llaves=nivel_problema.keySet();
+		for (Nivel n: llaves){
+			ListaDeNivel ln=nivel_problema.get(n);
+			mapa.put(n,ln.getProblemas());
+			
+		}	
+		return mapa;
 	}
 
 	public void setNivel_problema(Map<Nivel, List<Problema>> nivel_problema) {
-		this.nivel_problema = nivel_problema;
+		Map<Nivel,ListaDeNivel> mapa = new HashMap<Nivel, ListaDeNivel>();
+		
+		Set<Nivel> llaves=nivel_problema.keySet();
+		
+		for (Nivel n: llaves){
+			List<Problema> ln=nivel_problema.get(n);
+			ListaDeNivel lista = new ListaDeNivel();
+			lista.setProblemas(ln);
+			mapa.put(n,lista);
+		}	
+		this.nivel_problema=mapa;
 	}
 	
 
@@ -86,15 +124,17 @@ public class EstadoJugador {
 	public void agregarPregunta(Problema p){
 		Nivel nivel_preg = p.getNivel();
 		if(nivel_problema.containsKey(nivel_preg)){//Si ya respondi algun problema de ese nivel
-			List<Problema> listaP = nivel_problema.get(nivel_preg);
+			ListaDeNivel lista_nivel = this.nivel_problema.get(nivel_preg);
+			List<Problema> listaP = nivel_problema.get(nivel_preg).getProblemas();
 			if(!listaP.contains(p)){//Si no se respondio antes
-				listaP.add(p);
-				nivel_problema.put(nivel_preg, listaP);
+				lista_nivel.agregarProblema(p);
 			}
 		}else{//Si no respondi ningun problema
+			ListaDeNivel lista_nivel = new ListaDeNivel();
 			List<Problema> nuevaLista = new ArrayList<Problema>();
 			nuevaLista.add(p);
-			nivel_problema.put(nivel_preg, nuevaLista);
+			lista_nivel.setProblemas(nuevaLista);
+			this.nivel_problema.put(nivel_preg, lista_nivel);
 		}
 	}
 	
@@ -129,8 +169,8 @@ public class EstadoJugador {
 	
 	public int cantCorrectas(){
 		int cant = 0;
-		for(List<Problema> n: nivel_problema.values()){
-			cant += n.size();
+		for(ListaDeNivel n: nivel_problema.values()){
+			cant += n.getProblemas().size();
 		}
 		return cant;
 	}

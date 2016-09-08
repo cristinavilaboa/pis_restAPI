@@ -2,10 +2,16 @@ package Modelo;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+@Entity
+@Table(name = "MENSAJE")
 public class Mensaje {
 
-	private static int _id=0;             // id autogenerado
-	
+	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private String contenido;
 	private String asunto;
@@ -24,11 +30,6 @@ public class Mensaje {
 		this.contenido = contenido;
 		this.asunto = asunto;
 		this.fecha = fecha;
-		this.id =++_id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 	
 	public String getContenido() {

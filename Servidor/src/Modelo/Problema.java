@@ -2,14 +2,27 @@ package Modelo;
 
 import java.util.Date;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+@Entity
+@Table(name = "PROBLEMA")
 public class Problema {
+	@Id
 	private Integer id;
 	private String descripcion;
 	private String respuesta;
 	private int puntos_exp;
+	@OneToOne
 	private Ayuda ayuda;
+	@OneToOne
 	private Contenido contenido;
+	@ManyToOne
 	private Nivel nivel;
+	@ManyToOne
 	private Profesor autor; 
 	
 	

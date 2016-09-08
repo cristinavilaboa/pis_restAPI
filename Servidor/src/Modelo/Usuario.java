@@ -3,11 +3,26 @@ package Modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.InheritanceType;
+import javax.persistence.Inheritance;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+@Entity
+@Table(name = "USUARIO")
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Usuario {  //mejor ponerle protected en los atributos para herencia
 	
-	protected String nombre;
+	@Id
 	protected String nick;
+	protected String nombre;
+	@OneToMany
 	protected List<Mensaje> mensajes_viejos;
+	@OneToMany
 	protected List<Mensaje> mensajes_nuevos;
 	
 

@@ -2,6 +2,7 @@ package Controladores;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +27,7 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 			estado.agregarNivelActivo(mundo);
 			Nivel nivel = mp.buscarProblema(id_pregunta).getNivel();
 			if(mundo.ultimoNivelMundo(nivel)){//Si es la ultima pregunta del mundo, avanzo el mundo
-				ArrayList<Mundo> mundos_siguientes = mundo.getMundos_siguientes();
+				List<Mundo> mundos_siguientes = mundo.getMundos_siguientes();
 				if(!estado.getMundos_completos().contains(mundo)){
 					estado.getMundos_completos().add(mundo);
 					estado.ganarExperiencia(mundo.getPuntos_exp());

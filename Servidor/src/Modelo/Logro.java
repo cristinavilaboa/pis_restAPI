@@ -1,9 +1,16 @@
 package Modelo;
 
-import DataTypes.DataLogro;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+import DataTypes.DataLogro;
+@Entity
+@Table(name = "LOGRO")
 public class Logro {
-	
+	 @Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private String descripcion;
 	

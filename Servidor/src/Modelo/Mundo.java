@@ -3,14 +3,29 @@ package Modelo;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+@Entity
+@Table(name = "MUNDO")
 public class Mundo {
-	
+	@Id
 	private Integer id;
 	private String nombre;
 	private String imagen;
 	private String descripcion;
 	private int puntos_exp;
-	private ArrayList<Mundo> mundos_siguientes;
+	@OneToMany
+	private List<Mundo> mundos_siguientes= new ArrayList<Mundo>();
+	@OneToMany (cascade = CascadeType.ALL, mappedBy = "mundo")
 	private List<Nivel> niveles = new ArrayList<Nivel>(); 
 	
 	public Mundo(int id, String nombre, String imagen, String descripcion, int puntos_exp,
@@ -67,7 +82,7 @@ public class Mundo {
 		this.puntos_exp = puntos_exp;
 	}
 
-	public ArrayList<Mundo> getMundos_siguientes() {
+	public List<Mundo> getMundos_siguientes() {
 		return mundos_siguientes;
 	}
 

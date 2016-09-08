@@ -1,9 +1,19 @@
 package Modelo;
 
-public class Clase {
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
+
+@Entity
+@Table(name = "CLASE")
+public class Clase {
+	@Id
 	private int id;
 	private String nombre;
+	@ManyToOne
 	private Profesor encargado;
 	
 	public int getId() {

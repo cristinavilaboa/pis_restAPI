@@ -1,7 +1,13 @@
 package Modelo;
 
-public class Tema {
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "TEMA")
+public class Tema {
+	@Id
 	private int id;
 	private String descripcion;
 	
