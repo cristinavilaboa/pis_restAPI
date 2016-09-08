@@ -1,6 +1,6 @@
 package Datatypes;
 
-public class DataPuntosJugador{
+public class DataPuntosJugador implements Comparable<DataPuntosJugador>{
 	
 	private String nombre;
 	private Integer puntos;
@@ -30,4 +30,10 @@ public class DataPuntosJugador{
 	public void setPuntos(Integer puntos){
 		this.puntos = puntos;
 	}
+	
+    @Override
+    public int compareTo(DataPuntosJugador dpj) {
+    	return dpj.puntos - this.puntos;
+    }
+	
 }

@@ -1,14 +1,13 @@
 package Manejadores;
 
-import java.util.List;
-
+import java.util.HashMap;
+import java.util.Map;
 import Modelo.Mundo;
-import Modelo.Nivel;
 
 public class ManejadorMundo {
 	
 	private static ManejadorMundo instancia = new ManejadorMundo();
-	private List<Mundo> mundos;
+	private  Map<Integer,Mundo> mundos= new HashMap<Integer,Mundo>();
 	
 	private ManejadorMundo(){};
 	
@@ -16,6 +15,12 @@ public class ManejadorMundo {
 		return instancia;
 	}
 	
-	//METODOS A IMPLEMENTAR
-	public int ultimoNivelMundo(Nivel n){return 0;}
+	public Mundo obtenerMundo(int id_mundo){
+		return mundos.get(id_mundo);
+	}
+	
+	public void agregarMundo(Mundo m){
+		mundos.put(m.getId(), m);
+	}
+
 }

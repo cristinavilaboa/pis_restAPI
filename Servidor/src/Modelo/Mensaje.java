@@ -4,17 +4,29 @@ import java.util.Date;
 
 public class Mensaje {
 
+	private static int _id=0;             // id autogenerado
+	
 	private int id;
 	private String contenido;
 	private String asunto;
 	private Date fecha;
+
 	//private Usuario destinatario;
 	//private Usuario remitente;
+	
+	
 	
 	public int getId() {
 		return id;
 	}
 	
+	public Mensaje(String contenido, String asunto, Date fecha) {
+		this.contenido = contenido;
+		this.asunto = asunto;
+		this.fecha = fecha;
+		this.id =++_id;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}

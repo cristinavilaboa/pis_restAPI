@@ -12,6 +12,10 @@ public class Clase {
 		this.encargado = encargado;
 	}
 	
+	public Clase(){
+		
+	}
+	
 	public int getId() {
 		return id;
 	}

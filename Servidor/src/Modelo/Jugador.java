@@ -17,7 +17,7 @@ public class Jugador extends Usuario{
         this.estado = estado;
         this.clase = clase;
     }
-	
+
 	public String getFBToken() {
 		return FBToken;
 	}

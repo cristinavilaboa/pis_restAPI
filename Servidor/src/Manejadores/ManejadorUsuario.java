@@ -1,19 +1,17 @@
 package Manejadores;
 
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
-
+import java.util.Collections;
 import Datatypes.DataPuntosJugador;
-import Modelo.Usuario;
 import java.util.Iterator;
 import Modelo.Jugador;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ManejadorUsuario {
 	
-	private Set<Usuario> usuarios;
-	
 	private static ManejadorUsuario instancia = new ManejadorUsuario();
+	
+	private List<Jugador> jugadores = new ArrayList<Jugador>();
 	
 	private ManejadorUsuario(){};
 	
@@ -21,18 +19,39 @@ public class ManejadorUsuario {
 		return instancia;
 	}
 	
-	public SortedSet<DataPuntosJugador> obtenerRanking(){
-		SortedSet<DataPuntosJugador> set_dpj = new TreeSet<>();
-		Iterator<Usuario> it = usuarios.iterator();
-		while(it.hasNext()){
-			Usuario u = it.next();
-			if (u instanceof Jugador){
-				Jugador j = (Jugador) u;
-				DataPuntosJugador dpj = j.obtenerDataPuntosJugador(u.getNombre());
-				set_dpj.add(dpj);
-			}
-		}
-		return set_dpj;
+	public void agregarJugador(Jugador jugador){
+		jugadores.add(jugador);
 	}
 	
+	public boolean existeJugador(String id_jugador){
+		for(Jugador j: jugadores){
+			if(j.getNick().equalsIgnoreCase(id_jugador)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public Jugador buscarJugador(String id_jugador){
+		for(Jugador j: jugadores){
+			if(j.getNick().equalsIgnoreCase(id_jugador)){
+				return j;
+			}
+		}
+		return null;//SE SUPONE QUE EL JUGADOR YA EXISTE
+	}
+
+	
+	public List<DataPuntosJugador> obtenerRanking(){
+		List<DataPuntosJugador> list_dpj = new ArrayList<>();
+		Iterator<Jugador> it = jugadores.iterator();
+		while(it.hasNext()){
+			Jugador j = it.next();
+			String nombreJ = j.getNombre();
+			DataPuntosJugador dpj = j.obtenerDataPuntosJugador(nombreJ);
+			list_dpj.add(dpj);
+		}
+		Collections.sort(list_dpj);
+		return list_dpj;
+	}
 }
