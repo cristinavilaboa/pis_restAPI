@@ -1,6 +1,6 @@
 package Modelo;
 
-import DataTypes.DataLogro;
+import Datatypes.DataLogro;
 
 public class Logro {
 	

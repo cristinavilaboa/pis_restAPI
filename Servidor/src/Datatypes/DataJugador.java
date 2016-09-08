@@ -1,4 +1,4 @@
-package DataTypes;
+package Datatypes;
 
 import java.util.List;
 

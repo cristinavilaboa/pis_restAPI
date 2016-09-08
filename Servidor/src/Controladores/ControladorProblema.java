@@ -14,15 +14,16 @@ import Modelo.Problema;
 public class ControladorProblema implements IControladorProblema{
 
 	//METODOS A IMPLEMENTAR
-	public int responderPregunta(int id_pregunta, String respuesta, String id_jugador){//JUAN
+	@RequestMapping(value="/responderPregunta", method=RequestMethod.GET)
+	public int responderPregunta(@RequestParam(value="id_problema") int id_problema,@RequestParam(value="respuesta") String respuesta,@RequestParam(value="id_jugador") String id_jugador){//JUAN
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
 		IControladorJugador cu = new ControladorJugador();
 		IControladorSistemaJuego csj = new ControladorSistemaJuego();
-		int exp_ganada = mp.verificarRespuesta(id_pregunta, respuesta);
-		if(exp_ganada > 0 && !cu.yaRespondia(id_jugador, id_pregunta)){
-			cu.sumarPuntos(exp_ganada, id_jugador, id_pregunta);
-			int id_mundo = mp.buscarProblema(id_pregunta).getNivel().getMundo().getId();
-			csj.avanzarJuego(id_jugador, id_pregunta, id_mundo);
+		int exp_ganada = mp.verificarRespuesta(id_problema, respuesta);
+		if(exp_ganada > 0 && !cu.yaRespondia(id_jugador, id_problema)){
+			cu.sumarPuntos(exp_ganada, id_jugador, id_problema);
+			int id_mundo = mp.buscarProblema(id_problema).getNivel().getMundo().getId();
+			csj.avanzarJuego(id_jugador, id_problema, id_mundo);
 		}
 		return exp_ganada;
 	}

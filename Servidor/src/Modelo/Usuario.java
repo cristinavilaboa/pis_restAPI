@@ -10,9 +10,7 @@ public abstract class Usuario {  //mejor ponerle protected en los atributos para
 	protected List<Mensaje> mensajes_viejos;
 	protected List<Mensaje> mensajes_nuevos;
 	
-
-	
-	public Usuario(String nombre, String nick) {
+	public Usuario(String nick, String nombre) {
 		
 		this.nombre = nombre;
 		this.nick = nick;

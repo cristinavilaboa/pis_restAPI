@@ -14,6 +14,10 @@ public class EstadoJugador {
 	private Map<Mundo, Nivel> mundo_nivel = new HashMap<Mundo, Nivel>(); //CONSULTAR
 	private Map<Nivel, List<Problema>> nivel_problema = new HashMap<Nivel, List<Problema>>(); //CONSULTAR
 	
+	public EstadoJugador(int puntos_exp){
+		this.puntos_exp = puntos_exp;
+	}
+	
 	public EstadoJugador(int puntos_exp, List<Mundo> mundos_completos, List<Logro> logros,
 			Map<Mundo, Nivel> mundo_nivel, Map<Nivel, List<Problema>> nivel_problema) {
 		super();

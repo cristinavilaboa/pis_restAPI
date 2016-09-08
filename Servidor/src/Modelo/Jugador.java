@@ -5,9 +5,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import DataTypes.DataJugador;
-import DataTypes.DataLogro;
-import DataTypes.DataMundoNivel;
+import Datatypes.DataPuntosJugador;
+import Modelo.EstadoJugador;
+import Datatypes.DataJugador;
+import Datatypes.DataLogro;
+import Datatypes.DataMundoNivel;
 
 
 public class Jugador extends Usuario{
@@ -17,13 +19,13 @@ public class Jugador extends Usuario{
 	private EstadoJugador estado;
 	private Clase clase;
 	
-	public Jugador(String nombre, String nick, String fBToken, String imagen, EstadoJugador estado, Clase clase) {
-		super(nombre, nick);
-		FBToken = fBToken;
-		this.imagen = imagen;
-		this.estado = estado;
-		this.clase = clase;
-	}
+    public Jugador(String nombre, String nick, String FBToken, String imagen, EstadoJugador estado, Clase clase){
+        super(nombre, nick);
+        this.FBToken = FBToken;
+        this.imagen = imagen;
+        this.estado = estado;
+        this.clase = clase;
+    }
 
 	public String getFBToken() {
 		return FBToken;
@@ -55,6 +57,12 @@ public class Jugador extends Usuario{
 
 	public void setClase(Clase clase) {
 		this.clase = clase;
+	}
+	
+	public DataPuntosJugador obtenerDataPuntosJugador(String nombre){
+		int puntos = estado.getPuntos_exp();
+		DataPuntosJugador dpj = new DataPuntosJugador(nombre, puntos);
+		return dpj;
 	}
 	
 	//************OPERACIONES*************//

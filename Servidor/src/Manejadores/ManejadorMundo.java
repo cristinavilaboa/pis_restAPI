@@ -1,9 +1,7 @@
 package Manejadores;
 
-
 import java.util.HashMap;
 import java.util.Map;
-
 import Modelo.Mundo;
 
 public class ManejadorMundo {
