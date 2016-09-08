@@ -24,7 +24,9 @@ public class Mundo {
 		this.mundos_siguientes = mundos_siguientes;
 		this.niveles = niveles;
 	}
-
+	
+	public Mundo(){}
+	
 	public int getId() {
 		return id;
 	}

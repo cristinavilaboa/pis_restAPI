@@ -15,6 +15,8 @@ public class Nivel {
 		this.problemas = problemas;
 		this.mundo = mundo;
 	}
+	
+	public Nivel(){}
 
 	public int getDificultad() {
 		return dificultad;

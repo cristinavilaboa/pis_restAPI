@@ -27,6 +27,8 @@ public class EstadoJugador {
 		this.mundo_nivel = mundo_nivel;
 		this.nivel_problema = nivel_problema;
 	}
+	
+	public EstadoJugador(){}
 
 	public int getPuntos_exp() {
 		return puntos_exp;
@@ -51,6 +53,7 @@ public class EstadoJugador {
 	public Set<Nivel> getNivelesActivos(){
 		return nivel_problema.keySet();
 	}
+	
 	
 
 	public List<Mundo> getMundos_completos() {
@@ -135,6 +138,6 @@ public class EstadoJugador {
 		}
 		return cant;
 	}
-	
+
 		
 }

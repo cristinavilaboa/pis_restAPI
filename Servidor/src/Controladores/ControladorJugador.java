@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import Datatypes.DataJugador;
 import Manejadores.ManejadorProblema;
 import Modelo.EstadoJugador;
 import Modelo.Logro;
@@ -16,6 +17,13 @@ import Modelo.Problema;
 @RestController
 public class ControladorJugador implements IControladorJugador{
 	
+	@RequestMapping(value="/verperfil", method=RequestMethod.GET)
+	public DataJugador verPerfil(@RequestParam(value="nick")String id_jugador)
+	{
+		ManejadorUsuario mu=ManejadorUsuario.getInstancia();
+		DataJugador dj=mu.obtenerDatosJugador(id_jugador);
+		return dj;
+	}
 	//METODOS A IMPLEMENTAR
 	@RequestMapping(value="/sumarpuntos", method=RequestMethod.PUT)
 	public void sumarPuntos(@RequestParam(value="exp") int exp, @RequestParam(value="id_jugador")String id_jugador, @RequestParam(value="id_pregunta")int id_pregunta){
@@ -33,7 +41,8 @@ public class ControladorJugador implements IControladorJugador{
 		
 	}
 	
-	public boolean yaRespondia(String id_jugador,int id_pregunta){
+	@RequestMapping(value="/yarespondia", method=RequestMethod.GET)
+	public boolean yaRespondia(@RequestParam(value="nick")String id_jugador,@RequestParam(value="id_pregunta")int id_pregunta){
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		EstadoJugador estado = mu.buscarJugador(id_jugador).getEstado();
 		for(List<Problema> n: estado.getNivel_problema().values()){

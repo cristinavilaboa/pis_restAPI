@@ -1,5 +1,7 @@
 package Modelo;
 
+import Datatypes.DataLogro;
+
 public class Logro {
 	
 	private int id;
@@ -9,6 +11,9 @@ public class Logro {
 		this.descripcion=descripcion;
 	}
 	
+	public Logro (){
+		
+	}
 	public int getId() {
 		return id;
 	}
@@ -23,5 +28,10 @@ public class Logro {
 	
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	
+	public DataLogro obtenerDataLogro(){
+		DataLogro dl = new DataLogro(descripcion, id);
+		return dl;
 	}
 }

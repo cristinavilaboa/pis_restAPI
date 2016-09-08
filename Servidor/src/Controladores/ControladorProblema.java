@@ -3,9 +3,14 @@ package Controladores;
 
 import java.util.Date;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import Manejadores.ManejadorProblema;
 import Modelo.Problema;
-
+@RestController
 public class ControladorProblema implements IControladorProblema{
 
 	//METODOS A IMPLEMENTAR
@@ -21,15 +26,15 @@ public class ControladorProblema implements IControladorProblema{
 		}
 		return exp_ganada;
 	}
-	
-	public void enviarMensaje(int id_problema, String mensaje, Date fecha, String asunto){ 
+	@RequestMapping(value="/enviarmensaje", method=RequestMethod.POST)
+	public void enviarMensaje(@RequestParam(value="id_problema") int id_problema,@RequestParam(value="mensaje") String mensaje,@RequestParam(value="fecha") Date fecha,@RequestParam(value="asunto") String asunto){ 
 		ManejadorProblema mp=ManejadorProblema.getInstancia();
 		Problema p=mp.buscarProblema(id_problema);
 		p.enviarMensaje(mensaje, fecha, asunto);
 	}
 	
-
-	public String getAyuda(int id_pregunta){
+	@RequestMapping("/getayuda")
+	public String getAyuda(@RequestParam(value="id_pregunta") int id_pregunta){
 		ManejadorProblema manejador = ManejadorProblema.getInstancia();
 		return manejador.getAyuda(id_pregunta);
 	}
