@@ -91,7 +91,9 @@ public class Problema {
 	}
 	
 	//METODOS A IMPLEMENTAR
-	public boolean verificarRespuesta(String respuesta){return false;}
+	public boolean verificarRespuesta(String respuesta){
+		return respuesta.equalsIgnoreCase(this.respuesta);
+	}
 	
 	public void enviarMensaje(String mensaje,Date fecha, String asunto){
 		autor.enviarMensaje(mensaje, fecha, asunto);

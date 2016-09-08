@@ -1,5 +1,17 @@
 package Modelo;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import Datatypes.DataPuntosJugador;
+import Modelo.EstadoJugador;
+import Datatypes.DataJugador;
+import Datatypes.DataLogro;
+import Datatypes.DataMundoNivel;
+
+
 public class Jugador extends Usuario{
 
 	private String FBToken;
@@ -7,15 +19,13 @@ public class Jugador extends Usuario{
 	private EstadoJugador estado;
 	private Clase clase;
 	
-	
-	
-	public Jugador(String nombre, String nick, String fBToken, String imagen, EstadoJugador estado, Clase clase) {
-		super(nombre, nick);
-		FBToken = fBToken;
-		this.imagen = imagen;
-		this.estado = estado;
-		this.clase = clase;
-	}
+    public Jugador(String nombre, String nick, String FBToken, String imagen, EstadoJugador estado, Clase clase){
+        super(nombre, nick);
+        this.FBToken = FBToken;
+        this.imagen = imagen;
+        this.estado = estado;
+        this.clase = clase;
+    }
 
 	public String getFBToken() {
 		return FBToken;
@@ -48,5 +58,36 @@ public class Jugador extends Usuario{
 	public void setClase(Clase clase) {
 		this.clase = clase;
 	}
+	
+	public DataPuntosJugador obtenerDataPuntosJugador(String nombre){
+		int puntos = estado.getPuntos_exp();
+		DataPuntosJugador dpj = new DataPuntosJugador(nombre, puntos);
+		return dpj;
+	}
+	
+	//************OPERACIONES*************//
+	
+	public DataJugador obtenerDataJugador()
+	{
+		EstadoJugador e = this.estado;
+		List<Logro> logros = e.getLogros();
+		Map <Mundo,Nivel> mundos_niveles = e.getMundo_nivel();
+		int exp = e.getPuntos_exp();
+		List<DataLogro> dataLogros = new ArrayList<DataLogro>();
+		List<DataMundoNivel> dataMundosNiveles = new ArrayList<DataMundoNivel>();
+		int cant = logros.size();
+		for (int i = 0; i<cant; i++){
+			dataLogros.add(logros.get(i).obtenerDataLogro());
+		}
+		Iterator<Mundo> it = mundos_niveles.keySet().iterator();
+		while(it.hasNext()){
+		  Mundo key = (Mundo)it.next();
+		  dataMundosNiveles.add(new DataMundoNivel(key.getNombre(),mundos_niveles.get(key).getDificultad()));		
+		}
+		
+				
+		return new DataJugador(this.nick, this.imagen,dataMundosNiveles,exp,dataLogros);
+	}
+
 	
 }

@@ -4,12 +4,17 @@ import java.util.Date;
 
 public class Profesor extends Usuario {
 	
-	private String password;
-	
 	
 
-	public Profesor(String nombre, String nick, String password) {
+	public Profesor(String nombre, String nick) {
 		super(nombre, nick);
+		// TODO Auto-generated constructor stub
+	}
+
+	private String password;
+	
+	public Profesor(String nick, String nombre, String password){
+		super (nick, nombre);
 		this.password = password;
 	}
 
