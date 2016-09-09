@@ -1,9 +1,7 @@
 package Manejadores;
 
-
 import java.util.HashMap;
 import java.util.Map;
-
 import Modelo.Mundo;
 
 public class ManejadorMundo {
@@ -23,6 +21,11 @@ public class ManejadorMundo {
 	
 	public void agregarMundo(Mundo m){
 		mundos.put(m.getId(), m);
+	}
+	
+	public void borrar(){
+		
+		this.mundos.clear();
 	}
 
 }

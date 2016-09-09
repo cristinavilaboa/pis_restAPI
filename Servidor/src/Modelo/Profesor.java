@@ -1,6 +1,5 @@
 package Modelo;
 
-
 import java.util.Date;
 
 import javax.persistence.Embeddable;
@@ -21,10 +20,8 @@ public class Profesor extends Usuario {
 
 	private String password;
 	
-	
-
-	public Profesor(String nombre, String nick, String password) {
-		super(nombre, nick);
+	public Profesor(String nick, String nombre, String password){
+		super (nick, nombre);
 		this.password = password;
 	}
 

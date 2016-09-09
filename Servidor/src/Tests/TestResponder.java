@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -41,7 +42,7 @@ public class TestResponder {
 	@Before
 	public void setUp() throws Exception {
 		estado = new EstadoJugador(0, mundos_completos, logros, mundo_nivel, nivel_problema);
-		jugador = new Jugador("n", "nick", "fBToken", "imagen", estado, clase);
+		jugador = new Jugador("ni", "nick", "fBToken", "imagen", estado, clase);
 
 		mundo = new Mundo(1, "Jupiter", "imagen", "descripcion",0,mundos_siguientes, niveles);
 		nivel = new Nivel(0,listaP,mundo);
@@ -61,6 +62,8 @@ public class TestResponder {
 		assertEquals(0,estado.cantCorrectas());
 		assertEquals(0,estado.getLogros().size());
 		
+		//Estado es = mu.buscarJugador("nick").getEstado();
+		
 		cp.responderPregunta(1, "respuesta", "nick");
 		assertEquals(10,estado.getPuntos_exp());
 		assertEquals(1,estado.cantCorrectas());
@@ -74,6 +77,12 @@ public class TestResponder {
 		assertEquals(2,estado.getLogros().size());//DOS LOGROS UNO POR PRIMERA RESPUESTA OTRO POR MUNDO COMPLETO
 		assertEquals(estado.getMundo_nivel().get(mundo),nivel);
 		assertEquals(estado.getMundos_completos().get(0),mundo);
+		
+		mu.borrar();
+		mp.borrar();
+		mm.borrar();
+		
 	}
+
 
 }

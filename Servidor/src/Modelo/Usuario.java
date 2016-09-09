@@ -25,8 +25,6 @@ public abstract class Usuario {  //mejor ponerle protected en los atributos para
 	@OneToMany
 	protected List<Mensaje> mensajes_nuevos;
 	
-
-	
 	public Usuario(String nombre, String nick) {
 		
 		this.nombre = nombre;

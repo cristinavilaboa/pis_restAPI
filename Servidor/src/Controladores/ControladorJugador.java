@@ -1,16 +1,18 @@
 package Controladores;
 
+
+import Datatypes.DataPuntosJugador;
+import Manejadores.ManejadorUsuario;
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import DataTypes.DataJugador;
+import Datatypes.DataJugador;
+
 import Manejadores.ManejadorProblema;
-import Manejadores.ManejadorUsuario;
 import Modelo.EstadoJugador;
 import Modelo.Logro;
 import Modelo.Problema;
@@ -55,4 +57,11 @@ public class ControladorJugador implements IControladorJugador{
 		}
 		return false;
 	}
+	
+	public List<DataPuntosJugador> obtenerRanking(){
+		ManejadorUsuario manUs = ManejadorUsuario.getInstancia();
+		List<DataPuntosJugador> list_dpj = manUs.obtenerRanking();
+		return list_dpj;
+	}
+	
 }

@@ -1,4 +1,4 @@
-package DataTypes;
+package Datatypes;
 
 public class DataLogro {
 

@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.junit.Test;
-
-import DataTypes.DataJugador;
+import Datatypes.DataJugador;
 import Modelo.Clase;
 import Modelo.EstadoJugador;
 import Modelo.Jugador;

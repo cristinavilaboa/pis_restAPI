@@ -24,6 +24,5 @@
      	<mapping class="Modelo.Tema"/>
      	<mapping class="Modelo.Usuario"/>
      	<mapping class="Modelo.ListaDeNivel"/>
-     	<mapping class="Persistencia.ClasePrueba"/>
     </session-factory>
 </hibernate-configuration>

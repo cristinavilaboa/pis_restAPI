@@ -1,16 +1,26 @@
 package Manejadores;
 
+
+
+import java.util.ArrayList;
+import java.util.Collections;
+import Datatypes.DataPuntosJugador;
+import java.util.List;
+
+import Modelo.Jugador;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
-import DataTypes.DataJugador;
-import Modelo.Jugador;
+import Datatypes.DataJugador;
 
 public class ManejadorUsuario {
 	
 	private static ManejadorUsuario instancia = new ManejadorUsuario();
 
 	private Map<String, Jugador> jugadores = new HashMap<String, Jugador>();
+	
+	//private List<Jugador> jugadores = new ArrayList<Jugador>();
 	
 	private ManejadorUsuario(){};
 	
@@ -40,6 +50,24 @@ public class ManejadorUsuario {
 	
 	public Jugador buscarJugador(String nick){
 		return jugadores.get(nick); //ver de tirar excepcion si es null
+	}
+
+	
+	public List<DataPuntosJugador> obtenerRanking(){
+		List<DataPuntosJugador> list_dpj = new ArrayList<>();
+		for (Entry<String, Jugador> j : jugadores.entrySet()) {
+			String nombreJ = j.getValue().getNombre();
+			DataPuntosJugador dpj = j.getValue().obtenerDataPuntosJugador(nombreJ);
+			list_dpj.add(dpj);
+		}
+		Collections.sort(list_dpj);
+		return list_dpj;
+	}
+	
+	
+	public void borrar(){
+		
+		this.jugadores.clear();
 	}
 	
 }

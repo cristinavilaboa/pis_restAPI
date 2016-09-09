@@ -1,4 +1,4 @@
-package DataTypes;
+package Datatypes;
 
 public class DataMundoNivel {
 	public DataMundoNivel(String mundo, int nivel) {

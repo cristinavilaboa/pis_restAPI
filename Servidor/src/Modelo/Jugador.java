@@ -4,17 +4,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-
-import DataTypes.DataJugador;
-import DataTypes.DataLogro;
-import DataTypes.DataMundoNivel;
+import Datatypes.*;
+import Datatypes.DataPuntosJugador;
+import Modelo.EstadoJugador;
 @Entity
 @Table(name = "JUGADOR")
 @PrimaryKeyJoinColumn(name="nick")
@@ -27,13 +25,13 @@ public class Jugador extends Usuario{
 	@ManyToOne
 	private Clase clase;
 	
-	public Jugador(String nombre, String nick, String fBToken, String imagen, EstadoJugador estado, Clase clase) {
-		super(nombre, nick);
-		FBToken = fBToken;
-		this.imagen = imagen;
-		this.estado = estado;
-		this.clase = clase;
-	}
+    public Jugador(String nombre, String nick, String FBToken, String imagen, EstadoJugador estado, Clase clase){
+        super(nombre, nick);
+        this.FBToken = FBToken;
+        this.imagen = imagen;
+        this.estado = estado;
+        this.clase = clase;
+    }
 
 	public String getFBToken() {
 		return FBToken;
@@ -65,6 +63,12 @@ public class Jugador extends Usuario{
 
 	public void setClase(Clase clase) {
 		this.clase = clase;
+	}
+	
+	public DataPuntosJugador obtenerDataPuntosJugador(String nombre){
+		int puntos = estado.getPuntos_exp();
+		DataPuntosJugador dpj = new DataPuntosJugador(nombre, puntos);
+		return dpj;
 	}
 	
 	//************OPERACIONES*************//

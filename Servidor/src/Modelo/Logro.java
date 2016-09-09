@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import DataTypes.DataLogro;
+import Datatypes.DataLogro;
 @Entity
 @Table(name = "LOGRO")
 public class Logro {

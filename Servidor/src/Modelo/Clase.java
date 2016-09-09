@@ -16,6 +16,16 @@ public class Clase {
 	@ManyToOne
 	private Profesor encargado;
 	
+	public Clase(int id, String nombre, Profesor encargado){
+		this.id = id;
+		this.nombre = nombre;
+		this.encargado = encargado;
+	}
+	
+	public Clase(){
+		
+	}
+	
 	public int getId() {
 		return id;
 	}
