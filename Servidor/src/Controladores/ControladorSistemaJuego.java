@@ -4,15 +4,21 @@ package Controladores;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import Datatypes.DataProblema;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
+import Modelo.CargarDatos;
 import Modelo.EstadoJugador;
 import Modelo.Logro;
 import Modelo.Mundo;
 import Modelo.Nivel;
+import Modelo.Problema;
 @RestController
 public class ControladorSistemaJuego implements IControladorSistemaJuego {
 	
@@ -45,5 +51,25 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 			}
 		}
 	}
+	
+	@RequestMapping(value="/siguienteProblema", method=RequestMethod.GET)
+	public DataProblema siguienteProblema(@RequestParam(value="id_jugador") String id_jugador,@RequestParam(value="id_problema") int id_problema){
+		// la id_jugador en esta iteracion no se usa
+		// para esta iteracion se devuelve el problema siguiente, siendo id_problema el problema resuelto correctamente.	
+		ManejadorProblema mp=ManejadorProblema.getInstancia();	
+		Problema p=mp.buscarProblema((id_problema + 1));
+		int id=p.getId();
+		String desc=p.getDescripcion();	
+		return new DataProblema(id,desc);
+	
+	}
+	
+
+	@RequestMapping(value="/iniciarjuego", method=RequestMethod.POST)
+	public void iniciarJuego()
+	{
+		CargarDatos cd = new CargarDatos();
+	}
+
 
 }
