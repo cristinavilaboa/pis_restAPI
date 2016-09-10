@@ -7,6 +7,7 @@ import android.view.View;
 import android.webkit.ClientCertRequest;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import calc4fun.cliente.BussinesLayer.Controladores.ClientController;
 
@@ -19,6 +20,14 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
+        TextView contenido = (TextView) findViewById(R.id.ChallengeText);
+        String contStr = "No hay contenido";
+        Bundle dataFromMenu = getIntent().getExtras();
+        if(dataFromMenu != null){
+            contStr = dataFromMenu.getString("Problema");
+        }
+        contenido.setText(contStr);
+
         tutorial = (Button) findViewById(R.id.TutorialButton);
         responder = (Button) findViewById(R.id.AnswerButton);
         ayuda = (Button) findViewById(R.id.HelpButton);
@@ -27,7 +36,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         responder.setOnClickListener(this);
         ayuda.setOnClickListener(this);
         volverMain.setOnClickListener(this);
-        //ClientController.
+       // ClientController.getInstance().
 
     }
 

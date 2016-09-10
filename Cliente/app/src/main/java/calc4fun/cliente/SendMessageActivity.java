@@ -24,8 +24,7 @@ public class SendMessageActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.CancelButton:
-                Intent actividadVolver = new Intent(this,QuestionActivity.class);
-                startActivity(actividadVolver);
+                finish();
                 break;
             default:
                 break;

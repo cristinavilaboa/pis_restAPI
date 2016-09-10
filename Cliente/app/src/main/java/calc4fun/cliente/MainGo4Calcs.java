@@ -2,10 +2,14 @@ package calc4fun.cliente;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+
+import calc4fun.cliente.BussinesLayer.Controladores.ClientController;
+import calc4fun.cliente.DataTypes.DataProblema;
 
 public class MainGo4Calcs extends AppCompatActivity implements View.OnClickListener{
     ImageButton play,profile,ranking;
@@ -27,8 +31,7 @@ public class MainGo4Calcs extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.PlayButton:
-                Intent actividadPlay = new Intent(this,QuestionActivity.class);
-                startActivity(actividadPlay);
+               new PedirPregunta(this).execute();
                 break;
             case R.id.ProfileButton:
                 Intent actividadProfile = new Intent(this,ProfileActivity.class);
@@ -40,5 +43,29 @@ public class MainGo4Calcs extends AppCompatActivity implements View.OnClickListe
             default:
                 break;
         }
+    }
+
+    public class PedirPregunta extends AsyncTask<Void, Void, DataProblema>{
+
+        AppCompatActivity activity;
+
+        public PedirPregunta(AppCompatActivity activity)
+        {
+            this.activity = activity;
+        }
+
+        @Override
+        protected DataProblema doInBackground(Void... params) {
+            return ClientController.getInstance().GetProblema();
+        }
+
+
+        @Override
+        protected void onPostExecute(DataProblema resultado) {
+            Intent actividadPlay = new Intent(activity, QuestionActivity.class);
+            actividadPlay.putExtra("Problema", resultado.getContenido());
+            startActivity(actividadPlay);
+        }
+
     }
 }

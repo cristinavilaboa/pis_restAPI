@@ -24,8 +24,7 @@ public class RankingActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.ReturnRankButton:
-                Intent actividadVolver = new Intent(this,MainGo4Calcs.class);
-                startActivity(actividadVolver);
+                finish();
                 break;
             default:
                 break;

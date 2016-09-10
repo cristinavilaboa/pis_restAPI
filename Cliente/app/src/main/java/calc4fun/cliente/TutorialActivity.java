@@ -21,8 +21,7 @@ public class TutorialActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.ReturnButton:
-                Intent actividadVolver = new Intent(this,QuestionActivity.class);
-                startActivity(actividadVolver);
+                finish();
                 break;
             default:
                 break;
