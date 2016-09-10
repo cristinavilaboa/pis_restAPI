@@ -2,70 +2,32 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="calc4fun.cliente">
 
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".MainMenu"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
-            android:theme="@style/FullscreenTheme">
+        <activity android:name=".MainGo4Calcs">
             <intent-filter>
-                <action android:name="android.intent.action.MAINMENU" />
-
-                <category android:name="android.intent.category.DEFAULT" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainGo4Calcs" />
-
-        <intent-filter>
-            <action android:name="android.intent.action.MAINGO4CALCS" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
 
         <activity android:name=".QuestionActivity" />
 
-        <intent-filter>
-            <action android:name="android.intent.action.QUESTIONACTIVITY" />
-
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
-
         <activity android:name=".SendMessageActivity" />
-
-        <intent-filter>
-            <action android:name="android.intent.action.SENDMESSAGEACTIVITY" />
-
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
 
         <activity android:name=".ProfileActivity" />
 
-        <intent-filter>
-            <action android:name="android.intent.action.PROFILEACTIVITY" />
+        <activity android:name=".TutorialActivity" />
 
-            <category android:name="android.intent.category.DEFAULT" />
-        </intent-filter>
-
-        <activity android:name=".TutorialActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.TUTORIALACTIVITY" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".RankingActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.RANKINGACTIVITY" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".RankingActivity" />
     </application>
 
 </manifest>

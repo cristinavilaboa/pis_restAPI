@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.ClientCertRequest;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import calc4fun.cliente.BussinesLayer.Controladores.ClientController;
 
 public class QuestionActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -24,6 +27,8 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         responder.setOnClickListener(this);
         ayuda.setOnClickListener(this);
         volverMain.setOnClickListener(this);
+        //ClientController.
+
     }
 
     @Override
@@ -38,8 +43,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(actividadAyuda);
                 break;
             case R.id.ReturnButton:
-                Intent actividadVolver = new Intent(this,MainGo4Calcs.class);
-                startActivity(actividadVolver);
+                finish();
                 break;
             default:
                 break;
