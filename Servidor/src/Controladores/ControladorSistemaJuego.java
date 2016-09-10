@@ -13,6 +13,7 @@ import Datatypes.DataProblema;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
+import Modelo.CargarDatos;
 import Modelo.EstadoJugador;
 import Modelo.Logro;
 import Modelo.Mundo;
@@ -63,5 +64,12 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 	
 	}
 	
-	
+
+	@RequestMapping(value="/iniciarjuego", method=RequestMethod.POST)
+	public void iniciarJuego()
+	{
+		CargarDatos cd = new CargarDatos();
+	}
+
+
 }
