@@ -4,11 +4,14 @@ package Controladores;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
+import Modelo.CargarDatos;
 import Modelo.EstadoJugador;
 import Modelo.Logro;
 import Modelo.Mundo;
@@ -44,6 +47,12 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 				}
 			}
 		}
+	}
+	
+	@RequestMapping(value="/iniciarjuego", method=RequestMethod.POST)
+	public void iniciarJuego()
+	{
+		CargarDatos cd = new CargarDatos();
 	}
 
 }
