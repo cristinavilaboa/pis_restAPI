@@ -111,7 +111,6 @@ public class Mundo {
 	//////
 	
 	public Nivel siguienteNivel(Nivel nivel){//PRECONDICION nivel es un Nivel del MUNDO
-		
 		int nivel_actual = niveles.indexOf(nivel);
 		return niveles.get(nivel_actual+1);
 	}

@@ -55,7 +55,8 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 	@RequestMapping(value="/siguienteProblema", method=RequestMethod.GET)
 	public DataProblema siguienteProblema(@RequestParam(value="id_jugador") String id_jugador,@RequestParam(value="id_problema") int id_problema){
 		// la id_jugador en esta iteracion no se usa
-		// para esta iteracion se devuelve el problema siguiente, siendo id_problema el problema resuelto correctamente.	
+		// para esta iteracion se devuelve el problema siguiente, siendo id_problema el problema resuelto correctamente.
+		
 		ManejadorProblema mp=ManejadorProblema.getInstancia();	
 		Problema p=mp.buscarProblema((id_problema + 1));
 		return p.getDataProblema();
