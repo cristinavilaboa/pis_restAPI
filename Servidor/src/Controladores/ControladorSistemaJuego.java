@@ -58,10 +58,7 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 		// para esta iteracion se devuelve el problema siguiente, siendo id_problema el problema resuelto correctamente.	
 		ManejadorProblema mp=ManejadorProblema.getInstancia();	
 		Problema p=mp.buscarProblema((id_problema + 1));
-		int id=p.getId();
-		String desc=p.getDescripcion();	
-		return new DataProblema(id,desc);
-	
+		return p.getDataProblema();
 	}
 	
 

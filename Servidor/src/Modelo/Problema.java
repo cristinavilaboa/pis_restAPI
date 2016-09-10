@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import Datatypes.DataProblema;
 @Entity
 @Table(name = "PROBLEMA")
 public class Problema {
@@ -110,6 +112,13 @@ public class Problema {
 	
 	public void enviarMensaje(String mensaje,Date fecha, String asunto){
 		autor.enviarMensaje(mensaje, fecha, asunto);
+	}
+	
+	public DataProblema getDataProblema(){
+		
+		
+		return new DataProblema(this.id,this.descripcion,this.contenido.getTexto());
+		
 	}
 	
 }
