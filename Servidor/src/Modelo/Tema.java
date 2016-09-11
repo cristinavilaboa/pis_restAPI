@@ -8,15 +8,15 @@ import javax.persistence.Table;
 @Table(name = "TEMA")
 public class Tema {
 	@Id
-	private int id;
+	private int id_tema;
 	private String descripcion;
 	
 	public int getId() {
-		return id;
+		return id_tema;
 	}
 	
 	public void setId(int id) {
-		this.id = id;
+		this.id_tema = id;
 	}
 	
 	public String getDescripcion() {

@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Mensaje {
 
 	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private int id_mensaje;
 	private String contenido;
 	private String asunto;
 	private Date fecha;
@@ -23,7 +23,7 @@ public class Mensaje {
 	
 	
 	public int getId() {
-		return id;
+		return id_mensaje;
 	}
 	
 	public Mensaje(String contenido, String asunto, Date fecha) {

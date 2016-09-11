@@ -19,7 +19,7 @@ import javax.persistence.OneToMany;
 @Table(name = "NIVEL")
 public class Nivel {
 	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private int id_nivel;
 	private int dificultad;
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "nivel")
 	private List<Problema> problemas = new ArrayList<Problema>();

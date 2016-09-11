@@ -12,26 +12,27 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 @Entity
 @Table(name = "MUNDO")
 public class Mundo {
 	@Id
-	private Integer id;
+	private Integer id_mundo;
 	private String nombre;
 	private String imagen;
 	private String descripcion;
 	private int puntos_exp;
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinTable(name="mundo_siguiente", joinColumns={@JoinColumn (name="id_mundo_anterior", referencedColumnName= "id_mundo" )},inverseJoinColumns={@JoinColumn(name="id_mundo_sig",referencedColumnName="id_mundo")})
 	private List<Mundo> mundos_siguientes= new ArrayList<Mundo>();
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "mundo")
 	private List<Nivel> niveles = new ArrayList<Nivel>(); 
 	
 	public Mundo(int id, String nombre, String imagen, String descripcion, int puntos_exp,
 			ArrayList<Mundo> mundos_siguientes, List<Nivel> niveles) {
-		super();
-		this.id = id;
+		this.id_mundo = id;
 		this.nombre = nombre;
 		this.imagen = imagen;
 		this.descripcion = descripcion;
@@ -43,11 +44,11 @@ public class Mundo {
 	public Mundo(){}
 	
 	public int getId() {
-		return id;
+		return id_mundo;
 	}
 	
 	public void setId(int id) {
-		this.id = id;
+		this.id_mundo = id;
 	}
 	
 	public String getNombre() {

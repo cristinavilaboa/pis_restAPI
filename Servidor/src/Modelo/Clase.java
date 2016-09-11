@@ -11,13 +11,13 @@ import javax.persistence.Table;
 @Table(name = "CLASE")
 public class Clase {
 	@Id
-	private int id;
+	private int id_clase;
 	private String nombre;
 	@ManyToOne
 	private Profesor encargado;
 	
 	public Clase(int id, String nombre, Profesor encargado){
-		this.id = id;
+		this.id_clase = id;
 		this.nombre = nombre;
 		this.encargado = encargado;
 	}
@@ -27,11 +27,11 @@ public class Clase {
 	}
 	
 	public int getId() {
-		return id;
+		return id_clase;
 	}
 	
 	public void setId(int id) {
-		this.id = id;
+		this.id_clase = id;
 	}
 	
 	public String getNombre() {

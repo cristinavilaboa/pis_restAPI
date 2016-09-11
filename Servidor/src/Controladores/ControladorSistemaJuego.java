@@ -4,6 +4,13 @@ package Controladores;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.HeuristicMixedException;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import Manejadores.ManejadorMundo;
@@ -13,8 +20,16 @@ import Modelo.EstadoJugador;
 import Modelo.Logro;
 import Modelo.Mundo;
 import Modelo.Nivel;
+import Persistencia.CargarDatosBD;
 @RestController
 public class ControladorSistemaJuego implements IControladorSistemaJuego {
+	@RequestMapping(value="/cargardatos", method=RequestMethod.POST)
+	public void CargarDatos() throws SecurityException, HeuristicMixedException, HeuristicRollbackException, RollbackException, SystemException{
+		
+		if (CargarDatosBD.getCargado()==false){
+			CargarDatosBD.Cargar();
+		}
+	}
 	
 	//METODOS A IMPLEMENTAR
 	public void avanzarJuego(String id_jugador, int id_pregunta, int id_mundo){

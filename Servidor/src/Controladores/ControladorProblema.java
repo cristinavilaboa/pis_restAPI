@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import Manejadores.ManejadorProblema;
 import Modelo.Problema;
+import Persistencia.CargarDatosBD;
 @RestController
 public class ControladorProblema implements IControladorProblema{
 
@@ -35,6 +36,9 @@ public class ControladorProblema implements IControladorProblema{
 		ManejadorProblema mp=ManejadorProblema.getInstancia();
 		Problema p=mp.buscarProblema(id_problema);
 		p.enviarMensaje(mensaje, fecha, asunto);
+		String nickProfesor= p.getAutor().getNick();
+		int idMensaje=CargarDatosBD.PersistirMensaje(mensaje,fecha,asunto);
+		CargarDatosBD.PersistirUsuarioMensaje(nickProfesor, idMensaje);
 	}
 	
 	@RequestMapping("/getayuda")

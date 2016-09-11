@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Table(name = "PROBLEMA")
 public class Problema {
 	@Id
-	private Integer id;
+	private Integer id_problema;
 	private String descripcion;
 	private String respuesta;
 	private int puntos_exp;
@@ -29,7 +29,7 @@ public class Problema {
 	
 	public Problema(Integer id, String descripcion, String respuesta, int puntos_exp, Ayuda ayuda, Contenido contenido,
 			Nivel nivel, Profesor autor) {
-		this.id = id;
+		this.id_problema = id;
 		this.descripcion = descripcion;
 		this.respuesta = respuesta;
 		this.puntos_exp = puntos_exp;
@@ -40,11 +40,11 @@ public class Problema {
 	}
 
 	public int getId() {
-		return id;
+		return id_problema;
 	}
 	
 	public void setId(int id) {
-		this.id = id;
+		this.id_problema = id;
 	}
 	
 	public String getDescripcion() {

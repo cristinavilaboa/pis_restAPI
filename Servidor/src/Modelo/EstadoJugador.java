@@ -10,6 +10,8 @@ import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
@@ -20,18 +22,18 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "ESTADO")
 public class EstadoJugador {
-	@Id
-	private int id;
+	@Id @GeneratedValue(strategy=GenerationType.AUTO)
+	private int id_estado_jugador;
 	private int puntos_exp;
 	@ManyToMany
 	private List<Mundo> mundos_completos = new ArrayList<Mundo>();
 	@OneToMany
 	private List<Logro> logros = new ArrayList<Logro>();
 	@ManyToMany
-	@MapKeyJoinColumn(name="id")
+	@MapKeyJoinColumn(name="id_mundo")
 	private Map<Mundo, Nivel> mundo_nivel = new HashMap<Mundo, Nivel>(); //CONSULTAR
 	@ManyToMany
-	@MapKeyJoinColumn(name="id")
+	@MapKeyJoinColumn(name="id_nivel")
 	private Map<Nivel,ListaDeNivel> nivel_problema = new HashMap<Nivel, ListaDeNivel>(); //CONSULTAR
 	
 	public EstadoJugador(int puntos_exp){
@@ -40,7 +42,6 @@ public class EstadoJugador {
 	
 	public EstadoJugador(int puntos_exp, List<Mundo> mundos_completos, List<Logro> logros,
 			Map<Mundo, Nivel> mundo_nivel, Map<Nivel, List<Problema>> nivel_problema) {
-		super();
 		this.puntos_exp = puntos_exp;
 		this.mundos_completos = mundos_completos;
 		this.logros = logros;

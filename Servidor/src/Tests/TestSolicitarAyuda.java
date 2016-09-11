@@ -13,6 +13,7 @@ import Manejadores.ManejadorProblema;
 import Modelo.Mensaje;
 import Modelo.Problema;
 import Modelo.Profesor;
+import Persistencia.CargarDatosBD;
 
 public class TestSolicitarAyuda {
 	Profesor profesor;
@@ -20,11 +21,12 @@ public class TestSolicitarAyuda {
 
 	@Before
 	public void setUp() throws Exception {
-		
-		 profesor = new Profesor("Juan","pepe","123");
+		 CargarDatosBD.Cargar();
+		 profesor = new Profesor("Juan","otroProfe","123");
 		 problema= new Problema(1,"problema1","resp",12,null,null,null,profesor);
 		 ManejadorProblema mp=ManejadorProblema.getInstancia();
 		 mp.agregarProblema(problema);
+		
 	}
 
 	@Test

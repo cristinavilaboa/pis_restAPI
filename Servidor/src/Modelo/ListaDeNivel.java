@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Table(name = "LISTADENIVEL")
 public class ListaDeNivel {
 	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
+	private int id_lista_de_nivel;
 	@ManyToMany
 	private List<Problema> problemas;
 	
