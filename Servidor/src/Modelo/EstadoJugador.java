@@ -45,8 +45,9 @@ public class EstadoJugador {
 		this.puntos_exp = puntos_exp;
 		this.mundos_completos = mundos_completos;
 		this.logros = logros;
-		//this.mundo_nivel = mundo_nivel;
-		//this.nivel_problema = nivel_problema;
+		this.mundo_nivel = mundo_nivel;
+		this.setNivel_problema(nivel_problema);
+
 	}
 	
 	public EstadoJugador(){}

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import Datatypes.DataProblema;
 import Manejadores.ManejadorProblema;
 import Modelo.Problema;
 import Persistencia.CargarDatosBD;
@@ -41,10 +42,14 @@ public class ControladorProblema implements IControladorProblema{
 		CargarDatosBD.PersistirUsuarioMensaje(nickProfesor, idMensaje);
 	}
 	
-	@RequestMapping("/getayuda")
+	@RequestMapping(value="/getayuda", method=RequestMethod.GET)
 	public String getAyuda(@RequestParam(value="id_pregunta") int id_pregunta){
 		ManejadorProblema manejador = ManejadorProblema.getInstancia();
 		return manejador.getAyuda(id_pregunta);
 	}
+	
+
+	
+	
 
 }// 

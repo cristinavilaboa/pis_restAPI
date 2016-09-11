@@ -1,6 +1,18 @@
 <resources>
-    <string name="app_name">Cliente</string>
+    <string name="app_name">Go4Calcs</string>
 
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="Question">Pregunta:</string>
+    <string name="Answer">Tu Respuesta</string>
+    <string name="Message">Tu Mensaje</string>
+    <string name="Experience">Exp</string>
+    <string name="NickName">Nick</string>
+    <string name="WordLevel1">MundoNivel1</string>
+    <string name="WordLevel2">MundoNivel2</string>
+    <string name="Attainment1">Logro1</string>
+    <string name="Attainment2">Logro2</string>
+    <string name="Tutorial">Tutorial</string>
+    <string name="Learn">Aprende</string>
+    <string name="Challenge">Desafio</string>
 </resources>
