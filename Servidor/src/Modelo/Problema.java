@@ -2,7 +2,7 @@ package Modelo;
 
 import java.util.Date;
 
-import javax.persistence.Embedded;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -18,13 +18,13 @@ public class Problema {
 	private String descripcion;
 	private String respuesta;
 	private int puntos_exp;
-	@OneToOne
+	@OneToOne (cascade=CascadeType.ALL)
 	private Ayuda ayuda;
-	@OneToOne
+	@OneToOne (cascade=CascadeType.ALL)
 	private Contenido contenido;
 	@ManyToOne
 	private Nivel nivel;
-	@ManyToOne
+	@ManyToOne (cascade=CascadeType.ALL)
 	private Profesor autor; 
 	
 	

@@ -3,8 +3,6 @@ package Controladores;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
@@ -14,7 +12,6 @@ import javax.transaction.SystemException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import org.springframework.web.bind.annotation.RestController;
 
 import Datatypes.DataListaDataProblema;
@@ -22,16 +19,12 @@ import Datatypes.DataProblema;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
-import Modelo.CargarDatos;
 import Modelo.EstadoJugador;
-import Modelo.Jugador;
 import Modelo.Logro;
 import Modelo.Mundo;
 import Modelo.Nivel;
-
-import Persistencia.CargarDatosBD;
-
 import Modelo.Problema;
+import Persistencia.CargarDatosBD;
 
 @RestController
 public class ControladorSistemaJuego implements IControladorSistemaJuego {
@@ -80,12 +73,12 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 	public DataProblema siguienteProblema(@RequestParam(value="nick") String nick,@RequestParam(value="nivel") int nivel, @RequestParam(value="id_mundo") int id_mundo){
 		
 		
-		ManejadorProblema mp=ManejadorProblema.getInstancia();	
+		//ManejadorProblema mp=ManejadorProblema.getInstancia();	
 		ManejadorMundo mm=ManejadorMundo.getInstancia();
-		ManejadorUsuario mu=ManejadorUsuario.getInstancia();
+		//ManejadorUsuario mu=ManejadorUsuario.getInstancia();
 		
 		Mundo m= mm.obtenerMundo(id_mundo);	
-		Jugador j=mu.buscarJugador(nick);
+		//Jugador j=mu.buscarJugador(nick);
 		List<Nivel> lista=m.getNiveles();
 		
 	
@@ -104,23 +97,23 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 	public DataListaDataProblema siguienteProblemaGeneral(@RequestParam(value="nick") String nick,@RequestParam(value="nivel") int nivel, @RequestParam(value="id_mundo") int id_mundo){
 		// la id_jugador en esta iteracion no se usa
 		// para esta iteracion se devuelve el problema siguiente, siendo id_problema el problema resuelto correctamente.
-		ManejadorProblema mp=ManejadorProblema.getInstancia();	
+		//ManejadorProblema mp=ManejadorProblema.getInstancia();	
 		ManejadorMundo mm=ManejadorMundo.getInstancia();
-		ManejadorUsuario mu=ManejadorUsuario.getInstancia();
+		//ManejadorUsuario mu=ManejadorUsuario.getInstancia();
 		
 		
 		Mundo m= mm.obtenerMundo(id_mundo);	
-		Jugador j=mu.buscarJugador(nick);
+		//Jugador j=mu.buscarJugador(nick);
 		List<Nivel> lista=m.getNiveles();
 		
 	
 		Nivel n1=lista.get(nivel-1); 
-		List<Problema> lista_problema=n1.getProblemas(); //busco la cantidad de preguntas del nivel donde estoy
+		//List<Problema> lista_problema=n1.getProblemas(); //busco la cantidad de preguntas del nivel donde estoy
 		
 		
-		EstadoJugador estado=j.getEstado(); 
-		Map<Nivel,List<Problema>> problemas_resueltos=estado.getNivel_problema();  //resueltos por nivel 
-		List<Problema> lista_resueltos=problemas_resueltos.get(n1); //resueltos del nivel actual
+		//EstadoJugador estado=j.getEstado(); 
+		//Map<Nivel,List<Problema>> problemas_resueltos=estado.getNivel_problema();  //resueltos por nivel 
+		//List<Problema> lista_resueltos=problemas_resueltos.get(n1); //resueltos del nivel actual
 		
 		List<DataProblema> resultado=new ArrayList<DataProblema>();
 		/*
@@ -148,7 +141,7 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 	@RequestMapping(value="/iniciarjuego", method=RequestMethod.POST)
 	public void iniciarJuego()
 	{
-		CargarDatos cd = new CargarDatos();
+		//CargarDatos cd = new CargarDatos();
 	}
 
 

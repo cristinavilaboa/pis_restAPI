@@ -7,10 +7,22 @@ import java.util.Collections;
 import Datatypes.DataPuntosJugador;
 import java.util.List;
 
+import Modelo.Clase;
+import Modelo.EstadoJugador;
 import Modelo.Jugador;
+import Modelo.Logro;
+import Modelo.Profesor;
+
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
 import Datatypes.DataJugador;
 
@@ -19,8 +31,6 @@ public class ManejadorUsuario {
 	private static ManejadorUsuario instancia = new ManejadorUsuario();
 
 	private Map<String, Jugador> jugadores = new HashMap<String, Jugador>();
-	
-	//private List<Jugador> jugadores = new ArrayList<Jugador>();
 	
 	private ManejadorUsuario(){};
 	
@@ -34,9 +44,116 @@ public class ManejadorUsuario {
 		DataJugador dj = j.obtenerDataJugador();
 		return dj;
 	}
-	public void agregarJugador(Jugador jugador){
-		jugadores.put(jugador.getNick(), jugador);
 
+	public void agregarJugador(Jugador jugador) {
+		try {
+			SessionFactory factory = new Configuration().configure().buildSessionFactory();
+			Session session = factory.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.beginTransaction();
+				session.persist(jugador);
+				tx.commit();
+			} catch (HibernateException e) {
+				if (tx != null)
+					tx.rollback();
+				e.printStackTrace();
+			} finally {
+				jugadores.put(jugador.getNick(), jugador);
+				session.close();
+			}
+		} catch (Throwable ex) {
+			System.err.println("Failed to create sessionFactory object." + ex);
+			throw new ExceptionInInitializerError(ex);
+		}
+	}
+	
+	public void agregarProfesor(Profesor p) {
+		try {
+			SessionFactory factory = new Configuration().configure().buildSessionFactory();
+			Session session = factory.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.beginTransaction();
+				session.persist(p);
+				tx.commit();
+			} catch (HibernateException e) {
+				if (tx != null)
+					tx.rollback();
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+		} catch (Throwable ex) {
+			System.err.println("Failed to create sessionFactory object." + ex);
+			throw new ExceptionInInitializerError(ex);
+		}
+	}
+	
+	public void agregarClase(Clase clase) {
+		try {
+			SessionFactory factory = new Configuration().configure().buildSessionFactory();
+			Session session = factory.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.beginTransaction();
+				session.persist(clase);
+				tx.commit();
+			} catch (HibernateException e) {
+				if (tx != null)
+					tx.rollback();
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+		} catch (Throwable ex) {
+			System.err.println("Failed to create sessionFactory object." + ex);
+			throw new ExceptionInInitializerError(ex);
+		}
+	}
+	
+	public void agregarLogro(Logro logro) {
+		try {
+			SessionFactory factory = new Configuration().configure().buildSessionFactory();
+			Session session = factory.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.beginTransaction();
+				session.persist(logro);
+				tx.commit();
+			} catch (HibernateException e) {
+				if (tx != null)
+					tx.rollback();
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+		} catch (Throwable ex) {
+			System.err.println("Failed to create sessionFactory object." + ex);
+			throw new ExceptionInInitializerError(ex);
+		}
+	}
+	
+	public void agregarEstadoJugador(EstadoJugador estado) {
+		try {
+			SessionFactory factory = new Configuration().configure().buildSessionFactory();
+			Session session = factory.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.beginTransaction();
+				session.persist(estado);
+				tx.commit();
+			} catch (HibernateException e) {
+				if (tx != null)
+					tx.rollback();
+				e.printStackTrace();
+			} finally {
+				session.close();
+			}
+		} catch (Throwable ex) {
+			System.err.println("Failed to create sessionFactory object." + ex);
+			throw new ExceptionInInitializerError(ex);
+		}
 	}
 	
 
@@ -64,10 +181,30 @@ public class ManejadorUsuario {
 		return list_dpj;
 	}
 	
-	
 	public void borrar(){
-		
-		this.jugadores.clear();
+		try {
+			SessionFactory factory = new Configuration().configure().buildSessionFactory();
+			Session session = factory.openSession();
+			Transaction tx = null;
+			try {
+				tx = session.beginTransaction();
+				List<Jugador> lista_jugadores = session.createCriteria(Jugador.class).list();
+				for (Iterator<Jugador> iterator = lista_jugadores.iterator(); iterator.hasNext();) {
+					Jugador j = (Jugador) iterator.next();
+					session.delete(j);
+				}
+				tx.commit();
+			} catch (HibernateException e) {
+				if (tx != null)
+					tx.rollback();
+				e.printStackTrace();
+			} finally {
+				this.jugadores.clear();
+				session.close();
+			}
+		} catch (Throwable ex) {
+			System.err.println("Failed to create sessionFactory object." + ex);
+			throw new ExceptionInInitializerError(ex);
+		}
 	}
-	
 }

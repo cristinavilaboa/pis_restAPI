@@ -1,13 +1,12 @@
 package Tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +15,13 @@ import Controladores.IControladorProblema;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
-import Modelo.*;
+import Modelo.Clase;
+import Modelo.EstadoJugador;
+import Modelo.Jugador;
+import Modelo.Logro;
+import Modelo.Mundo;
+import Modelo.Nivel;
+import Modelo.Problema;
 
 public class TestResponder {
 	ArrayList<Mundo> mundos_siguientes = new ArrayList<Mundo>();

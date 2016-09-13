@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import Datatypes.DataJugador;
+import Datatypes.DataListaRanking;
 
 import Manejadores.ManejadorProblema;
 import Modelo.EstadoJugador;
@@ -28,8 +29,8 @@ public class ControladorJugador implements IControladorJugador{
 		return dj;
 	}
 	//METODOS A IMPLEMENTAR
-	@RequestMapping(value="/sumarpuntos", method=RequestMethod.PUT)
-	public void sumarPuntos(@RequestParam(value="exp") int exp, @RequestParam(value="id_jugador")String id_jugador, @RequestParam(value="id_pregunta")int id_pregunta){
+
+	public void sumarPuntos(int exp, String id_jugador, int id_pregunta){
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
 		EstadoJugador estado = mu.buscarJugador(id_jugador).getEstado();
@@ -44,8 +45,7 @@ public class ControladorJugador implements IControladorJugador{
 		
 	}
 	
-	@RequestMapping(value="/yarespondia", method=RequestMethod.GET)
-	public boolean yaRespondia(@RequestParam(value="nick")String id_jugador,@RequestParam(value="id_pregunta")int id_pregunta){
+	public boolean yaRespondia(String id_jugador,int id_pregunta){
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		EstadoJugador estado = mu.buscarJugador(id_jugador).getEstado();
 		for(List<Problema> n: estado.getNivel_problema().values()){
@@ -58,10 +58,12 @@ public class ControladorJugador implements IControladorJugador{
 		return false;
 	}
 	
-	public List<DataPuntosJugador> obtenerRanking(){
+        @RequestMapping(value="/obtenerranking", method=RequestMethod.GET)
+	public DataListaRanking obtenerRanking(){
 		ManejadorUsuario manUs = ManejadorUsuario.getInstancia();
 		List<DataPuntosJugador> list_dpj = manUs.obtenerRanking();
-		return list_dpj;
+                
+		return new DataListaRanking(list_dpj);
 	}
 	
 }

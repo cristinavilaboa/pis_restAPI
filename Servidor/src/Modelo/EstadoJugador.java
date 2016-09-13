@@ -6,16 +6,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embeddable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.MapKey;
 import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -27,7 +23,7 @@ public class EstadoJugador {
 	private int puntos_exp;
 	@ManyToMany
 	private List<Mundo> mundos_completos = new ArrayList<Mundo>();
-	@OneToMany
+	@OneToMany (cascade=CascadeType.ALL)
 	private List<Logro> logros = new ArrayList<Logro>();
 	@ManyToMany
 	@MapKeyJoinColumn(name="id_mundo")

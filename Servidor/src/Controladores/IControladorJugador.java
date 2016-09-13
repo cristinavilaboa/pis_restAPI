@@ -1,12 +1,11 @@
 package Controladores;
 
-import java.util.List;
-import Datatypes.DataPuntosJugador;
+import Datatypes.DataListaRanking;
 
 public interface IControladorJugador {
 	
 	public void sumarPuntos(int exp, String id_jugador, int id_pregunta);
 	public boolean yaRespondia(String id_jugador,int id_pregunta);
-	public List<DataPuntosJugador> obtenerRanking();
+	public DataListaRanking obtenerRanking();
 	
 }

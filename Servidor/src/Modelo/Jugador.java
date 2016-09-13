@@ -4,15 +4,18 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import javax.persistence.Embedded;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import Datatypes.*;
+
+import Datatypes.DataJugador;
+import Datatypes.DataLogro;
+import Datatypes.DataMundoNivel;
 import Datatypes.DataPuntosJugador;
-import Modelo.EstadoJugador;
 @Entity
 @Table(name = "JUGADOR")
 @PrimaryKeyJoinColumn(name="nick")
@@ -20,9 +23,9 @@ public class Jugador extends Usuario{
 
 	private String FBToken;
 	private String imagen;
-	@OneToOne
+	@OneToOne (cascade=CascadeType.ALL)
 	private EstadoJugador estado;
-	@ManyToOne
+	@ManyToOne (cascade=CascadeType.ALL)
 	private Clase clase;
 	
     public Jugador(String nombre, String nick, String FBToken, String imagen, EstadoJugador estado, Clase clase){

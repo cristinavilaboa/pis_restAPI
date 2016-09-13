@@ -2,7 +2,6 @@ package Modelo;
 
 import java.util.Date;
 
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
