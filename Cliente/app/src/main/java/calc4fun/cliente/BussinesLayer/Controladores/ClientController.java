@@ -2,6 +2,8 @@ package calc4fun.cliente.BussinesLayer.Controladores;
 
 import android.util.Log;
 
+import calc4fun.cliente.DataTypes.DataAyuda;
+import calc4fun.cliente.DataTypes.DataJugador;
 import calc4fun.cliente.DataTypes.DataProblema;
 
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
@@ -29,13 +31,13 @@ public class ClientController {
 
     }
 
-
-    public int ResponderProblema(String respuesta, int id_problema)
+/*
+    public int ResponderProblema(String respuesta, String id_problema)
     {
         try {
             final String url = String.format(
                     "http://servidorgrupo8.azurewebsites.net/Servidor/responderPregunta?id_problema=%s&respuesta=%s&id_jugador=%s",
-                    String.valueOf(id_problema), respuesta, jugador );
+                    id_problema, respuesta, jugador );
             return restTemplate.getForObject(url, int.class);
         } catch(Exception e){
             Log.e("ResponderProblema mal", e.getMessage(), e);
@@ -53,12 +55,34 @@ public class ClientController {
                     nivelInicial = (nivelInicial + 1) %5;
             return restTemplate.getForObject(url, DataProblema.class);
         } catch(Exception e){
-            Log.e("GetProblema anda mal", e.getMessage(), e);
+            Log.e("Error:Problem Not Found", e.getMessage(), e);
             return null;
         }
-    };
+    } */
+
+    public DataJugador getPerfil(){
+        try {
+            final String url = String.format(
+                    "http://servidorgrupo8.azurewebsites.net/Servidor/verperfil?nick=%s",
+                    jugador);
+            return restTemplate.getForObject(url, DataJugador.class);
+        } catch(Exception e){
+            Log.e("Error:Profile Not Found", e.getMessage(), e);
+            return null;
+        }
+    }
 
 
-
+    public DataAyuda getAyuda(String id_problem){
+        try {
+            final String url = String.format(
+                    "http://servidorgrupo8.azurewebsites.net/Servidor/getayuda?id_pregunta=%s",
+                    id_problem);
+            return restTemplate.getForObject(url, DataAyuda.class);
+        } catch(Exception e){
+            Log.e("Error:Help Not Found", e.getMessage(), e);
+            return null;
+        }
+    }
 
 }

@@ -5,6 +5,9 @@ public class DataLogro {
     private String desc;
     private int cant;
 
+    public DataLogro(){
+
+    }
     //constructor
     public DataLogro(String desc, int cant) {
         this.desc = desc;
