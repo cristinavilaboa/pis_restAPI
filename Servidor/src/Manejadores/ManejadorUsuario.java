@@ -8,6 +8,8 @@ import Datatypes.DataPuntosJugador;
 import java.util.List;
 
 import Modelo.Jugador;
+import Modelo.Profesor;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -19,6 +21,7 @@ public class ManejadorUsuario {
 	private static ManejadorUsuario instancia = new ManejadorUsuario();
 
 	private Map<String, Jugador> jugadores = new HashMap<String, Jugador>();
+	private Map<String, Profesor> profesores = new HashMap<String, Profesor>();
 	
 	//private List<Jugador> jugadores = new ArrayList<Jugador>();
 	
@@ -62,6 +65,14 @@ public class ManejadorUsuario {
 		}
 		Collections.sort(list_dpj);
 		return list_dpj;
+	}
+	
+	public Profesor buscarProfesor(String nick){
+		return profesores.get(nick);
+	}
+	
+	public void agregarProfesor(Profesor p){
+		profesores.put(p.getNick(), p);
 	}
 	
 	

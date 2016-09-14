@@ -26,7 +26,7 @@ public class CargarDatosBD {
 		return Cargado;	
 	}
 	
-	public static int PersistirMensaje(String contenido, Date fecha,String asunto){
+	/*public static int PersistirMensaje(String contenido, Date fecha,String asunto){
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
 		Mensaje mensaje=new Mensaje(contenido,asunto,fecha);
@@ -36,7 +36,7 @@ public class CargarDatosBD {
 		session.close();
 		System.out.println("successfully saved mensaje");
 		return idMensaje;
-	}
+	}*/
 	public static void PersistirUsuarioMensaje(String nickProfesor, int id_mensaje){
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
