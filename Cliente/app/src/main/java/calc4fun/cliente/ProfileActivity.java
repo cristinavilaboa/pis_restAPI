@@ -39,9 +39,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         exp = (TextView) findViewById(R.id.ExpView);
         contStr = "No hay contenido";
         if(dataFromMenu != null){
-            contStr = dataFromMenu.getString("PerfilExp");
+            contStr = String.valueOf(dataFromMenu.getInt("PerfilExp"));
         }
-        exp.setText(contStr);
+        exp.setText("Experiencia: " + contStr);
 
         //Cargando MundoNivel
         mundoNivel1 = (TextView) findViewById(R.id.MundoNivel1View);
@@ -65,14 +65,16 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             contStr = String.valueOf(dataFromMenu.getInt("logro_cant0"));
             contStr2 = dataFromMenu.getString("logro_desc0");
         }
-        logro1.setText("Cantidad: " +contStr + "  Descripción" + contStr2);
+        logro1.setText("Logro: 1" + "  Descripción: " + contStr2);
         contStr = "No hay Contenido";
         contStr2 = "";
-        if (dataFromMenu != null){
+        logro2.setText("");
+        if (dataFromMenu != null &&(dataFromMenu.getString("logro_desc1")!=null)) {
             contStr = String.valueOf(dataFromMenu.getInt("logro_cant1"));
             contStr2 = dataFromMenu.getString("logro_desc1");
+
+            logro2.setText("Logro: 2" + "  Descripción: " + contStr2);
         }
-        logro2.setText("Cantidad: " +contStr + "  Descripción: " + contStr2);
 
         returnMain = (Button) findViewById(R.id.BackButton);
         returnMain.setOnClickListener(this);

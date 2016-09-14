@@ -7,13 +7,13 @@ public class DataJugador {
     private String nick;
     private String imagen;
     private List<DataMundoNivel> mundos_niveles;
-    private int experiencia;
+    private Integer experiencia;
     private List<DataLogro> logros;
 
     public DataJugador() {
     }
 
-    public DataJugador(String nick, String imagen, List<DataMundoNivel> mundos_niveles, int experiencia, List<DataLogro> logros) {
+    public DataJugador(String nick, String imagen, List<DataMundoNivel> mundos_niveles, Integer experiencia, List<DataLogro> logros) {
         this.nick = nick;
         this.imagen = imagen;
         this.mundos_niveles = mundos_niveles;
@@ -45,7 +45,7 @@ public class DataJugador {
         this.mundos_niveles = mundos_niveles;
     }
 
-    public int getExperiencia() {
+    public Integer getExperiencia() {
         return experiencia;
     }
 

@@ -118,7 +118,7 @@ public class ClientController {
                     String.valueOf(Estado.getNivelInicial()),
                     texto,
                     dateFormat.format(new Date()),
-                    "asunto");
+                    "Mensaje de Ayuda");
 
 
         }catch(Exception e){
