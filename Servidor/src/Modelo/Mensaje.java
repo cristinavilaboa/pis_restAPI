@@ -26,7 +26,8 @@ public class Mensaje {
 		return id_mensaje;
 	}
 	
-	public Mensaje(String contenido, String asunto, Date fecha) {
+	public Mensaje(int id_mensaje,String contenido, String asunto, Date fecha) {
+		this.id_mensaje = id_mensaje;
 		this.contenido = contenido;
 		this.asunto = asunto;
 		this.fecha = fecha;

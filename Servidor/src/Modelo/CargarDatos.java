@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +57,8 @@ public class CargarDatos {
 		Logro logJ1,logJ21,logJ22;
 		
 		Profesor profesor = new Profesor("Marcelo", "marce_fing", "1234");
+		mu.agregarProfesor(profesor);
+		
 		
 		mundo = new Mundo(1, "Calculo", "imagen", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
 		nivel1 = new Nivel(1,listaPN1,mundo);
