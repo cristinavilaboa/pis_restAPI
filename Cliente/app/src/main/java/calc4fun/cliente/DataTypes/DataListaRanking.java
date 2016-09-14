@@ -12,12 +12,13 @@ public class DataListaRanking {
 
     }
 
-    public DataListaRanking(List<DataPuntosJugador> listaPuntos) {
-        this.listaPuntos=listaPuntos;
-    }
+
 
     public List<DataPuntosJugador> getListaPuntos() {
         return listaPuntos;
     }
 
+    public void setListaPuntos(List<DataPuntosJugador> listaPuntos) {
+        this.listaPuntos = listaPuntos;
+    }
 }

@@ -15,4 +15,5 @@
     <string name="Tutorial">Tutorial</string>
     <string name="Learn">Aprende</string>
     <string name="Challenge">Desafio</string>
+    <string name="perfil_nivel">Nivel:</string>
 </resources>

@@ -11,13 +11,15 @@ public class DataAyuda {
     }
 
     public DataAyuda(String ayuda) {
-        this.ayuda = ayuda;
+        this.setAyuda(ayuda);
     }
-
 
 
     public String getAyuda() {
         return ayuda;
     }
 
+    public void setAyuda(String ayuda) {
+        this.ayuda = ayuda;
+    }
 }

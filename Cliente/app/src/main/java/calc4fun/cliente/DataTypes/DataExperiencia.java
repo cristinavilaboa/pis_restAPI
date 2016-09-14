@@ -11,6 +11,14 @@ public class DataExperiencia {
     }
 
     public DataExperiencia(int exp){
-        experiencia = exp;
+        setExperiencia(exp);
+    }
+
+    public int getExperiencia() {
+        return experiencia;
+    }
+
+    public void setExperiencia(int experiencia) {
+        this.experiencia = experiencia;
     }
 }

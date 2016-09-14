@@ -1,11 +1,11 @@
 package calc4fun.cliente;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.webkit.ClientCertRequest;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -19,7 +19,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
     Button tutorial,responder,ayuda;
     ImageButton volverMain;
-    String id_Problema, laRespuesta;
+    String laRespuesta;
     EditText respuesta;
 
     @Override
@@ -27,13 +27,13 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
         TextView contenido = (TextView) findViewById(R.id.ChallengeText);
+        contenido.setBackgroundColor(0xffffffff);
         String contStr = "No hay contenido";
         Bundle dataFromMenu = getIntent().getExtras();
         if(dataFromMenu != null){
             contStr = dataFromMenu.getString("Problema");
-            id_Problema = dataFromMenu.getString("IdProb");
         }
-        contenido.setText(id_Problema + "-" + contStr);
+        contenido.setText(contStr);
 
 
 
@@ -64,12 +64,17 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             case R.id.AnswerButton:
                 respuesta = (EditText) findViewById(R.id.AnswerText);
                 laRespuesta = respuesta.getText().toString();
+                new responderPregunta(this).execute(new String[]{
+                        laRespuesta
+                });
+
 
             default:
                 break;
         }
 
     }
+
 
     public class pedirTutorial extends AsyncTask<String, Void, DataAyuda>{
         // El JSON tiene problemas para parsear el string de la explicacion.
@@ -82,7 +87,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
         @Override
         protected DataAyuda doInBackground(String... params) {
-            return ClientController.getInstance().getAyuda(id_Problema);
+            return ClientController.getInstance().getAyuda(String.valueOf(ClientController.Estado.getNivelInicial() +1));
         }
 
         @Override
@@ -93,15 +98,53 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    /*public class responderPregunta extends AsyncTask<String,Void, Integer>{
+    public class responderPregunta extends AsyncTask<String,Void, Integer>{
 
-        AppCompatActivity activity;
+        QuestionActivity activity;
 
-        public responderPregunta(AppCompatActivity activity){ this.activity = activity; }
+        public responderPregunta(QuestionActivity activity){ this.activity = activity; }
 
         @Override
         protected Integer doInBackground(String... params) {
-            return ClientController.getInstance().ResponderProblema(laRespuesta,id_Problema);
+            return ClientController.getInstance().ResponderProblema(params[0],String.valueOf(ClientController.Estado.getNivelInicial() + 1)).getExperiencia();
         }
-    }*/
+
+        @Override
+        protected void onPostExecute(Integer experiencia){
+            if (experiencia > 0){
+                new PedirPreguntaEnQuestion(activity).execute();
+                findViewById(R.id.AnswerText).setBackgroundColor(0xff00ff00);
+            }
+            else{
+                findViewById(R.id.AnswerText).setBackgroundColor(0xffff0000);
+            }
+        }
+    }
+
+
+
+
+    public class PedirPreguntaEnQuestion extends AsyncTask<Void, Void, DataProblema>{
+
+        QuestionActivity activity;
+
+        public PedirPreguntaEnQuestion(QuestionActivity activity)
+        {
+            this.activity = activity;
+        }
+
+        @Override
+        protected DataProblema doInBackground(Void... params) {
+            ClientController.Estado.incNivelInicial();
+            return ClientController.getInstance().GetProblema(ClientController.Estado.getNivelInicial() );
+        }
+
+
+        @Override
+        protected void onPostExecute(DataProblema resultado) {
+            TextView contenido = (TextView) activity.findViewById(R.id.ChallengeText);
+            contenido.setText(resultado.getContenido());
+        }
+
+    }
 }

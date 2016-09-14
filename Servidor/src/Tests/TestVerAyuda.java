@@ -32,9 +32,9 @@ public class TestVerAyuda {
 		//nivel.setProblemas(problemas);
 		manejador.agregarProblema(problema);
 		IControladorProblema _cproblema = new ControladorProblema();
-		assertEquals ("La derivada es cuanto varia la funcion, cuando varia x", _cproblema.getAyuda(id_pregunta));
+		assertEquals ("La derivada es cuanto varia la funcion, cuando varia x", _cproblema.getAyuda(id_pregunta).getAyuda());
 		
-		assertEquals ("second atempt", "La derivada es cuanto varia la funcion, cuando varia x", _cproblema.getAyuda(id_pregunta));
+		assertEquals ("second atempt", "La derivada es cuanto varia la funcion, cuando varia x", _cproblema.getAyuda(id_pregunta).getAyuda());
 	}
 
 }

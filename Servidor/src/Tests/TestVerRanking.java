@@ -55,7 +55,7 @@ public class TestVerRanking {
 	public void test() {
 		IControladorJugador conUs = new ControladorJugador();
 		
-		List<DataPuntosJugador> resultado = conUs.obtenerRanking();
+		List<DataPuntosJugador> resultado = conUs.obtenerRanking().getListaPuntos();
 		
 		DataPuntosJugador[] array_res = resultado.toArray(new DataPuntosJugador[resultado.size()]);
 

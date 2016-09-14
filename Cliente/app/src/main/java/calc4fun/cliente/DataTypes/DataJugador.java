@@ -29,11 +29,11 @@ public class DataJugador {
         this.nick = nick;
     }
 
-    public String getimagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setimagen(String imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
@@ -41,7 +41,7 @@ public class DataJugador {
         return mundos_niveles;
     }
 
-    public void setMundoNivel(List<DataMundoNivel> mundos_niveles) {
+    public void setMundosNiveles(List<DataMundoNivel> mundos_niveles) {
         this.mundos_niveles = mundos_niveles;
     }
 

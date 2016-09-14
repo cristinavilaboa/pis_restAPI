@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.util.List;
+
 import calc4fun.cliente.BussinesLayer.Controladores.ClientController;
 import calc4fun.cliente.DataTypes.DataJugador;
 import calc4fun.cliente.DataTypes.DataLogro;
@@ -34,10 +36,10 @@ public class MainGo4Calcs extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.PlayButton:
-               // new PedirPregunta(this).execute();
+               new PedirPregunta(this).execute();
                 break;
             case R.id.ProfileButton:
-                //new pedirPerfil(this).execute();
+                new pedirPerfil(this).execute();
                 break;
             case R.id.RankingButton:
                 Intent actividadRanking = new Intent(this,RankingActivity.class);
@@ -46,7 +48,7 @@ public class MainGo4Calcs extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
-/*
+
     public class PedirPregunta extends AsyncTask<Void, Void, DataProblema>{
 
         AppCompatActivity activity;
@@ -58,7 +60,7 @@ public class MainGo4Calcs extends AppCompatActivity implements View.OnClickListe
 
         @Override
         protected DataProblema doInBackground(Void... params) {
-            return ClientController.getInstance().GetProblema();
+            return ClientController.getInstance().GetProblema(ClientController.Estado.getNivelInicial());
         }
 
 
@@ -71,7 +73,7 @@ public class MainGo4Calcs extends AppCompatActivity implements View.OnClickListe
             startActivity(actividadPlay);
         }
 
-    } */
+    }
 
     public class pedirPerfil extends AsyncTask<Void, Void, DataJugador> {
         // TIENE ERRORES, ME PARECE QUE NO LOGRA MAPEAR LAS LISTA DE NIVEL MUNDO Y DE LOGROS.
@@ -96,23 +98,20 @@ public class MainGo4Calcs extends AppCompatActivity implements View.OnClickListe
             logro2 = null;
             Intent actividadProfile = new Intent(activity, ProfileActivity.class);
             actividadProfile.putExtra("PerfilNick", resultado.getNick());
-            actividadProfile.putExtra("PerfilImagen", resultado.getimagen());
+            actividadProfile.putExtra("PerfilImagen", resultado.getImagen());
             actividadProfile.putExtra("PerfilExp",resultado.getExperiencia());
-            mundoNivel = resultado.getMundosNiveles().get(1);
-            if (resultado.getMundosNiveles() != null) {
-                logro1 = resultado.getLogros().get(1);
-                logro2 = resultado.getLogros().get(2);
+            actividadProfile.putExtra("PerfilNivel",resultado.getMundosNiveles().get(0).getNivel());
+            actividadProfile.putExtra("PerfilMundo",resultado.getMundosNiveles().get(0).getMundo());
+
+
+            int cant_logros = 0;
+            for (DataLogro logro:resultado.getLogros()) {
+                actividadProfile.putExtra("logro_desc" + Integer.toString(cant_logros), logro.getDesc());
+                actividadProfile.putExtra("logro_cant" + Integer.toString(cant_logros), logro.getCant());
+                cant_logros+=1;
             }
-            actividadProfile.putExtra("PerfilMundo",mundoNivel.getMundo());
-            actividadProfile.putExtra("PerfilNivel",mundoNivel.getNivel());
-            if (logro1 != null) {
-                actividadProfile.putExtra("PerfilLogro1Cant",logro1.getCant());
-                actividadProfile.putExtra("PerfilLogro1Desc",logro1.getDesc());
-            }
-            if (logro2 != null){
-                actividadProfile.putExtra("PerfilLogro2Cant",logro2.getCant());
-                actividadProfile.putExtra("PerfilLogro2Desc",logro2.getDesc());
-            }
+            actividadProfile.putExtra("cant_logros", cant_logros);
+
             startActivity(actividadProfile);
         }
     }

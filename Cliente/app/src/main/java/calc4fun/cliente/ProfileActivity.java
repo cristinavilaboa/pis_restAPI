@@ -37,7 +37,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         //Cargando Exp
         exp = (TextView) findViewById(R.id.ExpView);
-        dataFromMenu = getIntent().getExtras();
         contStr = "No hay contenido";
         if(dataFromMenu != null){
             contStr = dataFromMenu.getString("PerfilExp");
@@ -47,34 +46,33 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         //Cargando MundoNivel
         mundoNivel1 = (TextView) findViewById(R.id.MundoNivel1View);
         mundoNivel2 = (TextView) findViewById(R.id.MundoNivel2View);
-        dataFromMenu = getIntent().getExtras();
         contStr = "No hay Contenido";
         contStr2 = "No hay Contenido";
         if (dataFromMenu != null){
             contStr = dataFromMenu.getString("PerfilMundo");
-            contStr2 = dataFromMenu.getString("PerfilNivel");
+            contStr2 = String.valueOf(dataFromMenu.getInt("PerfilNivel"));
         }
         mundoNivel1.setText("Mundo:" + contStr);
         mundoNivel2.setText("Nivel:" + contStr2);
 
+
         //Cargar Logros
         logro1 = (TextView) findViewById(R.id.Logro1View);
         logro2 = (TextView) findViewById(R.id.Logro2View);
-        dataFromMenu = getIntent().getExtras();
         contStr = "No hay Contenido";
         contStr2 = "";
         if (dataFromMenu != null){
-            contStr = dataFromMenu.getString("PerfilLogr1Cant");
-            contStr2 = dataFromMenu.getString("PerfilLogro1Desc");
+            contStr = String.valueOf(dataFromMenu.getInt("logro_cant0"));
+            contStr2 = dataFromMenu.getString("logro_desc0");
         }
-        logro1.setText(contStr + contStr2);
+        logro1.setText("Cantidad: " +contStr + "  Descripción" + contStr2);
         contStr = "No hay Contenido";
         contStr2 = "";
         if (dataFromMenu != null){
-            contStr = dataFromMenu.getString("PerfilLogr2Cant");
-            contStr2 = dataFromMenu.getString("PerfilLogro2Desc");
+            contStr = String.valueOf(dataFromMenu.getInt("logro_cant1"));
+            contStr2 = dataFromMenu.getString("logro_desc1");
         }
-        logro2.setText(contStr + contStr2);
+        logro2.setText("Cantidad: " +contStr + "  Descripción: " + contStr2);
 
         returnMain = (Button) findViewById(R.id.BackButton);
         returnMain.setOnClickListener(this);
