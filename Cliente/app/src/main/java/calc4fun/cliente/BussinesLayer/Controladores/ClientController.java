@@ -11,7 +11,10 @@ import calc4fun.cliente.DataTypes.DataEstadoMensaje;
 
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import java.net.URI;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,7 +25,7 @@ import java.util.logging.Logger;
  */
 public class ClientController {
     private final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    private static String baseUrl = "servidorgrupo8";//servidorgrupo8
+    private static String baseUrl = "10.0.2.2:8080";   //"servidorgrupo8.azurewebsites.net"; <- usar esta direccion para localhost
     private static String jugador = "nico_fing";
 
     public static class Estado{
@@ -50,9 +53,11 @@ public class ClientController {
 
     public DataListaRanking VerRanking() {
         try {
-            final String url =
-                    "http://" +baseUrl +".azurewebsites.net/Servidor/verranking";
-            return restTemplate.getForObject(url, DataListaRanking.class);
+            return restTemplate.getForObject(
+                    UriComponentsBuilder.fromUriString("http://" +baseUrl)
+                            .path("/Servidor/verranking")
+                            .build().toUriString()
+                    , DataListaRanking.class);
         } catch(Exception e){
             Log.e("ResponderProblema mal", e.getMessage(), e);
             return null;
@@ -62,11 +67,16 @@ public class ClientController {
 
     public DataExperiencia ResponderProblema(String respuesta, String id_problema)
     {
+
         try {
-            final String url = String.format(
-                    "http://" +baseUrl +".azurewebsites.net/Servidor/responderPregunta?id_problema=%s&respuesta=%s&id_jugador=%s",
-                    id_problema, respuesta, jugador );
-            return restTemplate.getForObject(url, DataExperiencia.class);
+            return restTemplate.getForObject(
+                    UriComponentsBuilder.fromUriString("http://" +baseUrl)
+                            .path("/Servidor/responderPregunta")
+                            .queryParam("id_problema", id_problema )
+                            .queryParam("respuesta", respuesta)
+                            .queryParam("id_jugador", jugador)
+                            .build().toUriString()
+                    , DataExperiencia.class);
         } catch(Exception e){
             Log.e("ResponderProblema mal", e.getMessage(), e);
             return null;
@@ -77,10 +87,14 @@ public class ClientController {
 
     public DataProblema GetProblema(int nivelAnterior){
         try {
-            final String url = String.format(
-                    "http://" +baseUrl +".azurewebsites.net/Servidor/siguienteProblema?nick=%s&nivel=%s&id_mundo=%s",
-                    jugador, String.valueOf(nivelAnterior), String.valueOf(id_mundo) );
-            return restTemplate.getForObject(url, DataProblema.class);
+            return restTemplate.getForObject(
+                    UriComponentsBuilder.fromUriString("http://" +baseUrl)
+                            .path("/Servidor/siguienteProblema")
+                            .queryParam("nick", jugador )
+                            .queryParam("nivel", nivelAnterior)
+                            .queryParam("id_mundo", id_mundo)
+                            .build().toUriString()
+                    , DataProblema.class);
         } catch(Exception e){
             Log.e("Error:Problem Not Found", e.getMessage(), e);
             return null;
@@ -89,10 +103,11 @@ public class ClientController {
 
     public DataJugador getPerfil(){
         try {
-            final String url = String.format(
-                    "http://" +baseUrl +".azurewebsites.net/Servidor/verperfil?nick=%s",
-                    jugador);
-            return restTemplate.getForObject(url, DataJugador.class);
+            return restTemplate.getForObject(
+                    UriComponentsBuilder.fromUriString("http://" +baseUrl)
+                            .path("/Servidor/verperfil")
+                            .queryParam("nick", jugador )
+                            .build().toUriString(), DataJugador.class);
         } catch(Exception e){
             Log.e("Error:Profile Not Found", e.getMessage(), e);
             return null;
@@ -102,10 +117,11 @@ public class ClientController {
 
     public DataAyuda getAyuda(String id_problem){
         try {
-            final String url = String.format(
-                    "http://" +baseUrl +".azurewebsites.net/Servidor/getayuda?id_pregunta=%s",
-                    id_problem);
-            return restTemplate.getForObject(url, DataAyuda.class);
+            return restTemplate.getForObject(
+                    UriComponentsBuilder.fromUriString("http://" +baseUrl)
+                            .path("/Servidor/getayuda")
+                            .queryParam("id_pregunta", id_problem )
+                            .build().toUriString(), DataAyuda.class);
         } catch(Exception e){
             Log.e("Error:Help Not Found", e.getMessage(), e);
             return null;
@@ -114,13 +130,14 @@ public class ClientController {
 
     public DataEstadoMensaje enviarMensaje(String texto){
         try{
-            final String url = String.format(
-                    "http://" +baseUrl +".azurewebsites.net/Servidor/enviarmensaje?id_problema=%s&mensaje=%s&fecha=%s&asunto=%s",
-                    String.valueOf(Estado.getNivelInicial()),
-                    texto,
-                    dateFormat.format(new Date()),
-                    "Mensaje de Ayuda");
-                    return restTemplate.getForObject(url,DataEstadoMensaje.class);
+            return restTemplate.getForObject(
+                    UriComponentsBuilder.fromUriString("http://" +baseUrl)
+                            .path("/Servidor/enviarmensaje")
+                            .queryParam("id_problema",  String.valueOf(Estado.getNivelInicial() +1) )
+                            .queryParam("fecha", dateFormat.format(new Date()) )
+                            .queryParam("mensaje", URLEncoder.encode(texto, "UTF-8") )
+                            .queryParam("asunto", "Mensaje de Ayuda" )
+                            .build().toUriString(),DataEstadoMensaje.class);
 
 
         }catch(Exception e){

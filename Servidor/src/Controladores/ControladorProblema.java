@@ -1,6 +1,9 @@
 package Controladores;
 
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -47,7 +50,7 @@ public class ControladorProblema implements IControladorProblema{
 		
 		ManejadorProblema mp=ManejadorProblema.getInstancia();
 		Problema p=mp.buscarProblema(id_problema);
-		p.enviarMensaje(mensaje, fecha, asunto);
+		p.enviarMensaje(URLDecoder.decode(mensaje, "UTF-8") , fecha, asunto);
 		//String nickProfesor= p.getAutor().getNick();
 		//int idMensaje=CargarDatosBD.PersistirMensaje(mensaje,fecha,asunto);
 		//CargarDatosBD.PersistirUsuarioMensaje(nickProfesor, idMensaje);
@@ -55,6 +58,10 @@ public class ControladorProblema implements IControladorProblema{
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			
+			e.printStackTrace();
+			return new DataEstadoMensaje(false);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return new DataEstadoMensaje(false);
 		}
