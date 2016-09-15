@@ -33,6 +33,15 @@ public class Nivel {
 	}
 	
 	public Nivel(){}
+	
+	
+	public void setNivel(int n){
+		id_nivel=n;
+	}
+	
+	public int getNivel(){
+		return id_nivel;
+	}
 
 	public int getDificultad() {
 		return dificultad;

@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 @Table(name = "MUNDO")
 public class Mundo {
 	@Id
+	private int id_nivel=1;
 	private Integer id_mundo;
 	private String nombre;
 	private String imagen;
@@ -117,6 +118,8 @@ public class Mundo {
 	}
 	
 	public void agregarNivel(Nivel n){
+		n.setNivel(id_nivel);
+		id_nivel++;
 		niveles.add(n);
 	}
 	

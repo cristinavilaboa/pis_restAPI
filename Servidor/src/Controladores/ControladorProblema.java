@@ -37,8 +37,8 @@ public class ControladorProblema implements IControladorProblema{
 		
 		if(exp_ganada > 0 && !cu.yaRespondia(id_jugador, id_problema)){
 			cu.sumarPuntos(exp_ganada, id_jugador, id_problema);
-			int id_mundo = mp.buscarProblema(id_problema).getNivel().getMundo().getId();
-			csj.avanzarJuego(id_jugador, id_problema, id_mundo);
+			//int id_mundo = mp.buscarProblema(id_problema).getNivel().getMundo().getId();
+			//csj.avanzarJuego(id_jugador, id_problema, id_mundo);
 		}
 		return new DataExperiencia(exp_ganada);
 	}

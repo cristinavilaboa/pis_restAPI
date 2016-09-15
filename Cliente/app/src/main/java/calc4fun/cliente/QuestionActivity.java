@@ -37,6 +37,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
 
 
         tutorial = (Button) findViewById(R.id.TutorialButton);
+        tutorial.setEnabled(false);
         responder = (Button) findViewById(R.id.AnswerButton);
         ayuda = (Button) findViewById(R.id.HelpButton);
         volverMain = (ImageButton) findViewById(R.id.ReturnButton);
@@ -117,6 +118,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             }
             else{
                 findViewById(R.id.AnswerText).setBackgroundColor(0xffff0000);
+                tutorial.setEnabled(true);
             }
             activity.findViewById(R.id.AnswerButton).setEnabled(true);
             ((EditText) activity.findViewById(R.id.AnswerText)).setText("");

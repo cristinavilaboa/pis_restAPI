@@ -88,7 +88,7 @@ public class Jugador extends Usuario{
 		Iterator<Mundo> it = mundos_niveles.keySet().iterator();
 		while(it.hasNext()){
 		  Mundo key = (Mundo)it.next();
-		  dataMundosNiveles.add(new DataMundoNivel(key.getNombre(),mundos_niveles.get(key).getDificultad()));		
+		  dataMundosNiveles.add(new DataMundoNivel(key.getNombre(),mundos_niveles.get(key).getNivel()));		
 		}
 		
 				
