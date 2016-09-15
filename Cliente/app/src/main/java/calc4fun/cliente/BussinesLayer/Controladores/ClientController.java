@@ -25,7 +25,7 @@ import java.util.logging.Logger;
  */
 public class ClientController {
     private final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    private static String baseUrl = "10.0.2.2:8080";   //"servidorgrupo8.azurewebsites.net"; <- usar esta direccion para localhost
+    private static String baseUrl = "servidorgrupo8.azurewebsites.net";//"10.0.2.2:8080";   //"servidorgrupo8.azurewebsites.net"; <- usar esta direccion para localhost
     private static String jugador = "nico_fing";
 
     public static class Estado{

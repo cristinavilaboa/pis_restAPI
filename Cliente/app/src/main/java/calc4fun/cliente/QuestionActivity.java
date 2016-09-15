@@ -63,6 +63,7 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             case R.id.AnswerButton:
                 respuesta = (EditText) findViewById(R.id.AnswerText);
                 laRespuesta = respuesta.getText().toString();
+                v.setEnabled(false);
                 new responderPregunta(this).execute(new String[]{
                         laRespuesta
                 });
@@ -117,6 +118,8 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
             else{
                 findViewById(R.id.AnswerText).setBackgroundColor(0xffff0000);
             }
+            activity.findViewById(R.id.AnswerButton).setEnabled(true);
+            ((EditText) activity.findViewById(R.id.AnswerText)).setText("");
         }
     }
 

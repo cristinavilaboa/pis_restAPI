@@ -13,6 +13,8 @@ import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import calc4fun.cliente.BussinesLayer.Controladores.ClientController;
+
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button returnMain;
@@ -50,7 +52,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         contStr2 = "No hay Contenido";
         if (dataFromMenu != null){
             contStr = dataFromMenu.getString("PerfilMundo");
-            contStr2 = String.valueOf(dataFromMenu.getInt("PerfilNivel"));
+            contStr2 = String.valueOf(ClientController.Estado.getNivelInicial());
         }
         mundoNivel1.setText("Mundo:" + contStr);
         mundoNivel2.setText("Nivel:" + contStr2);
