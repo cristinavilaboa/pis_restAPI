@@ -39,7 +39,8 @@ public class MainGo4Calcs extends AppCompatActivity implements View.OnClickListe
                new PedirPregunta(this).execute();
                 break;
             case R.id.ProfileButton:
-                new pedirPerfil(this).execute();
+                Intent actividadProfile = new Intent(this, ProfileActivity.class);
+                startActivity(actividadProfile);
                 break;
             case R.id.RankingButton:
                 Intent actividadRanking = new Intent(this,RankingActivity.class);
@@ -75,44 +76,5 @@ public class MainGo4Calcs extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public class pedirPerfil extends AsyncTask<Void, Void, DataJugador> {
-        // TIENE ERRORES, ME PARECE QUE NO LOGRA MAPEAR LAS LISTA DE NIVEL MUNDO Y DE LOGROS.
-        AppCompatActivity activity;
-        DataMundoNivel mundoNivel;
-        DataLogro logro1;
-        DataLogro logro2;
 
-        public pedirPerfil(AppCompatActivity activity) {
-            this.activity = activity;
-        }
-
-
-        @Override
-        protected DataJugador doInBackground(Void... params) {
-            return ClientController.getInstance().getPerfil();
-        }
-
-        @Override
-        protected void onPostExecute(DataJugador resultado) {
-            logro1 = null;
-            logro2 = null;
-            Intent actividadProfile = new Intent(activity, ProfileActivity.class);
-            actividadProfile.putExtra("PerfilNick", resultado.getNick());
-            actividadProfile.putExtra("PerfilImagen", resultado.getImagen());
-            actividadProfile.putExtra("PerfilExp",resultado.getExperiencia());
-            actividadProfile.putExtra("PerfilNivel",resultado.getMundosNiveles().get(0).getNivel());
-            actividadProfile.putExtra("PerfilMundo",resultado.getMundosNiveles().get(0).getMundo());
-
-
-            int cant_logros = 0;
-            for (DataLogro logro:resultado.getLogros()) {
-                actividadProfile.putExtra("logro_desc" + Integer.toString(cant_logros), logro.getDesc());
-                actividadProfile.putExtra("logro_cant" + Integer.toString(cant_logros), logro.getCant());
-                cant_logros+=1;
-            }
-            actividadProfile.putExtra("cant_logros", cant_logros);
-
-            startActivity(actividadProfile);
-        }
-    }
 }
