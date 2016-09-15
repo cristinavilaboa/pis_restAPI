@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/AnswerText"
         android:hint="@string/Answer"
-        android:textColor="@android:color/background_dark"
+        android:textColor="@android:color/background_light"
         android:textSize="@dimen/abc_text_size_display_1_material"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -61,7 +61,7 @@
         android:textSize="40sp"
         android:id="@+id/ChallengeText"
         android:layout_marginTop="58dp"
-        android:textColor="@android:color/background_dark"
+        android:textColor="@android:color/background_light"
         android:layout_below="@+id/imageQuestionView"
         android:layout_centerHorizontal="true" />
 

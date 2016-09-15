@@ -36,7 +36,7 @@
             android:layout_marginTop="37dp"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.05"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_light"/>
 
         <ImageView
             android:layout_width="117dp"
@@ -53,9 +53,9 @@
             android:id="@+id/ExpView"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="left|center_horizontal"
             android:layout_weight="0.05"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_light"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -65,9 +65,9 @@
             android:id="@+id/MundoNivel1View"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="left|center_horizontal"
             android:layout_weight="0.04"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_light"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -77,9 +77,9 @@
             android:id="@+id/MundoNivel2View"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="left"
             android:layout_weight="0.06"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_light"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -89,9 +89,9 @@
             android:id="@+id/Logro1View"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="left|center_horizontal"
             android:layout_weight="0.06"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_light"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -101,9 +101,9 @@
             android:id="@+id/Logro2View"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="left|center_horizontal"
             android:layout_weight="0.12"
-            android:textColor="@android:color/background_dark"/>
+            android:textColor="@android:color/background_light"/>
 
         <Button
             android:layout_width="wrap_content"

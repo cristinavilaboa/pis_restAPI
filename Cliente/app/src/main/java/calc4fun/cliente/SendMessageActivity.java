@@ -6,20 +6,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import calc4fun.cliente.DataTypes.DataEstadoMensaje;
 
 import calc4fun.cliente.BussinesLayer.Controladores.ClientController;
 
 public class SendMessageActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button enviar,volverMain;
-
+    EditText mensaje;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_message);
         enviar = (Button) findViewById(R.id.SendButton);
         volverMain = (Button) findViewById(R.id.CancelButton);
+        mensaje = (EditText) findViewById(R.id.editMessageText);
         enviar.setOnClickListener(this);
         volverMain.setOnClickListener(this);
     }
@@ -31,8 +34,8 @@ public class SendMessageActivity extends AppCompatActivity implements View.OnCli
                 finish();
                 break;
             case R.id.SendButton:
-                if (!enviar.getText().toString().isEmpty()){
-                    new EnviarMensaje(this).execute(enviar.getText().toString());
+                if (!mensaje.getText().toString().isEmpty()){
+                    new EnviarMensaje(this).execute(mensaje.getText().toString());
                 }
                 break;
             default:
@@ -40,20 +43,20 @@ public class SendMessageActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    public class EnviarMensaje extends AsyncTask<String,Void, Void> {
+    public class EnviarMensaje extends AsyncTask<String,Void, DataEstadoMensaje> {
 
         SendMessageActivity activity;
 
         public EnviarMensaje(SendMessageActivity activity){ this.activity = activity; }
 
         @Override
-        protected Void doInBackground(String... params) {
-            ClientController.getInstance().enviarMensaje(params[0]);
-            return null;
+        protected DataEstadoMensaje doInBackground(String... params) {
+             return ClientController.getInstance().enviarMensaje(params[0]);
+
         }
 
         @Override
-        protected void onPostExecute(Void nada){
+        protected void onPostExecute(DataEstadoMensaje mens){
             ((TextView) (activity.findViewById(R.id.editMessageText))).setText("");
         }
     }

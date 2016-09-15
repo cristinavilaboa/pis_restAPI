@@ -7,6 +7,7 @@ import calc4fun.cliente.DataTypes.DataExperiencia;
 import calc4fun.cliente.DataTypes.DataJugador;
 import calc4fun.cliente.DataTypes.DataListaRanking;
 import calc4fun.cliente.DataTypes.DataProblema;
+import calc4fun.cliente.DataTypes.DataEstadoMensaje;
 
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
@@ -21,7 +22,7 @@ import java.util.logging.Logger;
  */
 public class ClientController {
     private final DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-    private static String baseUrl = "pepefiestaplaya";//servidorgrupo8
+    private static String baseUrl = "servidorgrupo8";//servidorgrupo8
     private static String jugador = "nico_fing";
 
     public static class Estado{
@@ -111,7 +112,7 @@ public class ClientController {
         }
     }
 
-    public void enviarMensaje(String texto){
+    public DataEstadoMensaje enviarMensaje(String texto){
         try{
             final String url = String.format(
                     "http://" +baseUrl +".azurewebsites.net/Servidor/enviarmensaje?id_problema=%s&mensaje=%s&fecha=%s&asunto=%s",
@@ -119,10 +120,12 @@ public class ClientController {
                     texto,
                     dateFormat.format(new Date()),
                     "Mensaje de Ayuda");
+                    return restTemplate.getForObject(url,DataEstadoMensaje.class);
 
 
         }catch(Exception e){
             Log.e("Error:Message not sent", e.getMessage(), e);
+            return null;
         }
 
     }

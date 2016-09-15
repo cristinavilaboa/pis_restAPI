@@ -27,7 +27,6 @@ public class QuestionActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_question);
         TextView contenido = (TextView) findViewById(R.id.ChallengeText);
-        contenido.setBackgroundColor(0xffffffff);
         String contStr = "No hay contenido";
         Bundle dataFromMenu = getIntent().getExtras();
         if(dataFromMenu != null){

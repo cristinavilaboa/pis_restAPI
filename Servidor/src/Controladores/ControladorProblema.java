@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import Datatypes.DataAyuda;
+import Datatypes.DataEstadoMensaje;
 import Datatypes.DataExperiencia;
 import Datatypes.DataProblema;
 import Datatypes.DataTypeConstants;
@@ -38,8 +39,8 @@ public class ControladorProblema implements IControladorProblema{
 		}
 		return new DataExperiencia(exp_ganada);
 	}
-	@RequestMapping(value="/enviarmensaje", method=RequestMethod.POST)
-	public void enviarMensaje(@RequestParam(value="id_problema") int id_problema,@RequestParam(value="mensaje") String mensaje,@RequestParam(value="fecha") String fechaStr,@RequestParam(value="asunto") String asunto){ 
+	@RequestMapping(value="/enviarmensaje", method=RequestMethod.GET)
+	public DataEstadoMensaje enviarMensaje(@RequestParam(value="id_problema") int id_problema,@RequestParam(value="mensaje") String mensaje,@RequestParam(value="fecha") String fechaStr,@RequestParam(value="asunto") String asunto){ 
 		Date fecha;
 		try {
 			fecha = DataTypeConstants.getDateFormat().parse(fechaStr);
@@ -50,11 +51,15 @@ public class ControladorProblema implements IControladorProblema{
 		//String nickProfesor= p.getAutor().getNick();
 		//int idMensaje=CargarDatosBD.PersistirMensaje(mensaje,fecha,asunto);
 		//CargarDatosBD.PersistirUsuarioMensaje(nickProfesor, idMensaje);
-		
+		return new DataEstadoMensaje(true);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
+			return new DataEstadoMensaje(false);
 		}
+		
+		
 	}
 	
 	@RequestMapping(value="/getayuda", method=RequestMethod.GET)
