@@ -38,12 +38,12 @@ public class CargarDatos {
 		ArrayList<Logro> logrosJ1 = new ArrayList<Logro>();
 		ArrayList<Logro> logrosJ2 = new ArrayList<Logro>();
 		ArrayList<Logro> logrosJ3 = new ArrayList<Logro>();
-		Map<Mundo, Nivel> mundo_nivelJ1 = new HashMap<Mundo, Nivel>();
-		Map<Mundo, Nivel> mundo_nivelJ2 = new HashMap<Mundo, Nivel>();
-		Map<Mundo, Nivel> mundo_nivelJ3 = new HashMap<Mundo, Nivel>();
-		Map<Nivel, List<Problema>> nivel_problemaJ1 = new HashMap<Nivel, List<Problema>>();
-		Map<Nivel, List<Problema>> nivel_problemaJ2 = new HashMap<Nivel, List<Problema>>();
-		Map<Nivel, List<Problema>> nivel_problemaJ3 = new HashMap<Nivel, List<Problema>>();
+		Map<Integer, Nivel> mundo_nivelJ1 = new HashMap<Integer, Nivel>();
+		Map<Integer, Nivel> mundo_nivelJ2 = new HashMap<Integer, Nivel>();
+		Map<Integer, Nivel> mundo_nivelJ3 = new HashMap<Integer, Nivel>();
+		ArrayList<Problema> nivel_problemaJ1 = new ArrayList<Problema>();
+		ArrayList<Problema> nivel_problemaJ2 = new ArrayList<Problema>();
+		ArrayList<Problema> nivel_problemaJ3 = new ArrayList<Problema>();
 		
 		Clase clase = new Clase();
 		
@@ -88,21 +88,21 @@ public class CargarDatos {
 		contenidoP4 = new Contenido("integral de (2x dx) en [2,8]");
 		problema4 = new Problema(4,"Resolver la siguiente integral","60",10,ayudaP4,contenidoP4,nivel4,profesor);
 		
-		ayudaP5 = new Ayuda("La integral es el area bajo la curva de una función");
-		contenidoP5 = new Contenido("integral de (cos(x) + 5x dx) en [a,b]");
-		problema5 = new Problema(5,"Resolver la siguiente integral","(-5/2)(a^2-b^2) - sin(a) + sin(b)",10,ayudaP5,contenidoP5,nivel5,profesor);
+		//ayudaP5 = new Ayuda("La integral es el area bajo la curva de una función");
+		//contenidoP5 = new Contenido("integral de (cos(x) + 5x dx) en [a,b]");
+		//problema5 = new Problema(5,"Resolver la siguiente integral","(-5/2)(a^2-b^2) - sin(a) + sin(b)",10,ayudaP5,contenidoP5,nivel5,profesor);
 		
 		nivel1.agregarProblema(problema1);
 		nivel2.agregarProblema(problema2);
 		nivel3.agregarProblema(problema3);
 		nivel4.agregarProblema(problema4);
-		nivel5.agregarProblema(problema5);
+		//nivel5.agregarProblema(problema5);
 		
 		logJ1 = new Logro("Maestro de las derivadas");
 		logJ1.setId(1);
 		logrosJ1.add(logJ1);
-		mundo_nivelJ1.put(mundo, nivel3);
-		estado1 = new EstadoJugador(10, mundos_completosJ1, logrosJ1, mundo_nivelJ1, nivel_problemaJ1);
+		mundo_nivelJ1.put(mundo.getId(), nivel3);
+		estado1 = new EstadoJugador(1,10, mundos_completosJ1, logrosJ1, mundo_nivelJ1, nivel_problemaJ1);
 		jugador1 = new Jugador("Nicolas", "nico_fing", "fBTokenJ1", "imagenJ1", estado1, clase);
 		
 		logJ21 = new Logro("Maestro de las ingrales");
@@ -111,12 +111,12 @@ public class CargarDatos {
 		logJ22.setId(2);
 		logrosJ2.add(logJ21);
 		logrosJ2.add(logJ22);
-		mundo_nivelJ2.put(mundo, nivel5);
-		estado2 = new EstadoJugador(25, mundos_completosJ2, logrosJ2, mundo_nivelJ2, nivel_problemaJ2);
+		mundo_nivelJ2.put(mundo.getId(), nivel5);
+		estado2 = new EstadoJugador(2,25, mundos_completosJ2, logrosJ2, mundo_nivelJ2, nivel_problemaJ2);
 		jugador2 = new Jugador("Maria", "mari_fing", "fBTokenJ2", "imagenJ2", estado2, clase);
 		
-		mundo_nivelJ3.put(mundo, nivel1);
-		estado3 = new EstadoJugador(7, mundos_completosJ3, logrosJ3, mundo_nivelJ3, nivel_problemaJ3);
+		mundo_nivelJ3.put(mundo.getId(), nivel1);
+		estado3 = new EstadoJugador(3,7, mundos_completosJ3, logrosJ3, mundo_nivelJ3, nivel_problemaJ3);
 		jugador3 = new Jugador("Facundo", "fa_cu_fing", "fBTokenJ2", "imagenJ2", estado3, clase);
 		
 		mu.agregarJugador(jugador1);
@@ -129,7 +129,7 @@ public class CargarDatos {
 		mp.agregarProblema(problema2);
 		mp.agregarProblema(problema3);
 		mp.agregarProblema(problema4);
-		mp.agregarProblema(problema5);
+		//mp.agregarProblema(problema5);
 		
 		
 		

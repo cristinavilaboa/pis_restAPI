@@ -9,7 +9,7 @@ import Datatypes.DataProblema;
 
 public interface IControladorProblema {
 	
-	public DataExperiencia responderPregunta(int id_pregunta, String respuesta, String id_jugador);
+	public DataExperiencia responderProblema(int id_problema, String respuesta, String id_jugador);
 	public DataEstadoMensaje enviarMensaje(int id_problema, String mensaje, String fecha, String asunto);
-	public DataAyuda getAyuda(int id_pregunta);
+	public DataAyuda getAyuda(int id_problema);
 }

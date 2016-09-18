@@ -102,19 +102,32 @@ public class Mundo {
 	
 	//METODOS A IMPLEMENTAR
 	public boolean ultimoNivelMundo(Nivel n){
-		int largoMundo = niveles.size();
-		Nivel ultimo_nivel = niveles.get(largoMundo - 1);
-		return (ultimo_nivel.getDificultad() == n.getDificultad());
-	}
+		if(n.getMundo().getId() == this.id_mundo){
+			int largoMundo = niveles.size();
+			Nivel ultimo_nivel = niveles.get(largoMundo - 1);
+			return (ultimo_nivel.getDificultad() == n.getDificultad());
 	
+		}else{
+			return false;
+		}
+	}
 	
 	
 	
 	//////
 	
 	public Nivel siguienteNivel(Nivel nivel){//PRECONDICION nivel es un Nivel del MUNDO
-		int nivel_actual = niveles.indexOf(nivel);
-		return niveles.get(nivel_actual+1);
+		/*int nivel_actual = niveles.indexOf(nivel);
+		return niveles.get(nivel_actual+1);*/
+		int siguiente = 0;
+		for(Nivel n: niveles){
+			siguiente++;
+			if(n.getDificultad() == nivel.getDificultad() && (n.getMundo().getId() == nivel.getMundo().getId())){
+				break;
+			}
+			
+		}
+		return niveles.get(siguiente);
 	}
 	
 	public void agregarNivel(Nivel n){

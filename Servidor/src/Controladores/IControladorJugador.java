@@ -7,8 +7,8 @@ import Datatypes.DataPuntosJugador;
 
 public interface IControladorJugador {
 	
-	public void sumarPuntos(int exp, String id_jugador, int id_pregunta);
-	public boolean yaRespondia(String id_jugador,int id_pregunta);
+	public void sumarPuntos(int exp, String id_jugador, int id_problema);
+	public boolean yaRespondida(String id_jugador,int id_problema);
 	public DataListaRanking obtenerRanking();
 	
 }

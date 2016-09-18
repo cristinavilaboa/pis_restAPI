@@ -27,18 +27,18 @@ import Persistencia.CargarDatosBD;
 public class ControladorProblema implements IControladorProblema{
 	
 	//METODOS A IMPLEMENTAR
-	@RequestMapping(value="/responderPregunta", method=RequestMethod.GET)
-	public DataExperiencia responderPregunta(@RequestParam(value="id_problema") int id_problema,@RequestParam(value="respuesta") String respuesta,@RequestParam(value="id_jugador") String id_jugador){//JUAN
+	@RequestMapping(value="/responderProblema", method=RequestMethod.GET)
+	public DataExperiencia responderProblema(@RequestParam(value="id_problema") int id_problema,@RequestParam(value="respuesta") String respuesta,@RequestParam(value="id_jugador") String id_jugador){//JUAN
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
 		IControladorJugador cu = new ControladorJugador();
 		IControladorSistemaJuego csj = new ControladorSistemaJuego();
 		int exp_ganada = mp.verificarRespuesta(id_problema, respuesta);
 
 		
-		if(exp_ganada > 0 && !cu.yaRespondia(id_jugador, id_problema)){
+		if(exp_ganada > 0 && !cu.yaRespondida(id_jugador, id_problema)){
 			cu.sumarPuntos(exp_ganada, id_jugador, id_problema);
-			//int id_mundo = mp.buscarProblema(id_problema).getNivel().getMundo().getId();
-			//csj.avanzarJuego(id_jugador, id_problema, id_mundo);
+			int id_mundo = mp.buscarProblema(id_problema).getNivel().getMundo().getId();
+			csj.avanzarJuego(id_jugador, id_problema, id_mundo);
 		}
 		return new DataExperiencia(exp_ganada);
 	}
@@ -70,9 +70,9 @@ public class ControladorProblema implements IControladorProblema{
 	}
 	
 	@RequestMapping(value="/getayuda", method=RequestMethod.GET)
-	public DataAyuda getAyuda(@RequestParam(value="id_pregunta") int id_pregunta){
+	public DataAyuda getAyuda(@RequestParam(value="id_problema") int id_problema){
 		ManejadorProblema manejador = ManejadorProblema.getInstancia();
-		return new DataAyuda(manejador.getAyuda(id_pregunta));
+		return new DataAyuda(manejador.getAyuda(id_problema));
 	}
 	
 

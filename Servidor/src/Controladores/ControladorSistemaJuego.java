@@ -44,16 +44,16 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 	}
 	
 	//METODOS A IMPLEMENTAR
-	public void avanzarJuego(String id_jugador, int id_pregunta, int id_mundo){
+	public void avanzarJuego(String id_jugador, int id_problema, int id_mundo){
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
-		if (mp.ultimaNivel(id_pregunta)){//Si es la ultima pregunta del nivel, paso de nivel
+		if (mp.ultimaNivel(id_problema)){//Si es el ultimo problema del nivel, paso de nivel
 			ManejadorMundo mm = ManejadorMundo.getInstancia();
 			EstadoJugador estado = mu.buscarJugador(id_jugador).getEstado();
 			Mundo mundo = mm.obtenerMundo(id_mundo);
 			estado.agregarNivelActivo(mundo);
-			Nivel nivel = mp.buscarProblema(id_pregunta).getNivel();
-			if(mundo.ultimoNivelMundo(nivel)){//Si es la ultima pregunta del mundo, avanzo el mundo
+			Nivel nivel = mp.buscarProblema(id_problema).getNivel();
+			if(mundo.ultimoNivelMundo(nivel)){//Si es el ultimo problema del mundo, avanzo el mundo
 				List<Mundo> mundos_siguientes = mundo.getMundos_siguientes();
 				if(!estado.getMundos_completos().contains(mundo)){
 					estado.getMundos_completos().add(mundo);
@@ -64,7 +64,7 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 				
 				
 				for(Mundo m: mundos_siguientes){//Desbloqueo todos los mundos siguientes
-					if(!estado.getMundosActivos().contains(m)){//Solo se desbloque si no esta desbloqueado de antes
+					if(!estado.getNiveles_actuales().containsKey(m.getId())){//Solo se desbloque si no esta desbloqueado de antes
 						estado.agregarMundoActivo(m);
 					}
 					
@@ -115,12 +115,11 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 		
 	
 		Nivel n1=lista.get(nivel-1); 
-		List<Problema> lista_problema=n1.getProblemas(); //busco la cantidad de preguntas del nivel donde estoy
+		List<Problema> lista_problema=n1.getProblemas(); //busco la cantidad de problemas del nivel donde estoy
 		
 		
-		EstadoJugador estado=j.getEstado(); 
-		Map<Nivel,List<Problema>> problemas_resueltos=estado.getNivel_problema();  //resueltos por nivel 
-		List<Problema> lista_resueltos=problemas_resueltos.get(n1); //resueltos del nivel actual
+		EstadoJugador estado=j.getEstado();  //resueltos por nivel 
+		List<Problema> lista_resueltos= estado.getProblemas_resueltos(); //resueltos del nivel actual
 		
 		List<DataProblema> resultado=new ArrayList<DataProblema>();
 		/*

@@ -29,13 +29,13 @@ public class ControladorJugador implements IControladorJugador{
 	}
 	//METODOS A IMPLEMENTAR
 	
-	public void sumarPuntos( int exp, String id_jugador,int id_pregunta){
+	public void sumarPuntos( int exp, String id_jugador,int id_problema){
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
 		EstadoJugador estado = mu.buscarJugador(id_jugador).getEstado();
-		Problema pro = mp.buscarProblema(id_pregunta);
+		Problema pro = mp.buscarProblema(id_problema);
 		estado.ganarExperiencia(exp);
-		estado.agregarPregunta(pro);
+		estado.agregarProblema(pro);
 		ArrayList<Logro> nuevos_logros = estado.nuevosLogros();
 		for(Logro l:nuevos_logros){
 			estado.ganarLogro(l);
@@ -45,14 +45,12 @@ public class ControladorJugador implements IControladorJugador{
 	}
 	
 	
-	public boolean yaRespondia(String id_jugador,int id_pregunta){
+	public boolean yaRespondida(String id_jugador,int id_problema){
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		EstadoJugador estado = mu.buscarJugador(id_jugador).getEstado();
-		for(List<Problema> n: estado.getNivel_problema().values()){
-			for(Problema pro: n){
-				if(pro.getId() == id_pregunta){
-					return true;
-				}
+		for(Problema pro: estado.getProblemas_resueltos()){
+			if (pro.getId() == id_problema){
+				return true;
 			}
 		}
 		return false;

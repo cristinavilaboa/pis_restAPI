@@ -12,6 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import Datatypes.*;
 import Datatypes.DataPuntosJugador;
+import Manejadores.ManejadorMundo;
 import Modelo.EstadoJugador;
 @Entity
 @Table(name = "JUGADOR")
@@ -77,7 +78,7 @@ public class Jugador extends Usuario{
 	{
 		EstadoJugador e = this.estado;
 		List<Logro> logros = e.getLogros();
-		Map <Mundo,Nivel> mundos_niveles = e.getMundo_nivel();
+		Map <Integer,Nivel> mundos_niveles = e.getNiveles_actuales();
 		int exp = e.getPuntos_exp();
 		List<DataLogro> dataLogros = new ArrayList<DataLogro>();
 		List<DataMundoNivel> dataMundosNiveles = new ArrayList<DataMundoNivel>();
@@ -85,10 +86,17 @@ public class Jugador extends Usuario{
 		for (int i = 0; i<cant; i++){
 			dataLogros.add(logros.get(i).obtenerDataLogro());
 		}
-		Iterator<Mundo> it = mundos_niveles.keySet().iterator();
+		Iterator<Integer> it = mundos_niveles.keySet().iterator();
+		ManejadorMundo mm = ManejadorMundo.getInstancia();
 		while(it.hasNext()){
-		  Mundo key = (Mundo)it.next();
-		  dataMundosNiveles.add(new DataMundoNivel(key.getNombre(),mundos_niveles.get(key).getNivel()));		
+		  int key = (Integer)it.next();
+		  
+		  Mundo mundo = mm.obtenerMundo(key);		  
+		 
+		  String d = mundo.getDescripcion();
+
+		  
+		  dataMundosNiveles.add(new DataMundoNivel(mundo.getNombre(),mundos_niveles.get(key).getNivel()));		
 		}
 		
 				

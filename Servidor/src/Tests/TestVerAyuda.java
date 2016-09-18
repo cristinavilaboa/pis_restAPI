@@ -27,14 +27,14 @@ public class TestVerAyuda {
 		Contenido contenido = new Contenido("d(8x)/dx");
 		Nivel nivel = new Nivel(1, null, null);
 		Profesor profesor = new Profesor("Pedro", "pedro04", "1234");
-		int id_pregunta = 1;
-		Problema problema = new Problema(id_pregunta, "Resolver la siguiente derivada", "8", 1, ayuda, contenido, nivel, profesor);
+		int id_problema = 1;
+		Problema problema = new Problema(id_problema, "Resolver la siguiente derivada", "8", 1, ayuda, contenido, nivel, profesor);
 		//nivel.setProblemas(problemas);
 		manejador.agregarProblema(problema);
 		IControladorProblema _cproblema = new ControladorProblema();
-		assertEquals ("La derivada es cuanto varia la funcion, cuando varia x", _cproblema.getAyuda(id_pregunta).getAyuda());
+		assertEquals ("La derivada es cuanto varia la funcion, cuando varia x", _cproblema.getAyuda(id_problema).getAyuda());
 		
-		assertEquals ("second atempt", "La derivada es cuanto varia la funcion, cuando varia x", _cproblema.getAyuda(id_pregunta).getAyuda());
+		assertEquals ("second atempt", "La derivada es cuanto varia la funcion, cuando varia x", _cproblema.getAyuda(id_problema).getAyuda());
 	}
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import org.junit.Test;
 import Datatypes.DataJugador;
+import Manejadores.ManejadorMundo;
 import Modelo.Clase;
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
@@ -23,6 +24,7 @@ public class TestVerPerfil {
 		Logro l = new Logro();
 		l.setId(1);
 		l.setDescripcion("genio");
+
 		Logro l2 = new Logro();
 		l2.setId(3);
 		l2.setDescripcion("capo");
@@ -33,7 +35,7 @@ public class TestVerPerfil {
 		//CREO LOS MUNDOS Y NIVELES
 		Mundo m = new Mundo();
 		m.setDescripcion("mundo de prueba");
-		m.setId(1);
+		m.setId(0);
 		m.setImagen("ruta de imagen");
 		//m.setMundos_siguientes(new HashMap());
 		//m.setNiveles([]);
@@ -49,6 +51,11 @@ public class TestVerPerfil {
 		m2.setNombre("Integrales");
 		m2.setPuntos_exp(8);
 		
+		ManejadorMundo mm = ManejadorMundo.getInstancia();
+		mm.agregarMundo(m);
+		mm.agregarMundo(m2);
+		
+		
 		Nivel n = new Nivel();
 		n.setDificultad(5);
 		//n.setProblemas([]);
@@ -57,15 +64,16 @@ public class TestVerPerfil {
 		n2.setDificultad(5);
 		//n2.setProblemas([]);
 		
-		Map<Mundo,Nivel> m_n = new HashMap<Mundo,Nivel>();
-		m_n.put(m, n);
-		m_n.put(m2, n2);
+		Map<Integer,Nivel> m_n = new HashMap<Integer,Nivel>();
+		m_n.put(m.getId(), n);
+		m_n.put(m2.getId(), n2);
 		
 		//CREO EL ESTADO JUGADOR		
 		EstadoJugador ej = new EstadoJugador();
 		ej.setPuntos_exp(100);
 		ej.setLogros(logros);
-		ej.setMundo_nivel(m_n);
+		ej.setNiveles_actuales(m_n);
+
 		
 		//CREO LA CLASE DEL JUGADOR
 		Clase c = new Clase();

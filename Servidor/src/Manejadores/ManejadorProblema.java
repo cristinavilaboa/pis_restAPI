@@ -21,13 +21,13 @@ public class ManejadorProblema {
 		problemas.put(p.getId(), p);
 	}
 	//METODOS A IMPLEMENTAR
-	public boolean ultimaNivel(int id_pregunta){
-		Problema pro = buscarProblema(id_pregunta);
-		return pro.getNivel().esUltima(id_pregunta);
+	public boolean ultimaNivel(int id_problema){
+		Problema pro = buscarProblema(id_problema);
+		return pro.getNivel().esUltima(id_problema);
 	}
 	
-	public int verificarRespuesta(int id_pregunta, String respuesta){
-		Problema problema = buscarProblema(id_pregunta);
+	public int verificarRespuesta(int id_problema, String respuesta){
+		Problema problema = buscarProblema(id_problema);
 		if (problema.verificarRespuesta(respuesta)){
 			return problema.getPuntos_exp();
 		}else{
@@ -40,8 +40,8 @@ public class ManejadorProblema {
 		return p;
 	}
 	
-	public String getAyuda(int id_pregunta){
-		Problema problema = problemas.get(id_pregunta);
+	public String getAyuda(int id_problema){
+		Problema problema = problemas.get(id_problema);
 		Ayuda ayuda = problema.getAyuda();
 		return ayuda.getInfo();
 	}

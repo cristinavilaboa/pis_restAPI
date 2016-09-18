@@ -29,54 +29,51 @@ public class EstadoJugador {
 	private List<Mundo> mundos_completos = new ArrayList<Mundo>();
 	@OneToMany
 	private List<Logro> logros = new ArrayList<Logro>();
+	
 	@ManyToMany
 	@MapKeyJoinColumn(name="id_mundo")
-	private Map<Mundo, Nivel> mundo_nivel = new HashMap<Mundo, Nivel>(); //CONSULTAR
+	private Map<Integer, Nivel> niveles_actuales = new HashMap<Integer, Nivel>(); //El int es el id de un mundo,
+																	//y el map representa el nivel actual en cada mundo
+	
 	@ManyToMany
 	@MapKeyJoinColumn(name="id_nivel")
-	private Map<Nivel,ListaDeNivel> nivel_problema = new HashMap<Nivel, ListaDeNivel>(); //CONSULTAR
+	private List<Problema> problemas_resueltos = new ArrayList<Problema>();//Lista de problemas resueltos
+	
+	
 	
 	public EstadoJugador(int puntos_exp){
 		this.puntos_exp = puntos_exp;
 	}
 	
-	public EstadoJugador(int puntos_exp, List<Mundo> mundos_completos, List<Logro> logros,
-			Map<Mundo, Nivel> mundo_nivel, Map<Nivel, List<Problema>> nivel_problema) {
+	public EstadoJugador(int id_estado_jugador, int puntos_exp, List<Mundo> mundos_completos, List<Logro> logros,
+			Map<Integer, Nivel> niveles_actuales, List<Problema> problemas_resueltos) {
+		this.id_estado_jugador = id_estado_jugador;
 		this.puntos_exp = puntos_exp;
 		this.mundos_completos = mundos_completos;
 		this.logros = logros;
-		this.mundo_nivel = mundo_nivel;
-		this.setNivel_problema(nivel_problema);
-
+		this.niveles_actuales = niveles_actuales;
+		this.problemas_resueltos = problemas_resueltos;
 	}
 	
-	public EstadoJugador(){}
+	public EstadoJugador(){
+		
+	}
+
+	public int getId_estado_jugador() {
+		return id_estado_jugador;
+	}
+
+	public void setId_estado_jugador(int id_estado_jugador) {
+		this.id_estado_jugador = id_estado_jugador;
+	}
 
 	public int getPuntos_exp() {
 		return puntos_exp;
 	}
-	
+
 	public void setPuntos_exp(int puntos_exp) {
 		this.puntos_exp = puntos_exp;
 	}
-	
-	public List<Logro> getLogros() {
-		return logros;
-	}
-
-	public void setLogros(List<Logro> logros) {
-		this.logros = logros;
-	}
-	
-	public Set<Mundo> getMundosActivos(){
-		return mundo_nivel.keySet();
-	}
-	
-	public Set<Nivel> getNivelesActivos(){
-		return nivel_problema.keySet();
-	}
-	
-	
 
 	public List<Mundo> getMundos_completos() {
 		return mundos_completos;
@@ -86,40 +83,29 @@ public class EstadoJugador {
 		this.mundos_completos = mundos_completos;
 	}
 
-	public Map<Mundo, Nivel> getMundo_nivel() {
-		return mundo_nivel;
+	public List<Logro> getLogros() {
+		return logros;
 	}
 
-	public void setMundo_nivel(Map<Mundo, Nivel> mundo_nivel) {
-		this.mundo_nivel = mundo_nivel;
+	public void setLogros(List<Logro> logros) {
+		this.logros = logros;
 	}
 
-	public Map<Nivel, List<Problema>> getNivel_problema() {
-		
-		Map<Nivel, List<Problema>> mapa = new HashMap<Nivel, List<Problema>>();
-		Set<Nivel> llaves=nivel_problema.keySet();
-		for (Nivel n: llaves){
-			ListaDeNivel ln=nivel_problema.get(n);
-			mapa.put(n,ln.getProblemas());
-			
-		}	
-		return mapa;
+	public Map<Integer, Nivel> getNiveles_actuales() {
+		return niveles_actuales;
 	}
 
-	public void setNivel_problema(Map<Nivel, List<Problema>> nivel_problema) {
-		Map<Nivel,ListaDeNivel> mapa = new HashMap<Nivel, ListaDeNivel>();
-		
-		Set<Nivel> llaves=nivel_problema.keySet();
-		
-		for (Nivel n: llaves){
-			List<Problema> ln=nivel_problema.get(n);
-			ListaDeNivel lista = new ListaDeNivel();
-			lista.setProblemas(ln);
-			mapa.put(n,lista);
-		}	
-		this.nivel_problema=mapa;
+	public void setNiveles_actuales(Map<Integer, Nivel> niveles_actuales) {
+		this.niveles_actuales = niveles_actuales;
 	}
-	
+
+	public List<Problema> getProblemas_resueltos() {
+		return problemas_resueltos;
+	}
+
+	public void setProblemas_resueltos(List<Problema> problemas_resueltos) {
+		this.problemas_resueltos = problemas_resueltos;
+	}
 
 	//METODOS A IMPLEMENTAR
 	public void ganarExperiencia(int exp) {
@@ -127,20 +113,10 @@ public class EstadoJugador {
 		setPuntos_exp(total);
 	}
 	
-	public void agregarPregunta(Problema p){
-		Nivel nivel_preg = p.getNivel();
-		if(nivel_problema.containsKey(nivel_preg)){//Si ya respondi algun problema de ese nivel
-			ListaDeNivel lista_nivel = this.nivel_problema.get(nivel_preg);
-			List<Problema> listaP = nivel_problema.get(nivel_preg).getProblemas();
-			if(!listaP.contains(p)){//Si no se respondio antes
-				lista_nivel.agregarProblema(p);
-			}
-		}else{//Si no respondi ningun problema
-			ListaDeNivel lista_nivel = new ListaDeNivel();
-			List<Problema> nuevaLista = new ArrayList<Problema>();
-			nuevaLista.add(p);
-			lista_nivel.setProblemas(nuevaLista);
-			this.nivel_problema.put(nivel_preg, lista_nivel);
+	public void agregarProblema(Problema p){
+		Nivel nivel_problema = p.getNivel();
+		if(!problemas_resueltos.contains(p)){//Si no lo respondi antes, lo agrego
+			problemas_resueltos.add(p);
 		}
 	}
 	
@@ -150,13 +126,22 @@ public class EstadoJugador {
 	
 	public void agregarMundoActivo(Mundo mundo){//Se agrega un nuevo mundo, en su primer nivel
 		Nivel primer_nivel = mundo.getNiveles().get(0);
-		mundo_nivel.put(mundo, primer_nivel);
+		niveles_actuales.put(mundo.getId(), primer_nivel);
 	}
 	
 	public void agregarNivelActivo(Mundo mundo){//PRECONDICION: EL MUNDO PERTENECE A mundo_nivel
-		Nivel nivel_actual = mundo_nivel.get(mundo);
-		Nivel siguiente_nivel = mundo.siguienteNivel(nivel_actual);
-		mundo_nivel.put(mundo, siguiente_nivel);
+		int id_mundo = mundo.getId();
+		Nivel nivel_actual;
+		if(niveles_actuales.isEmpty()){
+			nivel_actual = mundo.getNiveles().get(0);
+			niveles_actuales.put(mundo.getId(),nivel_actual);
+		}else{
+			nivel_actual = niveles_actuales.get(id_mundo);
+		}
+		if(!mundo.ultimoNivelMundo(nivel_actual)){
+			Nivel siguiente_nivel = mundo.siguienteNivel(nivel_actual);
+			niveles_actuales.put(id_mundo, siguiente_nivel);
+		}
 	}
 	
 	public ArrayList<Logro> nuevosLogros(){
@@ -167,19 +152,16 @@ public class EstadoJugador {
 			nuevos_logros.add(primeraRespuesta);
 		}
 		if(cant_correctas % 5 == 0){
-			Logro logro = new Logro("Has logrado "+cant_correctas+"pregutas correctas");
+			Logro logro = new Logro("Has logrado "+cant_correctas+"problemas correctos");
 			nuevos_logros.add(logro);
 		}
 		return nuevos_logros;
 	}
 	
 	public int cantCorrectas(){
-		int cant = 0;
-		for(ListaDeNivel n: nivel_problema.values()){
-			cant += n.getProblemas().size();
-		}
-		return cant;
+		return problemas_resueltos.size();
 	}
+	
 
 		
 }
