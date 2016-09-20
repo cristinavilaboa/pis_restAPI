@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.MapKey;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -31,12 +32,11 @@ public class EstadoJugador {
 	private List<Logro> logros = new ArrayList<Logro>();
 	
 	@ManyToMany
-	@MapKeyJoinColumn(name="id_mundo")
+	@MapKeyColumn(name="id_mundo")
 	private Map<Integer, Nivel> niveles_actuales = new HashMap<Integer, Nivel>(); //El int es el id de un mundo,
 																	//y el map representa el nivel actual en cada mundo
 	
 	@ManyToMany
-	@MapKeyJoinColumn(name="id_nivel")
 	private List<Problema> problemas_resueltos = new ArrayList<Problema>();//Lista de problemas resueltos
 	
 	

@@ -9,12 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-@Entity
-@Table(name = "LISTADENIVEL")
+
 public class ListaDeNivel {
-	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_lista_de_nivel;
-	@ManyToMany
 	private List<Problema> problemas;
 	
 	public ListaDeNivel(){

@@ -25,10 +25,10 @@ public abstract class Usuario {
 	protected String nick;
 	protected String nombre;
 	@OneToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="usuario_mensajes_nuevos", joinColumns={@JoinColumn (name="id_usuario", referencedColumnName= "nick" )},inverseJoinColumns={@JoinColumn(name="id_mensaje",referencedColumnName="id_mensaje")})
+	@JoinTable(name="usuario_mensajes_viejos", joinColumns={@JoinColumn (name="id_usuario", referencedColumnName= "nick" )},inverseJoinColumns={@JoinColumn(name="id_mensaje",referencedColumnName="id_mensaje")})
 	protected List<Mensaje> mensajes_viejos;
 	@OneToMany(cascade=CascadeType.ALL)
-	@JoinTable(name="usuario_mensajes_viejos", joinColumns={@JoinColumn (name="id_usuario", referencedColumnName= "nick" )},inverseJoinColumns={@JoinColumn(name="id_mensaje",referencedColumnName="id_mensaje")})
+	@JoinTable(name="usuario_mensajes_nuevos", joinColumns={@JoinColumn (name="id_usuario", referencedColumnName= "nick" )},inverseJoinColumns={@JoinColumn(name="id_mensaje",referencedColumnName="id_mensaje")})
 	protected List<Mensaje> mensajes_nuevos;
 	
 	public Usuario(String nombre, String nick) {
@@ -71,4 +71,7 @@ public abstract class Usuario {
 		this.mensajes_nuevos = mensajes_nuevos;
 	}
 	
+	public void agregar_mensaje_nuevo(Mensaje mensaje) {
+		this.mensajes_nuevos.add(mensaje);
+	}
 }

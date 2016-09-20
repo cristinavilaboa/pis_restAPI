@@ -21,7 +21,9 @@ import Datatypes.DataExperiencia;
 import Datatypes.DataProblema;
 import Datatypes.DataTypeConstants;
 import Manejadores.ManejadorProblema;
+import Modelo.Mensaje;
 import Modelo.Problema;
+import Modelo.Profesor;
 import Persistencia.CargarDatosBD;
 @RestController
 public class ControladorProblema implements IControladorProblema{
@@ -52,8 +54,10 @@ public class ControladorProblema implements IControladorProblema{
 		Problema p=mp.buscarProblema(id_problema);
 		p.enviarMensaje(URLDecoder.decode(mensaje, "UTF-8") , fecha, asunto);
 		//String nickProfesor= p.getAutor().getNick();
-		//int idMensaje=CargarDatosBD.PersistirMensaje(mensaje,fecha,asunto);
+		Profesor profesor= p.getAutor();
+		Mensaje mens=CargarDatosBD.PersistirMensaje(mensaje,fecha,asunto,profesor);
 		//CargarDatosBD.PersistirUsuarioMensaje(nickProfesor, idMensaje);
+		//CargarDatosBD.PersistirUsuarioMensaje2(profesor, mens);
 		return new DataEstadoMensaje(true);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

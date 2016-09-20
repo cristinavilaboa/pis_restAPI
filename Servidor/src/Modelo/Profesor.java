@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Profesor extends Usuario {
 	
 	
-	private static int num_mensaje = 0;
+	//private static int num_mensaje = 0;
 	public Profesor(String nombre, String nick) {
 		super(nombre, nick);
 		// TODO Auto-generated constructor stub
@@ -35,8 +35,8 @@ public class Profesor extends Usuario {
 	
 	//METODOS A IMPLEMENTAR
 	public void enviarMensaje(String mensaje,Date fecha, String asunto){
-		Mensaje m=new Mensaje(num_mensaje,mensaje,asunto, fecha);
+		Mensaje m=new Mensaje(/*num_mensaje,*/mensaje,asunto, fecha);
 		mensajes_nuevos.add(m);
-		num_mensaje++;
+		//num_mensaje++;
 	}
 }

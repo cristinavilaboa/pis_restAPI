@@ -18,8 +18,8 @@ import javax.persistence.OneToMany;
 @Entity
 @Table(name = "MUNDO")
 public class Mundo {
-	@Id
 	private int id_nivel=1;
+	@Id
 	private Integer id_mundo;
 	private String nombre;
 	private String imagen;

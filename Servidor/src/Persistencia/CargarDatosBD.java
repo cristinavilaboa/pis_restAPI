@@ -26,17 +26,18 @@ public class CargarDatosBD {
 		return Cargado;	
 	}
 	
-	/*public static int PersistirMensaje(String contenido, Date fecha,String asunto){
+	public static Mensaje PersistirMensaje(String contenido, Date fecha,String asunto,Profesor profesor){
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
 		Mensaje mensaje=new Mensaje(contenido,asunto,fecha);
 		int idMensaje=(int)session.save(mensaje);
-		//session.persist(mensaje);
+		//profesor.agregar_mensaje_nuevo(mensaje);
+		session.saveOrUpdate(profesor);
 		t.commit();//transaction is commited 
 		session.close();
 		System.out.println("successfully saved mensaje");
-		return idMensaje;
-	}*/
+		return mensaje;
+	}
 	public static void PersistirUsuarioMensaje(String nickProfesor, int id_mensaje){
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
@@ -65,12 +66,16 @@ public class CargarDatosBD {
 		
 		Profesor profesor = new Profesor("Juan","pepe","123");
 		Problema problema= new Problema(1,"problema1","resp",12,null,null,null,profesor);
-		Profesor profesor2 = new Profesor("Juan","otroProfe","123");
-		Problema problema2= new Problema(2,"problema2","resp",12,null,null,null,profesor2);
+		//Profesor profesor2 = new Profesor("Juan","otroProfe","123");
+		//Problema problema2= new Problema(2,"problema2","resp",12,null,null,null,profesor2);
+		//Date fecha =new Date(1,1,1);
+		//Mensaje mensaje=new Mensaje("contenido","asunto",fecha);
+		//int idMensaje=(int)session.save(mensaje);
+		//profesor.agregar_mensaje_nuevo(mensaje);
 		session.persist(profesor);
 		session.persist(problema);
-		session.persist(profesor2);
-		session.persist(problema2);
+		//session.persist(profesor2);
+		//session.persist(problema2);
 		
 		t.commit();//transaction is commited 
 		session.close();
