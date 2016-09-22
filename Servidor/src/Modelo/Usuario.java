@@ -38,6 +38,7 @@ public abstract class Usuario {
 		mensajes_viejos= new ArrayList<Mensaje>();
 		mensajes_nuevos= new ArrayList<Mensaje>();
 	}
+	public Usuario(){};
 
 	public String getNombre() {
 		return nombre;

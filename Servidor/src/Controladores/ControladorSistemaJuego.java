@@ -39,7 +39,7 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 	public void CargarDatos() throws SecurityException, HeuristicMixedException, HeuristicRollbackException, RollbackException, SystemException{
 		
 		if (CargarDatosBD.getCargado()==false){
-			CargarDatosBD.Cargar();
+			//CargarDatosBD.Cargar();
 		}
 	}
 	

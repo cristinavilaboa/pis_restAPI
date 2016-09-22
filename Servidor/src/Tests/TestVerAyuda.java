@@ -25,7 +25,7 @@ public class TestVerAyuda {
 		ManejadorProblema manejador = ManejadorProblema.getInstancia();
 		Ayuda ayuda = new Ayuda("La derivada es cuanto varia la funcion, cuando varia x");
 		Contenido contenido = new Contenido("d(8x)/dx");
-		Nivel nivel = new Nivel(1, null, null);
+		Nivel nivel = new Nivel(null, null);
 		Profesor profesor = new Profesor("Pedro", "pedro04", "1234");
 		int id_problema = 1;
 		Problema problema = new Problema(id_problema, "Resolver la siguiente derivada", "8", 1, ayuda, contenido, nivel, profesor);

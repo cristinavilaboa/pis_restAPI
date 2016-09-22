@@ -2,7 +2,6 @@ package Modelo;
 
 import java.util.Date;
 
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
@@ -13,13 +12,11 @@ public class Profesor extends Usuario {
 	
 	
 	//private static int num_mensaje = 0;
-	public Profesor(String nombre, String nick) {
-		super(nombre, nick);
-		// TODO Auto-generated constructor stub
-	}
 
 	private String password;
-	
+	public Profesor(){
+		super();
+	};
 	public Profesor(String nick, String nombre, String password){
 		super (nick, nombre);
 		this.password = password;

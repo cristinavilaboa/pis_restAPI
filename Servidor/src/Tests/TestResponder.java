@@ -50,10 +50,11 @@ public class TestResponder {
 		estado = new EstadoJugador(0,0, mundos_completos, logros, mundo_nivel, nivel_problema);
 		jugador = new Jugador("ni", "nick", "fBToken", "imagen", estado, clase);
 
-		mundo = new Mundo(1, "Jupiter", "imagen", "descripcion",0,mundos_siguientes, niveles);
-		nivel = new Nivel(0,listaP,mundo);
+		mundo = new Mundo("Jupiter", "imagen", "descripcion",0,mundos_siguientes, niveles);
+		nivel = new Nivel(listaP,mundo);
+		mundo.setId(1);
 		
-		nivel2 = new Nivel(1,listaP2,mundo);
+		nivel2 = new Nivel(listaP2,mundo);
 		
 		mundo.agregarNivel(nivel);
 		mundo.agregarNivel(nivel2);

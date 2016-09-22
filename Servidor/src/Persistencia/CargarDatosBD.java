@@ -3,6 +3,7 @@ package Persistencia;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.transaction.HeuristicMixedException;
@@ -68,36 +69,34 @@ public class CargarDatosBD {
 		Session session=factory.openSession();
 		//creating transaction object
 		org.hibernate.Transaction t= session.beginTransaction();
-		Contenido e1= new Contenido("contenido");
-		session.persist(e1);//persisting the object 
 		
-		Profesor profesor = new Profesor("Juan","pepe","123");
-		Problema problema= new Problema(1,"problema1","resp",12,null,null,null,profesor);
+		Profesor profe = new Profesor("Juan","pepe","123");
+		Problema problema= new Problema(1,"problema1","resp",12,null,null,null,profe);
 		
-		session.persist(profesor);
+		session.persist(profe);
 		session.persist(problema);
 		t.commit();//transaction is commited 
 		session.close();
 		System.out.println("successfully saved datos iniciales");
         //Cargado=true;	
-	}
-	public static void Cargar(){
+	//}
+	//public static void Cargar(){
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		ManejadorMundo mm = ManejadorMundo.getInstancia();
 		
-		mp.borrar();
-		mu.borrar();
-		mm.borrar();
+		mp.borrarBD();
+		mu.borrarBD();
+		mm.borrarBD();
 		
-		ArrayList<Mundo> mundos_siguientes = new ArrayList<Mundo>();
-		ArrayList<Nivel> niveles = new ArrayList<Nivel>();
+		List<Mundo> mundos_siguientes = new ArrayList<Mundo>();
+		List<Nivel> niveles = new ArrayList<Nivel>();
 		ArrayList<Problema> listaPN1= new ArrayList<Problema>();
 		ArrayList<Problema> listaPN2= new ArrayList<Problema>();
 		ArrayList<Problema> listaPN3= new ArrayList<Problema>();
 		ArrayList<Problema> listaPN4= new ArrayList<Problema>();
 		ArrayList<Problema> listaPN5= new ArrayList<Problema>();
-		ArrayList<Mundo> mundos_completosJ1 = new ArrayList<Mundo>();
+		/*ArrayList<Mundo> mundos_completosJ1 = new ArrayList<Mundo>();
 		ArrayList<Mundo> mundos_completosJ2 = new ArrayList<Mundo>();
 		ArrayList<Mundo> mundos_completosJ3 = new ArrayList<Mundo>();
 		ArrayList<Logro> logrosJ1 = new ArrayList<Logro>();
@@ -110,7 +109,7 @@ public class CargarDatosBD {
 		ArrayList<Problema> nivel_problemaJ2 = new ArrayList<Problema>();
 		ArrayList<Problema> nivel_problemaJ3 = new ArrayList<Problema>();
 		
-		Clase clase = new Clase();
+		Clase clase = new Clase();*/
 		
 		Mundo mundo;
 		Nivel nivel1,nivel2,nivel3,nivel4,nivel5;
@@ -122,20 +121,14 @@ public class CargarDatosBD {
 		Logro logJ1,logJ21,logJ22;
 		
 		Profesor profesor = new Profesor("Marcelo", "marce_fing", "1234");
-		mu.agregarProfesor(profesor);
+		mu.agregarProfesorBD(profesor);
 		
-		
-		mundo = new Mundo(1, "Calculo", "imagen", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
-		nivel1 = new Nivel(1,listaPN1,mundo);
-		nivel2 = new Nivel(2,listaPN2,mundo);
-		nivel3 = new Nivel(2,listaPN3,mundo);
-		nivel4 = new Nivel(2,listaPN4,mundo);
-		nivel5 = new Nivel(2,listaPN5,mundo);
-		mundo.agregarNivel(nivel1);
-		mundo.agregarNivel(nivel2);
-		mundo.agregarNivel(nivel3);
-		mundo.agregarNivel(nivel4);
-		mundo.agregarNivel(nivel5);
+		mundo = new Mundo("Calculo", "imagen", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
+		nivel1 = new Nivel(listaPN1,mundo);
+		nivel2 = new Nivel(listaPN2,mundo);
+		nivel3 = new Nivel(listaPN3,mundo);
+		nivel4 = new Nivel(listaPN4,mundo);
+		nivel5 = new Nivel(listaPN5,mundo);
 		
 		ayudaP1 = new Ayuda("La derivada es cuanto varia la funcion, cuando varia x");
 		contenidoP1 = new Contenido("d(8x)/dx");
@@ -163,7 +156,15 @@ public class CargarDatosBD {
 		nivel4.agregarProblema(problema4);
 		//nivel5.agregarProblema(problema5);
 		
-		logJ1 = new Logro("Maestro de las derivadas");
+		mundo.agregarNivel(nivel1);
+		mundo.agregarNivel(nivel2);
+		mundo.agregarNivel(nivel3);
+		mundo.agregarNivel(nivel4);
+		mundo.agregarNivel(nivel5);
+		
+		mm.agregarMundoBD(mundo);
+		
+		/*logJ1 = new Logro("Maestro de las derivadas");
 		logJ1.setId(1);
 		logrosJ1.add(logJ1);
 		mundo_nivelJ1.put(mundo.getId(), nivel3);
@@ -196,7 +197,7 @@ public class CargarDatosBD {
 		mp.agregarProblema(problema4);
 		//mp.agregarProblema(problema5);
 		
-		
+		*/
 		
 	}
 }

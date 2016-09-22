@@ -2,10 +2,20 @@ package Manejadores;
 
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
 import Modelo.Ayuda;
+import Modelo.Mundo;
 import Modelo.Problema;
+import Persistencia.HibernateUtility;
 
 public class ManejadorProblema {
 
@@ -19,6 +29,15 @@ public class ManejadorProblema {
 	
 	public void agregarProblema(Problema p){
 		problemas.put(p.getId(), p);
+	}
+	public void agregarProblemaBD(Problema p){
+		SessionFactory factory= HibernateUtility.getSessionFactory();
+		Session session=factory.openSession();
+		org.hibernate.Transaction t= session.beginTransaction();
+		session.persist(p);
+		t.commit();
+		session.close();
+		System.out.println("successfully saved mundo");
 	}
 	//METODOS A IMPLEMENTAR
 	public boolean ultimaNivel(int id_problema){
@@ -49,6 +68,19 @@ public class ManejadorProblema {
 	public void borrar(){
 		
 		this.problemas.clear();
+	}
+	public void borrarBD(){
+		SessionFactory factory= HibernateUtility.getSessionFactory();
+		Session session=factory.openSession();
+		org.hibernate.Transaction t= session.beginTransaction();
+		List<Problema> lista_problemas = session.createCriteria(Problema.class).list();
+		for (Iterator<Problema> iterator = lista_problemas.iterator(); iterator.hasNext();) {
+			Problema p = (Problema) iterator.next();
+			session.delete(p);
+		}
+		t.commit();
+		session.close();
+		System.out.println("successfully borrado problemas");
 	}
 	
 }

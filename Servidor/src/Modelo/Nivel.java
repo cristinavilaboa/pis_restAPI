@@ -20,14 +20,13 @@ import javax.persistence.OneToMany;
 public class Nivel {
 	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_nivel;
-	private int dificultad;//seria el num de nivel dentro de un mundo
+	private int nro_nivel;//seria el num de nivel dentro de un mundo
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "nivel")
 	private List<Problema> problemas = new ArrayList<Problema>();
 	@ManyToOne
 	private Mundo mundo;
 	
-	public Nivel(int dificultad, List<Problema> problemas, Mundo mundo) {
-		this.dificultad = dificultad;
+	public Nivel(List<Problema> problemas, Mundo mundo) {
 		this.problemas = problemas;
 		this.mundo = mundo;
 	}
@@ -36,19 +35,11 @@ public class Nivel {
 	
 	
 	public void setNivel(int n){
-		id_nivel=n;
+		nro_nivel=n;
 	}
 	
 	public int getNivel(){
-		return id_nivel;
-	}
-
-	public int getDificultad() {
-		return dificultad;
-	}
-	
-	public void setDificultad(int dificultad) {
-		this.dificultad = dificultad;
+		return nro_nivel;
 	}
 	
 	public List<Problema> getProblemas() {

@@ -35,7 +35,7 @@ public class TestVerPerfil {
 		//CREO LOS MUNDOS Y NIVELES
 		Mundo m = new Mundo();
 		m.setDescripcion("mundo de prueba");
-		m.setId(0);
+		//m.setId(0);
 		m.setImagen("ruta de imagen");
 		//m.setMundos_siguientes(new HashMap());
 		//m.setNiveles([]);
@@ -44,7 +44,7 @@ public class TestVerPerfil {
 		
 		Mundo m2 = new Mundo();
 		m2.setDescripcion("mundo de prueba");
-		m2.setId(1);
+		//m2.setId(1);
 		m2.setImagen("ruta de imagen");
 		//m2.setMundos_siguientes([]);
 		//m2.setNiveles([]);
@@ -57,11 +57,11 @@ public class TestVerPerfil {
 		
 		
 		Nivel n = new Nivel();
-		n.setDificultad(5);
+		//n.setDificultad(5);
 		//n.setProblemas([]);
 		
 		Nivel n2 = new Nivel();
-		n2.setDificultad(5);
+		//n2.setDificultad(5);
 		//n2.setProblemas([]);
 		
 		Map<Integer,Nivel> m_n = new HashMap<Integer,Nivel>();

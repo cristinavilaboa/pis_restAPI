@@ -9,6 +9,8 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
@@ -18,9 +20,10 @@ import javax.persistence.OneToMany;
 @Entity
 @Table(name = "MUNDO")
 public class Mundo {
-	private int id_nivel=1;
-	@Id
+	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id_mundo;
+	private static int nro_nivel=0;
+	private int id;
 	private String nombre;
 	private String imagen;
 	private String descripcion;
@@ -31,9 +34,8 @@ public class Mundo {
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "mundo")
 	private List<Nivel> niveles = new ArrayList<Nivel>(); 
 	
-	public Mundo(int id, String nombre, String imagen, String descripcion, int puntos_exp,
-			ArrayList<Mundo> mundos_siguientes, List<Nivel> niveles) {
-		this.id_mundo = id;
+	public Mundo(String nombre, String imagen, String descripcion, int puntos_exp,
+			List<Mundo> mundos_siguientes, List<Nivel> niveles) {
 		this.nombre = nombre;
 		this.imagen = imagen;
 		this.descripcion = descripcion;
@@ -45,11 +47,11 @@ public class Mundo {
 	public Mundo(){}
 	
 	public int getId() {
-		return id_mundo;
+		return id;
 	}
 	
 	public void setId(int id) {
-		this.id_mundo = id;
+		this.id = id;
 	}
 	
 	public String getNombre() {
@@ -102,10 +104,10 @@ public class Mundo {
 	
 	//METODOS A IMPLEMENTAR
 	public boolean ultimoNivelMundo(Nivel n){
-		if(n.getMundo().getId() == this.id_mundo){
+		if(n.getMundo().getId() == this.id ){
 			int largoMundo = niveles.size();
 			Nivel ultimo_nivel = niveles.get(largoMundo - 1);
-			return (ultimo_nivel.getDificultad() == n.getDificultad());
+			return (ultimo_nivel == n);
 	
 		}else{
 			return false;
@@ -122,7 +124,7 @@ public class Mundo {
 		int siguiente = 0;
 		for(Nivel n: niveles){
 			siguiente++;
-			if(n.getDificultad() == nivel.getDificultad() && (n.getMundo().getId() == nivel.getMundo().getId())){
+			if(n == nivel){
 				break;
 			}
 			
@@ -131,8 +133,8 @@ public class Mundo {
 	}
 	
 	public void agregarNivel(Nivel n){
-		n.setNivel(id_nivel);
-		id_nivel++;
+		n.setNivel(nro_nivel);
+		nro_nivel++;
 		niveles.add(n);
 	}
 	

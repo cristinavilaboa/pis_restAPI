@@ -2,6 +2,7 @@ package Modelo;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,9 +19,9 @@ public class Problema {
 	private String descripcion;
 	private String respuesta;
 	private int puntos_exp;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Ayuda ayuda;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Contenido contenido;
 	@ManyToOne
 	private Nivel nivel;
@@ -40,6 +41,7 @@ public class Problema {
 		this.nivel = nivel;
 		this.autor = autor;
 	}
+	public Problema(){};
 
 	public int getId() {
 		return id_problema;

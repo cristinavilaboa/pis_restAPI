@@ -60,12 +60,12 @@ public class CargarDatos {
 		mu.agregarProfesor(profesor);
 		
 		
-		mundo = new Mundo(1, "Calculo", "imagen", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
-		nivel1 = new Nivel(1,listaPN1,mundo);
-		nivel2 = new Nivel(2,listaPN2,mundo);
-		nivel3 = new Nivel(2,listaPN3,mundo);
-		nivel4 = new Nivel(2,listaPN4,mundo);
-		nivel5 = new Nivel(2,listaPN5,mundo);
+		mundo = new Mundo("Calculo", "imagen", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
+		nivel1 = new Nivel(listaPN1,mundo);
+		nivel2 = new Nivel(listaPN2,mundo);
+		nivel3 = new Nivel(listaPN3,mundo);
+		nivel4 = new Nivel(listaPN4,mundo);
+		nivel5 = new Nivel(listaPN5,mundo);
 		mundo.agregarNivel(nivel1);
 		mundo.agregarNivel(nivel2);
 		mundo.agregarNivel(nivel3);

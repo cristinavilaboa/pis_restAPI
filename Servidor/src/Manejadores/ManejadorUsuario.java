@@ -8,11 +8,20 @@ import Datatypes.DataPuntosJugador;
 import java.util.List;
 
 import Modelo.Jugador;
+import Modelo.Mundo;
 import Modelo.Profesor;
+import Persistencia.HibernateUtility;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
 
 import Datatypes.DataJugador;
 
@@ -40,6 +49,15 @@ public class ManejadorUsuario {
 	public void agregarJugador(Jugador jugador){
 		jugadores.put(jugador.getNick(), jugador);
 
+	}
+	public void agregarJugadorBD(Jugador jugador){
+		SessionFactory factory= HibernateUtility.getSessionFactory();
+		Session session=factory.openSession();
+		org.hibernate.Transaction t= session.beginTransaction();
+		session.persist(jugador);
+		t.commit();
+		session.close();
+		System.out.println("successfully saved jugador");
 	}
 	
 
@@ -74,11 +92,32 @@ public class ManejadorUsuario {
 	public void agregarProfesor(Profesor p){
 		profesores.put(p.getNick(), p);
 	}
-	
+	public void agregarProfesorBD(Profesor p){
+		SessionFactory factory= HibernateUtility.getSessionFactory();
+		Session session=factory.openSession();
+		org.hibernate.Transaction t= session.beginTransaction();
+		session.persist(p);
+		t.commit();
+		session.close();
+		System.out.println("successfully saved profesor");
+	}
 	
 	public void borrar(){
 		
 		this.jugadores.clear();
+	}
+	public void borrarBD(){
+		SessionFactory factory= HibernateUtility.getSessionFactory();
+		Session session=factory.openSession();
+		org.hibernate.Transaction t= session.beginTransaction();
+		List<Jugador> lista_jugadores = session.createCriteria(Jugador.class).list();
+		for (Iterator<Jugador> iterator = lista_jugadores.iterator(); iterator.hasNext();) {
+			Jugador j = (Jugador) iterator.next();
+			session.delete(j);
+		}
+		t.commit();
+		session.close();
+		System.out.println("successfully borrado jugadores");
 	}
 	
 }
