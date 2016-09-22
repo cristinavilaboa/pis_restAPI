@@ -23,6 +23,5 @@
      	<mapping class="Modelo.Profesor"/>
      	<mapping class="Modelo.Tema"/>
      	<mapping class="Modelo.Usuario"/>
-     	<mapping class="Modelo.ListaDeNivel"/>
     </session-factory>
 </hibernate-configuration>

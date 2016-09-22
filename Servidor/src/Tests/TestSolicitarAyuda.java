@@ -22,7 +22,7 @@ public class TestSolicitarAyuda {
 
 	@Before
 	public void setUp() throws Exception {
-		 CargarDatosBD.Cargar();
+		 CargarDatosBD.CargarTestSolicitarAyuda();
 		 profesor = new Profesor("Juan","pepe","123");
 		 problema= new Problema(1,"problema1","resp",12,null,null,null,profesor);
 		 ManejadorProblema mp=ManejadorProblema.getInstancia();
