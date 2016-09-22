@@ -5,20 +5,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
-import Modelo.Contenido;
 import Modelo.Mundo;
-import Modelo.Problema;
-import Modelo.Profesor;
 import Persistencia.HibernateUtility;
 
 public class ManejadorMundo {
-	private static int nro_mundo=0;
 	private static ManejadorMundo instancia = new ManejadorMundo();
 	private  Map<Integer,Mundo> mundos= new HashMap<Integer,Mundo>();
 	

@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 @Entity
 @Table(name = "MUNDO")
@@ -23,7 +18,7 @@ public class Mundo {
 	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id_mundo;
 	private static int nro_nivel=0;
-	private int id;
+	private int id;                     //habría q borrarlo
 	private String nombre;
 	private String imagen;
 	private String descripcion;
@@ -52,6 +47,9 @@ public class Mundo {
 	
 	public void setId(int id) {
 		this.id = id;
+	}
+	public int getIdBD() {
+		return id_mundo;
 	}
 	
 	public String getNombre() {

@@ -7,8 +7,8 @@ import java.util.Collections;
 import Datatypes.DataPuntosJugador;
 import java.util.List;
 
+import Modelo.Clase;
 import Modelo.Jugador;
-import Modelo.Mundo;
 import Modelo.Profesor;
 import Persistencia.HibernateUtility;
 
@@ -17,11 +17,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
 import Datatypes.DataJugador;
 
@@ -101,6 +98,16 @@ public class ManejadorUsuario {
 		session.close();
 		System.out.println("successfully saved profesor");
 	}
+	public void agregarClaseBD(Clase clase){
+		SessionFactory factory= HibernateUtility.getSessionFactory();
+		Session session=factory.openSession();
+		org.hibernate.Transaction t= session.beginTransaction();
+		session.persist(clase);
+		t.commit();
+		session.close();
+		System.out.println("successfully saved profesor");
+	}
+	
 	
 	public void borrar(){
 		

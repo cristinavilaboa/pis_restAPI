@@ -1,12 +1,5 @@
 package Datatypes;
 
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-
-import Modelo.Ayuda;
-import Modelo.Contenido;
-import Modelo.Nivel;
-import Modelo.Profesor;
 
 public class DataProblema {
 	

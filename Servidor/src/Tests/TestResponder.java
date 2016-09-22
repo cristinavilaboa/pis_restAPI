@@ -7,13 +7,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import Controladores.ControladorJugador;
 import Controladores.ControladorProblema;
-import Controladores.IControladorJugador;
 import Controladores.IControladorProblema;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
@@ -47,7 +44,7 @@ public class TestResponder {
 	Clase clase = new Clase();
 	@Before
 	public void setUp() throws Exception {
-		estado = new EstadoJugador(0,0, mundos_completos, logros, mundo_nivel, nivel_problema);
+		estado = new EstadoJugador(0, mundos_completos, logros, mundo_nivel, nivel_problema);
 		jugador = new Jugador("ni", "nick", "fBToken", "imagen", estado, clase);
 
 		mundo = new Mundo("Jupiter", "imagen", "descripcion",0,mundos_siguientes, niveles);

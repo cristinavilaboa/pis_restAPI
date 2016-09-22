@@ -10,9 +10,10 @@ import Datatypes.DataLogro;
 @Entity
 @Table(name = "LOGRO")
 public class Logro {
-	 @Id 
+	 @Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_logro;
 	private String descripcion;
+	private int id; //habría q borrar este
 	
 	public Logro(String descripcion){
 		this.descripcion=descripcion;
@@ -22,11 +23,11 @@ public class Logro {
 		
 	}
 	public int getId() {
-		return id_logro;
+		return id;
 	}
 	
 	public void setId(int id) {
-		this.id_logro = id;
+		this.id = id;
 	}
 	
 	public String getDescripcion() {
@@ -38,7 +39,7 @@ public class Logro {
 	}
 	
 	public DataLogro obtenerDataLogro(){
-		DataLogro dl = new DataLogro(descripcion, id_logro);
+		DataLogro dl = new DataLogro(descripcion, id);
 		return dl;
 	}
 }

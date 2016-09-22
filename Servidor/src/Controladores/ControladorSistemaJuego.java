@@ -3,8 +3,6 @@ package Controladores;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
@@ -37,10 +35,7 @@ import Modelo.Problema;
 public class ControladorSistemaJuego implements IControladorSistemaJuego {
 	@RequestMapping(value="/cargardatos", method=RequestMethod.POST)
 	public void CargarDatos() throws SecurityException, HeuristicMixedException, HeuristicRollbackException, RollbackException, SystemException{
-		
-		if (CargarDatosBD.getCargado()==false){
-			//CargarDatosBD.Cargar();
-		}
+			CargarDatosBD.Cargar();
 	}
 	
 	//METODOS A IMPLEMENTAR

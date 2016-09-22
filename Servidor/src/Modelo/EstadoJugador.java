@@ -4,20 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
-import javax.persistence.Embeddable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.MapKey;
 import javax.persistence.MapKeyColumn;
-import javax.persistence.MapKeyJoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
@@ -26,11 +20,10 @@ public class EstadoJugador {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_estado_jugador;
 	private int puntos_exp;
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.ALL)
 	private List<Mundo> mundos_completos = new ArrayList<Mundo>();
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	private List<Logro> logros = new ArrayList<Logro>();
-	
 	@ManyToMany
 	@MapKeyColumn(name="id_mundo")
 	private Map<Integer, Nivel> niveles_actuales = new HashMap<Integer, Nivel>(); //El int es el id de un mundo,
@@ -45,9 +38,8 @@ public class EstadoJugador {
 		this.puntos_exp = puntos_exp;
 	}
 	
-	public EstadoJugador(int id_estado_jugador, int puntos_exp, List<Mundo> mundos_completos, List<Logro> logros,
+	public EstadoJugador(int puntos_exp, List<Mundo> mundos_completos, List<Logro> logros,
 			Map<Integer, Nivel> niveles_actuales, List<Problema> problemas_resueltos) {
-		this.id_estado_jugador = id_estado_jugador;
 		this.puntos_exp = puntos_exp;
 		this.mundos_completos = mundos_completos;
 		this.logros = logros;

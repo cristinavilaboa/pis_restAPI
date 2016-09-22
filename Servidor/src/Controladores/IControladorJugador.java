@@ -1,9 +1,6 @@
 package Controladores;
 
-import java.util.List;
-
 import Datatypes.DataListaRanking;
-import Datatypes.DataPuntosJugador;
 
 public interface IControladorJugador {
 	

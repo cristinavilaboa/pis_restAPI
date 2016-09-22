@@ -1,11 +1,8 @@
 package Controladores;
 
-import java.util.Date;
-
 import Datatypes.DataAyuda;
 import Datatypes.DataEstadoMensaje;
 import Datatypes.DataExperiencia;
-import Datatypes.DataProblema;
 
 public interface IControladorProblema {
 	

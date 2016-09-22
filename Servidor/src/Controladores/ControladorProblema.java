@@ -3,13 +3,9 @@ package Controladores;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.springframework.util.SocketUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import Datatypes.DataAyuda;
 import Datatypes.DataEstadoMensaje;
 import Datatypes.DataExperiencia;
-import Datatypes.DataProblema;
 import Datatypes.DataTypeConstants;
 import Manejadores.ManejadorProblema;
 import Modelo.Mensaje;

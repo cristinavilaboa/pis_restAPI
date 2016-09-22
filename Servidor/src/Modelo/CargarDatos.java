@@ -1,13 +1,8 @@
 package Modelo;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
@@ -102,7 +97,7 @@ public class CargarDatos {
 		logJ1.setId(1);
 		logrosJ1.add(logJ1);
 		mundo_nivelJ1.put(mundo.getId(), nivel3);
-		estado1 = new EstadoJugador(1,10, mundos_completosJ1, logrosJ1, mundo_nivelJ1, nivel_problemaJ1);
+		estado1 = new EstadoJugador(10, mundos_completosJ1, logrosJ1, mundo_nivelJ1, nivel_problemaJ1);
 		jugador1 = new Jugador("Nicolas", "nico_fing", "fBTokenJ1", "imagenJ1", estado1, clase);
 		
 		logJ21 = new Logro("Maestro de las ingrales");
@@ -112,11 +107,11 @@ public class CargarDatos {
 		logrosJ2.add(logJ21);
 		logrosJ2.add(logJ22);
 		mundo_nivelJ2.put(mundo.getId(), nivel5);
-		estado2 = new EstadoJugador(2,25, mundos_completosJ2, logrosJ2, mundo_nivelJ2, nivel_problemaJ2);
+		estado2 = new EstadoJugador(25, mundos_completosJ2, logrosJ2, mundo_nivelJ2, nivel_problemaJ2);
 		jugador2 = new Jugador("Maria", "mari_fing", "fBTokenJ2", "imagenJ2", estado2, clase);
 		
 		mundo_nivelJ3.put(mundo.getId(), nivel1);
-		estado3 = new EstadoJugador(3,7, mundos_completosJ3, logrosJ3, mundo_nivelJ3, nivel_problemaJ3);
+		estado3 = new EstadoJugador(7, mundos_completosJ3, logrosJ3, mundo_nivelJ3, nivel_problemaJ3);
 		jugador3 = new Jugador("Facundo", "fa_cu_fing", "fBTokenJ2", "imagenJ2", estado3, clase);
 		
 		mu.agregarJugador(jugador1);
