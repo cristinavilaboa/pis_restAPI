@@ -15,8 +15,13 @@ import Datatypes.DataAyuda;
 import Datatypes.DataEstadoMensaje;
 import Datatypes.DataExperiencia;
 import Datatypes.DataTypeConstants;
+import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
+import Manejadores.ManejadorUsuario;
+import Modelo.Ayuda;
+import Modelo.Contenido;
 import Modelo.Mensaje;
+import Modelo.Nivel;
 import Modelo.Problema;
 import Modelo.Profesor;
 import Persistencia.CargarDatosBD;
@@ -74,8 +79,24 @@ public class ControladorProblema implements IControladorProblema{
 		return new DataAyuda(manejador.getAyuda(id_problema));
 	}
 	
-
+	@RequestMapping(value="/agregarproblema", method=RequestMethod.POST)
+	public void agregarProblema(@RequestParam(value="id_problema") int id_problema, @RequestParam(value="desc")String descripcion, @RequestParam(value="resp")String respuesta,
+			@RequestParam(value="exp")int puntos_exp, @RequestParam(value="ayuda")String cont_ayuda, @RequestParam(value="cont")String cont,
+			@RequestParam(value="id_mundo") int id_mundo,@RequestParam(value="num_nivl")int num_nivel, @RequestParam(value="nick_prof")String nick_prof){
+	Ayuda ayuda = new Ayuda(cont_ayuda);
+	Contenido contenido = new Contenido(cont);
+	ManejadorMundo mm = ManejadorMundo.getInstancia();
 	
+	Nivel nivel = mm.obtenerMundo(id_mundo).buscarNivel(num_nivel);
+	
+	ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+	Profesor profe = mu.buscarProfesor(nick_prof);
+	
+	Problema problema = new Problema(id_problema, descripcion, respuesta, puntos_exp, ayuda, contenido, nivel, profe);
+	
+	ManejadorProblema mp = ManejadorProblema.getInstancia();
+	mp.agregarProblema(problema);
+	}
 	
 
 }// 

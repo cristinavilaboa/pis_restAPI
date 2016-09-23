@@ -35,6 +35,10 @@ public class ManejadorProblema {
 		session.close();
 		System.out.println("successfully saved mundo");
 	}
+	
+	public Map<Integer, Problema> getProblemas() {
+		return problemas;
+	}
 	//METODOS A IMPLEMENTAR
 	public boolean ultimaNivel(int id_problema){
 		Problema pro = buscarProblema(id_problema);

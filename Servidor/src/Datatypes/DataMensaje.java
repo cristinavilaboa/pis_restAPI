@@ -7,13 +7,15 @@ public class DataMensaje {
 	private String asunto;
 	private String contenido;
 	private Date fecha;
+	private String remitente;
 	
-	public DataMensaje(int id, String asunto, String contenido, Date fecha) {
+	public DataMensaje(int id, String asunto, String contenido, Date fecha, String remitente) {
 		super();
 		this.id = id;
 		this.asunto = asunto;
 		this.contenido = contenido;
 		this.fecha = fecha;
+		this.remitente = remitente;
 	}
 	
 	public int getId() {
@@ -30,6 +32,10 @@ public class DataMensaje {
 	}
 	public String getContenido() {
 		return contenido;
+	}
+	
+	public String getRemitente(){
+		return remitente;
 	}
 	public void setContenido(String contenido) {
 		this.contenido = contenido;

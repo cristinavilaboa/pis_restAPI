@@ -32,7 +32,7 @@ public class Profesor extends Usuario {
 	
 	//METODOS A IMPLEMENTAR
 	public void enviarMensaje(String mensaje,Date fecha, String asunto){
-		Mensaje m=new Mensaje(/*num_mensaje,*/mensaje,asunto, fecha);
+		Mensaje m=new Mensaje(/*num_mensaje,*/mensaje,asunto, fecha,this.nick);
 		mensajes_nuevos.add(m);
 		//num_mensaje++;
 	}

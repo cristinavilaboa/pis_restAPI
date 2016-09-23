@@ -36,7 +36,7 @@ public class CargarDatosBD {
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
-		Mensaje mensaje=new Mensaje(contenido,asunto,fecha);
+		Mensaje mensaje=new Mensaje(contenido,asunto,fecha,profesor.getNick());
 		session.persist(mensaje);
 		//profesor.agregar_mensaje_nuevo(mensaje);
 		session.saveOrUpdate(profesor);

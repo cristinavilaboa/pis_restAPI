@@ -136,4 +136,13 @@ public class Mundo {
 		niveles.add(n);
 	}
 	
+	public Nivel buscarNivel(int num_nivel){//Puede retornar NULL, pasar un num_nivel que exista en el mundo a buscar
+		for(Nivel n: niveles){
+			if(n.getNivel() == num_nivel){
+				return n;
+			}
+		}
+		return null;
+	}
+	
 }

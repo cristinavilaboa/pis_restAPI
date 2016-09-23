@@ -18,7 +18,7 @@ public class Mensaje {
 	private Date fecha;
 
 	//private Usuario destinatario;
-	//private Usuario remitente;
+	private String id_remitente;
 	
 	
 	
@@ -26,11 +26,12 @@ public class Mensaje {
 		return id_mensaje;
 	}
 	
-	public Mensaje(/*int id_mensaje,*/String contenido, String asunto, Date fecha) {
+	public Mensaje(/*int id_mensaje,*/String contenido, String asunto, Date fecha, String id_remitente) {
 		//this.id_mensaje = id_mensaje;
 		this.contenido = contenido;
 		this.asunto = asunto;
 		this.fecha = fecha;
+		this.id_remitente = id_remitente;
 	}
 	
 	public String getContenido() {
@@ -51,6 +52,10 @@ public class Mensaje {
 	
 	public Date getFecha() {
 		return fecha;
+	}
+	
+	public String getRemitente(){
+		return id_remitente;
 	}
 	
 	public void setFecha(Date fecha) {
