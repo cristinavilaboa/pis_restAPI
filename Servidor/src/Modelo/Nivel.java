@@ -59,14 +59,14 @@ public class Nivel {
 	public boolean esUltima(int id_problema){//Retorna true si le problema es el ultima del nivel
 		int it = 0;
 		boolean encontre = false;
-		int tamaño = problemas.size();
+		int tamano = problemas.size();
 		
-		while (it < tamaño ||  !encontre ){
+		while (it < tamano ||  !encontre ){
 			encontre = (problemas.get(it).getId() == id_problema);
 			it++;
 		}
 		
-		return (encontre && (it <= tamaño));//Si it es menor que el tamaño es que queda algun problema más
+		return (encontre && (it <= tamano));//Si it es menor que el tamaï¿½o es que queda algun problema mï¿½s
 		//HAY QUE VER QUE PASA SI NO ENCUENTRA EL id_problema
 		
 	}

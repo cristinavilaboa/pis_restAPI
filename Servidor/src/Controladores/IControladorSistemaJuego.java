@@ -18,8 +18,7 @@ public interface IControladorSistemaJuego {
 	public DataProblema siguienteProblema(String nick,int nivel, int id_mundo);
 	
 	public DataListaDataProblema siguienteProblemaGeneral(String nick,int nivel, int id_mundo);
-
-	public void iniciarJuego();
+//public void iniciarJuego();
 
 
 }
