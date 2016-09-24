@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import Modelo.Ayuda;
+import Modelo.Mundo;
 import Modelo.Problema;
 import Persistencia.HibernateUtility;
 
@@ -39,6 +40,32 @@ public class ManejadorProblema {
 	public Map<Integer, Problema> getProblemas() {
 		return problemas;
 	}
+	
+	public Map<Integer, Problema> getProblemasBD() {
+		List<Problema> problemas = null;
+		Map<Integer, Problema> mapProblemas = null;
+		Session session = null;
+		try{
+	       session = HibernateUtility.getSessionFactory().openSession();
+	       org.hibernate.Transaction tx = session.beginTransaction();
+	       problemas = session.createCriteria(Problema.class).list();
+		} catch (Exception e){
+			System.out.println("error:" + e.getMessage());
+		} finally {
+			if (session != null && session.isOpen()){
+				session.close();
+			}
+		}
+		if (problemas != null){
+			mapProblemas = new HashMap<Integer,Problema>();
+			for (Problema p : problemas){
+				mapProblemas.put(p.getId(), p);
+			}
+			problemas = null;
+		}
+		return mapProblemas;
+	}
+	
 	//METODOS A IMPLEMENTAR
 	public boolean ultimaNivel(int id_problema){
 		Problema pro = buscarProblema(id_problema);
@@ -56,6 +83,22 @@ public class ManejadorProblema {
 	
 	public Problema buscarProblema(int id_problema){
 		Problema p= problemas.get(id_problema);
+		return p;
+	}
+	
+	public Problema buscarProblemaBD(int id_problema){
+		Session session = null;
+		Problema p = null;
+		try{
+			session = HibernateUtility.getSessionFactory().openSession();
+			p =(Problema)session.get(Problema.class,id_problema);
+		} catch (Exception e){
+			System.out.println("error:" + e.getMessage());
+		} finally {
+			if (session != null && session.isOpen()){
+				session.close();
+			}
+		}
 		return p;
 	}
 	

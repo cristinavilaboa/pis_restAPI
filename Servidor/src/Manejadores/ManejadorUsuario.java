@@ -9,6 +9,7 @@ import java.util.List;
 
 import Modelo.Clase;
 import Modelo.Jugador;
+import Modelo.Mundo;
 import Modelo.Profesor;
 import Persistencia.HibernateUtility;
 
@@ -66,10 +67,29 @@ public class ManejadorUsuario {
 		return false;
 	}
 	
+	public boolean existeJugadorBD(String nick){
+		return (buscarJugadorBD(nick)!=null);
+	}
+	
 	public Jugador buscarJugador(String nick){
 		return jugadores.get(nick); //ver de tirar excepcion si es null
 	}
-
+	
+	public Jugador buscarJugadorBD(String nick){
+		Session session = null;
+		Jugador j = null;
+		try{
+			session = HibernateUtility.getSessionFactory().openSession();
+			j =(Jugador)session.get(Jugador.class,nick);
+		} catch (Exception e){
+			System.out.println("error:" + e.getMessage());
+		} finally {
+			if (session != null && session.isOpen()){
+				session.close();
+			}
+		}
+		return j;
+	}
 	
 	public List<DataPuntosJugador> obtenerRanking(){
 		List<DataPuntosJugador> list_dpj = new ArrayList<>();
@@ -84,6 +104,21 @@ public class ManejadorUsuario {
 	
 	public Profesor buscarProfesor(String nick){
 		return profesores.get(nick);
+	}
+	public Profesor buscarProfesorBD(String nick){
+		Session session = null;
+		Profesor p = null;
+		try{
+			session = HibernateUtility.getSessionFactory().openSession();
+			p =(Profesor)session.get(Profesor.class,nick);
+		} catch (Exception e){
+			System.out.println("error:" + e.getMessage());
+		} finally {
+			if (session != null && session.isOpen()){
+				session.close();
+			}
+		}
+		return p;
 	}
 	
 	public void agregarProfesor(Profesor p){
@@ -105,7 +140,7 @@ public class ManejadorUsuario {
 		session.persist(clase);
 		t.commit();
 		session.close();
-		System.out.println("successfully saved profesor");
+		System.out.println("successfully saved clase");
 	}
 	
 	

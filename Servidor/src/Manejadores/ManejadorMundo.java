@@ -24,7 +24,21 @@ public class ManejadorMundo {
 	public Mundo obtenerMundo(int id_mundo){
 		return mundos.get(id_mundo);
 	}
-	
+	public Mundo obtenerMundoBD(int id_mundo){
+		Session session = null;
+		Mundo m = null;
+		try{
+			session = HibernateUtility.getSessionFactory().openSession();
+			m =(Mundo)session.get(Mundo.class,id_mundo);
+		} catch (Exception e){
+			System.out.println("error:" + e.getMessage());
+		} finally {
+			if (session != null && session.isOpen()){
+				session.close();
+			}
+		}
+		return m;
+	}
 	public void agregarMundo(Mundo m){
 		mundos.put(m.getId(), m);
 	}
