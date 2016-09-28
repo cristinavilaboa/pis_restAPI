@@ -1,5 +1,6 @@
 package Manejadores;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -71,5 +72,12 @@ public class ManejadorMundo {
 		System.out.println("successfully borrado mundos");
 		
 	}
-
+	
+	public List<Mundo> obtenerMundos(){
+		List<Mundo> lista = new ArrayList<Mundo>();
+		for(Mundo m : mundos.values()){
+			lista.add(m);
+		}
+		return lista;
+	}
 }

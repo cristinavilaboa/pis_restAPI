@@ -40,10 +40,11 @@ public class TestVerMensajes {
 	@Test
 	public void test() {
 		IControladorProfesor cp = new ControladorProfesor();
-		DataListaMensajes dlm = cp.verMensajes(profe.getNick());
-		assertEquals(3,dlm.getMensajes_nuevos().size());
-		assertEquals(0,dlm.getMensajes_viejos().size());
-		List<DataMensaje> nuevos = dlm.getMensajes_nuevos();
+		DataListaMensajes dlm_nuevos = cp.verMensajesNuevos(profe.getNick());
+		DataListaMensajes dlm_viejos = cp.verMensajesViejos(profe.getNick());
+		assertEquals(3,dlm_nuevos.getMensajes().size());
+		assertEquals(0,dlm_viejos.getMensajes().size());
+		List<DataMensaje> nuevos = dlm_nuevos.getMensajes();
 		
 		assertEquals(m1.getContenido(),nuevos.get(0).getContenido());
 		assertEquals(m1.getAsunto(),nuevos.get(0).getAsunto());
@@ -64,11 +65,12 @@ public class TestVerMensajes {
 		profe.mensajeLeido(m2.getId());
 		profe.mensajeLeido(m3.getId());
 		
-		DataListaMensajes dlm2 = cp.verMensajes(profe.getNick());
-		assertEquals(0,dlm2.getMensajes_nuevos().size());
-		assertEquals(3,dlm2.getMensajes_viejos().size());
+		DataListaMensajes dlm2_nuevos = cp.verMensajesNuevos(profe.getNick());
+		DataListaMensajes dlm2_viejos = cp.verMensajesViejos(profe.getNick());
+		assertEquals(0,dlm2_nuevos.getMensajes().size());
+		assertEquals(3,dlm2_viejos.getMensajes().size());
 		
-		List<DataMensaje> leidos = dlm.getMensajes_nuevos();
+		List<DataMensaje> leidos = dlm2_viejos.getMensajes();
 		
 		assertEquals(m1.getContenido(),leidos.get(0).getContenido());
 		assertEquals(m1.getAsunto(),leidos.get(0).getAsunto());

@@ -97,7 +97,7 @@ public class Jugador extends Usuario{
 		  String d = mundo.getDescripcion();
 
 		  
-		  dataMundosNiveles.add(new DataMundoNivel(mundo.getNombre(),mundos_niveles.get(key).getNivel()));		
+		  dataMundosNiveles.add(new DataMundoNivel(mundo.getNombre(),mundos_niveles.get(key).getNro_nivel()));		
 		}
 		
 				

@@ -11,10 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import Datatypes.DataJugador;
+import Datatypes.DataListaMundos;
 import Datatypes.DataListaRanking;
+import Datatypes.DataMundo;
+import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Modelo.EstadoJugador;
 import Modelo.Logro;
+import Modelo.Mundo;
 import Modelo.Problema;
 
 @RestController
@@ -63,4 +67,29 @@ public class ControladorJugador implements IControladorJugador{
 		return new DataListaRanking(list_dpj);
 	}
 	
+	@RequestMapping(value="/listarmundosjugador", method=RequestMethod.GET)
+	public DataListaMundos listarMundosJugador(@RequestParam(value="nick")String nick){
+		List<DataMundo> lista = new ArrayList<DataMundo>();
+		
+		ManejadorMundo mm = ManejadorMundo.getInstancia();
+		List<Mundo> mundos = mm.obtenerMundos();
+		
+		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+		EstadoJugador estado = mu.buscarJugador(nick).getEstado();
+		
+		List<Mundo> mundos_completos = estado.getMundos_completos();
+		List<Integer> mundos_disponibles = new ArrayList<Integer>();
+		
+		for(Integer id_mundo: estado.getNiveles_actuales().keySet()){
+			mundos_disponibles.add(id_mundo);
+		}
+		
+		for(Mundo m: mundos){
+			boolean completo = mundos_completos.contains(m);
+			boolean disponible = mundos_disponibles.contains(m.getId());
+					
+			lista.add(new DataMundo(m.getId(), m.getNombre(), m.getImagen(), m.getDescripcion(),completo, disponible));
+		}										
+		return new DataListaMundos(lista);
+	}
 }

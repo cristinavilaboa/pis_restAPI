@@ -34,8 +34,12 @@ public class Nivel {
 		nro_nivel=n;
 	}
 	
-	public int getNivel(){
+	public int getNro_nivel(){
 		return nro_nivel;
+	}
+	
+	public int getId_nivel(){
+		return id_nivel;
 	}
 	
 	public List<Problema> getProblemas() {
