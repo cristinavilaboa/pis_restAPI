@@ -149,7 +149,7 @@ public class CargarDatosBD {
 		
 		logJ1 = new Logro("Maestro de las derivadas");
 		logrosJ1.add(logJ1);
-		niveles_actualesJ1.put(mundo.getIdBD(), nivel3);
+		niveles_actualesJ1.put(mundo.getId(), nivel3);
 		estado1 = new EstadoJugador(10, mundos_completosJ1, logrosJ1, niveles_actualesJ1, problemas_resueltosJ1);
 		jugador1 = new Jugador("Nicolas", "nico_fing", "fBTokenJ1", "imagenJ1", estado1, clase);
 		
@@ -159,13 +159,13 @@ public class CargarDatosBD {
 		logJ22 = new Logro("Maestro de las derivadas");
 		logrosJ2.add(logJ21);
 		logrosJ2.add(logJ22);
-		niveles_actualesJ2.put(mundo.getIdBD(), nivel5);
+		niveles_actualesJ2.put(mundo.getId(), nivel5);
 		estado2 = new EstadoJugador(25, mundos_completosJ2, logrosJ2, niveles_actualesJ2, problemas_resueltosJ2);
 		jugador2 = new Jugador("Maria", "mari_fing", "fBTokenJ2", "imagenJ2", estado2, clase);
 		
 		mu.agregarJugador(jugador2);
 		
-		niveles_actualesJ3.put(mundo.getIdBD(), nivel1);
+		niveles_actualesJ3.put(mundo.getId(), nivel1);
 		estado3 = new EstadoJugador(7, mundos_completosJ3, logrosJ3, niveles_actualesJ3, problemas_resueltosJ3);
 		jugador3 = new Jugador("Facundo", "fa_cu_fing", "fBTokenJ2", "imagenJ2", estado3, clase);
 		

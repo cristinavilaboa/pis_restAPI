@@ -87,11 +87,11 @@ public class ControladorProblema implements IControladorProblema{
 	Contenido contenido = new Contenido(cont);
 	ManejadorMundo mm = ManejadorMundo.getInstancia();
 	
-	Nivel nivel = mm.obtenerMundo(id_mundo).buscarNivel(num_nivel);
 	
 	ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 	Profesor profe = mu.buscarProfesor(nick_prof);
-	
+		Nivel nivel = mm.obtenerMundo(id_mundo).buscarNivel(num_nivel);
+
 	Problema problema = new Problema(id_problema, descripcion, respuesta, puntos_exp, ayuda, contenido, nivel, profe);
 	
 	ManejadorProblema mp = ManejadorProblema.getInstancia();

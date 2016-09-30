@@ -49,7 +49,6 @@ public class TestResponder {
 
 		mundo = new Mundo("Jupiter", "imagen", "descripcion",0,mundos_siguientes, niveles);
 		nivel = new Nivel(listaP,mundo);
-		mundo.setId(1);
 		
 		nivel2 = new Nivel(listaP2,mundo);
 		
