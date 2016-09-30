@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import Modelo.Mundo;
+import Modelo.Nivel;
 import Persistencia.HibernateUtility;
 
 public class ManejadorMundo {
@@ -28,6 +29,17 @@ public class ManejadorMundo {
 		try{
 			session = HibernateUtility.getSessionFactory().openSession();
 			m =(Mundo)session.get(Mundo.class,id_mundo);
+			List<Nivel> niveles= new ArrayList<Nivel>();
+			List<Object[]> o_niveles= (List<Object[]>)session.createQuery("select id_nivel, nro_nivel from Nivel where mundo_id_mundo="+Integer.toString(m.getId())).list();
+			for (Object[] Nivel:o_niveles){
+				Integer id_nivel=(Integer)Nivel[0];
+				Integer nro_nivel=(Integer)Nivel[1];
+				Nivel aux_nivel= new Nivel();
+				aux_nivel.setId(id_nivel);
+				aux_nivel.setNivel(nro_nivel);
+				niveles.add(aux_nivel);
+			};
+			m.setNiveles(niveles);
 		} catch (Exception e){
 			System.out.println("error:" + e.getMessage());
 		} finally {
