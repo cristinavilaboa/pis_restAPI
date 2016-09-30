@@ -33,7 +33,9 @@ public class Nivel {
 	public void setNivel(int n){
 		nro_nivel=n;
 	}
-	
+	public void setId(int n){
+		id_nivel=n;
+	}
 	public int getNro_nivel(){
 		return nro_nivel;
 	}

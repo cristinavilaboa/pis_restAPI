@@ -52,17 +52,14 @@ public class TestListarMundoYNiveles {
 		m1 = new Mundo("Jupiter", "imagen", "descripcion",0,mundos_siguientesM1, nivelesM1);
 		n1m1 = new Nivel(listaP_M1,m1);
 		n2m1 = new Nivel(listaP_2M1,m1);
-		m1.setId(1);
 		
 		m2 = new Mundo("Jupiter2", "imagen2", "descripcion2",0,mundos_siguientesM2, nivelesM2);
 		n1m2 = new Nivel(listaP_M2,m2);
 		n2m2 = new Nivel(listaP_2M2,m2);
-		m2.setId(2);
 		
 		m3 = new Mundo("Jupiter3", "imagen3", "descripcion3",0,mundos_siguientesM3, nivelesM3);
 		n1m3 = new Nivel(listaP_M3,m3);
 		n2m3 = new Nivel(listaP_2M3,m3);
-		m3.setId(3);
 		
 		m1.agregarNivel(n1m1);
 		m1.agregarNivel(n2m1);

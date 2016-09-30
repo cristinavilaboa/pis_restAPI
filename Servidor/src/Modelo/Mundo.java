@@ -18,7 +18,6 @@ public class Mundo {
 	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id_mundo;
 	private static int nro_nivel=0;
-	private int id;                     //habría q borrarlo
 	private String nombre;
 	private String imagen;
 	private String descripcion;
@@ -42,13 +41,6 @@ public class Mundo {
 	public Mundo(){}
 	
 	public int getId() {
-		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getIdBD() {
 		return id_mundo;
 	}
 	
@@ -102,7 +94,7 @@ public class Mundo {
 	
 	//METODOS A IMPLEMENTAR
 	public boolean ultimoNivelMundo(Nivel n){
-		if(n.getMundo().getId() == this.id ){
+		if(n.getMundo().getId() == this.id_mundo ){
 			int largoMundo = niveles.size();
 			Nivel ultimo_nivel = niveles.get(largoMundo - 1);
 			return (ultimo_nivel == n);
