@@ -25,9 +25,6 @@ public class ManejadorProblema {
 	}
 	
 	public void agregarProblema(Problema p){
-		problemas.put(p.getId(), p);
-	}
-	public void agregarProblemaBD(Problema p){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
@@ -37,11 +34,8 @@ public class ManejadorProblema {
 		System.out.println("successfully saved mundo");
 	}
 	
-	public Map<Integer, Problema> getProblemas() {
-		return problemas;
-	}
 	
-	public Map<Integer, Problema> getProblemasBD() {
+	public Map<Integer, Problema> getProblemas() {
 		List<Problema> problemas = null;
 		Map<Integer, Problema> mapProblemas = null;
 		Session session = null;
@@ -82,11 +76,6 @@ public class ManejadorProblema {
 	}
 	
 	public Problema buscarProblema(int id_problema){
-		Problema p= problemas.get(id_problema);
-		return p;
-	}
-	
-	public Problema buscarProblemaBD(int id_problema){
 		Session session = null;
 		Problema p = null;
 		try{
@@ -109,10 +98,6 @@ public class ManejadorProblema {
 	}
 	
 	public void borrar(){
-		
-		this.problemas.clear();
-	}
-	public void borrarBD(){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();

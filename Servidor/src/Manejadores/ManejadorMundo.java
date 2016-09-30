@@ -23,9 +23,6 @@ public class ManejadorMundo {
 	}
 	
 	public Mundo obtenerMundo(int id_mundo){
-		return mundos.get(id_mundo);
-	}
-	public Mundo obtenerMundoBD(int id_mundo){
 		Session session = null;
 		Mundo m = null;
 		try{
@@ -40,11 +37,8 @@ public class ManejadorMundo {
 		}
 		return m;
 	}
-	public void agregarMundo(Mundo m){
-		mundos.put(m.getId(), m);
-	}
 	
-	public void agregarMundoBD(Mundo m){
+	public void agregarMundo(Mundo m){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
@@ -53,12 +47,8 @@ public class ManejadorMundo {
 		session.close();
 		System.out.println("successfully saved mundo");
 	}
-	public void borrar(){
-		
-		this.mundos.clear();
-	}
 	
-	public void borrarBD(){
+	public void borrar(){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();

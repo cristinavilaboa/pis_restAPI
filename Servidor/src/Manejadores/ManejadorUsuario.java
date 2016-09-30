@@ -44,11 +44,8 @@ public class ManejadorUsuario {
 		DataJugador dj = j.obtenerDataJugador();
 		return dj;
 	}
+	
 	public void agregarJugador(Jugador jugador){
-		jugadores.put(jugador.getNick(), jugador);
-
-	}
-	public void agregarJugadorBD(Jugador jugador){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
@@ -60,22 +57,10 @@ public class ManejadorUsuario {
 	
 
 	public boolean existeJugador(String nick){
-		Jugador j = jugadores.get(nick);
-		if (j!=null){
-			return true;	
-		}
-		return false;
-	}
-	
-	public boolean existeJugadorBD(String nick){
-		return (buscarJugadorBD(nick)!=null);
+		return (buscarJugador(nick)!=null);
 	}
 	
 	public Jugador buscarJugador(String nick){
-		return jugadores.get(nick); //ver de tirar excepcion si es null
-	}
-	
-	public Jugador buscarJugadorBD(String nick){
 		Session session = null;
 		Jugador j = null;
 		try{
@@ -103,9 +88,6 @@ public class ManejadorUsuario {
 	}
 	
 	public Profesor buscarProfesor(String nick){
-		return profesores.get(nick);
-	}
-	public Profesor buscarProfesorBD(String nick){
 		Session session = null;
 		Profesor p = null;
 		try{
@@ -122,9 +104,6 @@ public class ManejadorUsuario {
 	}
 	
 	public void agregarProfesor(Profesor p){
-		profesores.put(p.getNick(), p);
-	}
-	public void agregarProfesorBD(Profesor p){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
@@ -133,7 +112,7 @@ public class ManejadorUsuario {
 		session.close();
 		System.out.println("successfully saved profesor");
 	}
-	public void agregarClaseBD(Clase clase){
+	public void agregarClase(Clase clase){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
@@ -145,10 +124,6 @@ public class ManejadorUsuario {
 	
 	
 	public void borrar(){
-		
-		this.jugadores.clear();
-	}
-	public void borrarBD(){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();

@@ -68,9 +68,9 @@ public class CargarDatosBD {
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		ManejadorMundo mm = ManejadorMundo.getInstancia();
 		
-		mp.borrarBD();
-		mu.borrarBD();
-		mm.borrarBD();
+		mp.borrar();
+		mu.borrar();
+		mm.borrar();
 		
 		List<Mundo> mundos_siguientes = new ArrayList<Mundo>();
 		List<Nivel> niveles = new ArrayList<Nivel>();
@@ -102,9 +102,9 @@ public class CargarDatosBD {
 		Logro logJ1,logJ21,logJ22;
 		
 		Profesor profesor = new Profesor("Marcelo", "marce_fing", "1234");
-		mu.agregarProfesorBD(profesor);
+		mu.agregarProfesor(profesor);
 		Clase clase = new Clase(1,"clase de Calculo",profesor);
-		mu.agregarClaseBD(clase);
+		mu.agregarClase(clase);
 		
 		mundo = new Mundo("Calculo", "imagen", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
 		nivel1 = new Nivel(listaPN1,mundo);
@@ -121,15 +121,15 @@ public class CargarDatosBD {
 		contenidoP2 = new Contenido("d(x^2/2)/dx");
 		problema2 = new Problema(2,"Resolver la siguiente derivada","x",10,ayudaP2,contenidoP2,nivel2,profesor);
 		
-		ayudaP3 = new Ayuda("La integral es el area bajo la curva de una función");
+		ayudaP3 = new Ayuda("La integral es el area bajo la curva de una funciï¿½n");
 		contenidoP3 = new Contenido("integral de (1) en [1,5]");
 		problema3 = new Problema(3,"Resolver la siguiente integral","4",10,ayudaP3,contenidoP3,nivel3,profesor);
 		
-		ayudaP4 = new Ayuda("La integral es el area bajo la curva de una función");
+		ayudaP4 = new Ayuda("La integral es el area bajo la curva de una funciï¿½n");
 		contenidoP4 = new Contenido("integral de (2x dx) en [2,8]");
 		problema4 = new Problema(4,"Resolver la siguiente integral","60",10,ayudaP4,contenidoP4,nivel4,profesor);
 		
-		//ayudaP5 = new Ayuda("La integral es el area bajo la curva de una función");
+		//ayudaP5 = new Ayuda("La integral es el area bajo la curva de una funciï¿½n");
 		//contenidoP5 = new Contenido("integral de (cos(x) + 5x dx) en [a,b]");
 		//problema5 = new Problema(5,"Resolver la siguiente integral","(-5/2)(a^2-b^2) - sin(a) + sin(b)",10,ayudaP5,contenidoP5,nivel5,profesor);
 		
@@ -145,7 +145,7 @@ public class CargarDatosBD {
 		mundo.agregarNivel(nivel4);
 		mundo.agregarNivel(nivel5);
 		
-		mm.agregarMundoBD(mundo);
+		mm.agregarMundo(mundo);
 		
 		logJ1 = new Logro("Maestro de las derivadas");
 		logrosJ1.add(logJ1);
@@ -153,7 +153,7 @@ public class CargarDatosBD {
 		estado1 = new EstadoJugador(10, mundos_completosJ1, logrosJ1, niveles_actualesJ1, problemas_resueltosJ1);
 		jugador1 = new Jugador("Nicolas", "nico_fing", "fBTokenJ1", "imagenJ1", estado1, clase);
 		
-		mu.agregarJugadorBD(jugador1);
+		mu.agregarJugador(jugador1);
 		
 		logJ21 = new Logro("Maestro de las ingrales");
 		logJ22 = new Logro("Maestro de las derivadas");
@@ -163,13 +163,13 @@ public class CargarDatosBD {
 		estado2 = new EstadoJugador(25, mundos_completosJ2, logrosJ2, niveles_actualesJ2, problemas_resueltosJ2);
 		jugador2 = new Jugador("Maria", "mari_fing", "fBTokenJ2", "imagenJ2", estado2, clase);
 		
-		mu.agregarJugadorBD(jugador2);
+		mu.agregarJugador(jugador2);
 		
 		niveles_actualesJ3.put(mundo.getIdBD(), nivel1);
 		estado3 = new EstadoJugador(7, mundos_completosJ3, logrosJ3, niveles_actualesJ3, problemas_resueltosJ3);
 		jugador3 = new Jugador("Facundo", "fa_cu_fing", "fBTokenJ2", "imagenJ2", estado3, clase);
 		
-		mu.agregarJugadorBD(jugador3);
+		mu.agregarJugador(jugador3);
 		
 	}
 }
