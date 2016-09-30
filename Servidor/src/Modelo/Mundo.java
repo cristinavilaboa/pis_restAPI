@@ -102,11 +102,11 @@ public class Mundo {
 	
 	//METODOS A IMPLEMENTAR
 	public boolean ultimoNivelMundo(Nivel n){
+		
 		if(n.getMundo().getId() == this.id ){
 			int largoMundo = niveles.size();
 			Nivel ultimo_nivel = niveles.get(largoMundo - 1);
 			return (ultimo_nivel == n);
-	
 		}else{
 			return false;
 		}
@@ -136,9 +136,9 @@ public class Mundo {
 		niveles.add(n);
 	}
 	
-	public Nivel buscarNivel(int num_nivel){//Puede retornar NULL, pasar un num_nivel que exista en el mundo a buscar
+	public Nivel buscarNivel(int id_nivel){//Puede retornar NULL, pasar un num_nivel que exista en el mundo a buscar
 		for(Nivel n: niveles){
-			if(n.getNro_nivel() == num_nivel){
+			if(n.getId_nivel() == id_nivel){
 				return n;
 			}
 		}

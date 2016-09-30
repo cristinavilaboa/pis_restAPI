@@ -125,9 +125,11 @@ public class EstadoJugador {
 		int id_mundo = mundo.getId();
 		Nivel nivel_actual;
 		if(niveles_actuales.isEmpty()){
+
 			nivel_actual = mundo.getNiveles().get(0);
 			niveles_actuales.put(mundo.getId(),nivel_actual);
 		}else{
+
 			nivel_actual = niveles_actuales.get(id_mundo);
 		}
 		if(!mundo.ultimoNivelMundo(nivel_actual)){
@@ -154,6 +156,14 @@ public class EstadoJugador {
 		return problemas_resueltos.size();
 	}
 	
+	public boolean nivelCompleto(Nivel nivel){
+		for(Problema p: nivel.getProblemas()){
+			if(!problemas_resueltos.contains(p)){
+				return false;
+			}
+		}
+		return true;
+	}
 
 		
 }

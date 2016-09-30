@@ -115,11 +115,11 @@ public class Problema {
 		autor.enviarMensaje(mensaje, fecha, asunto);
 	}
 	
-	public DataProblema getDataProblema(){
+	/*public DataProblema getDataProblema(){
 		
 		
-		return new DataProblema(this.id_problema,this.descripcion,this.contenido.getTexto());
+		return new DataProblema(this.id_problema, this.descripcion, this.respuesta, this.puntos_exp, this.ayuda.getInfo(), this.contenido.getTexto(), this.autor.getNick());
 		
-	}
+	}*/
 	
 }

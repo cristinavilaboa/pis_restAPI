@@ -1,5 +1,7 @@
 package Datatypes;
 
+import java.util.List;
+
 public class DataMundo {
 	private int id_mundo;
 	private String nombre;
@@ -7,15 +9,19 @@ public class DataMundo {
 	private String descripcion;
 	private boolean mundo_completado;
 	private boolean mundo_disponible;
+	private List<Integer> mundos_siguientes;
+	
+	
 	
 	public DataMundo(int id_mundo, String nombre, String imagen, String descripcion, boolean mundo_completado,
-			boolean mundo_disponible) {
+			boolean mundo_disponible, List<Integer> mundos_siguientes) {
 		this.id_mundo = id_mundo;
 		this.nombre = nombre;
 		this.imagen = imagen;
 		this.descripcion = descripcion;
 		this.mundo_completado = mundo_completado;
 		this.mundo_disponible = mundo_disponible;
+		this.mundos_siguientes = mundos_siguientes;
 	}
 	
 	public int getId_mundo() {
@@ -35,6 +41,10 @@ public class DataMundo {
 	}
 	public boolean isMundo_disponible() {
 		return mundo_disponible;
+	}
+
+	public List<Integer> getMundos_siguientes() {
+		return mundos_siguientes;
 	}
 	
 	
