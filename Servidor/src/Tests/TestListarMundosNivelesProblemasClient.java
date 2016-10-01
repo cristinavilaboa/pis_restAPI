@@ -133,7 +133,7 @@ public class TestListarMundosNivelesProblemasClient {
 	@Test
 	public void test() {
 		IControladorJugador cj = new ControladorJugador();
-		List<DataMundo> lista_mundos = cj.loginJugador(jugador.getNick()).getLista_mundos();
+		List<DataMundo> lista_mundos = cj.listarMundosJugador(jugador.getNick()).getLista_mundos();
 		
 		assertEquals(3,lista_mundos.size());
 		assertEquals(m1.getId(),lista_mundos.get(0).getId_mundo());

@@ -3,6 +3,8 @@ package Controladores;
 
 import Datatypes.DataPuntosJugador;
 import Manejadores.ManejadorUsuario;
+
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +18,7 @@ import Datatypes.DataListaDataProblema;
 import Datatypes.DataListaMundos;
 import Datatypes.DataListaNiveles;
 import Datatypes.DataListaRanking;
+import Datatypes.DataLogin;
 import Datatypes.DataMundo;
 import Datatypes.DataNivel;
 import Datatypes.DataProblema;
@@ -74,8 +77,8 @@ public class ControladorJugador implements IControladorJugador{
 		return new DataListaRanking(list_dpj);
 	}
 	
-	@RequestMapping(value="/loginjugador", method=RequestMethod.GET)
-	public DataListaMundos loginJugador(@RequestParam(value="nick")String nick){
+	@RequestMapping(value="/listarmundosjugador", method=RequestMethod.GET)
+	public DataListaMundos listarMundosJugador(@RequestParam(value="nick")String nick){
 		List<DataMundo> lista = new ArrayList<DataMundo>();
 		
 		ManejadorMundo mm = ManejadorMundo.getInstancia();
@@ -167,6 +170,21 @@ public class ControladorJugador implements IControladorJugador{
 		}
 		
 		return new DataListaDataProblema(lista_problemas);
+	}
+	
+	@RequestMapping(value="/loginjugador", method=RequestMethod.GET)
+	public DataLogin loginJugador(@RequestParam(value="fb_token")String fb_token){
+		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+		List<Jugador> jugadores = mu.obtenerJugadores();
+		
+		for(Jugador j: jugadores){
+			
+			if(j.getFBToken().equalsIgnoreCase(fb_token)){
+				
+				return new DataLogin(j.getNick(),true);
+			}
+		}
+		return new DataLogin(null, false);
 	}
 	
 	

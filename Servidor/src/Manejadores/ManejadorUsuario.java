@@ -162,4 +162,12 @@ public class ManejadorUsuario {
 		System.out.println("successfully borrado jugadores");
 	}
 	
+	public List<Jugador> obtenerJugadores(){
+		List<Jugador> lista_jugadores = new ArrayList<Jugador>();
+		for(Jugador j: jugadores.values()){
+			lista_jugadores.add(j);
+		}
+		return lista_jugadores;
+	}
+	
 }
