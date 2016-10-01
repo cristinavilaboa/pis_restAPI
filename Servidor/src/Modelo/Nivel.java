@@ -5,10 +5,15 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 @Entity
@@ -17,7 +22,7 @@ public class Nivel {
 	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_nivel;
 	private int nro_nivel;//seria el num de nivel dentro de un mundo
-	@OneToMany (cascade = CascadeType.ALL, mappedBy = "nivel")
+	@OneToMany (cascade = CascadeType.ALL, mappedBy = "nivel") @LazyCollection(LazyCollectionOption.FALSE)
 	private List<Problema> problemas = new ArrayList<Problema>();
 	@ManyToOne
 	private Mundo mundo;

@@ -5,10 +5,15 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
@@ -25,7 +30,7 @@ public class Mundo {
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="mundo_siguiente", joinColumns={@JoinColumn (name="id_mundo_anterior", referencedColumnName= "id_mundo" )},inverseJoinColumns={@JoinColumn(name="id_mundo_sig",referencedColumnName="id_mundo")})
 	private List<Mundo> mundos_siguientes= new ArrayList<Mundo>();
-	@OneToMany (cascade = CascadeType.ALL, mappedBy = "mundo")
+	@OneToMany (cascade = CascadeType.ALL, mappedBy = "mundo") @LazyCollection(LazyCollectionOption.FALSE)
 	private List<Nivel> niveles = new ArrayList<Nivel>(); 
 	
 	public Mundo(String nombre, String imagen, String descripcion, int puntos_exp,

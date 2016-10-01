@@ -77,8 +77,8 @@ public class TestVerPerfil {
 		
 		//CREO LA CLASE DEL JUGADOR
 		Clase c = new Clase();
-		c.setId(5);
-		c.setNombre("Cálculo"); //me falta el profesor pero no creo que de problema.
+		//c.setId(5);
+		c.setNombre("Cï¿½lculo"); //me falta el profesor pero no creo que de problema.
 
 		//CREO EL JUGADOR
 		Jugador j = new Jugador("Juan","juancito", "fb", "imagen", ej, c);

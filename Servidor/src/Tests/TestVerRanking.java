@@ -21,7 +21,7 @@ public class TestVerRanking {
 	public void setUp() throws Exception {
 		
 		Profesor Juliana = new Profesor("Juli", "Juliana", "123456");
-		Clase clase1 = new Clase(1, "clase1", Juliana);
+		Clase clase1 = new Clase("clase1", Juliana);
 		
 		EstadoJugador estadoFufi = new EstadoJugador(12);
         Jugador j = new Jugador("Estefania", "fuffi", "estefaniaD", "imagenA", estadoFufi, clase1);

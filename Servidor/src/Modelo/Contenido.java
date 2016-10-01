@@ -14,6 +14,11 @@ public class Contenido {
 	private int id_contenido;
 	private String texto;
 
+	public Contenido()
+	{
+		
+	}
+	
 	public Contenido(String texto){
 		this.texto = texto;
 	}
@@ -24,5 +29,33 @@ public class Contenido {
 
 	public void setTexto(String texto) {
 		this.texto = texto;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id_contenido;
+		result = prime * result + ((texto == null) ? 0 : texto.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Contenido other = (Contenido) obj;
+		if (id_contenido != other.id_contenido)
+			return false;
+		if (texto == null) {
+			if (other.texto != null)
+				return false;
+		} else if (!texto.equals(other.texto))
+			return false;
+		return true;
 	}
 }

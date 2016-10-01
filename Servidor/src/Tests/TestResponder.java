@@ -36,35 +36,61 @@ public class TestResponder {
 	Mundo mundo;
 	Nivel nivel;
 	Nivel nivel2;
+	Contenido contenidoP1;
+	Contenido contenidoP2;
 	Problema problema;
 	Problema problema2;
 	Jugador jugador;
+	Ayuda ayudaP1;
+	Ayuda ayudaP2;
 	EstadoJugador estado;
+	Profesor profesor;
+	Clase clase;
 	
-	Clase clase = new Clase();
 	@Before
 	public void setUp() throws Exception {
+		
+		
+		profesor = new Profesor("NickProfesorUnico", "Profesor", "Contrarofesor");
+		clase = new Clase("Calculo 1", profesor);
+		
 		estado = new EstadoJugador(0, mundos_completos, logros, mundo_nivel, nivel_problema);
-		jugador = new Jugador("ni", "nick", "fBToken", "imagen", estado, clase);
-
+		jugador = new Jugador("nombre", "nickUnico", "fBToken", "imagen", estado, clase);
+		
+		//Creaer el mundo en cascada...
+		
+		ayudaP1 = new Ayuda("Ayuda para el problema 1");
+		ayudaP2 = new Ayuda("Ayuda para el problema 2");
+		
+		contenidoP1 = new Contenido("Este texto explica el contenido del problema 1");
+		contenidoP2 = new Contenido("Este texto explica el contenido del problema 2");
+		
+		problema = new Problema(1,"Problema 1","respuesta",10, ayudaP1,contenidoP1,null,profesor); // el nivel todavia no se creeo 
+		problema2 = new Problema(2,"Problema 2","respuesta",10,ayudaP1,contenidoP2,null,profesor);
+		
+		listaP.add(problema);
+		listaP2.add(problema2);
+		
+		nivel = new Nivel(listaP,null);		//el mundo todavia no fue creado
+		nivel2 = new Nivel(listaP2,null);
+		
+		problema.setNivel(nivel);   // Ahora si ya se creeo el nivel...
+		problema2.setNivel(nivel2);
+		
+		niveles.add(nivel);
+		niveles.add(nivel2);
+		
 		mundo = new Mundo("Jupiter", "imagen", "descripcion",0,mundos_siguientes, niveles);
-		nivel = new Nivel(listaP,mundo);
 		
-		nivel2 = new Nivel(listaP2,mundo);
+		nivel.setMundo(mundo);		// ahora si ya se creeo el mundo...
+		nivel2.setMundo(mundo);
 		
-		mundo.agregarNivel(nivel);
-		mundo.agregarNivel(nivel2);
-		
-		problema = new Problema(1,"Problema 1","respuesta",10,null,null,nivel,null);
-		nivel.agregarProblema(problema);
-		
-		problema2 = new Problema(2,"Problema 2","respuesta",10,null,null,nivel2,null);
-		nivel2.agregarProblema(problema2);
-		
-		mm.agregarMundo(mundo);
+		mu.agregarProfesor(profesor);
+		mu.agregarClase(clase);
 		mu.agregarJugador(jugador);
-		mp.agregarProblema(problema);
-		mp.agregarProblema(problema2);
+		mm.agregarMundo(mundo);
+		//mp.agregarProblema(problema);
+		//mp.agregarProblema(problema2);
 	}
 	
 
@@ -79,7 +105,7 @@ public class TestResponder {
 		assertEquals(10,mp.verificarRespuesta(1, "respuesta"));
 		
 		mu.borrar();
-		mp.borrar();
+//		mp.borrar();
 		mm.borrar();
 		
 	}

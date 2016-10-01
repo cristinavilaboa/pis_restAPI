@@ -33,8 +33,7 @@ public class ManejadorProblema {
 		session.close();
 		System.out.println("successfully saved mundo");
 	}
-	
-	
+		
 	public Map<Integer, Problema> getProblemas() {
 		List<Problema> problemas = null;
 		Map<Integer, Problema> mapProblemas = null;
@@ -78,9 +77,12 @@ public class ManejadorProblema {
 	public Problema buscarProblema(int id_problema){
 		Session session = null;
 		Problema p = null;
+		//Ayuda ayuda = null;
 		try{
 			session = HibernateUtility.getSessionFactory().openSession();
 			p =(Problema)session.get(Problema.class,id_problema);
+			//ayuda = (Ayuda)session.get(Ayuda.class, p.get)
+			
 		} catch (Exception e){
 			System.out.println("error:" + e.getMessage());
 		} finally {

@@ -1,6 +1,8 @@
 package Modelo;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -9,14 +11,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "CLASE")
 public class Clase {
-	@Id
+	
+	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_clase;
 	private String nombre;
 	@ManyToOne
 	private Profesor encargado;
 	
-	public Clase(int id, String nombre, Profesor encargado){
-		this.id_clase = id;
+	public Clase( String nombre, Profesor encargado){
+	//	this.id_clase = id;
 		this.nombre = nombre;
 		this.encargado = encargado;
 	}
@@ -29,9 +32,9 @@ public class Clase {
 		return id_clase;
 	}
 	
-	public void setId(int id) {
+	/*public void setId(int id) {
 		this.id_clase = id;
-	}
+	}*/
 	
 	public String getNombre() {
 		return nombre;

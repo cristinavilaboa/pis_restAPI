@@ -34,7 +34,12 @@ public class Jugador extends Usuario{
         this.estado = estado;
         this.clase = clase;
     }
-
+    
+    public Jugador()
+    {
+    	
+    }
+    
 	public String getFBToken() {
 		return FBToken;
 	}

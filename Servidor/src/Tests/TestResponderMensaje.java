@@ -24,7 +24,7 @@ public class TestResponderMensaje {
 	public void setUp() throws Exception {
 		profe = new Profesor("nickProfe", "nombreProfe", "passwordProfe");
 		estado = new EstadoJugador(0);
-		clase = new Clase(0, "nombre", profe);
+		clase = new Clase("nombre", profe);
 		j = new Jugador("nombre", "nick", "FBToken", "imagen", estado, clase);
 		
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();

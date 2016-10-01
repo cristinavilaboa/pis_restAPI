@@ -103,7 +103,7 @@ public class CargarDatosBD {
 		
 		Profesor profesor = new Profesor("Marcelo", "marce_fing", "1234");
 		mu.agregarProfesor(profesor);
-		Clase clase = new Clase(1,"clase de Calculo",profesor);
+		Clase clase = new Clase("clase de Calculo",profesor);
 		mu.agregarClase(clase);
 		
 		mundo = new Mundo("Calculo", "imagen", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
