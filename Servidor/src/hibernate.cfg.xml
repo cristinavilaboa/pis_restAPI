@@ -9,7 +9,7 @@
         <property name="hibernate.connection.url">jdbc:mysql://us-cdbr-azure-southcentral-f.cloudapp.net:3306/pisg8bd</property>
         <property name="hibernate.connection.username">bfc3e97001ed3f</property> -->
         
-        <property name="hibernate.connection.password">maykel1313</property> 
+        <property name="hibernate.connection.password">gr07</property> 
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/pis</property>
         <property name="hibernate.connection.username">root</property>
         
