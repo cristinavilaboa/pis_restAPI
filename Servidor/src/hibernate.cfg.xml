@@ -8,7 +8,7 @@
         
         
         
-        <!-- Este es para  la base de dato remota -->
+        <!-- Este es para  la base de dato remota --> 
         
         <property name="hibernate.connection.password">2730755d</property> 
         <property name="hibernate.connection.url">jdbc:mysql://us-cdbr-azure-southcentral-f.cloudapp.net:3306/pisg8bd</property>
