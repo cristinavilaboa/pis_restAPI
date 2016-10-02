@@ -24,14 +24,16 @@ public abstract class Usuario {
 	
 	@Id
 	@Column(name="nick")
-	protected String nick;
-	protected String nombre;
-	@OneToMany(cascade=CascadeType.ALL)  @LazyCollection(LazyCollectionOption.FALSE)
+	private String nick;
+	private String nombre;
+	@OneToMany(cascade=CascadeType.ALL)  
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name="usuario_mensajes_viejos", joinColumns={@JoinColumn (name="id_usuario", referencedColumnName= "nick" )},inverseJoinColumns={@JoinColumn(name="id_mensaje",referencedColumnName="id_mensaje")})
-	protected List<Mensaje> mensajes_viejos;
-	@OneToMany(cascade=CascadeType.ALL) @LazyCollection(LazyCollectionOption.FALSE)
+	private List<Mensaje> mensajes_viejos;
+	@OneToMany(cascade=CascadeType.ALL) 
+	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name="usuario_mensajes_nuevos", joinColumns={@JoinColumn (name="id_usuario", referencedColumnName= "nick" )},inverseJoinColumns={@JoinColumn(name="id_mensaje",referencedColumnName="id_mensaje")})
-	protected List<Mensaje> mensajes_nuevos;
+	private List<Mensaje> mensajes_nuevos;
 	
 	public Usuario(String nombre, String nick) {
 		

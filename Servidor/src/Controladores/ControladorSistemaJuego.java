@@ -38,37 +38,7 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 			CargarDatosBD.Cargar();
 	}
 	
-	//METODOS A IMPLEMENTAR
-	/*public void avanzarJuego(String id_jugador, int id_problema, int id_mundo){
-		ManejadorProblema mp = ManejadorProblema.getInstancia();
-		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
-		if (mp.ultimaNivel(id_problema)){//Si es el ultimo problema del nivel, paso de nivel
-			ManejadorMundo mm = ManejadorMundo.getInstancia();
-			EstadoJugador estado = mu.buscarJugador(id_jugador).getEstado();
-			Mundo mundo = mm.obtenerMundo(id_mundo);
-			estado.agregarNivelActivo(mundo);
-			Nivel nivel = mp.buscarProblema(id_problema).getNivel();
-			if(mundo.ultimoNivelMundo(nivel)){//Si es el ultimo problema del mundo, avanzo el mundo
-				List<Mundo> mundos_siguientes = mundo.getMundos_siguientes();
-				if(!estado.getMundos_completos().contains(mundo)){
-					estado.getMundos_completos().add(mundo);
-					estado.ganarExperiencia(mundo.getPuntos_exp());
-					Logro mundo_terminado = new Logro("Mundo "+mundo.getNombre()+" completado");
-					estado.ganarLogro(mundo_terminado);		
-				}
-				
-				
-				for(Mundo m: mundos_siguientes){//Desbloqueo todos los mundos siguientes
-					if(!estado.getNiveles_actuales().containsKey(m.getId())){//Solo se desbloque si no esta desbloqueado de antes
-						estado.agregarMundoActivo(m);
-					}
-					
-				}
-			}
-			
-			mu.guardarEstado(estado);
-		}
-	}*/
+
 	
 	public void avanzarJuego(String id_jugador, int id_problema, int id_mundo){
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
@@ -100,17 +70,20 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 			}
 			
 			mu.guardarEstado(estado);
+
 		}
 		
 		
 	}
+
 	
 	
 	
 	
 	
-	
-	
+
+	/*
+>>>>>>> refs/remotes/origin/master
 	@RequestMapping(value="/siguienteProblema", method=RequestMethod.GET)
 	public DataProblema siguienteProblema(@RequestParam(value="nick") String nick,@RequestParam(value="nivel") int nivel, @RequestParam(value="id_mundo") int id_mundo){
 		
@@ -165,7 +138,7 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 				}
 			}		
 		}else{ // avanzo de nivel	
-			*/
+			
 			Nivel n2=m.siguienteNivel(n1);
 			List<Problema> lista_problema2=n2.getProblemas();
 			
@@ -179,7 +152,7 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 	}
 	
 
-	/*@RequestMapping(value="/iniciarjuego", method=RequestMethod.POST)
+	@RequestMapping(value="/iniciarjuego", method=RequestMethod.POST)
 	public void iniciarJuego()
 	{
 		CargarDatos cd = new CargarDatos();

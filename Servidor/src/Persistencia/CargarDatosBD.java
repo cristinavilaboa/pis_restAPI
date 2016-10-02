@@ -68,7 +68,7 @@ public class CargarDatosBD {
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		ManejadorMundo mm = ManejadorMundo.getInstancia();
 		
-		mp.borrar();
+		
 		mu.borrar();
 		mm.borrar();
 		

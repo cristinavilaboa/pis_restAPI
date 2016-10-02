@@ -29,7 +29,7 @@ public class ManejadorProblema {
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
-		session.persist(p);
+		session.saveOrUpdate(p);
 		t.commit();
 		session.close();
 		System.out.println("successfully saved problema");

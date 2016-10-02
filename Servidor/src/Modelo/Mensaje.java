@@ -26,8 +26,9 @@ public class Mensaje {
 		return id_mensaje;
 	}
 	
-	public Mensaje(/*int id_mensaje,*/String contenido, String asunto, Date fecha, String id_remitente) {
-		//this.id_mensaje = id_mensaje;
+	public Mensaje(){}
+	
+	public Mensaje(String contenido, String asunto, Date fecha, String id_remitente) {
 		this.contenido = contenido;
 		this.asunto = asunto;
 		this.fecha = fecha;

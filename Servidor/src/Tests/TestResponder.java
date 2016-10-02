@@ -20,8 +20,11 @@ import Modelo.*;
 public class TestResponder {
 	ArrayList<Mundo> mundos_siguientes = new ArrayList<Mundo>();
 	ArrayList<Nivel> niveles = new ArrayList<Nivel>();
+	ArrayList<Nivel> nivelesM2 = new ArrayList<Nivel>();
+	
 	ArrayList<Problema> listaP= new ArrayList<Problema>();
 	ArrayList<Problema> listaP2= new ArrayList<Problema>();
+	ArrayList<Problema> listaPM2= new ArrayList<Problema>();
 	
 	ArrayList<Mundo> mundos_completos = new ArrayList<Mundo>();
 	ArrayList<Logro> logros = new ArrayList<Logro>();
@@ -34,81 +37,67 @@ public class TestResponder {
 	ManejadorMundo mm = ManejadorMundo.getInstancia();
 	
 	Mundo mundo;
+	Mundo mundo2;
+	Nivel nivel1M2;
 	Nivel nivel;
 	Nivel nivel2;
-	Contenido contenidoP1;
-	Contenido contenidoP2;
 	Problema problema;
 	Problema problema2;
+	Problema problema3;
+	Problema problema1M2;
 	Jugador jugador;
-	Ayuda ayudaP1;
-	Ayuda ayudaP2;
 	EstadoJugador estado;
-	Profesor profesor;
-	Clase clase;
 	
+	Clase clase = new Clase();
 	@Before
 	public void setUp() throws Exception {
 		
+		mundo2 = new Mundo("Jupiter2", "imagen2", "descripcion2",0,new ArrayList<Mundo>(), nivelesM2);
+		nivel1M2 = new Nivel(listaPM2,mundo2);
+		nivel1M2.setNivel(0);
+		//mundo2.setId(2);
 		
-		profesor = new Profesor("NickProfesorUnico", "Profesor", "Contrarofesor");
-		clase = new Clase("Calculo 1", profesor);
+		mundos_siguientes.add(mundo2);
+		mundo = new Mundo("Jupiter", "imagen", "descripcion",0,mundos_siguientes, niveles);
+		nivel = new Nivel(listaP,mundo);
+		nivel.setNivel(0);
+		//mundo.setId(1);
+		
+		nivel2 = new Nivel(listaP2,mundo);
+		nivel.setNivel(1);
+		
+		mundo.agregarNivel(nivel);
+		mundo.agregarNivel(nivel2);
+		mundo2.agregarNivel(nivel1M2);
+		
+		problema = new Problema(1,"Problema 1","respuesta",10,null,null,nivel,null);
+		nivel.agregarProblema(problema);
+		
+		problema2 = new Problema(2,"Problema 2","respuesta",10,null,null,nivel,null);
+		nivel.agregarProblema(problema2);
+		
+		
+		problema3 = new Problema(3,"Problema 3","respuesta",10,null,null,nivel2,null);
+		nivel2.agregarProblema(problema3);
+		
+		problema1M2 = new Problema(4,"Problema 4","respuesta",10,null,null,nivel1M2,null);
+		nivel1M2.agregarProblema(problema1M2);
 		
 		estado = new EstadoJugador(0, mundos_completos, logros, mundo_nivel, nivel_problema);
-		jugador = new Jugador("nombre", "nick", "fBToken", "imagen", estado, clase);
+		estado.agregarMundoActivo(mundo);
 		
-		//Creaer el mundo en cascada...
+		jugador = new Jugador("ni", "nick", "fBToken", "imagen", estado, clase);
 		
-		ayudaP1 = new Ayuda("Ayuda para el problema 1");
-		ayudaP2 = new Ayuda("Ayuda para el problema 2");
-		
-		contenidoP1 = new Contenido("Este texto explica el contenido del problema 1");
-		contenidoP2 = new Contenido("Este texto explica el contenido del problema 2");
-		
-		problema = new Problema(1,"Problema 1","respuesta",10, ayudaP1,contenidoP1,null,profesor); // el nivel todavia no se creeo 
-		problema2 = new Problema(2,"Problema 2","respuesta",10,ayudaP1,contenidoP2,null,profesor);
-		
-		listaP.add(problema);
-		listaP2.add(problema2);
-		
-		nivel = new Nivel(listaP,null);		//el mundo todavia no fue creado
-		nivel2 = new Nivel(listaP2,null);
-		
-		problema.setNivel(nivel);   // Ahora si ya se creeo el nivel...
-		problema2.setNivel(nivel2);
-		
-		niveles.add(nivel);
-		niveles.add(nivel2);
-		
-		mundo = new Mundo("Jupiter", "imagen", "descripcion",0,mundos_siguientes, niveles);
-		
-		nivel.setMundo(mundo);		// ahora si ya se creeo el mundo...
-		nivel2.setMundo(mundo);
-		
-		mu.agregarProfesor(profesor);
-		mu.agregarClase(clase);
-		mu.agregarJugador(jugador);
 		mm.agregarMundo(mundo);
-		//mp.agregarProblema(problema);
-		//mp.agregarProblema(problema2);
+		mm.agregarMundo(mundo2);
+		mu.agregarJugador(jugador);
+		mp.agregarProblema(problema);
+		mp.agregarProblema(problema2);
+		mp.agregarProblema(problema3);
+		mp.agregarProblema(problema1M2);
 	}
 	
 
-/*	@Test
-	public void testManejadorProblema(){
-		
-		assertEquals(problema,mp.buscarProblema(1));
-		
-		assertTrue(mp.ultimaNivel(1));
-		assertTrue(mp.ultimaNivel(2));
-		
-		assertEquals(10,mp.verificarRespuesta(1, "respuesta"));
-		
-		mu.borrar();
-//		mp.borrar();
-		mm.borrar();
-		
-	}
 
 	@Test
 	public void testEstado(){
@@ -130,7 +119,7 @@ public class TestResponder {
 		mp.borrar();
 		mm.borrar();
 		
-	}*/
+	}
 	
 	@Test
 	public void testGeneral() {
@@ -145,22 +134,40 @@ public class TestResponder {
 		assertEquals(10,estado.getPuntos_exp());
 		assertEquals(1,estado.cantCorrectas());
 		assertEquals(1,estado.getLogros().size());//PRIMERA RESPUESTA
-		assertEquals(estado.getNiveles_actuales().get(mundo.getId()),nivel2);
+		assertEquals(estado.getNiveles_actuales().get(mundo.getId()),nivel);
 		assertTrue(estado.getMundos_completos().isEmpty());
 		
 		cp.responderProblema(1, "respuesta", "nick");
 		assertEquals(10,estado.getPuntos_exp());
 		assertEquals(1,estado.cantCorrectas());
 		assertEquals(1,estado.getLogros().size());//PRIMERA RESPUESTA
-		assertEquals(estado.getNiveles_actuales().get(mundo.getId()),nivel2);
+		assertEquals(estado.getNiveles_actuales().get(mundo.getId()),nivel);
 		assertTrue(estado.getMundos_completos().isEmpty());
 		
 		cp.responderProblema(2, "respuesta", "nick");
 		assertEquals(20,estado.getPuntos_exp());
 		assertEquals(2,estado.cantCorrectas());
-		assertEquals(2,estado.getLogros().size());//PRIMERA RESPUESTA Y MUNDO COMPLETO
+		assertEquals(1,estado.getLogros().size());//PRIMERA RESPUESTA
+		assertEquals(estado.getNiveles_actuales().get(mundo.getId()),nivel2);
+		assertTrue(estado.getMundos_completos().isEmpty());
+		
+		
+		cp.responderProblema(3, "respuesta", "nick");
+		assertEquals(30,estado.getPuntos_exp());
+		assertEquals(3,estado.cantCorrectas());
+		assertEquals(2,estado.getLogros().size());//PRIMERA RESPUESTA
 		assertEquals(estado.getNiveles_actuales().get(mundo.getId()),nivel2);
 		assertEquals(mundo,estado.getMundos_completos().get(0));
+		
+		
+		
+		cp.responderProblema(4, "respuesta", "nick");
+		assertEquals(40,estado.getPuntos_exp());
+		assertEquals(4,estado.cantCorrectas());
+		assertEquals(3,estado.getLogros().size());//PRIMERA RESPUESTA
+		assertEquals(estado.getNiveles_actuales().get(mundo2.getId()),nivel1M2);
+		assertEquals(2,estado.getMundos_completos().size());
+		
 		
 		mu.borrar();
 		mp.borrar();

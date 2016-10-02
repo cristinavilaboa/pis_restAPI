@@ -59,6 +59,9 @@ public class ControladorProfesor implements IControladorProfesor{
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		Jugador jugador = mu.buscarJugador(nick_jugador);
 		jugador.agregar_mensaje_nuevo(m);
+		
+		mu.guardarMensaje(m);
+		mu.guardarUsuario(jugador);
 	}
 	
 	@RequestMapping(value="/mensajeleido", method=RequestMethod.POST) //Cambia un mensaje de nuevo a viejo.
@@ -67,6 +70,7 @@ public class ControladorProfesor implements IControladorProfesor{
 		Profesor p = mu.buscarProfesor(nick_prof);	
 		if(p.esMensajeNuevo(id_mensaje)){
 			p.mensajeLeido(id_mensaje);
+			mu.guardarUsuario(p);
 		}
 		
 	}
@@ -79,9 +83,9 @@ public class ControladorProfesor implements IControladorProfesor{
 		List<Mundo> mundos = mm.obtenerMundos();
 		
 		for(Mundo m: mundos){
-			lista.add(new DataMundo(m.getId(), m.getNombre(), m.getImagen(), m.getDescripcion(),true, true));
+			lista.add(new DataMundo(m.getId(), m.getNombre(), m.getImagen(), m.getDescripcion(),true, true, null));
 		}																//Los dos true son de mundo completado y mundo disponible, para el profesor no tienen sentido pero si para el jugador
-		return new DataListaMundos(lista);
+		return new DataListaMundos(lista);								// El null es la lista de mundos siguientes que creo que no es necesario en la web
 	}
 	
 	@RequestMapping(value="/listarnivelesmundoprofesor", method=RequestMethod.GET)

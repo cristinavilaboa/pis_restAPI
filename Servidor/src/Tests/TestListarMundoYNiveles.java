@@ -112,6 +112,9 @@ public class TestListarMundoYNiveles {
 		assertEquals(n1m3.getId_nivel(),nivelesM3.get(0).getId_nivel());
 		assertEquals(n1m3.getNro_nivel(),nivelesM3.get(0).getNum_nivel());
 
+
+		
+		
 		assertEquals(n2m3.getId_nivel(),nivelesM3.get(1).getId_nivel());
 		assertEquals(n2m3.getNro_nivel(),nivelesM3.get(1).getNum_nivel());
 

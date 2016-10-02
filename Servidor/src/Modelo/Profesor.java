@@ -37,19 +37,9 @@ public class Profesor extends Usuario {
 	
 	//METODOS A IMPLEMENTAR
 	public void enviarMensaje(String mensaje,Date fecha, String asunto){
-		Mensaje m=new Mensaje(/*num_mensaje,*/mensaje,asunto, fecha,this.nick);
-		mensajes_nuevos.add(m);
+		Mensaje m=new Mensaje(/*num_mensaje,*/mensaje,asunto, fecha,this.getNick());
+		this.getMensajes_nuevos().add(m);
+		//mensajes_nuevos.add(m);
 		
-		SessionFactory factory= HibernateUtility.getSessionFactory();
-		Session session=factory.openSession();
-		org.hibernate.Transaction t= session.beginTransaction();
-		session.persist(m);
-		session.saveOrUpdate(this);
-		t.commit();
-		session.close();
-		System.out.println("successfully saved mensaje");
-		
-		
-		//num_mensaje++;
 	}
 }

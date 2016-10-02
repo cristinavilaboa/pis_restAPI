@@ -9,10 +9,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import Datatypes.DataProblema;
+import Persistencia.HibernateUtility;
 @Entity
 @Table(name = "PROBLEMA")
 public class Problema {
@@ -116,15 +119,28 @@ public class Problema {
 	}
 	
 	public void enviarMensaje(String mensaje,Date fecha, String asunto){
-		autor.enviarMensaje(mensaje, fecha, asunto);	
+		autor.enviarMensaje(mensaje, fecha, asunto);
+		
+		SessionFactory factory= HibernateUtility.getSessionFactory();
+		Session session=factory.openSession();
+		org.hibernate.Transaction t= session.beginTransaction();
+		session.saveOrUpdate(autor);
+		t.commit();
+		session.close();
+		System.out.println("successfully saved mensaje");
+		
+		
+		
 	}
 	
+	/*
 	public DataProblema getDataProblema(){
-		
-		
-		return new DataProblema(this.id_problema,this.descripcion,this.contenido.getTexto());
-		
+		return new DataProblema(this.id_problema, this.descripcion, this.respuesta, this.puntos_exp, this.ayuda.getInfo(), this.contenido.getTexto(), this.autor.getNick());
 	}
+	
+	
+<<<<<<< HEAD
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -175,5 +191,7 @@ public class Problema {
 			return false;
 		return true;
 	}
-	
+=======
+	}*/
+
 }

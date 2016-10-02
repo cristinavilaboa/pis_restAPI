@@ -10,8 +10,10 @@ import java.util.List;
 import Modelo.Clase;
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
+import Modelo.Mensaje;
 import Modelo.Mundo;
 import Modelo.Profesor;
+import Modelo.Usuario;
 import Persistencia.HibernateUtility;
 
 import java.util.HashMap;
@@ -62,7 +64,7 @@ public class ManejadorUsuario {
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
-		session.persist(jugador);
+		session.saveOrUpdate(jugador);
 		t.commit();
 		session.close();
 		System.out.println("successfully saved jugador");
@@ -148,7 +150,7 @@ public class ManejadorUsuario {
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
-		session.persist(p);
+		session.saveOrUpdate(p);
 		t.commit();
 		session.close();
 		System.out.println("successfully saved profesor");
@@ -157,7 +159,7 @@ public class ManejadorUsuario {
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
-		session.persist(clase);
+		session.saveOrUpdate(clase);
 		t.commit();
 		session.close();
 		System.out.println("successfully saved clase");
@@ -178,7 +180,7 @@ public class ManejadorUsuario {
 		System.out.println("successfully borrado jugadores");
 	}
 	
-	
+
 	public void guardarEstado(EstadoJugador estado){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
@@ -186,8 +188,57 @@ public class ManejadorUsuario {
 		session.update(estado);
 		t.commit();
 		session.close();
+		System.out.println("successfully saved estado");
+
+	}
+	
+	public void guardarMensaje(Mensaje m){
+		SessionFactory factory= HibernateUtility.getSessionFactory();
+		Session session=factory.openSession();
+		org.hibernate.Transaction t= session.beginTransaction();
+		session.saveOrUpdate(m);
+		t.commit();
+		session.close();
 		System.out.println("successfully saved clase");
+
+	}
+	
+	
+	public void guardarUsuario(Usuario p){
+		SessionFactory factory= HibernateUtility.getSessionFactory();
+		Session session=factory.openSession();
+		org.hibernate.Transaction t= session.beginTransaction();
+		session.saveOrUpdate(p);
+		t.commit();
+		session.close();
+		System.out.println("successfully saved profe");
+
+	}
+	
 		
+	public List<Jugador> obtenerJugadores(){                              
+		
+		Session session = null;
+		List<Jugador> lista_jugadores = new ArrayList<Jugador>();
+		try
+		{
+			session = HibernateUtility.getSessionFactory().openSession();
+			lista_jugadores = (List<Jugador>)session.createCriteria(Jugador.class).list();
+			
+		}
+		catch (Exception e)
+		{
+			System.out.println("error:" + e.getMessage());
+		}
+		finally
+		{
+			if (session != null && session.isOpen())
+			{
+				session.close();
+			}
+		}
+		return lista_jugadores;				
+
 	}
 	
 }
