@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import Modelo.Ayuda;
+import Modelo.Jugador;
 import Modelo.Mundo;
 import Modelo.Problema;
 import Persistencia.HibernateUtility;
@@ -31,10 +32,10 @@ public class ManejadorProblema {
 		session.persist(p);
 		t.commit();
 		session.close();
-		System.out.println("successfully saved mundo");
+		System.out.println("successfully saved problema");
 	}
 		
-	public Map<Integer, Problema> getProblemas() {
+	public Map<Integer, Problema> getProblemas() {    ///////// Esto no sirve para nada
 		List<Problema> problemas = null;
 		Map<Integer, Problema> mapProblemas = null;
 		Session session = null;
@@ -93,11 +94,10 @@ public class ManejadorProblema {
 		return p;
 	}
 	
-	public String getAyuda(int id_problema){
-		Problema problema = problemas.get(id_problema);
-		Ayuda ayuda = problema.getAyuda();
-		return ayuda.getInfo();
+	public String getAyuda(int id_problema){		
+		return buscarProblema(id_problema).getAyuda().getInfo();
 	}
+		
 	
 	public void borrar(){
 		SessionFactory factory= HibernateUtility.getSessionFactory();

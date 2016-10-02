@@ -49,23 +49,17 @@ public class ControladorProblema implements IControladorProblema{
 		Date fecha;
 		try {
 			fecha = DataTypeConstants.getDateFormat().parse(fechaStr);
+			ManejadorProblema mp=ManejadorProblema.getInstancia();
+			Problema p=mp.buscarProblema(id_problema);
+			p.enviarMensaje(URLDecoder.decode(mensaje, "UTF-8") , fecha, asunto);
+			//Profesor profesor= p.getAutor();
+			//Mensaje mens=CargarDatosBD.PersistirMensaje(mensaje,fecha,asunto,profesor);
+			return new DataEstadoMensaje(true);
 		
-		ManejadorProblema mp=ManejadorProblema.getInstancia();
-		Problema p=mp.buscarProblema(id_problema);
-		p.enviarMensaje(URLDecoder.decode(mensaje, "UTF-8") , fecha, asunto);
-		//String nickProfesor= p.getAutor().getNick();
-		Profesor profesor= p.getAutor();
-		Mensaje mens=CargarDatosBD.PersistirMensaje(mensaje,fecha,asunto,profesor);
-		//CargarDatosBD.PersistirUsuarioMensaje(nickProfesor, idMensaje);
-		//CargarDatosBD.PersistirUsuarioMensaje2(profesor, mens);
-		return new DataEstadoMensaje(true);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			
+		} catch (ParseException e) {			
 			e.printStackTrace();
 			return new DataEstadoMensaje(false);
 		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return new DataEstadoMensaje(false);
 		}

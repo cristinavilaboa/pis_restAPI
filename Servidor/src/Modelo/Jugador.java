@@ -11,6 +11,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import Datatypes.*;
 import Datatypes.DataPuntosJugador;
 import Manejadores.ManejadorMundo;
@@ -22,9 +26,9 @@ public class Jugador extends Usuario{
 
 	private String FBToken;
 	private String imagen;
-	@OneToOne(cascade=CascadeType.ALL)
+	@OneToOne(cascade=CascadeType.ALL) @LazyCollection(LazyCollectionOption.FALSE)
 	private EstadoJugador estado;
-	@ManyToOne
+	@ManyToOne @LazyCollection(LazyCollectionOption.FALSE)
 	private Clase clase;
 	
     public Jugador(String nombre, String nick, String FBToken, String imagen, EstadoJugador estado, Clase clase){

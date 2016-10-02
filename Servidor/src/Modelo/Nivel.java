@@ -24,7 +24,7 @@ public class Nivel {
 	private int nro_nivel;//seria el num de nivel dentro de un mundo
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "nivel") @LazyCollection(LazyCollectionOption.FALSE)
 	private List<Problema> problemas = new ArrayList<Problema>();
-	@ManyToOne
+	@ManyToOne @LazyCollection(LazyCollectionOption.FALSE)
 	private Mundo mundo;
 	
 	public Nivel(List<Problema> problemas, Mundo mundo) {

@@ -29,6 +29,7 @@ public class Mundo {
 	private int puntos_exp;
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="mundo_siguiente", joinColumns={@JoinColumn (name="id_mundo_anterior", referencedColumnName= "id_mundo" )},inverseJoinColumns={@JoinColumn(name="id_mundo_sig",referencedColumnName="id_mundo")})
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Mundo> mundos_siguientes= new ArrayList<Mundo>();
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "mundo") @LazyCollection(LazyCollectionOption.FALSE)
 	private List<Nivel> niveles = new ArrayList<Nivel>(); 
@@ -119,7 +120,7 @@ public class Mundo {
 		int siguiente = 0;
 		for(Nivel n: niveles){
 			siguiente++;
-			if(n == nivel){
+			if(n.getNro_nivel() == nivel.getNro_nivel()){
 				break;
 			}
 			

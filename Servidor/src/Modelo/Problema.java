@@ -9,6 +9,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import Datatypes.DataProblema;
 @Entity
 @Table(name = "PROBLEMA")
@@ -18,13 +21,13 @@ public class Problema {
 	private String descripcion;
 	private String respuesta;
 	private int puntos_exp;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL) @LazyCollection(LazyCollectionOption.FALSE)
 	private Ayuda ayuda;
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL) @LazyCollection(LazyCollectionOption.FALSE)
 	private Contenido contenido;
-	@ManyToOne
+	@ManyToOne @LazyCollection(LazyCollectionOption.FALSE)
 	private Nivel nivel;
-	@ManyToOne
+	@ManyToOne @LazyCollection(LazyCollectionOption.FALSE)
 	private Profesor autor; 
 	
 	
@@ -113,7 +116,7 @@ public class Problema {
 	}
 	
 	public void enviarMensaje(String mensaje,Date fecha, String asunto){
-		autor.enviarMensaje(mensaje, fecha, asunto);
+		autor.enviarMensaje(mensaje, fecha, asunto);	
 	}
 	
 	public DataProblema getDataProblema(){

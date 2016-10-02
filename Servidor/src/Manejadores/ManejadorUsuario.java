@@ -8,6 +8,7 @@ import Datatypes.DataPuntosJugador;
 import java.util.List;
 
 import Modelo.Clase;
+import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Mundo;
 import Modelo.Profesor;
@@ -40,9 +41,21 @@ public class ManejadorUsuario {
 
 	public DataJugador obtenerDatosJugador(String id_jugador)
 	{
-		Jugador j = jugadores.get(id_jugador);
-		DataJugador dj = j.obtenerDataJugador();
-		return dj;
+		Session session = null;
+		Jugador j = null;
+		try{
+			session = HibernateUtility.getSessionFactory().openSession();
+			j =(Jugador)session.get(Jugador.class,id_jugador);
+		} catch (Exception e){
+			System.out.println("error:" + e.getMessage());
+		} finally {
+			if (session != null && session.isOpen()){
+				session.close();
+			}
+		}
+		return j.obtenerDataJugador();
+		
+		
 	}
 	
 	public void agregarJugador(Jugador jugador){
@@ -77,15 +90,43 @@ public class ManejadorUsuario {
 	}
 	
 	public List<DataPuntosJugador> obtenerRanking(){
+		/*
 		List<DataPuntosJugador> list_dpj = new ArrayList<>();
 		for (Entry<String, Jugador> j : jugadores.entrySet()) {
 			String nombreJ = j.getValue().getNombre();
 			DataPuntosJugador dpj = j.getValue().obtenerDataPuntosJugador(nombreJ);
 			list_dpj.add(dpj);
 		}
+		*/
+		
+		Session session = null;
+		List<DataPuntosJugador> list_dpj = new ArrayList<>();
+
+		try{
+			session = HibernateUtility.getSessionFactory().openSession();
+			List<Jugador> lista = session.createCriteria(Jugador.class).list();	
+			for (Jugador j:lista){
+				String nombreJ = j.getNombre();
+				DataPuntosJugador dpj = j.obtenerDataPuntosJugador(nombreJ);
+				list_dpj.add(dpj);
+			}
+
+		} catch (Exception e){
+			System.out.println("error:" + e.getMessage());
+		} finally {
+			if (session != null && session.isOpen()){
+				session.close();
+			}
+		}
+		
+		
+		
+		
 		Collections.sort(list_dpj);
 		return list_dpj;
 	}
+	
+	
 	
 	public Profesor buscarProfesor(String nick){
 		Session session = null;
@@ -135,6 +176,18 @@ public class ManejadorUsuario {
 		t.commit();
 		session.close();
 		System.out.println("successfully borrado jugadores");
+	}
+	
+	
+	public void guardarEstado(EstadoJugador estado){
+		SessionFactory factory= HibernateUtility.getSessionFactory();
+		Session session=factory.openSession();
+		org.hibernate.Transaction t= session.beginTransaction();
+		session.update(estado);
+		t.commit();
+		session.close();
+		System.out.println("successfully saved clase");
+		
 	}
 	
 }

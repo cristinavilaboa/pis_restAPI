@@ -55,7 +55,7 @@ public class TestResponder {
 		clase = new Clase("Calculo 1", profesor);
 		
 		estado = new EstadoJugador(0, mundos_completos, logros, mundo_nivel, nivel_problema);
-		jugador = new Jugador("nombre", "nickUnico", "fBToken", "imagen", estado, clase);
+		jugador = new Jugador("nombre", "nick", "fBToken", "imagen", estado, clase);
 		
 		//Creaer el mundo en cascada...
 		
@@ -94,7 +94,7 @@ public class TestResponder {
 	}
 	
 
-	@Test
+/*	@Test
 	public void testManejadorProblema(){
 		
 		assertEquals(problema,mp.buscarProblema(1));
@@ -130,7 +130,7 @@ public class TestResponder {
 		mp.borrar();
 		mm.borrar();
 		
-	}
+	}*/
 	
 	@Test
 	public void testGeneral() {

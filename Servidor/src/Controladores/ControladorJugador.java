@@ -45,6 +45,8 @@ public class ControladorJugador implements IControladorJugador{
 			estado.ganarLogro(l);
 		}
 		
+		mu.guardarEstado(estado);
+		
 		
 	}
 	

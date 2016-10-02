@@ -8,6 +8,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.InheritanceType;
 import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
@@ -22,10 +26,10 @@ public abstract class Usuario {
 	@Column(name="nick")
 	protected String nick;
 	protected String nombre;
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL)  @LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name="usuario_mensajes_viejos", joinColumns={@JoinColumn (name="id_usuario", referencedColumnName= "nick" )},inverseJoinColumns={@JoinColumn(name="id_mensaje",referencedColumnName="id_mensaje")})
 	protected List<Mensaje> mensajes_viejos;
-	@OneToMany(cascade=CascadeType.ALL)
+	@OneToMany(cascade=CascadeType.ALL) @LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name="usuario_mensajes_nuevos", joinColumns={@JoinColumn (name="id_usuario", referencedColumnName= "nick" )},inverseJoinColumns={@JoinColumn(name="id_mensaje",referencedColumnName="id_mensaje")})
 	protected List<Mensaje> mensajes_nuevos;
 	
