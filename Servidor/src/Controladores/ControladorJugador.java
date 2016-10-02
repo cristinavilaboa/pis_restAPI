@@ -122,7 +122,7 @@ public class ControladorJugador implements IControladorJugador{
 			//Suponemos que el mundo con el id 0 es el inicial, porque lo necesitamos para inicializar el mundo.
 			ManejadorMundo mm = ManejadorMundo.getInstancia();
 			
-			estado.agregarMundoActivo(mm.obtenerMundo(0));
+			estado.agregarMundoActivo(mm.obtenerMundo(1));
 			
 			Jugador jugador = new Jugador(nombre, nick, fb_token, null, estado, null);
 			mu.agregarJugador(jugador);

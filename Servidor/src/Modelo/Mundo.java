@@ -20,8 +20,8 @@ import javax.persistence.OneToMany;
 @Entity
 @Table(name = "MUNDO")
 public class Mundo {
-	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
-	private Integer id_mundo;
+	@Id  // @GeneratedValue(strategy=GenerationType.AUTO)
+	private int id_mundo;
 	private static int nro_nivel=0;
 	private String nombre;
 	private String imagen;
@@ -34,8 +34,9 @@ public class Mundo {
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "mundo") @LazyCollection(LazyCollectionOption.FALSE)
 	private List<Nivel> niveles = new ArrayList<Nivel>(); 
 	
-	public Mundo(String nombre, String imagen, String descripcion, int puntos_exp,
+	public Mundo(int id_mundo,String nombre, String imagen, String descripcion, int puntos_exp,
 			List<Mundo> mundos_siguientes, List<Nivel> niveles) {
+		this.id_mundo=id_mundo;
 		this.nombre = nombre;
 		this.imagen = imagen;
 		this.descripcion = descripcion;
@@ -52,6 +53,10 @@ public class Mundo {
 	
 	public String getNombre() {
 		return nombre;
+	}
+	
+	public void setId(int id) {
+		this.id_mundo = id;
 	}
 	
 	public void setNombre(String nombre) {

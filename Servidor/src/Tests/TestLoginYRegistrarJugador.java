@@ -44,7 +44,7 @@ public class TestLoginYRegistrarJugador {
 		nivel = new Nivel(new ArrayList<Problema>(), mundo);
 		niveles = new ArrayList<Nivel>();
 		niveles.add(nivel);
-		mundo = new Mundo("nombreMund", "imagenMundo", "descripcionMundo", 0, null, niveles);
+		mundo = new Mundo(1,"nombreMund", "imagenMundo", "descripcionMundo", 0, null, niveles);
 		mm.agregarMundo(mundo);
 		mu.agregarJugador(jugador);
 	}

@@ -80,7 +80,7 @@ public class TestListarMundosNivelesProblemasClient {
 	
 	@Before
 	public void setUp() throws Exception {
-		m1 = new Mundo("Jupiter", "imagen", "descripcion",0,mundos_siguientesM1, nivelesM1);
+		m1 = new Mundo(1,"Jupiter", "imagen", "descripcion",0,mundos_siguientesM1, nivelesM1);
 		n1m1 = new Nivel(listaP_M1,m1);
 		n1m1.setNivel(0);
 		n2m1 = new Nivel(listaP_2M1,m1);
@@ -101,12 +101,12 @@ public class TestListarMundosNivelesProblemasClient {
 		n1m1.agregarProblema(p1);
 		n1m1.agregarProblema(p2);
 		
-		m2 = new Mundo("Jupiter2", "imagen2", "descripcion2",0,mundos_siguientesM2, nivelesM2);
+		m2 = new Mundo(2,"Jupiter2", "imagen2", "descripcion2",0,mundos_siguientesM2, nivelesM2);
 		n1m2 = new Nivel(listaP_M2,m2);
 		n2m2 = new Nivel(listaP_2M2,m2);
 		//m2.setId(2);
 		
-		m3 = new Mundo("Jupiter3", "imagen3", "descripcion3",0,mundos_siguientesM3, nivelesM3);
+		m3 = new Mundo(3,"Jupiter3", "imagen3", "descripcion3",0,mundos_siguientesM3, nivelesM3);
 		n1m3 = new Nivel(listaP_M3,m3);
 		n2m3 = new Nivel(listaP_2M3,m3);
 		//m3.setId(3);

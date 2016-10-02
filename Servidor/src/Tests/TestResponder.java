@@ -52,13 +52,13 @@ public class TestResponder {
 	@Before
 	public void setUp() throws Exception {
 		
-		mundo2 = new Mundo("Jupiter2", "imagen2", "descripcion2",0,new ArrayList<Mundo>(), nivelesM2);
+		mundo2 = new Mundo(2,"Jupiter2", "imagen2", "descripcion2",0,new ArrayList<Mundo>(), nivelesM2);
 		nivel1M2 = new Nivel(listaPM2,mundo2);
 		nivel1M2.setNivel(0);
 		//mundo2.setId(2);
 		
 		mundos_siguientes.add(mundo2);
-		mundo = new Mundo("Jupiter", "imagen", "descripcion",0,mundos_siguientes, niveles);
+		mundo = new Mundo(1,"Jupiter", "imagen", "descripcion",0,mundos_siguientes, niveles);
 		nivel = new Nivel(listaP,mundo);
 		nivel.setNivel(0);
 		//mundo.setId(1);

@@ -106,7 +106,7 @@ public class CargarDatosBD {
 		Clase clase = new Clase("clase de Calculo",profesor);
 		mu.agregarClase(clase);
 		
-		mundo = new Mundo("Calculo", "imagen", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
+		mundo = new Mundo(1,"Calculo", "imagen", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
 		nivel1 = new Nivel(listaPN1,mundo);
 		nivel2 = new Nivel(listaPN2,mundo);
 		nivel3 = new Nivel(listaPN3,mundo);

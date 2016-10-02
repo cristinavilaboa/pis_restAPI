@@ -27,7 +27,7 @@ public class TestAgregarProblema {
 	ManejadorMundo mm = ManejadorMundo.getInstancia();
 	@Before
 	public void setUp() throws Exception {	
-		mundo = new Mundo("nombreMundo", "imagen", "descripcion", 1,mundos_siguientes,niveles);
+		mundo = new Mundo(1,"nombreMundo", "imagen", "descripcion", 1,mundos_siguientes,niveles);
 		nivel = new Nivel(problemas, mundo);
 		mundo.agregarNivel(nivel);
 		profe = new Profesor("nick", "nombre", "password");
