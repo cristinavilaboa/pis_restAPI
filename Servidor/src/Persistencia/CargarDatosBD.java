@@ -99,7 +99,7 @@ public class CargarDatosBD {
 		EstadoJugador estado1,estado2,estado3;
 		Ayuda ayudaP1,ayudaP21,ayudaP22,ayudaP31,ayudaP32,ayudaP4,ayudaP5;
 		Contenido contenidoP1, contenidoP21, contenidoP22, contenidoP31, contenidoP32, contenidoP4, contenidoP5;
-		Logro logJ1,logJ21,logJ22;
+		Logro logJ1,logJ21,logJ22,logJ23;
 		
 		Profesor profesor = new Profesor("Marcelo", "marce_fing", "1234");
 		mu.agregarProfesor(profesor);
@@ -171,10 +171,12 @@ public class CargarDatosBD {
 		
 		mu.agregarJugador(jugador1);
 		
-		logJ21 = new Logro("Maestro de las ingrales");
+		logJ21 = new Logro("Maestro de las integrales");
 		logJ22 = new Logro("Maestro de las derivadas");
+		logJ23 = new Logro("Cinco respuestas correctas");
 		logrosJ2.add(logJ21);
 		logrosJ2.add(logJ22);
+		logrosJ2.add(logJ23);
 		niveles_actualesJ2.put(mundo.getId(), nivel5);
 		problemas_resueltosJ2.add(problema1);
 		problemas_resueltosJ2.add(problema21);
@@ -196,7 +198,7 @@ public class CargarDatosBD {
 		for (Problema p : problemas_resueltosJ3) {
 			exp += p.getPuntos_exp();
 		}
-		estado3 = new EstadoJugador(7, mundos_completosJ3, logrosJ3, niveles_actualesJ3, problemas_resueltosJ3);
+		estado3 = new EstadoJugador(exp, mundos_completosJ3, logrosJ3, niveles_actualesJ3, problemas_resueltosJ3);
 		jugador3 = new Jugador("Facundo", "fa_cu_fing", "fBTokenJ2", "imagenJ2", estado3, clase);
 		
 		mu.agregarJugador(jugador3);
