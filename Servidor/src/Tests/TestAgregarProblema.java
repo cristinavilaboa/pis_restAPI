@@ -40,7 +40,7 @@ public class TestAgregarProblema {
 	@Test
 	public void test() {
 		IControladorProblema cp = new ControladorProblema();
-		cp.agregarProblema(0, "descripcion", "respuest", 1, "cont_ayuda", "cont",mundo.getId(),nivel.getNro_nivel(), profe.getNick());
+		cp.agregarProblema( "descripcion", "respuest", 1, "cont_ayuda", "cont",mundo.getId(),nivel.getNro_nivel(), profe.getNick());
 		
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
 		

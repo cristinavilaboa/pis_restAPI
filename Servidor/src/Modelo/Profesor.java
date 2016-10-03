@@ -36,8 +36,8 @@ public class Profesor extends Usuario {
 	}
 	
 	//METODOS A IMPLEMENTAR
-	public void enviarMensaje(String mensaje,Date fecha, String asunto){
-		Mensaje m=new Mensaje(/*num_mensaje,*/mensaje,asunto, fecha,this.getNick());
+	public void enviarMensaje(String mensaje,Date fecha, String asunto,String id_jugador){
+		Mensaje m=new Mensaje(/*num_mensaje,*/mensaje,asunto, fecha,id_jugador);
 		this.getMensajes_nuevos().add(m);
 		//mensajes_nuevos.add(m);
 		

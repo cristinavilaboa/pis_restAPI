@@ -70,17 +70,17 @@ public class TestResponder {
 		mundo.agregarNivel(nivel2);
 		mundo2.agregarNivel(nivel1M2);
 		
-		problema = new Problema(1,"Problema 1","respuesta",10,null,null,nivel,null);
+		problema = new Problema("Problema 1","respuesta",10,null,null,nivel,null);
 		nivel.agregarProblema(problema);
 		
-		problema2 = new Problema(2,"Problema 2","respuesta",10,null,null,nivel,null);
+		problema2 = new Problema("Problema 2","respuesta",10,null,null,nivel,null);
 		nivel.agregarProblema(problema2);
 		
 		
-		problema3 = new Problema(3,"Problema 3","respuesta",10,null,null,nivel2,null);
+		problema3 = new Problema("Problema 3","respuesta",10,null,null,nivel2,null);
 		nivel2.agregarProblema(problema3);
 		
-		problema1M2 = new Problema(4,"Problema 4","respuesta",10,null,null,nivel1M2,null);
+		problema1M2 = new Problema("Problema 4","respuesta",10,null,null,nivel1M2,null);
 		nivel1M2.agregarProblema(problema1M2);
 		
 		estado = new EstadoJugador(0, mundos_completos, logros, mundo_nivel, nivel_problema);

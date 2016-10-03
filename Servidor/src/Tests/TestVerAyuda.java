@@ -28,7 +28,7 @@ public class TestVerAyuda {
 		Nivel nivel = new Nivel(null, null);
 		Profesor profesor = new Profesor("Pedro", "pedro04", "1234");
 		int id_problema = 1;
-		Problema problema = new Problema(id_problema, "Resolver la siguiente derivada", "8", 1, ayuda, contenido, nivel, profesor);
+		Problema problema = new Problema( "Resolver la siguiente derivada", "8", 1, ayuda, contenido, nivel, profesor);
 		//nivel.setProblemas(problemas);
 		manejador.agregarProblema(problema);
 		IControladorProblema _cproblema = new ControladorProblema();

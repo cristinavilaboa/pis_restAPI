@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -19,7 +21,7 @@ import Persistencia.HibernateUtility;
 @Entity
 @Table(name = "PROBLEMA")
 public class Problema {
-	@Id
+	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id_problema;
 	private String descripcion;
 	private String respuesta;
@@ -34,7 +36,7 @@ public class Problema {
 	private Profesor autor; 
 	
 	
-	
+	/*
 	public Problema(Integer id, String descripcion, String respuesta, int puntos_exp, Ayuda ayuda, Contenido contenido,
 			Nivel nivel, Profesor autor) {
 		this.id_problema = id;
@@ -45,7 +47,20 @@ public class Problema {
 		this.contenido = contenido;
 		this.nivel = nivel;
 		this.autor = autor;
+	}*/
+	
+	public Problema(String descripcion, String respuesta, int puntos_exp, Ayuda ayuda, Contenido contenido,
+			Nivel nivel, Profesor autor) {
+		this.descripcion = descripcion;
+		this.respuesta = respuesta;
+		this.puntos_exp = puntos_exp;
+		this.ayuda = ayuda;
+		this.contenido = contenido;
+		this.nivel = nivel;
+		this.autor = autor;
 	}
+	
+	
 	public Problema(){};
 
 	public int getId() {
@@ -118,8 +133,8 @@ public class Problema {
 		return respuesta.equalsIgnoreCase(this.respuesta);
 	}
 	
-	public void enviarMensaje(String mensaje,Date fecha, String asunto){
-		autor.enviarMensaje(mensaje, fecha, asunto);
+	public void enviarMensaje(String mensaje,Date fecha, String asunto,String id_jugador){
+		autor.enviarMensaje(mensaje, fecha, asunto,id_jugador);
 		
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();

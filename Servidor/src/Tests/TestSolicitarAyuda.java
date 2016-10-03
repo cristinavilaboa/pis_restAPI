@@ -24,7 +24,7 @@ public class TestSolicitarAyuda {
 	public void setUp() throws Exception {
 		 CargarDatosBD.CargarTestSolicitarAyuda();
 		 profesor = new Profesor("Juan","pepe","123");
-		 problema= new Problema(1,"problema1","resp",12,null,null,null,profesor);
+		 problema= new Problema("problema1","resp",12,null,null,null,profesor);
 		 ManejadorProblema mp=ManejadorProblema.getInstancia();
 		 mp.agregarProblema(problema);
 		
@@ -35,7 +35,7 @@ public class TestSolicitarAyuda {
 		IControladorProblema cp= new ControladorProblema();
 		@SuppressWarnings("deprecation")
 		Date date =new Date(1,1,1);
-		cp.enviarMensaje(1, "contenido", DataTypeConstants.getDateFormat().format(date), "asunto");
+		cp.enviarMensaje(1,"nick", "contenido", DataTypeConstants.getDateFormat().format(date), "asunto");
 		Mensaje m=profesor.getMensajes_nuevos().get(0);
 		
 		assertEquals(m.getAsunto(),"asunto");

@@ -21,8 +21,14 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+
 
 import Datatypes.DataJugador;
 
@@ -101,25 +107,28 @@ public class ManejadorUsuario {
 		}
 		*/
 		
-		Session session = null;
+		SessionFactory factory= HibernateUtility.getSessionFactory();
+		Session session=factory.openSession();
 		List<DataPuntosJugador> list_dpj = new ArrayList<>();
 
-		try{
-			session = HibernateUtility.getSessionFactory().openSession();
+	//try{
+			//session = HibernateUtility.getSessionFactory().openSession();
 			List<Jugador> lista = session.createCriteria(Jugador.class).list();	
 			for (Jugador j:lista){
 				String nombreJ = j.getNombre();
 				DataPuntosJugador dpj = j.obtenerDataPuntosJugador(nombreJ);
 				list_dpj.add(dpj);
 			}
-
+/*
 		} catch (Exception e){
 			System.out.println("error:" + e.getMessage());
 		} finally {
 			if (session != null && session.isOpen()){
 				session.close();
 			}
-		}
+		}*/
+			
+			session.close();
 		
 		
 		
@@ -170,12 +179,18 @@ public class ManejadorUsuario {
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
+		
 		List<Jugador> lista_jugadores = session.createCriteria(Jugador.class).list();
+		
 		for (Iterator<Jugador> iterator = lista_jugadores.iterator(); iterator.hasNext();) {
 			Jugador j = (Jugador) iterator.next();
 			session.delete(j);
+			System.out.println("borrar los jugadores");
 		}
+		
+		
 		t.commit();
+	
 		session.close();
 		System.out.println("successfully borrado jugadores");
 	}

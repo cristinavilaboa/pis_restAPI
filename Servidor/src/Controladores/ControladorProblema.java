@@ -45,15 +45,13 @@ public class ControladorProblema implements IControladorProblema{
 		return new DataExperiencia(exp_ganada);
 	}
 	@RequestMapping(value="/enviarmensaje", method=RequestMethod.GET)
-	public DataEstadoMensaje enviarMensaje(@RequestParam(value="id_problema") int id_problema,@RequestParam(value="mensaje") String mensaje,@RequestParam(value="fecha") String fechaStr,@RequestParam(value="asunto") String asunto){ 
+	public DataEstadoMensaje enviarMensaje(@RequestParam(value="id_problema") int id_problema,@RequestParam(value="nick") String nick,@RequestParam(value="mensaje") String mensaje,@RequestParam(value="fecha") String fechaStr,@RequestParam(value="asunto") String asunto){ 
 		Date fecha;
 		try {
 			fecha = DataTypeConstants.getDateFormat().parse(fechaStr);
 			ManejadorProblema mp=ManejadorProblema.getInstancia();
 			Problema p=mp.buscarProblema(id_problema);
-			p.enviarMensaje(URLDecoder.decode(mensaje, "UTF-8") , fecha, asunto);
-			//Profesor profesor= p.getAutor();
-			//Mensaje mens=CargarDatosBD.PersistirMensaje(mensaje,fecha,asunto,profesor);
+			p.enviarMensaje(URLDecoder.decode(mensaje, "UTF-8") , fecha, asunto,nick);
 			return new DataEstadoMensaje(true);
 		
 		} catch (ParseException e) {			
@@ -74,7 +72,7 @@ public class ControladorProblema implements IControladorProblema{
 	}
 	
 	@RequestMapping(value="/agregarproblema", method=RequestMethod.POST)
-	public void agregarProblema(@RequestParam(value="id_problema") int id_problema, @RequestParam(value="desc")String descripcion, @RequestParam(value="resp")String respuesta,
+	public void agregarProblema(@RequestParam(value="desc")String descripcion, @RequestParam(value="resp")String respuesta,
 			@RequestParam(value="exp")int puntos_exp, @RequestParam(value="ayuda")String cont_ayuda, @RequestParam(value="cont")String cont,
 			@RequestParam(value="id_mundo") int id_mundo,@RequestParam(value="num_nivl")int num_nivel, @RequestParam(value="nick_prof")String nick_prof){
 		
@@ -87,8 +85,9 @@ public class ControladorProblema implements IControladorProblema{
 		Profesor profe = mu.buscarProfesor(nick_prof);
 		Nivel nivel = mm.obtenerMundo(id_mundo).buscarNivel(num_nivel);
 	
-		Problema problema = new Problema(id_problema, descripcion, respuesta, puntos_exp, ayuda, contenido, nivel, profe);
-		
+		//Problema problema = new Problema(id_problema, descripcion, respuesta, puntos_exp, ayuda, contenido, nivel, profe);
+		Problema problema = new Problema( descripcion, respuesta, puntos_exp, ayuda, contenido, nivel, profe);
+
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
 		mp.agregarProblema(problema);
 	}

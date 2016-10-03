@@ -95,8 +95,8 @@ public class TestListarMundosNivelesProblemasClient {
 		
 		
 		
-		p1 = new Problema(1,"Problema 1","respuesta",10,ayuda1,cont1,n1m1,profesor);
-		p2 = new Problema(2,"Problema 2","respuesta2",10,ayuda2,cont2,n1m1,profesor);
+		p1 = new Problema("Problema 1","respuesta",10,ayuda1,cont1,n1m1,profesor);
+		p2 = new Problema("Problema 2","respuesta2",10,ayuda2,cont2,n1m1,profesor);
 		
 		n1m1.agregarProblema(p1);
 		n1m1.agregarProblema(p2);

@@ -54,7 +54,7 @@ public class CargarDatosBD {
 		org.hibernate.Transaction t= session.beginTransaction();
 		
 		Profesor profe = new Profesor("Juan","pepe","123");
-		Problema problema= new Problema(1,"problema1","resp",12,null,null,null,profe);
+		Problema problema= new Problema("problema1","resp",12,null,null,null,profe);
 		
 		session.persist(profe);
 		session.persist(problema);
@@ -67,6 +67,7 @@ public class CargarDatosBD {
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		ManejadorMundo mm = ManejadorMundo.getInstancia();
+		
 		
 		
 		mu.borrar();
@@ -115,29 +116,29 @@ public class CargarDatosBD {
 		
 		ayudaP1 = new Ayuda("La derivada es cuanto varia la funcion, cuando varia x");
 		contenidoP1 = new Contenido("d(8x)/dx");
-		problema1 = new Problema(1,"Resolver la siguiente derivada","8",10,ayudaP1,contenidoP1,nivel1,profesor);
+		problema1 = new Problema("Resolver la siguiente derivada","8",10,ayudaP1,contenidoP1,nivel1,profesor);
 		
 		ayudaP21 = new Ayuda("La derivada es cuanto varia la funcion, cuando varia x");
 		contenidoP21 = new Contenido("d(x^2/2)/dx");
-		problema21 = new Problema(2,"Resolver la siguiente derivada","x",10,ayudaP21,contenidoP21,nivel2,profesor);
+		problema21 = new Problema("Resolver la siguiente derivada","x",10,ayudaP21,contenidoP21,nivel2,profesor);
 		ayudaP22 = new Ayuda("La derivada es cuanto varia la funcion, cuando varia x");
 		contenidoP22= new Contenido("d(e^x)/dx");
-		problema22 = new Problema(6,"Resolver la siguiente derivada","e^x",10,ayudaP22,contenidoP22,nivel2,profesor);
+		problema22 = new Problema("Resolver la siguiente derivada","e^x",10,ayudaP22,contenidoP22,nivel2,profesor);
 		
 		ayudaP31 = new Ayuda("La integral es el area bajo la curva de una funciï¿½n");
 		contenidoP31 = new Contenido("integral de (1) en [1,5]");
-		problema31 = new Problema(3,"Resolver la siguiente integral","4",10,ayudaP31,contenidoP31,nivel3,profesor);
+		problema31 = new Problema("Resolver la siguiente integral","4",10,ayudaP31,contenidoP31,nivel3,profesor);
 		ayudaP32 = new Ayuda("La integral es el area bajo la curva de una funciï¿½n");
 		contenidoP32 = new Contenido("integral de x en [0,2]");
-		problema32 = new Problema(7,"Resolver la siguiente integral","2",10,ayudaP32,contenidoP32,nivel3,profesor);
+		problema32 = new Problema("Resolver la siguiente integral","2",10,ayudaP32,contenidoP32,nivel3,profesor);
 		
 		ayudaP4 = new Ayuda("La integral es el area bajo la curva de una funci�n");
 		contenidoP4 = new Contenido("integral de (2x dx) en [2,8]");
-		problema4 = new Problema(4,"Resolver la siguiente integral","60",10,ayudaP4,contenidoP4,nivel4,profesor);
+		problema4 = new Problema("Resolver la siguiente integral","60",10,ayudaP4,contenidoP4,nivel4,profesor);
 		
 		ayudaP5 = new Ayuda("La integral es el area bajo la curva de una funci�n");
 		contenidoP5 = new Contenido("integral de (cos(x) + 5x dx) en [a,b]");
-		problema5 = new Problema(5,"Resolver la siguiente integral","(-5/2)(a^2-b^2) - sin(a) + sin(b)",10,ayudaP5,contenidoP5,nivel5,profesor);
+		problema5 = new Problema("Resolver la siguiente integral","(-5/2)(a^2-b^2) - sin(a) + sin(b)",10,ayudaP5,contenidoP5,nivel5,profesor);
 		
 		nivel1.agregarProblema(problema1);
 		nivel2.agregarProblema(problema21);
@@ -155,7 +156,7 @@ public class CargarDatosBD {
 		
 		mm.agregarMundo(mundo);
 		
-		logJ1 = new Logro("Maestro de las derivadas");
+		logJ1 = new Logro("Primera respuesta correcta");
 		logrosJ1.add(logJ1);
 		niveles_actualesJ1.put(mundo.getId(), nivel3);
 		problemas_resueltosJ1.add(problema1);
@@ -171,11 +172,9 @@ public class CargarDatosBD {
 		
 		mu.agregarJugador(jugador1);
 		
-		logJ21 = new Logro("Maestro de las integrales");
-		logJ22 = new Logro("Maestro de las derivadas");
-		logJ23 = new Logro("Cinco respuestas correctas");
-		logrosJ2.add(logJ21);
-		logrosJ2.add(logJ22);
+		logJ21 = new Logro("Primera respuesta correcta");
+		logJ23 = new Logro("Has logrado 5 problemas correctos");
+		logrosJ2.add(logJ21);	
 		logrosJ2.add(logJ23);
 		niveles_actualesJ2.put(mundo.getId(), nivel5);
 		problemas_resueltosJ2.add(problema1);

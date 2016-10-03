@@ -149,7 +149,7 @@ public class EstadoJugador {
 			nuevos_logros.add(primeraRespuesta);
 		}
 		if(cant_correctas % 5 == 0){
-			Logro logro = new Logro("Has logrado "+cant_correctas+"problemas correctos");
+			Logro logro = new Logro("Has logrado "+cant_correctas+" problemas correctos");
 			nuevos_logros.add(logro);
 		}
 		return nuevos_logros;
