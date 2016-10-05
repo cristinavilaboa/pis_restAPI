@@ -19,12 +19,19 @@ import Modelo.*;
 
 public class TestResponder {
 	ArrayList<Mundo> mundos_siguientes = new ArrayList<Mundo>();
+
+	ArrayList<Mundo> mundos_siguientes2 = new ArrayList<Mundo>();
+	
 	ArrayList<Nivel> niveles = new ArrayList<Nivel>();
 	ArrayList<Nivel> nivelesM2 = new ArrayList<Nivel>();
+
+	ArrayList<Nivel> nivelesM3 = new ArrayList<Nivel>();
 	
 	ArrayList<Problema> listaP= new ArrayList<Problema>();
 	ArrayList<Problema> listaP2= new ArrayList<Problema>();
 	ArrayList<Problema> listaPM2= new ArrayList<Problema>();
+
+	ArrayList<Problema> listaPM3= new ArrayList<Problema>();
 	
 	ArrayList<Mundo> mundos_completos = new ArrayList<Mundo>();
 	ArrayList<Logro> logros = new ArrayList<Logro>();
@@ -38,6 +45,11 @@ public class TestResponder {
 	
 	Mundo mundo;
 	Mundo mundo2;
+	
+	Mundo mundo3;
+	Nivel nivel1M3;
+	Problema problema1M3;
+	
 	Nivel nivel1M2;
 	Nivel nivel;
 	Nivel nivel2;
@@ -52,23 +64,33 @@ public class TestResponder {
 	@Before
 	public void setUp() throws Exception {
 		
-		mundo2 = new Mundo(2,"Jupiter2", "imagen2", "descripcion2",0,new ArrayList<Mundo>(), nivelesM2);
+		mu.borrar();
+		mm.borrar();
+		
+		mundo3 = new Mundo(3,"Jupiter3", "imagen3", "descripcion3",50,new ArrayList<Mundo>(),nivelesM3);
+		nivel1M3 = new Nivel(listaPM3,mundo3);
+		
+		
+		mundos_siguientes2.add(mundo3);
+		mundo2 = new Mundo(2,"Jupiter2", "imagen2", "descripcion2",50,mundos_siguientes2, nivelesM2);
 		nivel1M2 = new Nivel(listaPM2,mundo2);
-		nivel1M2.setNivel(0);
-		//mundo2.setId(2);
+
 		
 		mundos_siguientes.add(mundo2);
-		mundo = new Mundo(1,"Jupiter", "imagen", "descripcion",0,mundos_siguientes, niveles);
+		mundo = new Mundo(1,"Jupiter", "imagen", "descripcion",50,mundos_siguientes, niveles);
 		nivel = new Nivel(listaP,mundo);
-		nivel.setNivel(0);
-		//mundo.setId(1);
+
 		
 		nivel2 = new Nivel(listaP2,mundo);
-		nivel.setNivel(1);
 		
 		mundo.agregarNivel(nivel);
 		mundo.agregarNivel(nivel2);
 		mundo2.agregarNivel(nivel1M2);
+		mundo3.agregarNivel(nivel1M3);
+		
+
+		problema1M3 = new Problema("Problema xx","respuesta",10,null,null,nivel1M3,null);
+		nivel1M3.agregarProblema(problema1M3);
 		
 		problema = new Problema("Problema 1","respuesta",10,null,null,nivel,null);
 		nivel.agregarProblema(problema);
@@ -90,6 +112,7 @@ public class TestResponder {
 		
 		mm.agregarMundo(mundo);
 		mm.agregarMundo(mundo2);
+		mu.agregarClase(clase);
 		mu.agregarJugador(jugador);
 		mp.agregarProblema(problema);
 		mp.agregarProblema(problema2);
@@ -115,64 +138,74 @@ public class TestResponder {
 		estado.agregarNivelActivo(mundo);
 		assertEquals(nivel2,estado.getNiveles_actuales().get(mundo.getId()));//Si respondi el primer nivel bien, mi niviel actual es el 2do
 		
-		mu.borrar();
-		mp.borrar();
-		mm.borrar();
 		
+		mu.borrar();
+		mm.borrar();
 	}
 	
 	@Test
 	public void testGeneral() {
-		cp.responderProblema(1, "respue22sta", "nick");
-		assertEquals(0,estado.getPuntos_exp());
-		assertEquals(0,estado.cantCorrectas());
-		assertEquals(0,estado.getLogros().size());
-		
-		//Estado es = mu.buscarJugador("nick").getEstado();
-		
-		cp.responderProblema(1, "respuesta", "nick");
-		assertEquals(10,estado.getPuntos_exp());
-		assertEquals(1,estado.cantCorrectas());
-		assertEquals(1,estado.getLogros().size());//PRIMERA RESPUESTA
-		assertEquals(estado.getNiveles_actuales().get(mundo.getId()),nivel);
-		assertTrue(estado.getMundos_completos().isEmpty());
-		
-		cp.responderProblema(1, "respuesta", "nick");
-		assertEquals(10,estado.getPuntos_exp());
-		assertEquals(1,estado.cantCorrectas());
-		assertEquals(1,estado.getLogros().size());//PRIMERA RESPUESTA
-		assertEquals(estado.getNiveles_actuales().get(mundo.getId()),nivel);
-		assertTrue(estado.getMundos_completos().isEmpty());
-		
-		cp.responderProblema(2, "respuesta", "nick");
-		assertEquals(20,estado.getPuntos_exp());
-		assertEquals(2,estado.cantCorrectas());
-		assertEquals(1,estado.getLogros().size());//PRIMERA RESPUESTA
-		assertEquals(estado.getNiveles_actuales().get(mundo.getId()),nivel2);
-		assertTrue(estado.getMundos_completos().isEmpty());
+		int id_p1 = mm.obtenerMundo(1).getNiveles().get(0).getProblemas().get(0).getId();
+		cp.responderProblema(id_p1, "respue22sta", "nick");
+		EstadoJugador nuevo_estado = mu.buscarJugador("nick").getEstado();
+		assertEquals(0,nuevo_estado.getPuntos_exp());
+		assertEquals(0,nuevo_estado.cantCorrectas());
+		assertEquals(0,nuevo_estado.getLogros().size());
 		
 		
-		cp.responderProblema(3, "respuesta", "nick");
-		assertEquals(30,estado.getPuntos_exp());
-		assertEquals(3,estado.cantCorrectas());
-		assertEquals(2,estado.getLogros().size());//PRIMERA RESPUESTA
-		assertEquals(estado.getNiveles_actuales().get(mundo.getId()),nivel2);
-		assertEquals(mundo,estado.getMundos_completos().get(0));
+
+		
+		cp.responderProblema(id_p1, "respuesta", "nick");
+		nuevo_estado = mu.buscarJugador("nick").getEstado();
+		assertEquals(10,nuevo_estado.getPuntos_exp());
+		assertEquals(1,nuevo_estado.cantCorrectas());
+		assertEquals(1,nuevo_estado.getLogros().size());//PRIMERA RESPUESTA
+		assertEquals(nuevo_estado.getNiveles_actuales().get(mundo.getId()).getId_nivel(),nivel.getId_nivel());
+		assertTrue(nuevo_estado.getMundos_completos().isEmpty());
 		
 		
 		
-		cp.responderProblema(4, "respuesta", "nick");
-		assertEquals(40,estado.getPuntos_exp());
-		assertEquals(4,estado.cantCorrectas());
-		assertEquals(3,estado.getLogros().size());//PRIMERA RESPUESTA
-		assertEquals(estado.getNiveles_actuales().get(mundo2.getId()),nivel1M2);
-		assertEquals(2,estado.getMundos_completos().size());
+		cp.responderProblema(id_p1, "respuesta", "nick");
+		nuevo_estado = mu.buscarJugador("nick").getEstado();
+		assertEquals(10,nuevo_estado.getPuntos_exp());
+		assertEquals(1,nuevo_estado.cantCorrectas());
+		assertEquals(1,nuevo_estado.getLogros().size());//PRIMERA RESPUESTA
+		assertEquals(nuevo_estado.getNiveles_actuales().get(mundo.getId()).getId_nivel(),nivel.getId_nivel());
+		assertTrue(nuevo_estado.getMundos_completos().isEmpty());
 		
+		
+		
+		int id_p2 = mm.obtenerMundo(1).getNiveles().get(0).getProblemas().get(1).getId();
+		cp.responderProblema(id_p2, "respuesta", "nick");
+		nuevo_estado = mu.buscarJugador("nick").getEstado();
+		assertEquals(20,nuevo_estado.getPuntos_exp());
+		assertEquals(2,nuevo_estado.cantCorrectas());
+		assertEquals(1,nuevo_estado.getLogros().size());//PRIMERA RESPUESTA
+		assertEquals(nuevo_estado.getNiveles_actuales().get(mundo.getId()).getId_nivel(),nivel2.getId_nivel());
+		assertTrue(nuevo_estado.getMundos_completos().isEmpty());
+		
+		int id_p3 = mm.obtenerMundo(1).getNiveles().get(1).getProblemas().get(0).getId();
+		cp.responderProblema(id_p3, "respuesta", "nick");
+		nuevo_estado = mu.buscarJugador("nick").getEstado();
+		assertEquals(80,nuevo_estado.getPuntos_exp());
+		assertEquals(3,nuevo_estado.cantCorrectas());
+		assertEquals(2,nuevo_estado.getLogros().size());//PRIMERA RESPUESTA
+		assertEquals(nuevo_estado.getNiveles_actuales().get(mundo.getId()).getId_nivel(),nivel2.getId_nivel());
+		assertEquals(mundo.getId(),nuevo_estado.getMundos_completos().get(0).getId());
+		
+
+		int id_p4 = mm.obtenerMundo(2).getNiveles().get(0).getProblemas().get(0).getId();
+		cp.responderProblema(id_p4, "respuesta", "nick");
+		nuevo_estado = mu.buscarJugador("nick").getEstado();
+		assertEquals(140,nuevo_estado.getPuntos_exp());
+		assertEquals(4,nuevo_estado.cantCorrectas());
+		assertEquals(3,nuevo_estado.getLogros().size());//PRIMERA RESPUESTA
+		assertEquals(nuevo_estado.getNiveles_actuales().get(mundo2.getId()).getId_nivel(),nivel1M2.getId_nivel());
+		assertEquals(2,nuevo_estado.getMundos_completos().size());
+
 		
 		mu.borrar();
-		mp.borrar();
 		mm.borrar();
-		
 	}
 
 

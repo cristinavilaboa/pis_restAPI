@@ -46,7 +46,8 @@ public class ControladorJugador implements IControladorJugador{
 	public void sumarPuntos( int exp, String id_jugador,int id_problema){
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
-		EstadoJugador estado = mu.buscarJugador(id_jugador).getEstado();
+		Jugador j = mu.buscarJugador(id_jugador);
+		EstadoJugador estado = j.getEstado();
 		Problema pro = mp.buscarProblema(id_problema);
 		estado.ganarExperiencia(exp);
 		estado.agregarProblema(pro);
@@ -55,7 +56,7 @@ public class ControladorJugador implements IControladorJugador{
 			estado.ganarLogro(l);
 		}
 		
-		mu.guardarEstado(estado);
+		mu.guardarUsuario(j);
 		
 		
 	}

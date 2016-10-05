@@ -23,7 +23,7 @@ public class EstadoJugador {
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_estado_jugador;
 	private int puntos_exp;
-	@ManyToMany(cascade=CascadeType.ALL)  @LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToMany  @LazyCollection(LazyCollectionOption.FALSE)
 	private List<Mundo> mundos_completos = new ArrayList<Mundo>();
 	@OneToMany(cascade=CascadeType.ALL)  @LazyCollection(LazyCollectionOption.FALSE)
 	private List<Logro> logros = new ArrayList<Logro>();
@@ -109,9 +109,9 @@ public class EstadoJugador {
 	}
 	
 	public void agregarProblema(Problema p){
-		Nivel nivel_problema = p.getNivel();
 		if(!problemas_resueltos.contains(p)){//Si no lo respondi antes, lo agrego
 			problemas_resueltos.add(p);
+
 		}
 	}
 	
@@ -141,6 +141,10 @@ public class EstadoJugador {
 		}
 	}
 	
+	public void agregarMundoCompleto(Mundo m){
+		mundos_completos.add(m);
+	}
+	
 	public ArrayList<Logro> nuevosLogros(){
 		ArrayList<Logro> nuevos_logros = new ArrayList<Logro>();
 		int cant_correctas = cantCorrectas();
@@ -161,7 +165,14 @@ public class EstadoJugador {
 	
 	public boolean nivelCompleto(Nivel nivel){
 		for(Problema p: nivel.getProblemas()){
-			if(!problemas_resueltos.contains(p)){
+			boolean encontre = false;
+			for(Problema p1: problemas_resueltos){
+				if(p1.getId()==p.getId()){
+					encontre = true;
+					break;
+				}
+			}
+			if (!encontre){
 				return false;
 			}
 		}

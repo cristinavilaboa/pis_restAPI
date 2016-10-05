@@ -45,22 +45,25 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		ManejadorMundo mm = ManejadorMundo.getInstancia();
 		
-		EstadoJugador estado = mu.buscarJugador(id_jugador).getEstado();
+		Jugador j=mu.buscarJugador(id_jugador);
+		EstadoJugador estado = j.getEstado();
 		Nivel nivel = mp.buscarProblema(id_problema).getNivel();
 		if(estado.nivelCompleto(nivel)){
 			Mundo mundo = mm.obtenerMundo(id_mundo);
 			estado.agregarNivelActivo(mundo);
-
 			if(mundo.ultimoNivelMundo(nivel)){//Si es el ultimo problema del mundo, avanzo el mundo
 				List<Mundo> mundos_siguientes = mundo.getMundos_siguientes();
-				if(!estado.getMundos_completos().contains(mundo)){
-					estado.getMundos_completos().add(mundo);
+				boolean encontre = false;
+				for(Mundo m: estado.getMundos_completos()){
+					encontre = (m.getId() == mundo.getId());
+				}
+				if(!encontre){
+					estado.agregarMundoCompleto(mundo);
 					estado.ganarExperiencia(mundo.getPuntos_exp());
 					Logro mundo_terminado = new Logro("Mundo "+mundo.getNombre()+" completado");
 					estado.ganarLogro(mundo_terminado);		
+;
 				}
-				
-				
 				for(Mundo m: mundos_siguientes){//Desbloqueo todos los mundos siguientes
 					if(!estado.getNiveles_actuales().containsKey(m.getId())){//Solo se desbloque si no esta desbloqueado de antes
 						estado.agregarMundoActivo(m);
@@ -69,7 +72,7 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 				}
 			}
 			
-			mu.guardarEstado(estado);
+			mu.guardarUsuario(j);
 
 		}
 		
