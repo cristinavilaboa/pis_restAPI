@@ -38,14 +38,21 @@ public class TestLoginYRegistrarJugador {
 	Jugador jugador;
 	@Before
 	public void setUp() throws Exception {
+		
+	
+		mu.borrar();
+		mm.borrar();	
 		estado = new EstadoJugador(0, mundos_completos, logros, mundo_nivel, nivel_problema);
 		Clase clase = new Clase();
 		jugador = new Jugador("ni", "nick", "fBToken", "imagen", estado, clase);
-		nivel = new Nivel(new ArrayList<Problema>(), mundo);
 		niveles = new ArrayList<Nivel>();
-		niveles.add(nivel);
 		mundo = new Mundo(1,"nombreMund", "imagenMundo", "descripcionMundo", 0, null, niveles);
+		
+		nivel = new Nivel(new ArrayList<Problema>(), mundo);
+		mundo.agregarNivel(nivel);
+		
 		mm.agregarMundo(mundo);
+		mu.agregarClase(clase);
 		mu.agregarJugador(jugador);
 	}
 
@@ -78,6 +85,7 @@ public class TestLoginYRegistrarJugador {
 
 		mu.borrar();
 		mm.borrar();
+		
 		
 	}
 

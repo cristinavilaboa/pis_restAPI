@@ -22,7 +22,7 @@ import javax.persistence.OneToMany;
 public class Mundo {
 	@Id  // @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_mundo;
-	private static int nro_nivel=0;
+	private int nro_nivel;
 	private String nombre;
 	private String imagen;
 	private String descripcion;
@@ -43,6 +43,7 @@ public class Mundo {
 		this.puntos_exp = puntos_exp;
 		this.mundos_siguientes = mundos_siguientes;
 		this.niveles = niveles;
+		this.nro_nivel = 0;
 	}
 	
 	public Mundo(){}
@@ -103,13 +104,23 @@ public class Mundo {
 		this.niveles = niveles;
 	}
 	
+	
+	
+	public int getNro_nivel() {
+		return nro_nivel;
+	}
+
+	public void setNro_nivel(int nro_nivel) {
+		this.nro_nivel = nro_nivel;
+	}
+
 	//METODOS A IMPLEMENTAR
 	public boolean ultimoNivelMundo(Nivel n){
 
 		if(n.getMundo().getId() == this.id_mundo ){
 			int largoMundo = niveles.size();
 			Nivel ultimo_nivel = niveles.get(largoMundo - 1);
-			return (ultimo_nivel == n);
+			return (ultimo_nivel.getId_nivel() == n.getId_nivel());
 		}else{
 			return false;
 		}
@@ -122,15 +133,8 @@ public class Mundo {
 	public Nivel siguienteNivel(Nivel nivel){//PRECONDICION nivel es un Nivel del MUNDO
 		/*int nivel_actual = niveles.indexOf(nivel);
 		return niveles.get(nivel_actual+1);*/
-		int siguiente = 0;
-		for(Nivel n: niveles){
-			siguiente++;
-			if(n.getNro_nivel() == nivel.getNro_nivel()){
-				break;
-			}
-			
-		}
-		return niveles.get(siguiente);
+		
+		return niveles.get(nivel.getNro_nivel() + 1);
 	}
 	
 	public void agregarNivel(Nivel n){

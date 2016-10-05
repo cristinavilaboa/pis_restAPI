@@ -38,6 +38,7 @@ public class ControladorProblema implements IControladorProblema{
 
 		
 		if(exp_ganada > 0 && !cu.yaRespondida(id_jugador, id_problema)){
+			
 			cu.sumarPuntos(exp_ganada, id_jugador, id_problema);
 			int id_mundo = mp.buscarProblema(id_problema).getNivel().getMundo().getId();
 			csj.avanzarJuego(id_jugador, id_problema, id_mundo);
