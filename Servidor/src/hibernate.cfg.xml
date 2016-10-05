@@ -9,12 +9,14 @@
         
         
         <!-- Este es para  la base de dato remota --> 
-        
+         
         <property name="hibernate.connection.password">2730755d</property> 
         <property name="hibernate.connection.url">jdbc:mysql://us-cdbr-azure-southcentral-f.cloudapp.net:3306/pisg8bd</property>
         <property name="hibernate.connection.username">bfc3e97001ed3f</property> 
+      
         
         
+       
         <!-- Y este es para la base de datos local -->
        
         <property name="hibernate.hbm2ddl.auto">update</property>
