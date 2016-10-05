@@ -53,8 +53,6 @@ public class TestVerMensajes {
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		Profesor p = mu.buscarProfesor("nick");
 		List<DataMensaje> dlm_nuevos = new ArrayList<DataMensaje>();
-		System.out.println("NICK: "+p.getNick());
-		System.out.println("Tamanio mensajes nuevos: "+p.getMensajes_nuevos().size());
 		for (Mensaje m: p.getMensajes_nuevos()){
 			dlm_nuevos.add(new DataMensaje(m.getId(), m.getAsunto(), m.getContenido(), m.getFecha(),m.getRemitente()));
 		}
