@@ -8,7 +8,7 @@ import Datatypes.DataListaNiveles;
 import Datatypes.DataMensaje;
 
 public interface IControladorProfesor {
-	public DataMensaje verMensaje(String nick_prof,int id_mensaje);
+	public DataMensaje verMensaje(int id_mensaje);
 	public DataListaMensajes verMensajesNuevos(String nick);
 	public DataListaMensajes verMensajesViejos(String nick);
 	public void responderMensaje(String nick_jugador,String asunto,String contenido,String id_profesor);

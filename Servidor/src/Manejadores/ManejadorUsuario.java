@@ -97,6 +97,22 @@ public class ManejadorUsuario {
 		return j;
 	}
 	
+	public Mensaje buscarMensaje(int id_mensaje){
+		Session session = null;
+		Mensaje m = null;
+		try{
+			session = HibernateUtility.getSessionFactory().openSession();
+			m =(Mensaje)session.get(Mensaje.class,id_mensaje);
+		} catch (Exception e){
+			System.out.println("error:" + e.getMessage());
+		} finally {
+			if (session != null && session.isOpen()){
+				session.close();
+			}
+		}
+		return m;
+	}
+	
 	public List<DataPuntosJugador> obtenerRanking(){
 		/*
 		List<DataPuntosJugador> list_dpj = new ArrayList<>();

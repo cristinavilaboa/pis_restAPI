@@ -52,24 +52,10 @@ public class ControladorProfesor implements IControladorProfesor{
 	
 	//SI NO ENCUENTRA EL MENSAJE CON DICHO ID, RETORNA NULL.
 	@RequestMapping(value="/vermensaje", method=RequestMethod.GET)
-	public DataMensaje verMensaje(@RequestParam(value="nick")String nick_prof,@RequestParam(value="id_mensaje")int id_mensaje){
+	public DataMensaje verMensaje(@RequestParam(value="id_mensaje")int id_mensaje){
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
-		Profesor p = mu.buscarProfesor(nick_prof);
-		//INICIALIZO COMO NULL PORQUE SINO ME SALE QUE NO ESTA INICIALIZADA LA VARIABLE
-		DataMensaje dm=null;
-		
-		for(Mensaje m: p.getMensajes_nuevos()){
-			if (m.getId() == id_mensaje){
-				return new DataMensaje(m.getId(), m.getAsunto(), m.getContenido(), m.getFecha(), m.getRemitente());
-			}
-		}
-		
-		for(Mensaje m: p.getMensajes_viejos()){
-			if (m.getId() == id_mensaje){
-				return new DataMensaje(m.getId(), m.getAsunto(), m.getContenido(), m.getFecha(), m.getRemitente());
-			}
-		}
-		return dm;
+		Mensaje m = mu.buscarMensaje(id_mensaje);
+		return new DataMensaje(m.getId(), m.getAsunto(), m.getContenido(), m.getFecha(), m.getRemitente());
 	}
 	
 	@RequestMapping(value="/respondermensaje", method=RequestMethod.POST) //Responde un mensaje
