@@ -184,10 +184,10 @@ public class ControladorJugador implements IControladorJugador{
 			
 			if(j.getFBToken().equalsIgnoreCase(fb_token)){
 				
-				return new DataLogin(j.getNick(),true);
+				return new DataLogin(j.getNombre(),j.getNick(),true);
 			}
 		}
-		return new DataLogin(null, false);
+		return new DataLogin(null,null, false);
 	}
 	
 	

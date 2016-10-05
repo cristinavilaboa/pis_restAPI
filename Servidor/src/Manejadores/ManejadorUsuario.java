@@ -188,7 +188,6 @@ public class ManejadorUsuario {
 			System.out.println("borrar los jugadores");
 		}
 		
-		
 		t.commit();
 	
 		session.close();
@@ -200,7 +199,7 @@ public class ManejadorUsuario {
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
-		session.update(estado);
+		session.saveOrUpdate(estado);
 		t.commit();
 		session.close();
 		System.out.println("successfully saved estado");
@@ -214,7 +213,7 @@ public class ManejadorUsuario {
 		session.saveOrUpdate(m);
 		t.commit();
 		session.close();
-		System.out.println("successfully saved clase");
+		System.out.println("successfully saved mensaje");
 
 	}
 	
