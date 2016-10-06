@@ -46,31 +46,33 @@ public class TestVerPerfil {
 		logros.add(l2);
 		
 		//CREO LOS MUNDOS Y NIVELES
-		Mundo m = new Mundo();
-		m.setDescripcion("mundo de prueba");
+		Mundo m = new Mundo(1, "Integrales", "ruta de imagen", "mundo 1 de prueba", 8, new ArrayList<Mundo>(), new ArrayList<Nivel>());
+		//m.setDescripcion("mundo de prueba");
 		//m.setId(0);
-		m.setImagen("ruta de imagen");
+		//m.setImagen("ruta de imagen");
 		//m.setMundos_siguientes(new HashMap());
 		//m.setNiveles([]);
-		m.setNombre("Integrales");
-		m.setPuntos_exp(8); //puntos de exp del mundo??????
+		//m.setNombre("Integrales");
+		//m.setPuntos_exp(8); //puntos de exp del mundo??????
 		
 		Nivel n = new Nivel();
+		n.setMundo(m);
 		//n.setDificultad(5);
 		//n.setProblemas([]);
 		m.agregarNivel(n);
 		
 		
-		Mundo m2 = new Mundo();
-		m2.setDescripcion("mundo de prueba");
+		Mundo m2 = new Mundo(2, "Integrales", "ruta de imagen", "mundo 2 de prueba", 8, new ArrayList<Mundo>(), new ArrayList<Nivel>());
+		//m2.setDescripcion("mundo de prueba");
 		//m2.setId(1);
-		m2.setImagen("ruta de imagen");
+		//m2.setImagen("ruta de imagen");
 		//m2.setMundos_siguientes([]);
 		//m2.setNiveles([]);
-		m2.setNombre("Integrales");
-		m2.setPuntos_exp(8);
+		//m2.setNombre("Integrales");
+		//m2.setPuntos_exp(8);
 		
 		Nivel n2 = new Nivel();
+		n2.setMundo(m2);
 		//n2.setDificultad(5);
 		//n2.setProblemas([]);
 		m2.agregarNivel(n2);
@@ -110,6 +112,9 @@ public class TestVerPerfil {
 		assertEquals("juancito",dj.getNick());
 		assertEquals(ej.getLogros().get(0).getDescripcion(),dj.getLogros().get(0).getDesc());
 		assertEquals(ej.getLogros().get(1).getId(),dj.getLogros().get(1).getCant());
+		
+		mu.borrar();
+		mm.borrar();
 	}
 
 }

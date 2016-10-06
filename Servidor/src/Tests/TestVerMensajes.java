@@ -35,7 +35,7 @@ public class TestVerMensajes {
 		mu.borrar();
 		mm.borrar();
 		
-		profe = new Profesor("nick", "nombre", "password");
+		profe = new Profesor("nombre", "nick", "password");
 		m1 = new Mensaje("contenido1", "asunto1", new Date(), "id_remitente1");
 		m2 = new Mensaje("contenido2", "asunto2", new Date(), "id_remitente2");
 		m3 = new Mensaje("contenido3", "asunto3", new Date(), "id_remitente3");
@@ -50,7 +50,7 @@ public class TestVerMensajes {
 
 	@Test
 	public void test() {
-		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+		mu = ManejadorUsuario.getInstancia();
 		Profesor p = mu.buscarProfesor("nick");
 		List<DataMensaje> dlm_nuevos = new ArrayList<DataMensaje>();
 		for (Mensaje m: p.getMensajes_nuevos()){
@@ -128,6 +128,10 @@ public class TestVerMensajes {
 		assertEquals(new SimpleDateFormat("MM-dd-yyyy HH:mm").format(m3.getFecha()),new SimpleDateFormat("MM-dd-yyyy HH:mm").format(dlm2_viejos.get(2).getFecha()));
 		assertEquals(m3.getRemitente(),dlm2_viejos.get(2).getRemitente());
 		
+		mm = ManejadorMundo.getInstancia();
+		
+		mu.borrar();
+		mm.borrar();
 		
 	}
 

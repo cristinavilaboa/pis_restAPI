@@ -8,6 +8,7 @@ import Modelo.Jugador;
 import static org.junit.Assert.*;
 import java.util.List;
 
+import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorUsuario;
 import Controladores.ControladorJugador;
 import Controladores.IControladorJugador;
@@ -20,9 +21,10 @@ public class TestVerRanking {
 	@Before
 	public void setUp() throws Exception {
 		ManejadorUsuario manUs = ManejadorUsuario.getInstancia();
-        
-		manUs.borrar();
+		ManejadorMundo mm = ManejadorMundo.getInstancia();
 		
+		manUs.borrar();
+		mm.borrar();
 		
 		Profesor Juliana = new Profesor("Juli", "Juliana", "123456");
 		Clase clase1 = new Clase("clase1", Juliana);
@@ -64,7 +66,7 @@ public class TestVerRanking {
 	
 	@Test	
 	public void test() {
-		
+		ManejadorMundo mm = ManejadorMundo.getInstancia();
 		ManejadorUsuario manUs = ManejadorUsuario.getInstancia();
 		List<DataPuntosJugador> resultado = manUs.obtenerRanking();
 		
@@ -85,6 +87,8 @@ public class TestVerRanking {
 		assertEquals(resultado.get(4).getNombre(),"Rodrigo");
 		assertTrue(resultado.get(4).getPuntos() == 2);
 		
+		manUs.borrar();
+		mm.borrar();
 	}
 	
 }
