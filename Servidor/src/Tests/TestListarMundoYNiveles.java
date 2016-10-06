@@ -13,6 +13,7 @@ import Controladores.IControladorProfesor;
 import Datatypes.DataMundo;
 import Datatypes.DataNivel;
 import Manejadores.ManejadorMundo;
+import Manejadores.ManejadorUsuario;
 import Modelo.Mundo;
 import Modelo.Nivel;
 import Modelo.Problema;
@@ -20,6 +21,7 @@ import Modelo.Problema;
 public class TestListarMundoYNiveles {
 	IControladorProfesor cp = new ControladorProfesor();
 	ManejadorMundo mm = ManejadorMundo.getInstancia();
+	ManejadorUsuario mu=ManejadorUsuario.getInstancia();
 	Mundo m1;
 	Mundo m2;
 	Mundo m3;
@@ -49,6 +51,10 @@ public class TestListarMundoYNiveles {
 	ArrayList<Problema> listaP_2M3= new ArrayList<Problema>();
 	@Before
 	public void setUp() throws Exception {
+		mu.borrar();
+		mm.borrar();
+		mu.borrarProfesores();
+		
 		m1 = new Mundo(1,"Jupiter", "imagen", "descripcion",0,mundos_siguientesM1, nivelesM1);
 		n1m1 = new Nivel(listaP_M1,m1);
 		n2m1 = new Nivel(listaP_2M1,m1);
@@ -111,14 +117,13 @@ public class TestListarMundoYNiveles {
 		assertEquals(2,nivelesM3.size());
 		assertEquals(n1m3.getId_nivel(),nivelesM3.get(0).getId_nivel());
 		assertEquals(n1m3.getNro_nivel(),nivelesM3.get(0).getNum_nivel());
-
-
-		
 		
 		assertEquals(n2m3.getId_nivel(),nivelesM3.get(1).getId_nivel());
 		assertEquals(n2m3.getNro_nivel(),nivelesM3.get(1).getNum_nivel());
 
-
+		mu.borrar();
+		mm.borrar();
+		mu.borrarProfesores();
 		
 		
 		
