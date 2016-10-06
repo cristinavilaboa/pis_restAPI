@@ -23,7 +23,6 @@ public class Profesor extends Usuario {
 		super();
 	};
 	public Profesor(String nombre, String nick, String password){
-		//super (nick, nombre);
 		super (nombre,nick);
 		this.password = password;
 	}

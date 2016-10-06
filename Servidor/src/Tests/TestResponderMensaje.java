@@ -2,16 +2,20 @@ package Tests;
 
 import static org.junit.Assert.*;
 
+import java.util.Date;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.objenesis.instantiator.sun.MagicInstantiator;
 
 import Controladores.ControladorProfesor;
 import Controladores.IControladorProfesor;
+import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorUsuario;
 import Modelo.Clase;
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
+import Modelo.Mensaje;
 import Modelo.Profesor;
 
 public class TestResponderMensaje {
@@ -22,25 +26,40 @@ public class TestResponderMensaje {
 	
 	@Before
 	public void setUp() throws Exception {
-		profe = new Profesor("nickProfe", "nombreProfe", "passwordProfe");
+		ManejadorUsuario mu=ManejadorUsuario.getInstancia();
+		mu.borrar();
+		ManejadorMundo mm=ManejadorMundo.getInstancia();
+		mm.borrar();
+		profe = new Profesor("nombreProfe", "nickProfe", "passwordProfe");
 		estado = new EstadoJugador(0);
 		clase = new Clase("nombre", profe);
 		j = new Jugador("nombre", "nick", "FBToken", "imagen", estado, clase);
-		
-		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
-		mu.agregarJugador(j);
 		mu.agregarProfesor(profe);
+		mu.agregarClase(clase);
+		mu.guardarEstado(estado);
+		mu.agregarJugador(j);
+		
 	}
 
 	@Test
 	public void test() {
-		IControladorProfesor cp = new ControladorProfesor();
-		cp.responderMensaje(j.getNick(), "asunto", "contenido", profe.getNick());
+		Date fecha = new Date();
+		Mensaje m = new Mensaje("contenido", "asunto", fecha, profe.getNick());
+		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+		Jugador jugador = mu.buscarJugador(j.getNick());
+		jugador.agregar_mensaje_nuevo(m);
+		mu.guardarMensaje(m);
+		mu.guardarUsuario(jugador);
 		
+		j=mu.buscarJugador(j.getNick());
 		assertEquals(1,j.getMensajes_nuevos().size());
 		assertEquals("asunto",j.getMensajes_nuevos().get(0).getAsunto());
 		assertEquals("contenido",j.getMensajes_nuevos().get(0).getContenido());
 		assertEquals(profe.getNick(),j.getMensajes_nuevos().get(0).getRemitente());
+		
+		mu.borrar();
+		ManejadorMundo mm=ManejadorMundo.getInstancia();
+		mm.borrar();
 	}
 
 }

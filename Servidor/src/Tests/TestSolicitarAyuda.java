@@ -1,20 +1,21 @@
 package Tests;
 
 import static org.junit.Assert.*;
-
 import java.util.Date;
+import java.util.List;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.Test;
 
-import Controladores.ControladorProblema;
-import Controladores.IControladorProblema;
-import Datatypes.DataTypeConstants;
+import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
+import Manejadores.ManejadorUsuario;
 import Modelo.Mensaje;
 import Modelo.Problema;
 import Modelo.Profesor;
-import Persistencia.CargarDatosBD;
+import Persistencia.HibernateUtility;
 
 public class TestSolicitarAyuda {
 	Profesor profesor;
@@ -22,26 +23,36 @@ public class TestSolicitarAyuda {
 
 	@Before
 	public void setUp() throws Exception {
-		 CargarDatosBD.CargarTestSolicitarAyuda();
-		 profesor = new Profesor("Juan","pepe","123");
-		 problema= new Problema("problema1","resp",12,null,null,null,profesor);
-		 ManejadorProblema mp=ManejadorProblema.getInstancia();
-		 mp.agregarProblema(problema);
-		
+		ManejadorUsuario mu=ManejadorUsuario.getInstancia();
+		mu.borrar();
+		ManejadorMundo mm=ManejadorMundo.getInstancia();
+		mm.borrar();
+		profesor = new Profesor("Juan","nickJuan","123");
+		mu.agregarProfesor(profesor);
+		problema= new Problema("problema1","resp",12,null,null,null,profesor);
+		ManejadorProblema mp=ManejadorProblema.getInstancia();
+		mp.agregarProblema(problema);
+		System.out.println("successfully saved datos Test Solicitar Ayuda");
 	}
 
 	@Test
 	public void test() {
-		IControladorProblema cp= new ControladorProblema();
 		@SuppressWarnings("deprecation")
 		Date date =new Date(1,1,1);
-		cp.enviarMensaje(1,"nick", "contenido", DataTypeConstants.getDateFormat().format(date), "asunto");
-		Mensaje m=profesor.getMensajes_nuevos().get(0);
-		
+		ManejadorProblema mp=ManejadorProblema.getInstancia();
+		Problema p=mp.buscarProblema(problema.getId());
+		p.enviarMensaje("contenido",date,"asunto","nickJuan");
+		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+		profesor = mu.buscarProfesor("nickJuan");
+		Mensaje m =profesor.getMensajes_nuevos().get(0);
 		assertEquals(m.getAsunto(),"asunto");
 		assertEquals(m.getContenido(),"contenido");
-		//assertEquals(m.getId(),1);
-		assertEquals(m.getFecha(),date);
+		Date dateBD = new Date(m.getFecha().getTime());
+		assertEquals(dateBD,date);
+		
+		mu.borrar();
+		ManejadorMundo mm=ManejadorMundo.getInstancia();
+		mm.borrar();
 	}
 
 }
