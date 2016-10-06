@@ -27,19 +27,11 @@ public class TestSolicitarAyuda {
 		mu.borrar();
 		ManejadorMundo mm=ManejadorMundo.getInstancia();
 		mm.borrar();
-		SessionFactory factory= HibernateUtility.getSessionFactory();
-		//creating session object
-		Session session=factory.openSession();
-		//creating transaction object
-		org.hibernate.Transaction t= session.beginTransaction();
-		
 		profesor = new Profesor("Juan","nickJuan","123");
 		mu.agregarProfesor(profesor);
 		problema= new Problema("problema1","resp",12,null,null,null,profesor);
 		ManejadorProblema mp=ManejadorProblema.getInstancia();
 		mp.agregarProblema(problema);
-		t.commit();//transaction is commited 
-		session.close();
 		System.out.println("successfully saved datos Test Solicitar Ayuda");
 	}
 
@@ -50,10 +42,9 @@ public class TestSolicitarAyuda {
 		ManejadorProblema mp=ManejadorProblema.getInstancia();
 		Problema p=mp.buscarProblema(problema.getId());
 		p.enviarMensaje("contenido",date,"asunto","nickJuan");
-		
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
-		Profesor profesorBD = mu.buscarProfesor("nickJuan");
-		Mensaje m =profesorBD.getMensajes_nuevos().get(0);
+		profesor = mu.buscarProfesor("nickJuan");
+		Mensaje m =profesor.getMensajes_nuevos().get(0);
 		assertEquals(m.getAsunto(),"asunto");
 		assertEquals(m.getContenido(),"contenido");
 		Date dateBD = new Date(m.getFecha().getTime());
