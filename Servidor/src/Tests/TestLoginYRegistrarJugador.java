@@ -15,7 +15,7 @@ import Controladores.IControladorJugador;
 import Datatypes.DataLogin;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorUsuario;
-import Modelo.Clase;
+
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Logro;
@@ -43,8 +43,8 @@ public class TestLoginYRegistrarJugador {
 		mu.borrar();
 		mm.borrar();	
 		estado = new EstadoJugador(0, mundos_completos, logros, mundo_nivel, nivel_problema);
-		Clase clase = new Clase();
-		jugador = new Jugador("ni", "nick", "fBToken", "imagen", estado, clase);
+		
+		jugador = new Jugador("ni", "nick", "fBToken", "imagen", estado);
 		niveles = new ArrayList<Nivel>();
 		mundo = new Mundo(1,"nombreMund", "imagenMundo", "descripcionMundo", 0, null, niveles);
 		
@@ -52,7 +52,7 @@ public class TestLoginYRegistrarJugador {
 		mundo.agregarNivel(nivel);
 		
 		mm.agregarMundo(mundo);
-		mu.agregarClase(clase);
+		
 		mu.agregarJugador(jugador);
 	}
 

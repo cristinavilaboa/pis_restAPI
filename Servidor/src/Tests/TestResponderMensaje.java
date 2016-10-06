@@ -12,7 +12,7 @@ import Controladores.ControladorProfesor;
 import Controladores.IControladorProfesor;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorUsuario;
-import Modelo.Clase;
+
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Mensaje;
@@ -22,7 +22,7 @@ public class TestResponderMensaje {
 	Profesor profe;
 	Jugador j;
 	EstadoJugador estado;
-	Clase clase;
+	
 	
 	@Before
 	public void setUp() throws Exception {
@@ -30,12 +30,13 @@ public class TestResponderMensaje {
 		mu.borrar();
 		ManejadorMundo mm=ManejadorMundo.getInstancia();
 		mm.borrar();
+		mu.borrarProfesores();
 		profe = new Profesor("nombreProfe", "nickProfe", "passwordProfe");
 		estado = new EstadoJugador(0);
-		clase = new Clase("nombre", profe);
-		j = new Jugador("nombre", "nick", "FBToken", "imagen", estado, clase);
+		
+		j = new Jugador("nombre", "nick", "FBToken", "imagen", estado);
 		mu.agregarProfesor(profe);
-		mu.agregarClase(clase);
+		
 		mu.guardarEstado(estado);
 		mu.agregarJugador(j);
 		
@@ -60,6 +61,7 @@ public class TestResponderMensaje {
 		mu.borrar();
 		ManejadorMundo mm=ManejadorMundo.getInstancia();
 		mm.borrar();
+		mu.borrarProfesores();
 	}
 
 }

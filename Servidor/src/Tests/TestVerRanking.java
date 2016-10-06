@@ -3,7 +3,7 @@ package Tests;
 import Modelo.EstadoJugador;
 import Modelo.Profesor;
 import org.junit.Test;
-import Modelo.Clase;
+
 import Modelo.Jugador;
 import static org.junit.Assert.*;
 import java.util.List;
@@ -25,39 +25,39 @@ public class TestVerRanking {
 		
 		manUs.borrar();
 		mm.borrar();
+		manUs.borrarProfesores();
 		
 		Profesor Juliana = new Profesor("Juli", "Juliana", "123456");
-		Clase clase1 = new Clase("clase1", Juliana);
+	
 		
 		manUs.agregarProfesor(Juliana);
-	    manUs.agregarClase(clase1);
-		
+	  
 		EstadoJugador estadoFufi = new EstadoJugador(12);
-        Jugador j = new Jugador("Estefania", "fuffi", "estefaniaD", "imagenA", estadoFufi, clase1);
+        Jugador j = new Jugador("Estefania", "fuffi", "estefaniaD", "imagenA", estadoFufi);
         
         manUs.guardarEstado(estadoFufi);
     	manUs.agregarJugador(j);
         
         EstadoJugador estadoCaro = new EstadoJugador(33);
-        j = new Jugador("Carolina", "Caro", "carolinaC", "imagenB", estadoCaro, clase1);
+        j = new Jugador("Carolina", "Caro", "carolinaC", "imagenB", estadoCaro);
 		
         manUs.guardarEstado(estadoCaro);
         manUs.agregarJugador(j);
         
         EstadoJugador estadoPau = new EstadoJugador(2);
-        j = new Jugador("Paula", "Pau", "paulaM", "imagenC", estadoPau, clase1);
+        j = new Jugador("Paula", "Pau", "paulaM", "imagenC", estadoPau);
 
         manUs.guardarEstado(estadoPau);
         manUs.agregarJugador(j);
         
         EstadoJugador estadoRodri = new EstadoJugador(2);
-        j = new Jugador("Rodrigo", "Rodri", "rodrigoH", "imagenD", estadoRodri, clase1);
+        j = new Jugador("Rodrigo", "Rodri", "rodrigoH", "imagenD", estadoRodri);
 
         manUs.guardarEstado(estadoRodri);
         manUs.agregarJugador(j);
         
         EstadoJugador estadoRau = new EstadoJugador(28);
-        j = new Jugador("Raul", "Rau", "raulF", "imagenE", estadoRau, clase1);
+        j = new Jugador("Raul", "Rau", "raulF", "imagenE", estadoRau);
 
         manUs.guardarEstado(estadoRau);
         manUs.agregarJugador(j);
@@ -89,6 +89,7 @@ public class TestVerRanking {
 		
 		manUs.borrar();
 		mm.borrar();
+		manUs.borrarProfesores();
 	}
 	
 }

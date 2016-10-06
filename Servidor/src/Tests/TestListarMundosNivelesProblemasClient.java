@@ -35,7 +35,8 @@ public class TestListarMundosNivelesProblemasClient {
 	ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 	
 	EstadoJugador estado = new EstadoJugador(0, new ArrayList<Mundo>(), new ArrayList<Logro>(), new HashMap<Integer,Nivel>(), new ArrayList<Problema>());
-	Jugador jugador = new Jugador("nombre", "nick", "FBToken", "imagen", estado, null);
+	Jugador jugador = new Jugador("nombre", "nick", "FBToken", "imagen", estado);
+	
 	
 	Profesor profesor = new Profesor("nickProfe", "nombreProfe", "passwordProfe");
 	
@@ -172,7 +173,9 @@ public class TestListarMundosNivelesProblemasClient {
 		assertEquals(p2.getDescripcion(),lista_problemasN1M1.get(1).getDescripcion());
 		assertFalse(lista_problemasN1M1.get(1).isResuelto());
 
-		
+		mu.borrar();		
+		mm.borrar();
+		mu.borrarProfesores();
 		
 	}
 

@@ -125,7 +125,7 @@ public class ControladorJugador implements IControladorJugador{
 			
 			estado.agregarMundoActivo(mm.obtenerMundo(1));
 			
-			Jugador jugador = new Jugador(nombre, nick, fb_token, null, estado, null);
+			Jugador jugador = new Jugador(nombre, nick, fb_token, null, estado);
 			mu.agregarJugador(jugador);
 			return true;
 		}	

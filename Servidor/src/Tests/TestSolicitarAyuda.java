@@ -1,6 +1,8 @@
 package Tests;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +15,8 @@ import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
 import Modelo.Mensaje;
+import Modelo.Mundo;
+import Modelo.Nivel;
 import Modelo.Problema;
 import Modelo.Profesor;
 import Persistencia.HibernateUtility;
@@ -27,10 +31,28 @@ public class TestSolicitarAyuda {
 		mu.borrar();
 		ManejadorMundo mm=ManejadorMundo.getInstancia();
 		mm.borrar();
+		mu.borrarProfesores();
 		profesor = new Profesor("Juan","nickJuan","123");
 		mu.agregarProfesor(profesor);
-		problema= new Problema("problema1","resp",12,null,null,null,profesor);
+		
+		
+		
+		ArrayList<Nivel> niveles = new ArrayList<Nivel>();
+		ArrayList<Problema> listaP = new ArrayList<Problema>();
+		
+		
+		Mundo mundo = new Mundo(1,"Jupiter", "imagen", "descripcion",50, new ArrayList<Mundo>(), niveles);
+		Nivel nivel = new Nivel(listaP,mundo);
+		
+		mundo.agregarNivel(nivel);
+		
+
+		problema= new Problema("problema1","resp",12,null,null,nivel,profesor);
+		listaP.add(problema);
+		
+		
 		ManejadorProblema mp=ManejadorProblema.getInstancia();
+		mm.agregarMundo(mundo);
 		mp.agregarProblema(problema);
 		System.out.println("successfully saved datos Test Solicitar Ayuda");
 	}
@@ -53,6 +75,7 @@ public class TestSolicitarAyuda {
 		mu.borrar();
 		ManejadorMundo mm=ManejadorMundo.getInstancia();
 		mm.borrar();
+		mu.borrarProfesores();
 	}
 
 }

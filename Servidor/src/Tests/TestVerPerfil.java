@@ -11,7 +11,7 @@ import org.junit.Test;
 import Datatypes.DataJugador;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorUsuario;
-import Modelo.Clase;
+
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Logro;
@@ -94,14 +94,10 @@ public class TestVerPerfil {
 		mu.guardarEstado(ej);
 
 		
-		//CREO LA CLASE DEL JUGADOR
-		Clase c = new Clase();
-		//c.setId(5);
-		c.setNombre("C�lculo"); //me falta el profesor pero no creo que de problema.
-		mu.agregarClase(c);
+
 		
 		//CREO EL JUGADOR
-		Jugador j = new Jugador("Juan","juancito", "fb", "imagen", ej, c);
+		Jugador j = new Jugador("Juan","juancito", "fb", "imagen", ej);
 		mu.agregarJugador(j);
 		
 		

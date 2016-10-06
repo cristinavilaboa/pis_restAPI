@@ -34,6 +34,7 @@ public class TestVerMensajes {
 		
 		mu.borrar();
 		mm.borrar();
+		mu.borrarProfesores();
 		
 		profe = new Profesor("nombre", "nick", "password");
 		m1 = new Mensaje("contenido1", "asunto1", new Date(), "id_remitente1");
@@ -132,6 +133,7 @@ public class TestVerMensajes {
 		
 		mu.borrar();
 		mm.borrar();
+		mu.borrarProfesores();
 		
 	}
 

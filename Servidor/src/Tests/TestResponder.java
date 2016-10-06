@@ -60,7 +60,7 @@ public class TestResponder {
 	Jugador jugador;
 	EstadoJugador estado;
 	
-	Clase clase = new Clase();
+
 	@Before
 	public void setUp() throws Exception {
 		
@@ -108,11 +108,11 @@ public class TestResponder {
 		estado = new EstadoJugador(0, mundos_completos, logros, mundo_nivel, nivel_problema);
 		estado.agregarMundoActivo(mundo);
 		
-		jugador = new Jugador("ni", "nick", "fBToken", "imagen", estado, clase);
+		jugador = new Jugador("ni", "nick", "fBToken", "imagen", estado);
 		
 		mm.agregarMundo(mundo);
 		mm.agregarMundo(mundo2);
-		mu.agregarClase(clase);
+		
 		mu.agregarJugador(jugador);
 		mp.agregarProblema(problema);
 		mp.agregarProblema(problema2);

@@ -28,15 +28,15 @@ public class Jugador extends Usuario{
 	private String imagen;
 	@OneToOne(cascade=CascadeType.ALL) @LazyCollection(LazyCollectionOption.FALSE)
 	private EstadoJugador estado;
-	@ManyToOne @LazyCollection(LazyCollectionOption.FALSE)
-	private Clase clase;
 	
-    public Jugador(String nombre, String nick, String FBToken, String imagen, EstadoJugador estado, Clase clase){
+	
+	
+    public Jugador(String nombre, String nick, String FBToken, String imagen, EstadoJugador estado){
         super(nombre, nick);
         this.FBToken = FBToken;
         this.imagen = imagen;
         this.estado = estado;
-        this.clase = clase;
+        
     }
     
     public Jugador()
@@ -68,13 +68,7 @@ public class Jugador extends Usuario{
 		this.estado = estado;
 	}
 
-	public Clase getClase() {
-		return clase;
-	}
 
-	public void setClase(Clase clase) {
-		this.clase = clase;
-	}
 	
 	public DataPuntosJugador obtenerDataPuntosJugador(String nombre){
 		int puntos = estado.getPuntos_exp();
@@ -118,7 +112,6 @@ public class Jugador extends Usuario{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((FBToken == null) ? 0 : FBToken.hashCode());
-		result = prime * result + ((clase == null) ? 0 : clase.hashCode());
 		result = prime * result + ((estado == null) ? 0 : estado.hashCode());
 		result = prime * result + ((imagen == null) ? 0 : imagen.hashCode());
 		return result;
@@ -137,11 +130,6 @@ public class Jugador extends Usuario{
 			if (other.FBToken != null)
 				return false;
 		} else if (!FBToken.equals(other.FBToken))
-			return false;
-		if (clase == null) {
-			if (other.clase != null)
-				return false;
-		} else if (!clase.equals(other.clase))
 			return false;
 		if (estado == null) {
 			if (other.estado != null)
