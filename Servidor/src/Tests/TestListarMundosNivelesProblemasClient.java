@@ -32,11 +32,10 @@ import Modelo.Profesor;
 public class TestListarMundosNivelesProblemasClient {
 	ManejadorMundo mm = ManejadorMundo.getInstancia();
 	ManejadorProblema mp = ManejadorProblema.getInstancia();
+	ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 	
 	EstadoJugador estado = new EstadoJugador(0, new ArrayList<Mundo>(), new ArrayList<Logro>(), new HashMap<Integer,Nivel>(), new ArrayList<Problema>());
 	Jugador jugador = new Jugador("nombre", "nick", "FBToken", "imagen", estado, null);
-	
-	ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 	
 	Profesor profesor = new Profesor("nickProfe", "nombreProfe", "passwordProfe");
 	
@@ -80,6 +79,8 @@ public class TestListarMundosNivelesProblemasClient {
 	
 	@Before
 	public void setUp() throws Exception {
+		mu.borrar();
+		mm.borrar();
 		m1 = new Mundo(1,"Jupiter", "imagen", "descripcion",0,mundos_siguientesM1, nivelesM1);
 		n1m1 = new Nivel(listaP_M1,m1);
 		n1m1.setNivel(0);
@@ -118,6 +119,8 @@ public class TestListarMundosNivelesProblemasClient {
 		m3.agregarNivel(n1m3);
 		m3.agregarNivel(n2m3);
 		
+		mu.agregarProfesor(profesor);
+		
 		mm.agregarMundo(m1);
 		mm.agregarMundo(m2);
 		mm.agregarMundo(m3);
@@ -125,9 +128,9 @@ public class TestListarMundosNivelesProblemasClient {
 		estado.agregarMundoActivo(mm.obtenerMundos().get(0));
 		
 		mu.agregarJugador(jugador);
-		mu.agregarProfesor(profesor);
-		mp.agregarProblema(p1);
-		mp.agregarProblema(p2);
+		
+	//	mp.agregarProblema(p1);
+	//	mp.agregarProblema(p2);
 	}
 
 	@Test

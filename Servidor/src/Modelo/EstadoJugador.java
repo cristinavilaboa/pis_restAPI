@@ -179,5 +179,54 @@ public class EstadoJugador {
 		return true;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id_estado_jugador;
+		result = prime * result + ((logros == null) ? 0 : logros.hashCode());
+		result = prime * result + ((mundos_completos == null) ? 0 : mundos_completos.hashCode());
+		result = prime * result + ((niveles_actuales == null) ? 0 : niveles_actuales.hashCode());
+		result = prime * result + ((problemas_resueltos == null) ? 0 : problemas_resueltos.hashCode());
+		result = prime * result + puntos_exp;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		EstadoJugador other = (EstadoJugador) obj;
+		if (id_estado_jugador != other.id_estado_jugador)
+			return false;
+		if (logros == null) {
+			if (other.logros != null)
+				return false;
+		} else if (!logros.equals(other.logros))
+			return false;
+		if (mundos_completos == null) {
+			if (other.mundos_completos != null)
+				return false;
+		} else if (!mundos_completos.equals(other.mundos_completos))
+			return false;
+		if (niveles_actuales == null) {
+			if (other.niveles_actuales != null)
+				return false;
+		} else if (!niveles_actuales.equals(other.niveles_actuales))
+			return false;
+		if (problemas_resueltos == null) {
+			if (other.problemas_resueltos != null)
+				return false;
+		} else if (!problemas_resueltos.equals(other.problemas_resueltos))
+			return false;
+		if (puntos_exp != other.puntos_exp)
+			return false;
+		return true;
+	}
+
 		
 }

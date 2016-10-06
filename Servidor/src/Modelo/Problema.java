@@ -147,6 +147,72 @@ public class Problema {
 		
 		
 	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((autor == null) ? 0 : autor.hashCode());
+		result = prime * result + ((ayuda == null) ? 0 : ayuda.hashCode());
+		result = prime * result + ((contenido == null) ? 0 : contenido.hashCode());
+		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + ((id_problema == null) ? 0 : id_problema.hashCode());
+		result = prime * result + ((nivel == null) ? 0 : nivel.hashCode());
+		result = prime * result + puntos_exp;
+		result = prime * result + ((respuesta == null) ? 0 : respuesta.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Problema other = (Problema) obj;
+		if (autor == null) {
+			if (other.autor != null)
+				return false;
+		} else if (!autor.equals(other.autor))
+			return false;
+		if (ayuda == null) {
+			if (other.ayuda != null)
+				return false;
+		} else if (!ayuda.equals(other.ayuda))
+			return false;
+		if (contenido == null) {
+			if (other.contenido != null)
+				return false;
+		} else if (!contenido.equals(other.contenido))
+			return false;
+		if (descripcion == null) {
+			if (other.descripcion != null)
+				return false;
+		} else if (!descripcion.equals(other.descripcion))
+			return false;
+		if (id_problema == null) {
+			if (other.id_problema != null)
+				return false;
+		} else if (!id_problema.equals(other.id_problema))
+			return false;
+		if (nivel == null) {
+			if (other.nivel != null)
+				return false;
+		} else if (!(nivel.getNro_nivel() == (other.nivel.getNro_nivel())))
+			return false;
+		if (puntos_exp != other.puntos_exp)
+			return false;
+		if (respuesta == null) {
+			if (other.respuesta != null)
+				return false;
+		} else if (!respuesta.equals(other.respuesta))
+			return false;
+		return true;
+	}
 	
 	/*
 	public DataProblema getDataProblema(){

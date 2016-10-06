@@ -86,6 +86,43 @@ public class Nivel {
 	public void agregarProblema(Problema p){
 		problemas.add(p);
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + id_nivel;
+		result = prime * result + ((mundo == null) ? 0 : mundo.hashCode());
+		result = prime * result + nro_nivel;
+		result = prime * result + ((problemas == null) ? 0 : problemas.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Nivel other = (Nivel) obj;
+		if (id_nivel != other.id_nivel)
+			return false;
+		if (mundo == null) {
+			if (other.mundo != null)
+				return false;
+		} else if (!(mundo.getId()==(other.mundo.getId())))
+			return false;
+		if (nro_nivel != other.nro_nivel)
+			return false;
+		if (problemas == null) {
+			if (other.problemas != null)
+				return false;
+		} else if (!problemas.equals(other.problemas))
+			return false;
+		return true;
+	}
 	
 	
 }

@@ -13,7 +13,7 @@ public class Logro {
 	 @Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_logro;
 	private String descripcion;
-	private int id; //habría q borrar este
+	private int id; //habrï¿½a q borrar este
 	
 	public Logro(String descripcion){
 		this.descripcion=descripcion;
@@ -41,5 +41,36 @@ public class Logro {
 	public DataLogro obtenerDataLogro(){
 		DataLogro dl = new DataLogro(descripcion, id);
 		return dl;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + id;
+		result = prime * result + id_logro;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Logro other = (Logro) obj;
+		if (descripcion == null) {
+			if (other.descripcion != null)
+				return false;
+		} else if (!descripcion.equals(other.descripcion))
+			return false;
+		if (id != other.id)
+			return false;
+		if (id_logro != other.id_logro)
+			return false;
+		return true;
 	}
 }

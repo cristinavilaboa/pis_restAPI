@@ -29,18 +29,16 @@ public abstract class Usuario {
 	@OneToMany(cascade=CascadeType.ALL)  
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name="usuario_mensajes_viejos", joinColumns={@JoinColumn (name="id_usuario", referencedColumnName= "nick" )},inverseJoinColumns={@JoinColumn(name="id_mensaje",referencedColumnName="id_mensaje")})
-	private List<Mensaje> mensajes_viejos;
+	private List<Mensaje> mensajes_viejos = new ArrayList<Mensaje>();
 	@OneToMany(cascade=CascadeType.ALL) 
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name="usuario_mensajes_nuevos", joinColumns={@JoinColumn (name="id_usuario", referencedColumnName= "nick" )},inverseJoinColumns={@JoinColumn(name="id_mensaje",referencedColumnName="id_mensaje")})
-	private List<Mensaje> mensajes_nuevos;
+	private List<Mensaje> mensajes_nuevos = new ArrayList<Mensaje>();
 	
 	public Usuario(String nombre, String nick) {
 		
 		this.nombre = nombre;
 		this.nick = nick;
-		mensajes_viejos= new ArrayList<Mensaje>();
-		mensajes_nuevos= new ArrayList<Mensaje>();
 	}
 	public Usuario(){};
 
@@ -97,5 +95,46 @@ public abstract class Usuario {
 				break;
 			}
 		}
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((mensajes_nuevos == null) ? 0 : mensajes_nuevos.hashCode());
+		result = prime * result + ((mensajes_viejos == null) ? 0 : mensajes_viejos.hashCode());
+		result = prime * result + ((nick == null) ? 0 : nick.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (mensajes_nuevos == null) {
+			if (other.mensajes_nuevos != null)
+				return false;
+		} else if (!mensajes_nuevos.equals(other.mensajes_nuevos))
+			return false;
+		if (mensajes_viejos == null) {
+			if (other.mensajes_viejos != null)
+				return false;
+		} else if (!mensajes_viejos.equals(other.mensajes_viejos))
+			return false;
+		if (nick == null) {
+			if (other.nick != null)
+				return false;
+		} else if (!nick.equals(other.nick))
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		return true;
 	}
 }

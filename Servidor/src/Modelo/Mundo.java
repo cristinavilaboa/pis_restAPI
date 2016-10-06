@@ -30,7 +30,7 @@ public class Mundo {
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name="mundo_siguiente", joinColumns={@JoinColumn (name="id_mundo_anterior", referencedColumnName= "id_mundo" )},inverseJoinColumns={@JoinColumn(name="id_mundo_sig",referencedColumnName="id_mundo")})
 	@LazyCollection(LazyCollectionOption.FALSE)
-	private List<Mundo> mundos_siguientes= new ArrayList<Mundo>();
+	private List<Mundo> mundos_siguientes = new ArrayList<Mundo>();
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "mundo") @LazyCollection(LazyCollectionOption.FALSE)
 	private List<Nivel> niveles = new ArrayList<Nivel>(); 
 	
@@ -150,6 +150,64 @@ public class Mundo {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+		result = prime * result + id_mundo;
+		result = prime * result + ((imagen == null) ? 0 : imagen.hashCode());
+		result = prime * result + ((mundos_siguientes == null) ? 0 : mundos_siguientes.hashCode());
+		result = prime * result + ((niveles == null) ? 0 : niveles.hashCode());
+		result = prime * result + ((nombre == null) ? 0 : nombre.hashCode());
+		result = prime * result + nro_nivel;
+		result = prime * result + puntos_exp;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Mundo other = (Mundo) obj;
+		if (descripcion == null) {
+			if (other.descripcion != null)
+				return false;
+		} else if (!descripcion.equals(other.descripcion))
+			return false;
+		if (id_mundo != other.id_mundo)
+			return false;
+		if (imagen == null) {
+			if (other.imagen != null)
+				return false;
+		} else if (!imagen.equals(other.imagen))
+			return false;
+		if (mundos_siguientes == null) {
+			if (other.mundos_siguientes != null)
+				return false;
+		} else if (!(mundos_siguientes.size()== other.mundos_siguientes.size()))
+			return false;
+		if (niveles == null) {
+			if (other.niveles != null)
+				return false;
+		} else if (!niveles.equals(other.niveles))
+			return false;
+		if (nombre == null) {
+			if (other.nombre != null)
+				return false;
+		} else if (!nombre.equals(other.nombre))
+			return false;
+		if (nro_nivel != other.nro_nivel)
+			return false;
+		if (puntos_exp != other.puntos_exp)
+			return false;
+		return true;
 	}
 	
 }
