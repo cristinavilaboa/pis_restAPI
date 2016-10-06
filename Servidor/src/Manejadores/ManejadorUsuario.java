@@ -7,7 +7,7 @@ import java.util.Collections;
 import Datatypes.DataPuntosJugador;
 import java.util.List;
 
-import Modelo.Clase;
+
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Mensaje;
@@ -180,15 +180,7 @@ public class ManejadorUsuario {
 		session.close();
 		System.out.println("successfully saved profesor");
 	}
-	public void agregarClase(Clase clase){
-		SessionFactory factory= HibernateUtility.getSessionFactory();
-		Session session=factory.openSession();
-		org.hibernate.Transaction t= session.beginTransaction();
-		session.saveOrUpdate(clase);
-		t.commit();
-		session.close();
-		System.out.println("successfully saved clase");
-	}
+
 	
 	
 	public void borrar(){
@@ -211,34 +203,27 @@ public class ManejadorUsuario {
 	}
 	
 	
-	public void borrarClaseYProfesores(){
+	public void borrarProfesores(){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
 		
-		List<Clase> lista_clases = session.createCriteria(Clase.class).list();
 		
-		for (Iterator<Clase> iterator = lista_clases.iterator(); iterator.hasNext();) {
-			Clase j = (Clase) iterator.next();
-			session.delete(j);
-			System.out.println("borrar los jugadores");
-		}
-		
-		
-		
-		/*List<Profesor> lista_profe = session.createCriteria(Profesor.class).list();
+		List<Profesor> lista_profe = session.createCriteria(Profesor.class).list();
 		
 		for (Iterator<Profesor> iterator = lista_profe.iterator(); iterator.hasNext();) {
 			Profesor j = (Profesor) iterator.next();
 			session.delete(j);
 			System.out.println("borrar los jugadores");
-		}*/
+		}
 		
 		t.commit();
 	
 		session.close();
 		System.out.println("successfully borrado jugadores");
 	}
+	
+	
 	
 
 	public void guardarEstado(EstadoJugador estado){

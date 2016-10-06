@@ -37,6 +37,7 @@ public class TestVerAyuda {
 		
 		mu.borrar();
 		mm.borrar();
+		mu.borrarProfesores();
 		
 		Ayuda ayuda = new Ayuda("La derivada es cuanto varia la funcion, cuando varia x");
 		Contenido contenido = new Contenido("d(8x)/dx");
@@ -62,6 +63,7 @@ public class TestVerAyuda {
 		
 		mu.borrar();
 		mm.borrar();
+		mu.borrarProfesores();
 	}
 
 }

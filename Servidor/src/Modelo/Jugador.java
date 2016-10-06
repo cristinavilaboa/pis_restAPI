@@ -28,15 +28,15 @@ public class Jugador extends Usuario{
 	private String imagen;
 	@OneToOne(cascade=CascadeType.ALL) @LazyCollection(LazyCollectionOption.FALSE)
 	private EstadoJugador estado;
-	@ManyToOne @LazyCollection(LazyCollectionOption.FALSE)
-	private Clase clase;
 	
-    public Jugador(String nombre, String nick, String FBToken, String imagen, EstadoJugador estado, Clase clase){
+	
+	
+    public Jugador(String nombre, String nick, String FBToken, String imagen, EstadoJugador estado){
         super(nombre, nick);
         this.FBToken = FBToken;
         this.imagen = imagen;
         this.estado = estado;
-        this.clase = clase;
+        
     }
     
     public Jugador()
@@ -68,13 +68,7 @@ public class Jugador extends Usuario{
 		this.estado = estado;
 	}
 
-	public Clase getClase() {
-		return clase;
-	}
 
-	public void setClase(Clase clase) {
-		this.clase = clase;
-	}
 	
 	public DataPuntosJugador obtenerDataPuntosJugador(String nombre){
 		int puntos = estado.getPuntos_exp();

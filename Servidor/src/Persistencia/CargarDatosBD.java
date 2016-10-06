@@ -18,7 +18,7 @@ import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
 import Modelo.Ayuda;
-import Modelo.Clase;
+
 import Modelo.Contenido;
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
@@ -72,6 +72,7 @@ public class CargarDatosBD {
 		
 		mu.borrar();
 		mm.borrar();
+		mu.borrarProfesores();
 		
 		List<Mundo> mundos_siguientes = new ArrayList<Mundo>();
 		List<Nivel> niveles = new ArrayList<Nivel>();
@@ -104,8 +105,7 @@ public class CargarDatosBD {
 		
 		Profesor profesor = new Profesor("Marcelo", "marce_fing", "1234");
 		mu.agregarProfesor(profesor);
-		Clase clase = new Clase("clase de Calculo",profesor);
-		mu.agregarClase(clase);
+
 		
 		mundo = new Mundo(1,"Calculo", "imagen", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
 		nivel1 = new Nivel(listaPN1,mundo);
@@ -168,7 +168,7 @@ public class CargarDatosBD {
 			exp += p.getPuntos_exp();
 		}
 		estado1 = new EstadoJugador(exp, mundos_completosJ1, logrosJ1, niveles_actualesJ1, problemas_resueltosJ1);
-		jugador1 = new Jugador("Nicolas", "nico_fing", "fBTokenJ1", "imagenJ1", estado1, clase);
+		jugador1 = new Jugador("Nicolas", "nico_fing", "fBTokenJ1", "imagenJ1", estado1);
 		
 		mu.agregarJugador(jugador1);
 		
@@ -188,7 +188,7 @@ public class CargarDatosBD {
 			exp += p.getPuntos_exp();
 		}
 		estado2 = new EstadoJugador(exp, mundos_completosJ2, logrosJ2, niveles_actualesJ2, problemas_resueltosJ2);
-		jugador2 = new Jugador("Maria", "mari_fing", "fBTokenJ2", "imagenJ2", estado2, clase);
+		jugador2 = new Jugador("Maria", "mari_fing", "fBTokenJ2", "imagenJ2", estado2);
 		
 		mu.agregarJugador(jugador2);
 		
@@ -198,7 +198,7 @@ public class CargarDatosBD {
 			exp += p.getPuntos_exp();
 		}
 		estado3 = new EstadoJugador(exp, mundos_completosJ3, logrosJ3, niveles_actualesJ3, problemas_resueltosJ3);
-		jugador3 = new Jugador("Facundo", "fa_cu_fing", "fBTokenJ2", "imagenJ2", estado3, clase);
+		jugador3 = new Jugador("Facundo", "fa_cu_fing", "fBTokenJ2", "imagenJ2", estado3);
 		
 		mu.agregarJugador(jugador3);
 		

@@ -34,7 +34,7 @@ public class TestListarMundosNivelesProblemasClient {
 	ManejadorProblema mp = ManejadorProblema.getInstancia();
 	
 	EstadoJugador estado = new EstadoJugador(0, new ArrayList<Mundo>(), new ArrayList<Logro>(), new HashMap<Integer,Nivel>(), new ArrayList<Problema>());
-	Jugador jugador = new Jugador("nombre", "nick", "FBToken", "imagen", estado, null);
+	Jugador jugador = new Jugador("nombre", "nick", "FBToken", "imagen", estado);
 	
 	ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 	
