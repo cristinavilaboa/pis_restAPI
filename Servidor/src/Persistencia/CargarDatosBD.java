@@ -137,8 +137,8 @@ public class CargarDatosBD {
 		problema4 = new Problema("Resolver la siguiente integral","60",10,ayudaP4,contenidoP4,nivel4,profesor);
 		
 		ayudaP5 = new Ayuda("La integral es el area bajo la curva de una funci�n");
-		contenidoP5 = new Contenido("integral de (cos(x) + 5x dx) en [a,b]");
-		problema5 = new Problema("Resolver la siguiente integral","12345",10,ayudaP5,contenidoP5,nivel5,profesor);
+		contenidoP5 = new Contenido("integral de (tan(x))");
+		problema5 = new Problema("Resolver la siguiente integral","-log(cos(x))",10,ayudaP5,contenidoP5,nivel5,profesor);
 		
 		nivel1.agregarProblema(problema1);
 		nivel2.agregarProblema(problema21);
