@@ -11,10 +11,11 @@
         <property name="hibernate.connection.url">jdbc:mysql://us-cdbr-azure-west-b.cleardb.com:3306/pisg8</property>
         <property name="hibernate.connection.username">bc2d74ac679b36</property> 
 	-->
+	
     	<!-- EJEMPLO DE CONEXION PARA BASE LOCAL PARA PROBAR -->
-     	<property name="hibernate.connection.password">pass</property> 
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/pisg8</property>
-        <property name="hibernate.connection.username">usr</property> 
+     	<property name="hibernate.connection.password">admin</property> 
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/pis</property>
+        <property name="hibernate.connection.username">root</property> 
      
     
        

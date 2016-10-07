@@ -138,7 +138,7 @@ public class CargarDatosBD {
 		
 		ayudaP5 = new Ayuda("La integral es el area bajo la curva de una funci�n");
 		contenidoP5 = new Contenido("integral de (cos(x) + 5x dx) en [a,b]");
-		problema5 = new Problema("Resolver la siguiente integral","(-5/2)(a^2-b^2) - sin(a) + sin(b)",10,ayudaP5,contenidoP5,nivel5,profesor);
+		problema5 = new Problema("Resolver la siguiente integral","12345",10,ayudaP5,contenidoP5,nivel5,profesor);
 		
 		nivel1.agregarProblema(problema1);
 		nivel2.agregarProblema(problema21);

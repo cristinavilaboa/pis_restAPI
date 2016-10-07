@@ -109,10 +109,19 @@ public class EstadoJugador {
 	}
 	
 	public void agregarProblema(Problema p){
-		if(!problemas_resueltos.contains(p)){//Si no lo respondi antes, lo agrego
-			problemas_resueltos.add(p);
-
+		
+		boolean encontre=false;
+		for (Problema p1:problemas_resueltos){			
+			if(p1.getId()==p.getId()){
+				encontre=true;
+				break;
+			}		
 		}
+		if (!encontre){
+			
+			problemas_resueltos.add(p);
+		}
+		
 	}
 	
 	public void ganarLogro(Logro l){

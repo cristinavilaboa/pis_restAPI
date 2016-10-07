@@ -101,7 +101,14 @@ public class ControladorJugador implements IControladorJugador{
 		}
 		
 		for(Mundo m: mundos){
-			boolean completo = mundos_completos.contains(m);
+			
+			boolean completo = false;
+			for (Mundo m_completo:mundos_completos){
+				 if (m_completo.getId()==m.getId()){
+					 completo=true;
+				 }
+			}
+			
 			boolean disponible = mundos_disponibles.contains(m.getId());
 			List<Integer> mundos_siguientes = new ArrayList<Integer>();
 			
@@ -147,7 +154,12 @@ public class ControladorJugador implements IControladorJugador{
 			boolean completo;
 			boolean disponible;
 			if(estado.getNiveles_actuales().containsKey(id_mundo)){
-				completo = estado.getNiveles_actuales().get(id_mundo).getNro_nivel() > n.getNro_nivel();
+				
+				if (!mundo.ultimoNivelMundo(n)){
+					completo = estado.getNiveles_actuales().get(id_mundo).getNro_nivel() > n.getNro_nivel();
+				}else{
+					completo = estado.nivelCompleto(n);
+				}	
 				disponible = estado.getNiveles_actuales().get(id_mundo).getNro_nivel() >= n.getNro_nivel();
 				
 			}else{
@@ -172,7 +184,15 @@ public class ControladorJugador implements IControladorJugador{
 		List<Problema> problemas_resueltos = estado.getProblemas_resueltos();
 		
 		for(Problema p: nivel.getProblemas()){
-			boolean resuelto = problemas_resueltos.contains(p);
+			
+			boolean resuelto =false; 
+			
+			for (Problema p_resuelto:problemas_resueltos){
+					if (p.getId()==p_resuelto.getId()){
+						resuelto=true;
+					}
+			}
+			
 			lista_problemas.add(new DataProblema(p.getId(), p.getDescripcion(), p.getRespuesta(), p.getPuntos_exp(), p.getAyuda().getInfo(), p.getContenido().getTexto(), p.getAutor().getNick(), resuelto));
 		}
 		
