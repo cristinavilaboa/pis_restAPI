@@ -6,16 +6,16 @@
     <session-factory >
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
      
- 	<!--   
+ 	<!-- BASE DE AZURE
         <property name="hibernate.connection.password">b2f24c6b</property> 
         <property name="hibernate.connection.url">jdbc:mysql://us-cdbr-azure-west-b.cleardb.com:3306/pisg8</property>
         <property name="hibernate.connection.username">bc2d74ac679b36</property> 
-
-    -->
+	-->
+    	<!-- EJEMPLO DE CONEXION PARA BASE LOCAL PARA PROBAR -->
      	<property name="hibernate.connection.password">pass</property> 
-        <property name="hibernate.connection.url">jdbc:mysql://us-cdbr-azure-west-b.cleardb.com:3306/pisg8</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/pisg8</property>
         <property name="hibernate.connection.username">usr</property> 
-    
+     
     
        
         <property name="hibernate.hbm2ddl.auto">update</property>

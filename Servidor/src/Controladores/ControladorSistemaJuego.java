@@ -9,6 +9,7 @@ import javax.transaction.HeuristicRollbackException;
 import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +32,7 @@ import Persistencia.CargarDatosBD;
 
 import Modelo.Problema;
 
+@CrossOrigin
 @RestController
 public class ControladorSistemaJuego implements IControladorSistemaJuego {
 	@RequestMapping(value="/cargardatos", method=RequestMethod.POST)
