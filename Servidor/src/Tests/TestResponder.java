@@ -92,17 +92,17 @@ public class TestResponder {
 		problema1M3 = new Problema("Problema xx","respuesta",10,null,null,nivel1M3,null);
 		nivel1M3.agregarProblema(problema1M3);
 		
-		problema = new Problema("Problema 1","respuesta",10,null,null,nivel,null);
+		problema = new Problema("Problema 1","respu esta",10,null,null,nivel,null);
 		nivel.agregarProblema(problema);
 		
-		problema2 = new Problema("Problema 2","respuesta",10,null,null,nivel,null);
+		problema2 = new Problema("Problema 2","r espuesta",10,null,null,nivel,null);
 		nivel.agregarProblema(problema2);
 		
 		
-		problema3 = new Problema("Problema 3","respuesta",10,null,null,nivel2,null);
+		problema3 = new Problema("Problema 3","respues ta",10,null,null,nivel2,null);
 		nivel2.agregarProblema(problema3);
 		
-		problema1M2 = new Problema("Problema 4","respuesta",10,null,null,nivel1M2,null);
+		problema1M2 = new Problema("Problema 4","res puesta",10,null,null,nivel1M2,null);
 		nivel1M2.agregarProblema(problema1M2);
 		
 		estado = new EstadoJugador(0, mundos_completos, logros, mundo_nivel, nivel_problema);
@@ -155,7 +155,7 @@ public class TestResponder {
 		
 
 		
-		cp.responderProblema(id_p1, "respuesta", "nick");
+		cp.responderProblema(id_p1, "respu esta", "nick");
 		nuevo_estado = mu.buscarJugador("nick").getEstado();
 		assertEquals(10,nuevo_estado.getPuntos_exp());
 		assertEquals(1,nuevo_estado.cantCorrectas());
@@ -165,7 +165,7 @@ public class TestResponder {
 		
 		
 		
-		cp.responderProblema(id_p1, "respuesta", "nick");
+		cp.responderProblema(id_p1, "respues ta", "nick");
 		nuevo_estado = mu.buscarJugador("nick").getEstado();
 		assertEquals(10,nuevo_estado.getPuntos_exp());
 		assertEquals(1,nuevo_estado.cantCorrectas());
@@ -176,7 +176,7 @@ public class TestResponder {
 		
 		
 		int id_p2 = mm.obtenerMundo(1).getNiveles().get(0).getProblemas().get(1).getId();
-		cp.responderProblema(id_p2, "respuesta", "nick");
+		cp.responderProblema(id_p2, "re spuesta", "nick");
 		nuevo_estado = mu.buscarJugador("nick").getEstado();
 		assertEquals(20,nuevo_estado.getPuntos_exp());
 		assertEquals(2,nuevo_estado.cantCorrectas());
@@ -185,7 +185,7 @@ public class TestResponder {
 		assertTrue(nuevo_estado.getMundos_completos().isEmpty());
 		
 		int id_p3 = mm.obtenerMundo(1).getNiveles().get(1).getProblemas().get(0).getId();
-		cp.responderProblema(id_p3, "respuesta", "nick");
+		cp.responderProblema(id_p3, "respuest a", "nick");
 		nuevo_estado = mu.buscarJugador("nick").getEstado();
 		assertEquals(80,nuevo_estado.getPuntos_exp());
 		assertEquals(3,nuevo_estado.cantCorrectas());
@@ -195,7 +195,7 @@ public class TestResponder {
 		
 
 		int id_p4 = mm.obtenerMundo(2).getNiveles().get(0).getProblemas().get(0).getId();
-		cp.responderProblema(id_p4, "respuesta", "nick");
+		cp.responderProblema(id_p4, "re spuesta", "nick");
 		nuevo_estado = mu.buscarJugador("nick").getEstado();
 		assertEquals(140,nuevo_estado.getPuntos_exp());
 		assertEquals(4,nuevo_estado.cantCorrectas());

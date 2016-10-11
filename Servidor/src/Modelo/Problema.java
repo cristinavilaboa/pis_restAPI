@@ -130,7 +130,8 @@ public class Problema {
 	
 	//METODOS A IMPLEMENTAR
 	public boolean verificarRespuesta(String respuesta){
-		return respuesta.equalsIgnoreCase(this.respuesta);
+		String sin_espacios = respuesta.replaceAll("\\s","");
+		return sin_espacios.equalsIgnoreCase(this.respuesta.replaceAll("\\s",""));
 	}
 	
 	public void enviarMensaje(String mensaje,Date fecha, String asunto,String id_jugador){
