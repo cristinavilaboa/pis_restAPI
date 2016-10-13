@@ -32,7 +32,7 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
        
-       
+        <mapping class="Modelo.Estadistica"/>
      	<mapping class="Modelo.Ayuda"/>
      	<mapping class="Modelo.Contenido"/>
      	<mapping class="Modelo.EstadoJugador"/>
@@ -45,5 +45,6 @@
      	<mapping class="Modelo.Profesor"/>
      	<mapping class="Modelo.Tema"/>
      	<mapping class="Modelo.Usuario"/>
+
     </session-factory>
 </hibernate-configuration>

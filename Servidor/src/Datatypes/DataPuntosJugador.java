@@ -2,29 +2,29 @@ package Datatypes;
 
 public class DataPuntosJugador implements Comparable<DataPuntosJugador>{
 	
-	private String nombre;
+	private String nick;
 	private Integer puntos;
 
 	public DataPuntosJugador(){
-		nombre = null;
+		nick = null;
 		puntos = 0;
 	}
 	
-	public DataPuntosJugador(String nombre, Integer puntos){
-		this.nombre = nombre;
+	public DataPuntosJugador(String nick, Integer puntos){
+		this.nick = nick;
 		this.puntos = puntos;
 	}	
 	
-	public String getNombre(){
-		return nombre;
+	public String getNick(){
+		return nick;
 	}
 	
 	public Integer getPuntos(){
 		return puntos;
 	}
 
-	public void setNombre(String nombre){
-		this.nombre = nombre;
+	public void setNick(String nick){
+		this.nick = nick;
 	}
 	
 	public void setPuntos(Integer puntos){

@@ -70,9 +70,9 @@ public class Jugador extends Usuario{
 
 
 	
-	public DataPuntosJugador obtenerDataPuntosJugador(String nombre){
+	public DataPuntosJugador obtenerDataPuntosJugador(String nick){
 		int puntos = estado.getPuntos_exp();
-		DataPuntosJugador dpj = new DataPuntosJugador(nombre, puntos);
+		DataPuntosJugador dpj = new DataPuntosJugador(nick, puntos);
 		return dpj;
 	}
 	

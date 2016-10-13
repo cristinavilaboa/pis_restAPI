@@ -22,6 +22,7 @@ import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
 import Modelo.Ayuda;
 import Modelo.Contenido;
+import Modelo.Estadistica;
 import Modelo.Mensaje;
 import Modelo.Nivel;
 import Modelo.Problema;
@@ -39,14 +40,20 @@ public class ControladorProblema implements IControladorProblema{
 		IControladorJugador cu = new ControladorJugador();
 		IControladorSistemaJuego csj = new ControladorSistemaJuego();
 		int exp_ganada = mp.verificarRespuesta(id_problema, respuesta);
-
-		
-		if(exp_ganada > 0 && !cu.yaRespondida(id_jugador, id_problema)){
-			
-			cu.sumarPuntos(exp_ganada, id_jugador, id_problema);
-			int id_mundo = mp.buscarProblema(id_problema).getNivel().getMundo().getId();
-			csj.avanzarJuego(id_jugador, id_problema, id_mundo);
+		Problema p = mp.buscarProblema(id_problema);
+		Estadistica estadisticas = p.getEstadisticas();
+		if(!cu.yaRespondida(id_jugador, id_problema)){
+			estadisticas.aumentarIntentos();
+			if(exp_ganada > 0){
+				estadisticas.aumentarAciertos();
+				cu.sumarPuntos(exp_ganada, id_jugador, id_problema);
+				int id_mundo = p.getNivel().getMundo().getId();
+				csj.avanzarJuego(id_jugador, id_problema, id_mundo);
+				
+			}
+			mp.agregarProblema(p);
 		}
+		
 		return new DataExperiencia(exp_ganada);
 	}
 	@RequestMapping(value="/enviarmensaje", method=RequestMethod.GET)
@@ -88,10 +95,10 @@ public class ControladorProblema implements IControladorProblema{
 		
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		Profesor profe = mu.buscarProfesor(nick_prof);
-		Nivel nivel = mm.obtenerMundo(id_mundo).buscarNivel(num_nivel);
+		Nivel nivel = mm.obtenerMundo(id_mundo).buscarNivelPorNro(num_nivel);
 	
 		//Problema problema = new Problema(id_problema, descripcion, respuesta, puntos_exp, ayuda, contenido, nivel, profe);
-		Problema problema = new Problema( descripcion, respuesta, puntos_exp, ayuda, contenido, nivel, profe);
+		Problema problema = new Problema( descripcion, respuesta, puntos_exp, ayuda, contenido, nivel, profe, new Estadistica(0,0));
 
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
 		mp.agregarProblema(problema);

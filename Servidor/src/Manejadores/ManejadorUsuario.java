@@ -131,8 +131,8 @@ public class ManejadorUsuario {
 			//session = HibernateUtility.getSessionFactory().openSession();
 			List<Jugador> lista = session.createCriteria(Jugador.class).list();	
 			for (Jugador j:lista){
-				String nombreJ = j.getNombre();
-				DataPuntosJugador dpj = j.obtenerDataPuntosJugador(nombreJ);
+				String nickJ = j.getNick();
+				DataPuntosJugador dpj = j.obtenerDataPuntosJugador(nickJ);
 				list_dpj.add(dpj);
 			}
 /*
@@ -284,6 +284,25 @@ public class ManejadorUsuario {
 		}
 		return lista_jugadores;				
 
+	}
+	
+	public Usuario buscarUsuario(String nick){
+		Session session = null;
+		Usuario user = null;
+		try{
+			session = HibernateUtility.getSessionFactory().openSession();
+			user =(Profesor)session.get(Profesor.class,nick);
+			if(user == null){
+				user =(Jugador)session.get(Jugador.class,nick);
+			}
+		} catch (Exception e){
+			System.out.println("error:" + e.getMessage());
+		} finally {
+			if (session != null && session.isOpen()){
+				session.close();
+			}
+		}
+		return user;
 	}
 	
 }
