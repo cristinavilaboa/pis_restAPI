@@ -72,19 +72,19 @@ public class TestVerRanking {
 		
 		//DataPuntosJugador[] array_res = resultado.toArray(new DataPuntosJugador[resultado.size()]);
 		
-		assertEquals(resultado.get(0).getNombre(),"Carolina");
+		assertEquals(resultado.get(0).getNick(),"Caro");
 		assertTrue(resultado.get(0).getPuntos() == 33);
 		
-		assertEquals(resultado.get(1).getNombre(),"Raul");
+		assertEquals(resultado.get(1).getNick(),"Rau");
 		assertTrue(resultado.get(1).getPuntos() == 28);
 		
-		assertEquals(resultado.get(2).getNombre(),"Estefania");
+		assertEquals(resultado.get(2).getNick(),"fuffi");
 		assertTrue(resultado.get(2).getPuntos() == 12);
 		
-		assertEquals(resultado.get(3).getNombre(),"Paula");
+		assertEquals(resultado.get(3).getNick(),"Pau");
 		assertTrue(resultado.get(3).getPuntos() == 2);
 		
-		assertEquals(resultado.get(4).getNombre(),"Rodrigo");
+		assertEquals(resultado.get(4).getNick(),"Rodri");
 		assertTrue(resultado.get(4).getPuntos() == 2);
 		
 		manUs.borrar();

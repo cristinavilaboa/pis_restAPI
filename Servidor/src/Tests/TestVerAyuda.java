@@ -20,6 +20,7 @@ import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
 import Modelo.Ayuda;
 import Modelo.Contenido;
+import Modelo.Estadistica;
 import Modelo.Mundo;
 import Modelo.Nivel;
 import Modelo.Problema;
@@ -51,7 +52,7 @@ public class TestVerAyuda {
 		Profesor profesor = new Profesor("Pedro", "pedro04", "1234");
 		mu.agregarProfesor(profesor);
 		
-		Problema problema = new Problema( "Resolver la siguiente derivada", "8", 1, ayuda, contenido, nivel, profesor);
+		Problema problema = new Problema( "Resolver la siguiente derivada", "8", 1, ayuda, contenido, nivel, profesor, new Estadistica(0,0));
 		manejador.agregarProblema(problema);
 		
 		int id_problema = mm.obtenerMundo(1).getNiveles().get(0).getProblemas().get(0).getId();

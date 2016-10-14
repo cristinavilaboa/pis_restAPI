@@ -27,6 +27,8 @@ public class Problema {
 	private String respuesta;
 	private int puntos_exp;
 	@OneToOne(cascade = CascadeType.ALL) @LazyCollection(LazyCollectionOption.FALSE)
+	private Estadistica estadisticas;
+	@OneToOne(cascade = CascadeType.ALL) @LazyCollection(LazyCollectionOption.FALSE)
 	private Ayuda ayuda;
 	@OneToOne(cascade = CascadeType.ALL) @LazyCollection(LazyCollectionOption.FALSE)
 	private Contenido contenido;
@@ -50,7 +52,7 @@ public class Problema {
 	}*/
 	
 	public Problema(String descripcion, String respuesta, int puntos_exp, Ayuda ayuda, Contenido contenido,
-			Nivel nivel, Profesor autor) {
+			Nivel nivel, Profesor autor, Estadistica estadisticas) {
 		this.descripcion = descripcion;
 		this.respuesta = respuesta;
 		this.puntos_exp = puntos_exp;
@@ -58,6 +60,7 @@ public class Problema {
 		this.contenido = contenido;
 		this.nivel = nivel;
 		this.autor = autor;
+		this.estadisticas = estadisticas;
 	}
 	
 	
@@ -128,9 +131,21 @@ public class Problema {
 		this.autor = autor;
 	}
 	
+	
+	public Estadistica getEstadisticas() {
+		return estadisticas;
+	}
+
+
+	public void setEstadisticas(Estadistica estadisticas) {
+		this.estadisticas = estadisticas;
+	}
+
+
 	//METODOS A IMPLEMENTAR
 	public boolean verificarRespuesta(String respuesta){
-		return respuesta.equalsIgnoreCase(this.respuesta);
+		String sin_espacios = respuesta.replaceAll("\\s","");
+		return sin_espacios.equalsIgnoreCase(this.respuesta.replaceAll("\\s",""));
 	}
 	
 	public void enviarMensaje(String mensaje,Date fecha, String asunto,String id_jugador){

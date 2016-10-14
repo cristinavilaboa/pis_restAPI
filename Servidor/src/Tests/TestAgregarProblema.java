@@ -47,7 +47,7 @@ public class TestAgregarProblema {
 		ayuda = new Ayuda("ayuda al problema");
 		contenido = new Contenido("Contenio del problema");
 		
-		problema = new Problema("Descripcion del problema", "Respuesta del problema", 50 ,ayuda, contenido,	nivel, profe);
+		problema = new Problema("Descripcion del problema", "Respuesta del problema", 50 ,ayuda, contenido,	nivel, profe, new Estadistica(0,0));
 		mp.agregarProblema(problema);
 		
 	}

@@ -20,6 +20,7 @@ import Manejadores.ManejadorUsuario;
 import Modelo.Ayuda;
 
 import Modelo.Contenido;
+import Modelo.Estadistica;
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Logro;
@@ -54,7 +55,7 @@ public class CargarDatosBD {
 		org.hibernate.Transaction t= session.beginTransaction();
 		
 		Profesor profe = new Profesor("Juan","pepe","123");
-		Problema problema= new Problema("problema1","resp",12,null,null,null,profe);
+		Problema problema= new Problema("problema1","resp",12,null,null,null,profe,new Estadistica(0,0));
 		
 		session.persist(profe);
 		session.persist(problema);
@@ -115,30 +116,30 @@ public class CargarDatosBD {
 		nivel5 = new Nivel(listaPN5,mundo);
 		
 		ayudaP1 = new Ayuda("La derivada es cuanto varia la funcion, cuando varia x");
-		contenidoP1 = new Contenido("d(8x)/dx");
-		problema1 = new Problema("Resolver la siguiente derivada","8",10,ayudaP1,contenidoP1,nivel1,profesor);
+		contenidoP1 = new Contenido("Preguntas/d8x.png");
+		problema1 = new Problema("Resolver la siguiente derivada","8",10,ayudaP1,contenidoP1,nivel1,profesor, new Estadistica(0,0));
 		
 		ayudaP21 = new Ayuda("La derivada es cuanto varia la funcion, cuando varia x");
-		contenidoP21 = new Contenido("d(x^2/2)/dx");
-		problema21 = new Problema("Resolver la siguiente derivada","x",10,ayudaP21,contenidoP21,nivel2,profesor);
+		contenidoP21 = new Contenido("Preguntas/derivadaxcuadradosobredos.png");
+		problema21 = new Problema("Resolver la siguiente derivada","x",10,ayudaP21,contenidoP21,nivel2,profesor, new Estadistica(0,0));
 		ayudaP22 = new Ayuda("La derivada es cuanto varia la funcion, cuando varia x");
-		contenidoP22= new Contenido("d(e^x)/dx");
-		problema22 = new Problema("Resolver la siguiente derivada","e^x",10,ayudaP22,contenidoP22,nivel2,profesor);
+		contenidoP22= new Contenido("Preguntas/derivadaEalaX.png");
+		problema22 = new Problema("Resolver la siguiente derivada","e^x",10,ayudaP22,contenidoP22,nivel2,profesor, new Estadistica(0,0));
 		
 		ayudaP31 = new Ayuda("La integral es el area bajo la curva de una funciï¿½n");
-		contenidoP31 = new Contenido("integral de (1) en [1,5]");
-		problema31 = new Problema("Resolver la siguiente integral","4",10,ayudaP31,contenidoP31,nivel3,profesor);
+		contenidoP31 = new Contenido("Preguntas/integralde1de1a5.png");
+		problema31 = new Problema("Resolver la siguiente integral","4",10,ayudaP31,contenidoP31,nivel3,profesor, new Estadistica(0,0));
 		ayudaP32 = new Ayuda("La integral es el area bajo la curva de una funciï¿½n");
-		contenidoP32 = new Contenido("integral de x en [0,2]");
-		problema32 = new Problema("Resolver la siguiente integral","2",10,ayudaP32,contenidoP32,nivel3,profesor);
+		contenidoP32 = new Contenido("Preguntas/integraldexde0a2.png");
+		problema32 = new Problema("Resolver la siguiente integral","2",10,ayudaP32,contenidoP32,nivel3,profesor, new Estadistica(0,0));
 		
 		ayudaP4 = new Ayuda("La integral es el area bajo la curva de una funci�n");
-		contenidoP4 = new Contenido("integral de (2x dx) en [2,8]");
-		problema4 = new Problema("Resolver la siguiente integral","60",10,ayudaP4,contenidoP4,nivel4,profesor);
+		contenidoP4 = new Contenido("Preguntas/integralde2xde2a8.png");
+		problema4 = new Problema("Resolver la siguiente integral","60",10,ayudaP4,contenidoP4,nivel4,profesor, new Estadistica(0,0));
 		
 		ayudaP5 = new Ayuda("La integral es el area bajo la curva de una funci�n");
-		contenidoP5 = new Contenido("integral de (tan(x))");
-		problema5 = new Problema("Resolver la siguiente integral","-log(cos(x))",10,ayudaP5,contenidoP5,nivel5,profesor);
+		contenidoP5 = new Contenido("Preguntas/integraldetangente.png");
+		problema5 = new Problema("Resolver la siguiente integral","-log(cos(x))",10,ayudaP5,contenidoP5,nivel5,profesor, new Estadistica(0,0));
 		
 		nivel1.agregarProblema(problema1);
 		nivel2.agregarProblema(problema21);

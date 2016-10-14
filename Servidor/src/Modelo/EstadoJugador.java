@@ -129,8 +129,10 @@ public class EstadoJugador {
 	}
 	
 	public void agregarMundoActivo(Mundo mundo){//Se agrega un nuevo mundo, en su primer nivel
-		Nivel primer_nivel = mundo.getNiveles().get(0);
-		niveles_actuales.put(mundo.getId(), primer_nivel);
+		if(mundo.getNiveles().size()>0){
+			Nivel primer_nivel = mundo.getNiveles().get(0);
+			niveles_actuales.put(mundo.getId(), primer_nivel);
+		}
 	}
 	
 	public void agregarNivelActivo(Mundo mundo){//PRECONDICION: EL MUNDO PERTENECE A mundo_nivel
@@ -173,19 +175,23 @@ public class EstadoJugador {
 	}
 	
 	public boolean nivelCompleto(Nivel nivel){
-		for(Problema p: nivel.getProblemas()){
-			boolean encontre = false;
-			for(Problema p1: problemas_resueltos){
-				if(p1.getId()==p.getId()){
-					encontre = true;
-					break;
+		if(!nivel.getProblemas().isEmpty()){	
+			for(Problema p: nivel.getProblemas()){
+				boolean encontre = false;
+				for(Problema p1: problemas_resueltos){
+					if(p1.getId()==p.getId()){
+						encontre = true;
+						break;
+					}
+				}
+				if (!encontre){
+					return false;
 				}
 			}
-			if (!encontre){
-				return false;
-			}
+			return true;
+		}else{
+			return false;
 		}
-		return true;
 	}
 
 	@Override

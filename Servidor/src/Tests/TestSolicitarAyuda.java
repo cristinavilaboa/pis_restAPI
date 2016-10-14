@@ -14,6 +14,7 @@ import org.junit.Test;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
+import Modelo.Estadistica;
 import Modelo.Mensaje;
 import Modelo.Mundo;
 import Modelo.Nivel;
@@ -47,7 +48,7 @@ public class TestSolicitarAyuda {
 		mundo.agregarNivel(nivel);
 		
 
-		problema= new Problema("problema1","resp",12,null,null,nivel,profesor);
+		problema= new Problema("problema1","resp",12,null,null,nivel,profesor, new Estadistica(0,0));
 		listaP.add(problema);
 		
 		

@@ -21,6 +21,7 @@ import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
 import Modelo.Ayuda;
 import Modelo.Contenido;
+import Modelo.Estadistica;
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Logro;
@@ -97,8 +98,8 @@ public class TestListarMundosNivelesProblemasClient {
 		
 		
 		
-		p1 = new Problema("Problema 1","respuesta",10,ayuda1,cont1,n1m1,profesor);
-		p2 = new Problema("Problema 2","respuesta2",10,ayuda2,cont2,n1m1,profesor);
+		p1 = new Problema("Problema 1","respuesta",10,ayuda1,cont1,n1m1,profesor, new Estadistica(0,0));
+		p2 = new Problema("Problema 2","respuesta2",10,ayuda2,cont2,n1m1,profesor, new Estadistica(0,0));
 		
 		n1m1.agregarProblema(p1);
 		n1m1.agregarProblema(p2);
@@ -130,8 +131,8 @@ public class TestListarMundosNivelesProblemasClient {
 		
 		mu.agregarJugador(jugador);
 		
-	//	mp.agregarProblema(p1);
-	//	mp.agregarProblema(p2);
+		mp.agregarProblema(p1);
+		mp.agregarProblema(p2);
 	}
 
 	@Test
@@ -173,9 +174,9 @@ public class TestListarMundosNivelesProblemasClient {
 		assertEquals(p2.getDescripcion(),lista_problemasN1M1.get(1).getDescripcion());
 		assertFalse(lista_problemasN1M1.get(1).isResuelto());
 
-		mu.borrar();		
-		mm.borrar();
-		mu.borrarProfesores();
+		//mu.borrar();		
+		//mm.borrar();
+		//mu.borrarProfesores();
 		
 	}
 
