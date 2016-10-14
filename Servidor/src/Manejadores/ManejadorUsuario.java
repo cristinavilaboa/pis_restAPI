@@ -291,10 +291,7 @@ public class ManejadorUsuario {
 		Usuario user = null;
 		try{
 			session = HibernateUtility.getSessionFactory().openSession();
-			user =(Profesor)session.get(Profesor.class,nick);
-			if(user == null){
-				user =(Jugador)session.get(Jugador.class,nick);
-			}
+			user =session.get(Usuario.class,nick);	
 		} catch (Exception e){
 			System.out.println("error:" + e.getMessage());
 		} finally {
