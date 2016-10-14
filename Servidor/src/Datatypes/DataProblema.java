@@ -15,10 +15,11 @@ public class DataProblema {
 	private String contenido;
 	private String id_autor;
 	private boolean resuelto;
+	private boolean tut_activo;
 	
 	
 	public DataProblema(Integer id_problema, String descripcion, String respuesta, int puntos_exp, String ayuda,
-			String contenido, String id_autor, boolean resuelto) {
+			String contenido, String id_autor, boolean resuelto, boolean tut_activo) {
 		this.id_problema = id_problema;
 		this.descripcion = descripcion;
 		this.respuesta = respuesta;
@@ -27,6 +28,7 @@ public class DataProblema {
 		this.contenido = contenido;
 		this.id_autor = id_autor;
 		this.resuelto = resuelto;
+		this.tut_activo = tut_activo;
 	}
 	
 	
@@ -61,7 +63,13 @@ public class DataProblema {
 
 	public boolean isResuelto() {
 		return resuelto;
+	}
+
+	public boolean isTut_activo() {
+		return tut_activo;
 	} 	
+	
+	
 	
 	
 }

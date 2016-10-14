@@ -42,7 +42,7 @@ public class TestLoginYRegistrarJugador {
 	
 		mu.borrar();
 		mm.borrar();	
-		estado = new EstadoJugador(0, mundos_completos, logros, mundo_nivel, nivel_problema);
+		estado = new EstadoJugador(0, mundos_completos, logros, mundo_nivel, nivel_problema,new ArrayList<Integer>());
 		
 		jugador = new Jugador("ni", "nick", "fBToken", "imagen", estado);
 		niveles = new ArrayList<Nivel>();

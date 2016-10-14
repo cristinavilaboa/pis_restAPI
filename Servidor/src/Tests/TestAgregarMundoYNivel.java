@@ -54,7 +54,7 @@ public class TestAgregarMundoYNivel {
 		cp.agregarNivel(0);
 		cproblema.agregarProblema("descripcion", "resp",10 , "cont_ayuda", "cont", 0, 0, "nick");
 		
-		est = new EstadoJugador(0, new ArrayList<Mundo>(),new ArrayList<Logro>(), new HashMap<Integer,Nivel>(), new ArrayList<Problema>());
+		est = new EstadoJugador(0, new ArrayList<Mundo>(),new ArrayList<Logro>(), new HashMap<Integer,Nivel>(), new ArrayList<Problema>(),new ArrayList<Integer>());
 		est.agregarMundoActivo(mm.obtenerMundo(0));
 		j = new Jugador("nombreJ1", "nickJ1", "FBTokenJ1", "imagenJ1", est);
 		mu.agregarJugador(j);

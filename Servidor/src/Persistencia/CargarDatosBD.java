@@ -168,7 +168,7 @@ public class CargarDatosBD {
 		for (Problema p : problemas_resueltosJ1) {
 			exp += p.getPuntos_exp();
 		}
-		estado1 = new EstadoJugador(exp, mundos_completosJ1, logrosJ1, niveles_actualesJ1, problemas_resueltosJ1);
+		estado1 = new EstadoJugador(exp, mundos_completosJ1, logrosJ1, niveles_actualesJ1, problemas_resueltosJ1,new ArrayList<Integer>());
 		jugador1 = new Jugador("Nicolas", "nico_fing", "fBTokenJ1", "imagenJ1", estado1);
 		
 		mu.agregarJugador(jugador1);
@@ -188,7 +188,7 @@ public class CargarDatosBD {
 		for (Problema p : problemas_resueltosJ2) {
 			exp += p.getPuntos_exp();
 		}
-		estado2 = new EstadoJugador(exp, mundos_completosJ2, logrosJ2, niveles_actualesJ2, problemas_resueltosJ2);
+		estado2 = new EstadoJugador(exp, mundos_completosJ2, logrosJ2, niveles_actualesJ2, problemas_resueltosJ2,new ArrayList<Integer>());
 		jugador2 = new Jugador("Maria", "mari_fing", "fBTokenJ2", "imagenJ2", estado2);
 		
 		mu.agregarJugador(jugador2);
@@ -198,7 +198,7 @@ public class CargarDatosBD {
 		for (Problema p : problemas_resueltosJ3) {
 			exp += p.getPuntos_exp();
 		}
-		estado3 = new EstadoJugador(exp, mundos_completosJ3, logrosJ3, niveles_actualesJ3, problemas_resueltosJ3);
+		estado3 = new EstadoJugador(exp, mundos_completosJ3, logrosJ3, niveles_actualesJ3, problemas_resueltosJ3,new ArrayList<Integer>());
 		jugador3 = new Jugador("Facundo", "fa_cu_fing", "fBTokenJ2", "imagenJ2", estado3);
 		
 		mu.agregarJugador(jugador3);

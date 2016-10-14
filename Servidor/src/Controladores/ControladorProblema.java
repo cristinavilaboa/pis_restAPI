@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,8 @@ import Manejadores.ManejadorUsuario;
 import Modelo.Ayuda;
 import Modelo.Contenido;
 import Modelo.Estadistica;
+import Modelo.EstadoJugador;
+import Modelo.Jugador;
 import Modelo.Mensaje;
 import Modelo.Nivel;
 import Modelo.Problema;
@@ -42,6 +45,15 @@ public class ControladorProblema implements IControladorProblema{
 		int exp_ganada = mp.verificarRespuesta(id_problema, respuesta);
 		Problema p = mp.buscarProblema(id_problema);
 		Estadistica estadisticas = p.getEstadisticas();
+		if(exp_ganada == 0){
+			ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+			Jugador jugador = mu.buscarJugador(id_jugador);
+			List<Integer> lista = jugador.getEstado().getProblemas_tutorial_activo();
+			if(!lista.contains(id_problema)){
+				lista.add(id_problema);
+			}
+			mu.agregarJugador(jugador);
+		}
 		if(!cu.yaRespondida(id_jugador, id_problema)){
 			estadisticas.aumentarIntentos();
 			if(exp_ganada > 0){
@@ -49,7 +61,6 @@ public class ControladorProblema implements IControladorProblema{
 				cu.sumarPuntos(exp_ganada, id_jugador, id_problema);
 				int id_mundo = p.getNivel().getMundo().getId();
 				csj.avanzarJuego(id_jugador, id_problema, id_mundo);
-				
 			}
 			mp.agregarProblema(p);
 		}

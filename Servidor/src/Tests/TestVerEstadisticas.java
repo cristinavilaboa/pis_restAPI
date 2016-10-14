@@ -70,9 +70,9 @@ public class TestVerEstadisticas {
 		problema = new Problema("Descripcion del problema", "resp", 50 ,ayuda, contenido,	nivel, profe, new Estadistica(0,0));
 		mp.agregarProblema(problema);
 		
-		es1 = new EstadoJugador(0, new ArrayList<Mundo>(),new ArrayList<Logro>(), new HashMap<Integer,Nivel>(), new ArrayList<Problema>());
-		es2 = new EstadoJugador(0, new ArrayList<Mundo>(),new ArrayList<Logro>(), new HashMap<Integer,Nivel>(), new ArrayList<Problema>());
-		es3 = new EstadoJugador(0, new ArrayList<Mundo>(),new ArrayList<Logro>(), new HashMap<Integer,Nivel>(), new ArrayList<Problema>());
+		es1 = new EstadoJugador(0, new ArrayList<Mundo>(),new ArrayList<Logro>(), new HashMap<Integer,Nivel>(), new ArrayList<Problema>(),new ArrayList<Integer>());
+		es2 = new EstadoJugador(0, new ArrayList<Mundo>(),new ArrayList<Logro>(), new HashMap<Integer,Nivel>(), new ArrayList<Problema>(),new ArrayList<Integer>());
+		es3 = new EstadoJugador(0, new ArrayList<Mundo>(),new ArrayList<Logro>(), new HashMap<Integer,Nivel>(), new ArrayList<Problema>(),new ArrayList<Integer>());
 		
 		es1.agregarMundoActivo(mundo);
 		es2.agregarMundoActivo(mundo);

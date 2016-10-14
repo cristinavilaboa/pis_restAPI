@@ -105,7 +105,7 @@ public class TestResponder {
 		problema1M2 = new Problema("Problema 4","res puesta",10,null,null,nivel1M2,null, new Estadistica(0,0));
 		nivel1M2.agregarProblema(problema1M2);
 		
-		estado = new EstadoJugador(0, mundos_completos, logros, mundo_nivel, nivel_problema);
+		estado = new EstadoJugador(0, mundos_completos, logros, mundo_nivel, nivel_problema,new ArrayList<Integer>());
 		estado.agregarMundoActivo(mundo);
 		
 		jugador = new Jugador("ni", "nick", "fBToken", "imagen", estado);

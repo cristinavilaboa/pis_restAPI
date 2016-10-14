@@ -35,7 +35,7 @@ public class TestListarMundosNivelesProblemasClient {
 	ManejadorProblema mp = ManejadorProblema.getInstancia();
 	ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 	
-	EstadoJugador estado = new EstadoJugador(0, new ArrayList<Mundo>(), new ArrayList<Logro>(), new HashMap<Integer,Nivel>(), new ArrayList<Problema>());
+	EstadoJugador estado = new EstadoJugador(0, new ArrayList<Mundo>(), new ArrayList<Logro>(), new HashMap<Integer,Nivel>(), new ArrayList<Problema>(),new ArrayList<Integer>());
 	Jugador jugador = new Jugador("nombre", "nick", "FBToken", "imagen", estado);
 	
 	
@@ -138,6 +138,7 @@ public class TestListarMundosNivelesProblemasClient {
 	@Test
 	public void test() {
 		IControladorJugador cj = new ControladorJugador();
+		IControladorProblema cp = new ControladorProblema();
 		List<DataMundo> lista_mundos = cj.listarMundosJugador(jugador.getNick()).getLista_mundos();
 		
 		assertEquals(3,lista_mundos.size());
@@ -170,13 +171,39 @@ public class TestListarMundosNivelesProblemasClient {
 		
 		assertEquals(p1.getDescripcion(),lista_problemasN1M1.get(0).getDescripcion());
 		assertFalse(lista_problemasN1M1.get(0).isResuelto());
+		assertFalse(lista_problemasN1M1.get(0).isTut_activo());
 		
 		assertEquals(p2.getDescripcion(),lista_problemasN1M1.get(1).getDescripcion());
 		assertFalse(lista_problemasN1M1.get(1).isResuelto());
-
-		//mu.borrar();		
-		//mm.borrar();
-		//mu.borrarProfesores();
+		assertFalse(lista_problemasN1M1.get(1).isTut_activo());
+		
+		int id_p1 = mm.obtenerMundo(1).getNiveles().get(0).getProblemas().get(0).getId();
+		cp.responderProblema(id_p1, "respuestaMAL", "nick");
+		lista_problemasN1M1 = cj.listarProblemasNivel(jugador.getNick(), m1.getId(),n1m1.getId_nivel()).getProblemas_nivel();
+		
+		assertEquals(p1.getDescripcion(),lista_problemasN1M1.get(0).getDescripcion());
+		assertFalse(lista_problemasN1M1.get(0).isResuelto());
+		assertTrue(lista_problemasN1M1.get(0).isTut_activo());
+		
+		assertEquals(p2.getDescripcion(),lista_problemasN1M1.get(1).getDescripcion());
+		assertFalse(lista_problemasN1M1.get(1).isResuelto());
+		assertFalse(lista_problemasN1M1.get(1).isTut_activo());
+		
+		int id_p2 = mm.obtenerMundo(1).getNiveles().get(0).getProblemas().get(1).getId();
+		cp.responderProblema(id_p2, "respuestaMAL", "nick");
+		lista_problemasN1M1 = cj.listarProblemasNivel(jugador.getNick(), m1.getId(),n1m1.getId_nivel()).getProblemas_nivel();
+		
+		assertEquals(p1.getDescripcion(),lista_problemasN1M1.get(0).getDescripcion());
+		assertFalse(lista_problemasN1M1.get(0).isResuelto());
+		assertTrue(lista_problemasN1M1.get(0).isTut_activo());
+		
+		assertEquals(p2.getDescripcion(),lista_problemasN1M1.get(1).getDescripcion());
+		assertFalse(lista_problemasN1M1.get(1).isResuelto());
+		assertTrue(lista_problemasN1M1.get(1).isTut_activo());
+		
+		mu.borrar();		
+		mm.borrar();
+		mu.borrarProfesores();
 		
 	}
 

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,21 +36,28 @@ public class EstadoJugador {
 	@ManyToMany  @LazyCollection(LazyCollectionOption.FALSE)
 	private List<Problema> problemas_resueltos = new ArrayList<Problema>();//Lista de problemas resueltos
 	
-	
+	@ElementCollection @LazyCollection(LazyCollectionOption.FALSE)
+	private List<Integer> problemas_tutorial_activo = new ArrayList<Integer>();
 	
 	public EstadoJugador(int puntos_exp){
 		this.puntos_exp = puntos_exp;
 	}
 	
+	
 	public EstadoJugador(int puntos_exp, List<Mundo> mundos_completos, List<Logro> logros,
-			Map<Integer, Nivel> niveles_actuales, List<Problema> problemas_resueltos) {
+			Map<Integer, Nivel> niveles_actuales, List<Problema> problemas_resueltos,
+			List<Integer> problemas_tutorial_activo) {
+		super();
 		this.puntos_exp = puntos_exp;
 		this.mundos_completos = mundos_completos;
 		this.logros = logros;
 		this.niveles_actuales = niveles_actuales;
 		this.problemas_resueltos = problemas_resueltos;
+		this.problemas_tutorial_activo = problemas_tutorial_activo;
 	}
-	
+
+
+
 	public EstadoJugador(){
 		
 	}
@@ -101,6 +109,17 @@ public class EstadoJugador {
 	public void setProblemas_resueltos(List<Problema> problemas_resueltos) {
 		this.problemas_resueltos = problemas_resueltos;
 	}
+	
+
+	public List<Integer> getProblemas_tutorial_activo() {
+		return problemas_tutorial_activo;
+	}
+
+
+	public void setProblemas_tutorial_activo(List<Integer> problemas_tutorial_activo) {
+		this.problemas_tutorial_activo = problemas_tutorial_activo;
+	}
+
 
 	//METODOS A IMPLEMENTAR
 	public void ganarExperiencia(int exp) {

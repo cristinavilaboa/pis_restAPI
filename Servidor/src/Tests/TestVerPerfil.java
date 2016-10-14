@@ -87,7 +87,7 @@ public class TestVerPerfil {
 		
 		//CREO EL ESTADO JUGADOR		
 		//EstadoJugador ej = new EstadoJugador();
-		EstadoJugador ej = new EstadoJugador(100, new ArrayList<Mundo>(), logros,m_n, new ArrayList<Problema>());
+		EstadoJugador ej = new EstadoJugador(100, new ArrayList<Mundo>(), logros,m_n, new ArrayList<Problema>(),new ArrayList<Integer>());
 		//ej.setPuntos_exp(100);
 		//ej.setLogros(logros);
 		//ej.setNiveles_actuales(m_n);

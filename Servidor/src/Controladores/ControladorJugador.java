@@ -129,7 +129,7 @@ public class ControladorJugador implements IControladorJugador{
 			return false;
 		}else{
 			
-			EstadoJugador estado = new EstadoJugador(0, new ArrayList<Mundo>(), new ArrayList<Logro>(), new HashMap<Integer,Nivel>(), new ArrayList<Problema>());
+			EstadoJugador estado = new EstadoJugador(0, new ArrayList<Mundo>(), new ArrayList<Logro>(), new HashMap<Integer,Nivel>(), new ArrayList<Problema>(), new ArrayList<Integer>());
 			//Suponemos que el mundo con el id 0 es el inicial, porque lo necesitamos para inicializar el mundo.
 			ManejadorMundo mm = ManejadorMundo.getInstancia();
 			
@@ -182,10 +182,11 @@ public class ControladorJugador implements IControladorJugador{
 		Nivel nivel = mm.obtenerMundo(id_mundo).buscarNivel(id_nivel);
 		EstadoJugador estado = mu.buscarJugador(nick).getEstado();
 		List<Problema> problemas_resueltos = estado.getProblemas_resueltos();
-		
+		List<Integer> problemas_tutorial = estado.getProblemas_tutorial_activo();
 		for(Problema p: nivel.getProblemas()){
 			
 			boolean resuelto =false; 
+			boolean tut_activo = false;
 			
 			for (Problema p_resuelto:problemas_resueltos){
 					if (p.getId()==p_resuelto.getId()){
@@ -193,7 +194,13 @@ public class ControladorJugador implements IControladorJugador{
 					}
 			}
 			
-			lista_problemas.add(new DataProblema(p.getId(), p.getDescripcion(), p.getRespuesta(), p.getPuntos_exp(), p.getAyuda().getInfo(), p.getContenido().getTexto(), p.getAutor().getNick(), resuelto));
+			for (int id_p_tut:problemas_tutorial){
+				if (p.getId()==id_p_tut){
+					tut_activo=true;
+				}
+		}
+			
+			lista_problemas.add(new DataProblema(p.getId(), p.getDescripcion(), p.getRespuesta(), p.getPuntos_exp(), p.getAyuda().getInfo(), p.getContenido().getTexto(), p.getAutor().getNick(), resuelto,tut_activo));
 		}
 		
 		return new DataListaDataProblema(lista_problemas);
