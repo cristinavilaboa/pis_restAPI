@@ -13,7 +13,10 @@ import javax.transaction.SystemException;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import Controladores.ControladorProblema;
+import Controladores.ControladorProfesor;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
@@ -202,6 +205,24 @@ public class CargarDatosBD {
 		jugador3 = new Jugador("Facundo", "fa_cu_fing", "fBTokenJ2", "imagenJ2", estado3);
 		
 		mu.agregarJugador(jugador3);
+		
+		
+		Date fecha = new Date();
+		for (int k=0;k<10;k++){
+			Mensaje m = new Mensaje("contenido "+k, "asunto numero "+k, fecha, "marce_fing");
+			Jugador jugador = mu.buscarJugador("nico_fing");
+			jugador.agregar_mensaje_nuevo(m);		
+			mu.guardarMensaje(m);
+			mu.guardarUsuario(jugador);
+		}
+		
+		for (int k=10;k<20;k++){
+			Mensaje m = new Mensaje("contenido "+k, "asunto numero "+k, fecha, "marce_fing");
+			Jugador jugador = mu.buscarJugador("nico_fing");
+			jugador.agregar_mensaje_viejo(m);		
+			mu.guardarMensaje(m);
+			mu.guardarUsuario(jugador);
+		}
 		
 	}
 }

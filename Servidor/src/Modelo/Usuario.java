@@ -78,6 +78,10 @@ public abstract class Usuario {
 		this.mensajes_nuevos.add(mensaje);
 	}
 	
+	public void agregar_mensaje_viejo(Mensaje mensaje) {
+		this.mensajes_viejos.add(mensaje);
+	}
+	
 	public boolean esMensajeNuevo(int id_mensaje){
 		for(Mensaje m: mensajes_nuevos){
 			if(m.getId() == id_mensaje){
