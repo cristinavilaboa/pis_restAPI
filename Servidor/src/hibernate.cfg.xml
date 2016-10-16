@@ -13,8 +13,7 @@
         <property name="hibernate.connection.username">be85781dddb399</property> 
         --> 
         
-    <!-- BASE DE AZURE ALEJANDRO - PARA WEB -->  
-      
+    <!-- BASE DE AZURE ALEJANDRO - PARA WEB -->      
          <!-- 
         <property name="hibernate.connection.password">b2f24c6b</property> 
         <property name="hibernate.connection.url">jdbc:mysql://us-cdbr-azure-west-b.cleardb.com:3306/pisg8</property>
@@ -22,8 +21,7 @@
       	--> 
         
 	<!-- EJEMPLO DE CONEXION PARA BASE LOCAL PARA PROBAR -->
- 
-    	  
+   
      	<property name="hibernate.connection.password">admin</property> 
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/pis</property>
         <property name="hibernate.connection.username">root</property> 
