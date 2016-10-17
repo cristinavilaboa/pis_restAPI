@@ -56,9 +56,6 @@ public class Estadistica {
 		cant_aciertos++;
 	}
 	
-	public DataEstadistica obtenerDataEst(){
-		return new DataEstadistica(this.cant_intentos, this.cant_aciertos);
-	}
 	
 
 }

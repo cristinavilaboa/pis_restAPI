@@ -104,6 +104,9 @@ public class TestVerEstadisticas {
 		assertEquals(1,lista.size());
 		assertEquals(0,lista.get(0).getCant_aciertos());
 		assertEquals(3,lista.get(0).getCant_intentos());
+		assertEquals(problema.getId(),lista.get(0).getId_problema());
+		assertEquals(problema.getNivel().getNro_nivel(),lista.get(0).getNro_nivel());
+		assertEquals(mundo.getId(),lista.get(0).getId_mundo());
 		
 		cpro.responderProblema(id_p, "resp", "nickJ1");
 		cpro.responderProblema(id_p, "mal", "nickJ2");
