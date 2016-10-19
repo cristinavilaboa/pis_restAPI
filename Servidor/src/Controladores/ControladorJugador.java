@@ -200,7 +200,7 @@ public class ControladorJugador implements IControladorJugador{
 				}
 		}
 			
-			lista_problemas.add(new DataProblema(p.getId(), p.getDescripcion(), p.getRespuesta(), p.getPuntos_exp(), p.getAyuda().getInfo(), p.getContenido().getTexto(), p.getAutor().getNick(), resuelto,tut_activo));
+			lista_problemas.add(new DataProblema(p.getId(), p.getDescripcion(), p.getRespuesta(), p.getPuntos_exp(), p.getAyuda().getInfo(), p.getContenido().getURL(), p.getAutor().getNick(), resuelto,tut_activo));
 		}
 		
 		return new DataListaDataProblema(lista_problemas);

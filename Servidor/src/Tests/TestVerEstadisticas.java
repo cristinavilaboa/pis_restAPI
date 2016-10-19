@@ -107,7 +107,7 @@ public class TestVerEstadisticas {
 		assertEquals(problema.getId(),lista.get(0).getId_problema());
 		assertEquals(problema.getNivel().getNro_nivel(),lista.get(0).getNro_nivel());
 		assertEquals(mundo.getNombre(),lista.get(0).getNombre_mundo());
-		assertEquals(problema.getContenido().getTexto(),lista.get(0).getUrl_problema());
+		assertEquals(problema.getContenido().getURL(),lista.get(0).getUrl_problema());
 		
 		cpro.responderProblema(id_p, "resp", "nickJ1");
 		cpro.responderProblema(id_p, "mal", "nickJ2");
@@ -119,7 +119,7 @@ public class TestVerEstadisticas {
 		assertEquals(problema.getId(),lista.get(0).getId_problema());
 		assertEquals(problema.getNivel().getNro_nivel(),lista.get(0).getNro_nivel());
 		assertEquals(mundo.getNombre(),lista.get(0).getNombre_mundo());
-		assertEquals(problema.getContenido().getTexto(),lista.get(0).getUrl_problema());
+		assertEquals(problema.getContenido().getURL(),lista.get(0).getUrl_problema());
 		
 		cpro.responderProblema(id_p, "resp", "nickJ2");
 		cpro.responderProblema(id_p, "mal", "nickJ1");
@@ -131,7 +131,7 @@ public class TestVerEstadisticas {
 		assertEquals(problema.getId(),lista.get(0).getId_problema());
 		assertEquals(problema.getNivel().getNro_nivel(),lista.get(0).getNro_nivel());
 		assertEquals(mundo.getNombre(),lista.get(0).getNombre_mundo());
-		assertEquals(problema.getContenido().getTexto(),lista.get(0).getUrl_problema());
+		assertEquals(problema.getContenido().getURL(),lista.get(0).getUrl_problema());
 		
 		mu.borrar();		
 		mm.borrar();
