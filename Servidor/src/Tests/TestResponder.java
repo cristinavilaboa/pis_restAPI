@@ -12,6 +12,8 @@ import org.junit.Test;
 
 import Controladores.ControladorProblema;
 import Controladores.IControladorProblema;
+import Datatypes.DataJugador;
+import Datatypes.DataMundoNivel;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
@@ -216,6 +218,17 @@ public class TestResponder {
 		est = mp.buscarProblema(id_p4).getEstadisticas();
 		assertEquals(1,est.getCant_aciertos());
 		assertEquals(1,est.getCant_intentos());
+		
+		DataJugador dj = mu.obtenerDatosJugador(jugador.getNick());
+		List<DataMundoNivel> dmn = dj.getMundosNiveles();
+		
+		assertEquals("Jupiter",dmn.get(0).getMundo());
+		assertEquals(1,dmn.get(0).getNivel());
+		assertTrue(dmn.get(0).isMundo_completo());
+		
+		assertEquals("Jupiter2",dmn.get(1).getMundo());
+		assertEquals(0,dmn.get(1).getNivel());
+		assertTrue(dmn.get(1).isMundo_completo());
 		
 		mu.borrar();
 		mm.borrar();
