@@ -90,20 +90,24 @@ public class Jugador extends Usuario{
 		for (int i = 0; i<cant; i++){
 			dataLogros.add(logros.get(i).obtenerDataLogro());
 		}
-		Iterator<Integer> it = mundos_niveles.keySet().iterator();
 		ManejadorMundo mm = ManejadorMundo.getInstancia();
-		while(it.hasNext()){
-		  int key = (Integer)it.next();
-		  
-		  Mundo mundo = mm.obtenerMundo(key);		  
-		 
-		  String d = mundo.getDescripcion();
-
-		  
-		  dataMundosNiveles.add(new DataMundoNivel(mundo.getNombre(),mundos_niveles.get(key).getNro_nivel()));		
+		
+		for(int i=1 ;i<=mundos_niveles.size();i++){
+			int key = i;
+			Mundo mundo = mm.obtenerMundo(key);		  
+			 
+			String d = mundo.getDescripcion();
+			boolean mundo_completo = false;
+			for(Mundo m: e.getMundos_completos()){
+			  mundo_completo = m.getId() == key;
+			  if(mundo_completo){
+				  break;
+			  }
+			}
+			  
+			dataMundosNiveles.add(new DataMundoNivel(mundo.getNombre(),mundos_niveles.get(key).getNro_nivel(),mundo_completo));
 		}
 		
-				
 		return new DataJugador(this.getNick() , this.imagen,dataMundosNiveles,exp,dataLogros);
 	}
 
