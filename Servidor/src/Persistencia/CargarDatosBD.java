@@ -111,7 +111,7 @@ public class CargarDatosBD {
 		mu.agregarProfesor(profesor);
 
 		
-		mundo = new Mundo(1,"Calculo", "imagen", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
+		mundo = new Mundo(1,"Calculo", "/Mundos/MP-DeathStar.png", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
 		nivel1 = new Nivel(listaPN1,mundo);
 		nivel2 = new Nivel(listaPN2,mundo);
 		nivel3 = new Nivel(listaPN3,mundo);

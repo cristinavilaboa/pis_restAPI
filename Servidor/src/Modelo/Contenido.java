@@ -12,23 +12,23 @@ import javax.persistence.Table;
 public class Contenido {
 	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_contenido;
-	private String texto;
+	private String url;
 
 	public Contenido()
 	{
 		
 	}
 	
-	public Contenido(String texto){
-		this.texto = texto;
+	public Contenido(String url){
+		this.url = url;
 	}
 	
-	public String getTexto() {
-		return texto;
+	public String getURL() {
+		return url;
 	}
 
-	public void setTexto(String texto) {
-		this.texto = texto;
+	public void setURL(String url) {
+		this.url = url;
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class Contenido {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + id_contenido;
-		result = prime * result + ((texto == null) ? 0 : texto.hashCode());
+		result = prime * result + ((url == null) ? 0 : url.hashCode());
 		return result;
 	}
 
@@ -51,10 +51,10 @@ public class Contenido {
 		Contenido other = (Contenido) obj;
 		if (id_contenido != other.id_contenido)
 			return false;
-		if (texto == null) {
-			if (other.texto != null)
+		if (url == null) {
+			if (other.url != null)
 				return false;
-		} else if (!texto.equals(other.texto))
+		} else if (!url.equals(other.url))
 			return false;
 		return true;
 	}

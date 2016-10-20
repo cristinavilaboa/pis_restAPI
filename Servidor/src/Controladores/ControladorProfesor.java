@@ -121,7 +121,7 @@ public class ControladorProfesor implements IControladorProfesor{
 		List<DataEstadistica> lista = new ArrayList<DataEstadistica>();
 		ManejadorProblema mp =ManejadorProblema.getInstancia();
 		for(Problema p : mp.getProblemas().values()){
-			DataEstadistica dt = new DataEstadistica(p.getNivel().getMundo().getId(), p.getNivel().getNro_nivel(), p.getId(), p.getEstadisticas().getCant_intentos(), p.getEstadisticas().getCant_aciertos());
+			DataEstadistica dt = new DataEstadistica(p.getNivel().getMundo().getNombre(), p.getNivel().getNro_nivel(), p.getId(), p.getEstadisticas().getCant_intentos(), p.getEstadisticas().getCant_aciertos(),p.getContenido().getURL());
 			lista.add(dt);
 		}
 		

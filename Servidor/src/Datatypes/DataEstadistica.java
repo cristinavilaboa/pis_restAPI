@@ -1,31 +1,30 @@
 package Datatypes;
 
 public class DataEstadistica {
-	private int id_mundo;
+	private String nombre_mundo;
 	private int nro_nivel;
 	private int id_problema;
 	private int cant_intentos;
 	private int cant_aciertos;
-	
-	
-	
-	public DataEstadistica(int id_mundo, int nro_nivel, int id_problema, int cant_intentos, int cant_aciertos) {
-		this.id_mundo = id_mundo;
+	private String url_problema;
+
+	public DataEstadistica(String nombre_mundo, int nro_nivel, int id_problema, int cant_intentos, int cant_aciertos,
+			String url_problema) {
+		this.nombre_mundo = nombre_mundo;
 		this.nro_nivel = nro_nivel;
 		this.id_problema = id_problema;
 		this.cant_intentos = cant_intentos;
 		this.cant_aciertos = cant_aciertos;
+		this.url_problema = url_problema;
 	}
-	
 	
 	public DataEstadistica() {}
 
-
-	public int getId_mundo() {
-		return id_mundo;
+	public String getNombre_mundo() {
+		return nombre_mundo;
 	}
-	public void setId_mundo(int id_mundo) {
-		this.id_mundo = id_mundo;
+	public void setNombre_mundo(String nombre_mundo) {
+		this.nombre_mundo = nombre_mundo;
 	}
 	public int getNro_nivel() {
 		return nro_nivel;
@@ -51,6 +50,17 @@ public class DataEstadistica {
 	public void setCant_aciertos(int cant_aciertos) {
 		this.cant_aciertos = cant_aciertos;
 	}
+	public String getUrl_problema() {
+		return url_problema;
+	}
+	public void setUrl_problema(String url_problema) {
+		this.url_problema = url_problema;
+	}
+	
+	
+	
+	
+	
 	
 
 }
