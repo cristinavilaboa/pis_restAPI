@@ -113,5 +113,18 @@ public class ControladorProblema implements IControladorProblema{
 		mp.agregarProblema(problema);
 	}
 	
+	@RequestMapping(value="/modificarproblema", method=RequestMethod.POST)
+	public void modificarProblema(@RequestParam(value="id_problema")int id_problema, @RequestParam(value="desc")String descripcion, @RequestParam(value="resp")String respuesta,
+			@RequestParam(value="exp")int puntos_exp, @RequestParam(value="ayuda")String cont_ayuda, @RequestParam(value="cont")String cont){
 
-}// 
+		ManejadorProblema mp = ManejadorProblema.getInstancia();
+		Problema problema = mp.buscarProblema(id_problema);
+		problema.setDescripcion(descripcion);
+		problema.setRespuesta(respuesta);
+		problema.setPuntos_exp(puntos_exp);
+		problema.getAyuda().setInfo(cont_ayuda);
+		problema.getContenido().setURL(cont);
+		mp.agregarProblema(problema);
+	}
+
+} 

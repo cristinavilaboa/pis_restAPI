@@ -12,4 +12,6 @@ public interface IControladorProblema {
 	public DataAyuda getAyuda(int id_problema);
 	public void agregarProblema(String descripcion,String respuesta,int puntos_exp,String cont_ayuda,
 			String cont,int id_mundo,int num_nivel,String nick_prof);
+	public void modificarProblema(int id_problema, String descripcion,String respuesta,int puntos_exp,String cont_ayuda,
+			String cont);
 }
