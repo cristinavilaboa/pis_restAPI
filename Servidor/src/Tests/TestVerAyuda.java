@@ -31,11 +31,11 @@ public class TestVerAyuda {
 
 	@Test
 	public void testGetAyuda() {
+		
 		ManejadorProblema manejador = ManejadorProblema.getInstancia();
 		ManejadorMundo mm = ManejadorMundo.getInstancia();
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 
-		
 		mu.borrar();
 		mm.borrar();
 		mu.borrarProfesores();
@@ -60,7 +60,6 @@ public class TestVerAyuda {
 		assertEquals ("La derivada es cuanto varia la funcion, cuando varia x", _cproblema.getAyuda(id_problema).getAyuda());
 		
 		assertEquals ("second atempt", "La derivada es cuanto varia la funcion, cuando varia x", _cproblema.getAyuda(id_problema).getAyuda());
-		
 		
 		mu.borrar();
 		mm.borrar();

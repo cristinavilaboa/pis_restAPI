@@ -18,13 +18,17 @@ import Persistencia.HibernateUtility;
 public class ManejadorProblema {
 
 	private static ManejadorProblema instancia = new ManejadorProblema();
-
-	private Map<Integer,Problema> problemas= new HashMap<Integer,Problema>();	
-	private ManejadorProblema(){};	
+	private Map<Integer,Problema> problemas= new HashMap<Integer,Problema>();
+	
+	//----CONSTRUCTOR----//
+	private ManejadorProblema(){};
+	
+	//----GETTERS----//
 	public static ManejadorProblema getInstancia(){
 		return instancia;
 	}
 	
+	//----OPERACIONES----//
 	public void agregarProblema(Problema p){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
@@ -60,7 +64,6 @@ public class ManejadorProblema {
 		return mapProblemas;
 	}
 	
-	//METODOS A IMPLEMENTAR
 	public boolean ultimaNivel(int id_problema){
 		Problema pro = buscarProblema(id_problema);
 		return pro.getNivel().esUltima(id_problema);
@@ -78,11 +81,9 @@ public class ManejadorProblema {
 	public Problema buscarProblema(int id_problema){
 		Session session = null;
 		Problema p = null;
-		//Ayuda ayuda = null;
 		try{
 			session = HibernateUtility.getSessionFactory().openSession();
 			p =(Problema)session.get(Problema.class,id_problema);
-			//ayuda = (Ayuda)session.get(Ayuda.class, p.get)
 			
 		} catch (Exception e){
 			System.out.println("error:" + e.getMessage());

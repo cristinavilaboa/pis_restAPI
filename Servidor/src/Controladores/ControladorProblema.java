@@ -67,6 +67,7 @@ public class ControladorProblema implements IControladorProblema{
 		
 		return new DataExperiencia(exp_ganada);
 	}
+	
 	@RequestMapping(value="/enviarmensaje", method=RequestMethod.GET)
 	public DataEstadoMensaje enviarMensaje(@RequestParam(value="id_problema") int id_problema,@RequestParam(value="nick") String nick,@RequestParam(value="mensaje") String mensaje,@RequestParam(value="fecha") String fechaStr,@RequestParam(value="asunto") String asunto){ 
 		Date fecha;
@@ -84,8 +85,6 @@ public class ControladorProblema implements IControladorProblema{
 			e.printStackTrace();
 			return new DataEstadoMensaje(false);
 		}
-		
-		
 	}
 	
 	@RequestMapping(value="/getayuda", method=RequestMethod.GET)
@@ -108,7 +107,6 @@ public class ControladorProblema implements IControladorProblema{
 		Profesor profe = mu.buscarProfesor(nick_prof);
 		Nivel nivel = mm.obtenerMundo(id_mundo).buscarNivelPorNro(num_nivel);
 	
-		//Problema problema = new Problema(id_problema, descripcion, respuesta, puntos_exp, ayuda, contenido, nivel, profe);
 		Problema problema = new Problema( descripcion, respuesta, puntos_exp, ayuda, contenido, nivel, profe, new Estadistica(0,0));
 
 		ManejadorProblema mp = ManejadorProblema.getInstancia();

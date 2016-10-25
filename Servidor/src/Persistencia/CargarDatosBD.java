@@ -42,7 +42,6 @@ public class CargarDatosBD {
 		org.hibernate.Transaction t= session.beginTransaction();
 		Mensaje mensaje=new Mensaje(contenido,asunto,fecha,profesor.getNick());
 		session.persist(mensaje);
-		//profesor.agregar_mensaje_nuevo(mensaje);
 		session.saveOrUpdate(profesor);
 		t.commit();//transaction is commited 
 		session.close();
@@ -71,8 +70,6 @@ public class CargarDatosBD {
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 		ManejadorMundo mm = ManejadorMundo.getInstancia();
-		
-		
 		
 		mu.borrar();
 		mm.borrar();
@@ -110,7 +107,6 @@ public class CargarDatosBD {
 		Profesor profesor = new Profesor("Marcelo", "marce_fing", "1234");
 		mu.agregarProfesor(profesor);
 
-		
 		mundo = new Mundo(1,"Calculo", "Mundos/MP-DeathStar.png", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
 		nivel1 = new Nivel(listaPN1,mundo);
 		nivel2 = new Nivel(listaPN2,mundo);
@@ -223,6 +219,6 @@ public class CargarDatosBD {
 			mu.guardarMensaje(m);
 			mu.guardarUsuario(jugador);
 		}
-		
 	}
+	
 }

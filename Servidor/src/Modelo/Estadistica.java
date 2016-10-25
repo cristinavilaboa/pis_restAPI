@@ -12,11 +12,13 @@ import Datatypes.DataEstadistica;
 @Table(name = "ESTADISTICA")
 	
 public class Estadistica {
+	
 	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 	private int cant_intentos;
 	private int cant_aciertos;
 	
+	//----CONSTRUCTORES----//
 	public Estadistica(int cant_intentos, int cant_aciertos) {
 		this.cant_intentos = cant_intentos;
 		this.cant_aciertos = cant_aciertos;
@@ -24,30 +26,33 @@ public class Estadistica {
 	
 	public Estadistica() {}
 
+	//----GETTERS----//
 	public int getCant_intentos() {
 		return cant_intentos;
 	}
-
-	public void setCant_intentos(int cant_intentos) {
-		this.cant_intentos = cant_intentos;
-	}
-
+	
 	public int getCant_aciertos() {
 		return cant_aciertos;
 	}
 
-	public void setCant_aciertos(int cant_aciertos) {
-		this.cant_aciertos = cant_aciertos;
-	}
-	
 	public Integer getId() {
 		return id;
 	}
 
+	//----SETTERS----//
+	public void setCant_intentos(int cant_intentos) {
+		this.cant_intentos = cant_intentos;
+	}
+	
+	public void setCant_aciertos(int cant_aciertos) {
+		this.cant_aciertos = cant_aciertos;
+	}	
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
 
+	//----OPERACIONES----//
 	public void aumentarIntentos(){
 		cant_intentos++;
 	}
@@ -55,7 +60,5 @@ public class Estadistica {
 	public void aumentarAciertos(){
 		cant_aciertos++;
 	}
-	
-	
 
 }

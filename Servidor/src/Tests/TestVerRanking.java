@@ -20,6 +20,7 @@ public class TestVerRanking {
 	
 	@Before
 	public void setUp() throws Exception {
+		
 		ManejadorUsuario manUs = ManejadorUsuario.getInstancia();
 		ManejadorMundo mm = ManejadorMundo.getInstancia();
 		
@@ -28,7 +29,6 @@ public class TestVerRanking {
 		manUs.borrarProfesores();
 		
 		Profesor Juliana = new Profesor("Juli", "Juliana", "123456");
-	
 		
 		manUs.agregarProfesor(Juliana);
 	  
@@ -61,16 +61,15 @@ public class TestVerRanking {
 
         manUs.guardarEstado(estadoRau);
         manUs.agregarJugador(j);
-        
 	}
+	
 	
 	@Test	
 	public void test() {
+		
 		ManejadorMundo mm = ManejadorMundo.getInstancia();
 		ManejadorUsuario manUs = ManejadorUsuario.getInstancia();
 		List<DataPuntosJugador> resultado = manUs.obtenerRanking();
-		
-		//DataPuntosJugador[] array_res = resultado.toArray(new DataPuntosJugador[resultado.size()]);
 		
 		assertEquals(resultado.get(0).getNick(),"Caro");
 		assertTrue(resultado.get(0).getPuntos() == 33);
@@ -93,4 +92,3 @@ public class TestVerRanking {
 	}
 	
 }
-

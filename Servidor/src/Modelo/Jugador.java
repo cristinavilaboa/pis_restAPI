@@ -29,14 +29,12 @@ public class Jugador extends Usuario{
 	@OneToOne(cascade=CascadeType.ALL) @LazyCollection(LazyCollectionOption.FALSE)
 	private EstadoJugador estado;
 	
-	
-	
+	//----CONSTRUCTORES----//
     public Jugador(String nombre, String nick, String FBToken, String imagen, EstadoJugador estado){
         super(nombre, nick);
         this.FBToken = FBToken;
         this.imagen = imagen;
         this.estado = estado;
-        
     }
     
     public Jugador()
@@ -44,39 +42,40 @@ public class Jugador extends Usuario{
     	
     }
     
+    //----GETTERS----//
 	public String getFBToken() {
 		return FBToken;
-	}
-	
-	public void setFBToken(String fBToken) {
-		FBToken = fBToken;
 	}
 	
 	public String getImagen() {
 		return imagen;
 	}
 	
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
-
 	public EstadoJugador getEstado() {
 		return estado;
 	}
 
+	//----SETTERS----//
+	public void setFBToken(String fBToken) {
+		FBToken = fBToken;
+	}
+	
+	
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+
+	
 	public void setEstado(EstadoJugador estado) {
 		this.estado = estado;
 	}
-
-
 	
+	//----OPERACIONES----//
 	public DataPuntosJugador obtenerDataPuntosJugador(String nick){
 		int puntos = estado.getPuntos_exp();
 		DataPuntosJugador dpj = new DataPuntosJugador(nick, puntos);
 		return dpj;
 	}
-	
-	//************OPERACIONES*************//
 	
 	public DataJugador obtenerDataJugador()
 	{
@@ -104,10 +103,8 @@ public class Jugador extends Usuario{
 				  break;
 			  }
 			}
-			  
 			dataMundosNiveles.add(new DataMundoNivel(mundo.getNombre(),mundos_niveles.get(key).getNro_nivel(),mundo_completo));
 		}
-		
 		return new DataJugador(this.getNick() , this.imagen,dataMundosNiveles,exp,dataLogros);
 	}
 

@@ -5,6 +5,7 @@ public class DataPuntosJugador implements Comparable<DataPuntosJugador>{
 	private String nick;
 	private Integer puntos;
 
+	//----CONSTRUCTORES----//
 	public DataPuntosJugador(){
 		nick = null;
 		puntos = 0;
@@ -15,6 +16,7 @@ public class DataPuntosJugador implements Comparable<DataPuntosJugador>{
 		this.puntos = puntos;
 	}	
 	
+	//----GETTERS----//
 	public String getNick(){
 		return nick;
 	}
@@ -23,6 +25,7 @@ public class DataPuntosJugador implements Comparable<DataPuntosJugador>{
 		return puntos;
 	}
 
+	//----SETTERS----//
 	public void setNick(String nick){
 		this.nick = nick;
 	}

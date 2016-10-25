@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 @Entity
 @Table(name = "NIVEL")
 public class Nivel {
+	
 	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_nivel;
 	private int nro_nivel;//seria el num de nivel dentro de un mundo
@@ -27,6 +28,7 @@ public class Nivel {
 	@ManyToOne @LazyCollection(LazyCollectionOption.FALSE)
 	private Mundo mundo;
 	
+	//----CONSTRUCTORES----//
 	public Nivel(List<Problema> problemas, Mundo mundo) {
 		this.problemas = problemas;
 		this.mundo = mundo;
@@ -34,13 +36,7 @@ public class Nivel {
 	
 	public Nivel(){}
 	
-	
-	public void setNivel(int n){
-		nro_nivel=n;
-	}
-	public void setId(int n){
-		id_nivel=n;
-	}
+	//----GETTERS----//
 	public int getNro_nivel(){
 		return nro_nivel;
 	}
@@ -53,12 +49,21 @@ public class Nivel {
 		return problemas;
 	}
 	
-	public void setProblemas(List<Problema> problemas) {
-		this.problemas = problemas;
-	}
-	
 	public Mundo getMundo() {
 		return mundo;
+	}
+	
+	//----SETTERS----//
+	public void setNivel(int n){
+		nro_nivel=n;
+	}
+	
+	public void setId(int n){
+		id_nivel=n;
+	}
+	
+	public void setProblemas(List<Problema> problemas) {
+		this.problemas = problemas;
 	}
 
 	public void setMundo(Mundo mundo) {
@@ -67,7 +72,7 @@ public class Nivel {
 	
 	
 	
-	//METODOS A IMPLEMENTAR
+	//----OPERACIONES----//
 	public boolean esUltima(int id_problema){//Retorna true si le problema es el ultima del nivel
 		int it = 0;
 		boolean encontre = false;
@@ -80,7 +85,6 @@ public class Nivel {
 		
 		return (encontre && (it <= tamano));//Si it es menor que el tama�o es que queda algun problema m�s
 		//HAY QUE VER QUE PASA SI NO ENCUENTRA EL id_problema
-		
 	}
 	
 	public void agregarProblema(Problema p){
@@ -123,6 +127,5 @@ public class Nivel {
 			return false;
 		return true;
 	}
-	
-	
+
 }

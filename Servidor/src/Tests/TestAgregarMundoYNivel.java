@@ -24,6 +24,7 @@ import Modelo.Problema;
 import Modelo.Profesor;
 
 public class TestAgregarMundoYNivel {
+	
 	Profesor profe;
 	ManejadorMundo mm = ManejadorMundo.getInstancia();
 	ManejadorUsuario mu = ManejadorUsuario.getInstancia();
@@ -39,7 +40,6 @@ public class TestAgregarMundoYNivel {
 		
 		profe = new Profesor("nombre", "nick", "password");
 		mu.agregarProfesor(profe);
-	
 	}
 
 	@Test
@@ -70,7 +70,6 @@ public class TestAgregarMundoYNivel {
 		assertEquals(0,estado.getNiveles_actuales().get(0).getNro_nivel());
 		assertEquals(1,estado.getMundos_completos().size());
 		
-		
 		cp.agregarNivel(1);
 		estado = mu.buscarJugador("nickJ1").getEstado();
 		assertEquals(2,estado.getNiveles_actuales().size());
@@ -86,7 +85,6 @@ public class TestAgregarMundoYNivel {
 		assertEquals(0,estado.getNiveles_actuales().get(1).getNro_nivel());
 		assertEquals(1,estado.getMundos_completos().size());
 
-		
 	}
 
 }

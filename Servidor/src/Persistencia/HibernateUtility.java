@@ -1,6 +1,5 @@
 package Persistencia;
 
-//import javax.security.auth.login.Configuration;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 

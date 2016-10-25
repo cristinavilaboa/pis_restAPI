@@ -10,23 +10,24 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "CONTENIDO")
 public class Contenido {
+	
 	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_contenido;
 	private String url;
 
-	public Contenido()
-	{
-		
-	}
+	//----CONSTRUCTORES----//
+	public Contenido(){}
 	
 	public Contenido(String url){
 		this.url = url;
 	}
 	
+	//----GETTERS----//
 	public String getURL() {
 		return url;
 	}
 
+	//----SETTERS----//
 	public void setURL(String url) {
 		this.url = url;
 	}
@@ -58,4 +59,5 @@ public class Contenido {
 			return false;
 		return true;
 	}
+
 }

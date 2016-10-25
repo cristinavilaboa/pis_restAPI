@@ -16,6 +16,7 @@ import Manejadores.ManejadorUsuario;
 import Modelo.*;
 
 public class TestAgregarProblema {
+	
 	Ayuda ayuda;
 	Contenido contenido;
 	Mundo mundo;
@@ -49,12 +50,10 @@ public class TestAgregarProblema {
 		
 		problema = new Problema("Descripcion del problema", "Respuesta del problema", 50 ,ayuda, contenido,	nivel, profe, new Estadistica(0,0));
 		mp.agregarProblema(problema);
-		
 	}
 
 	@Test
 	public void test() {
-		
 		
 		assertEquals(problema, mp.buscarProblema(problema.getId()));
 		

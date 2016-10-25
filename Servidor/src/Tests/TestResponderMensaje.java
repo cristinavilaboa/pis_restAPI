@@ -19,6 +19,7 @@ import Modelo.Mensaje;
 import Modelo.Profesor;
 
 public class TestResponderMensaje {
+	
 	Profesor profe;
 	Jugador j;
 	EstadoJugador estado;
@@ -26,6 +27,7 @@ public class TestResponderMensaje {
 	
 	@Before
 	public void setUp() throws Exception {
+		
 		ManejadorUsuario mu=ManejadorUsuario.getInstancia();
 		mu.borrar();
 		ManejadorMundo mm=ManejadorMundo.getInstancia();
@@ -39,11 +41,12 @@ public class TestResponderMensaje {
 		
 		mu.guardarEstado(estado);
 		mu.agregarJugador(j);
-		
 	}
 
+	
 	@Test
 	public void test() {
+		
 		Date fecha = new Date();
 		Mensaje m = new Mensaje("contenido", "asunto", fecha, profe.getNick());
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();

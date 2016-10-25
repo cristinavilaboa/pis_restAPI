@@ -19,6 +19,7 @@ import Modelo.Nivel;
 import Modelo.Problema;
 
 public class TestListarMundoYNiveles {
+	
 	IControladorProfesor cp = new ControladorProfesor();
 	ManejadorMundo mm = ManejadorMundo.getInstancia();
 	ManejadorUsuario mu=ManejadorUsuario.getInstancia();
@@ -49,6 +50,8 @@ public class TestListarMundoYNiveles {
 	ArrayList<Problema> listaP_2M2= new ArrayList<Problema>();
 	ArrayList<Problema> listaP_M3= new ArrayList<Problema>();
 	ArrayList<Problema> listaP_2M3= new ArrayList<Problema>();
+	
+	
 	@Before
 	public void setUp() throws Exception {
 		mu.borrar();
@@ -77,9 +80,9 @@ public class TestListarMundoYNiveles {
 		mm.agregarMundo(m1);
 		mm.agregarMundo(m2);
 		mm.agregarMundo(m3);
-		
 	}
 
+	
 	@Test
 	public void test() {
 		List<DataMundo> mundos = cp.listarMundosProfesor().getLista_mundos();
@@ -124,9 +127,6 @@ public class TestListarMundoYNiveles {
 		mu.borrar();
 		mm.borrar();
 		mu.borrarProfesores();
-		
-		
-		
 	}
 
 }

@@ -10,23 +10,24 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "AYUDA")
 public class Ayuda {
+	
 	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_ayuda;
 	private String info;
 	
-	public Ayuda()
-	{
-		
-	}
+	//----CONSTRUCTORES----//
+	public Ayuda(){}
 	
 	public Ayuda(String info){
 		this.info = info;
 	}
-
+	
+	//----GETTERS----//
 	public String getInfo() {
 		return info;
 	}
 
+	//----SETTERS----//
 	public void setInfo(String info) {
 		this.info = info;
 	}
@@ -58,4 +59,5 @@ public class Ayuda {
 			return false;
 		return true;
 	}
+
 }

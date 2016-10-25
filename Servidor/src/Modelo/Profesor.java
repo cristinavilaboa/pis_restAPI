@@ -14,11 +14,10 @@ import Persistencia.HibernateUtility;
 @Table(name = "PROFESOR")
 @PrimaryKeyJoinColumn(name="nick")
 public class Profesor extends Usuario {
-	
-	
-	//private static int num_mensaje = 0;
 
 	private String password;
+	
+	//----CONSTRUCTORES----//
 	public Profesor(){
 		super();
 	};
@@ -27,21 +26,22 @@ public class Profesor extends Usuario {
 		this.password = password;
 	}
 
+	//----GETTERS----//
 	public String getPassword() {
 		return password;
 	}
-
+	
+	//----SETTERS----//
 	public void setPassword(String password) {
 		this.password = password;
 	}
 	
-	//METODOS A IMPLEMENTAR
+	//----OPERACIONES----//
 	public void enviarMensaje(String mensaje,Date fecha, String asunto,String id_jugador){
-		Mensaje m=new Mensaje(/*num_mensaje,*/mensaje,asunto, fecha,id_jugador);
+		Mensaje m=new Mensaje(mensaje,asunto, fecha,id_jugador);
 		this.getMensajes_nuevos().add(m);
-		//mensajes_nuevos.add(m);
-		
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -49,6 +49,7 @@ public class Profesor extends Usuario {
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

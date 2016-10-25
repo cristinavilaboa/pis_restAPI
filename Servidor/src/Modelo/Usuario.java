@@ -35,45 +35,46 @@ public abstract class Usuario {
 	@JoinTable(name="usuario_mensajes_nuevos", joinColumns={@JoinColumn (name="id_usuario", referencedColumnName= "nick" )},inverseJoinColumns={@JoinColumn(name="id_mensaje",referencedColumnName="id_mensaje")})
 	private List<Mensaje> mensajes_nuevos = new ArrayList<Mensaje>();
 	
+	//----CONSTRUCTORES----//
 	public Usuario(String nombre, String nick) {
 		
 		this.nombre = nombre;
 		this.nick = nick;
 	}
 	public Usuario(){};
-
+	
+	//----GETTERS----//
 	public String getNombre() {
 		return nombre;
 	}
-	
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	
 	public String getNick() {
 		return nick;
 	}
-	
-	public void setNick(String nick) {
-		this.nick = nick;
-	}
-
 	public List<Mensaje> getMensajes_viejos() {
 		return mensajes_viejos;
+	}
+	public List<Mensaje> getMensajes_nuevos() {
+		return mensajes_nuevos;
+	}
+	
+	//----SETTERS----//
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+		
+	public void setNick(String nick) {
+		this.nick = nick;
 	}
 
 	public void setMensajes_viejos(List<Mensaje> mensajes_viejos) {
 		this.mensajes_viejos = mensajes_viejos;
 	}
 
-	public List<Mensaje> getMensajes_nuevos() {
-		return mensajes_nuevos;
-	}
-
 	public void setMensajes_nuevos(List<Mensaje> mensajes_nuevos) {
 		this.mensajes_nuevos = mensajes_nuevos;
 	}
 	
+	//----OPERACIONES----//
 	public void agregar_mensaje_nuevo(Mensaje mensaje) {
 		this.mensajes_nuevos.add(mensaje);
 	}
@@ -141,4 +142,5 @@ public abstract class Usuario {
 			return false;
 		return true;
 	}
+
 }
