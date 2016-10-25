@@ -66,6 +66,7 @@ public class ControladorProfesor implements IControladorProfesor{
 		return new DataMensaje(m.getId(), m.getAsunto(), m.getContenido(), m.getFecha(), m.getRemitente());
 	}
 	
+	/*
 	@RequestMapping(value="/respondermensaje", method=RequestMethod.POST) //Responde un mensaje
 	public void responderMensaje(@RequestParam(value="nick_jugador")String nick_jugador,@RequestParam(value="asunto")String asunto,@RequestParam(value="contenido")String contenido,@RequestParam(value="id_profesor")String id_profesor){
 		
@@ -79,6 +80,22 @@ public class ControladorProfesor implements IControladorProfesor{
 		mu.guardarMensaje(m);
 		mu.guardarUsuario(jugador);
 	}
+	*/
+	
+	 @RequestMapping(value="/respondermensaje", method=RequestMethod.POST) //Responde un mensaje
+	public void responderMensaje(@RequestParam(value="destinatario")String destinatario,@RequestParam(value="asunto")String asunto,@RequestParam(value="contenido")String contenido,@RequestParam(value="remitente")String remitente){
+		
+		Date fecha = new Date();
+		Mensaje m = new Mensaje(contenido, asunto, fecha, remitente);
+		
+		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+		Usuario u =mu.buscarUsuario(destinatario);
+		u.agregar_mensaje_nuevo(m);
+		
+		mu.guardarMensaje(m);
+		mu.guardarUsuario(u);
+	}
+	
 	
 	@RequestMapping(value="/mensajeleido", method=RequestMethod.POST) //Cambia un mensaje de nuevo a viejo.
 	public void mensajeleido(@RequestParam(value="nick")String nick,@RequestParam(value="id_mensaje")int id_mensaje){
