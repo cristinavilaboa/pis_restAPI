@@ -76,7 +76,11 @@ public class CargarDatosBD {
 		mu.borrarProfesores();
 		
 		List<Mundo> mundos_siguientes = new ArrayList<Mundo>();
+		List<Mundo> mundos_siguientes2 = new ArrayList<Mundo>();
+		
 		List<Nivel> niveles = new ArrayList<Nivel>();
+		List<Nivel> niveles2 = new ArrayList<Nivel>();
+		
 		List<Problema> listaPN1= new ArrayList<Problema>();
 		List<Problema> listaPN2= new ArrayList<Problema>();
 		List<Problema> listaPN3= new ArrayList<Problema>();
@@ -95,7 +99,7 @@ public class CargarDatosBD {
 		List<Problema> problemas_resueltosJ2 = new ArrayList<Problema>();
 		List<Problema> problemas_resueltosJ3 = new ArrayList<Problema>();
 		
-		Mundo mundo;
+		Mundo mundo,mundo2;
 		Nivel nivel1,nivel2,nivel3,nivel4,nivel5;
 		Problema problema1,problema21,problema22,problema31,problema32,problema4,problema5;
 		Jugador jugador1,jugador2,jugador3;
@@ -107,12 +111,20 @@ public class CargarDatosBD {
 		Profesor profesor = new Profesor("Marcelo", "marce_fing", "1234");
 		mu.agregarProfesor(profesor);
 
+		
+		mundo2= new Mundo(2,"Derivada","Mundos/saturn.png", "Mundo de Derivada 1", 20,mundos_siguientes2,niveles2);
+		mundos_siguientes.add(mundo2);
 		mundo = new Mundo(1,"Calculo", "Mundos/MP-DeathStar.png", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
+		
+		
+		
+		
 		nivel1 = new Nivel(listaPN1,mundo);
 		nivel2 = new Nivel(listaPN2,mundo);
-		nivel3 = new Nivel(listaPN3,mundo);
+		nivel3 = new Nivel(listaPN3,mundo2);
+		/*
 		nivel4 = new Nivel(listaPN4,mundo);
-		nivel5 = new Nivel(listaPN5,mundo);
+		nivel5 = new Nivel(listaPN5,mundo);*/
 		
 		ayudaP1 = new Ayuda("La derivada es cuanto varia la funcion, cuando varia x");
 		contenidoP1 = new Contenido("Preguntas/d8x.png");
@@ -132,30 +144,39 @@ public class CargarDatosBD {
 		contenidoP32 = new Contenido("Preguntas/integraldexde0a2.png");
 		problema32 = new Problema("Resolver la siguiente integral","2",10,ayudaP32,contenidoP32,nivel3,profesor, new Estadistica(0,0));
 		
-		ayudaP4 = new Ayuda("La integral es el area bajo la curva de una funci�n");
+		/*ayudaP4 = new Ayuda("La integral es el area bajo la curva de una funci�n");
 		contenidoP4 = new Contenido("Preguntas/integralde2xde2a8.png");
 		problema4 = new Problema("Resolver la siguiente integral","60",10,ayudaP4,contenidoP4,nivel4,profesor, new Estadistica(0,0));
 		
 		ayudaP5 = new Ayuda("La integral es el area bajo la curva de una funci�n");
 		contenidoP5 = new Contenido("Preguntas/integraldetangente.png");
-		problema5 = new Problema("Resolver la siguiente integral","-log(cos(x))",10,ayudaP5,contenidoP5,nivel5,profesor, new Estadistica(0,0));
+		problema5 = new Problema("Resolver la siguiente integral","-log(cos(x))",10,ayudaP5,contenidoP5,nivel5,profesor, new Estadistica(0,0));*/
 		
 		nivel1.agregarProblema(problema1);
+		nivel1.agregarProblema(problema31);
 		nivel2.agregarProblema(problema21);
 		nivel2.agregarProblema(problema22);
-		nivel3.agregarProblema(problema31);
+		
+		
 		nivel3.agregarProblema(problema32);
+		/*nivel3.agregarProblema(problema32);
 		nivel4.agregarProblema(problema4);
-		nivel5.agregarProblema(problema5);
+		nivel5.agregarProblema(problema5);*/
 		
 		mundo.agregarNivel(nivel1);
 		mundo.agregarNivel(nivel2);
-		mundo.agregarNivel(nivel3);
-		mundo.agregarNivel(nivel4);
-		mundo.agregarNivel(nivel5);
 		
+		mundo2.agregarNivel(nivel3);
+		
+		/*
+		mundo.agregarNivel(nivel4);
+		mundo.agregarNivel(nivel5);*/
+		
+		mm.agregarMundo(mundo2);
 		mm.agregarMundo(mundo);
 		
+		
+		/*
 		logJ1 = new Logro("Primera respuesta correcta");
 		logrosJ1.add(logJ1);
 		niveles_actualesJ1.put(mundo.getId(), nivel3);
@@ -191,14 +212,16 @@ public class CargarDatosBD {
 		jugador2 = new Jugador("Maria", "mari_fing", "fBTokenJ2", "imagenJ2", estado2);
 		
 		mu.agregarJugador(jugador2);
+		*/
+		
 		
 		niveles_actualesJ3.put(mundo.getId(), nivel1);
-		exp = 0;
+		int exp = 0;
 		for (Problema p : problemas_resueltosJ3) {
 			exp += p.getPuntos_exp();
 		}
 		estado3 = new EstadoJugador(exp, mundos_completosJ3, logrosJ3, niveles_actualesJ3, problemas_resueltosJ3,new ArrayList<Integer>());
-		jugador3 = new Jugador("Facundo", "fa_cu_fing", "fBTokenJ2", "imagenJ2", estado3);
+		jugador3 = new Jugador("Nicolas", "nico_fing", "fBTokenJ2", "imagenJ2", estado3);
 		
 		mu.agregarJugador(jugador3);
 		
