@@ -3,7 +3,9 @@ package Controladores;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,7 @@ import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
 import Modelo.Estadistica;
+import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Mensaje;
 import Modelo.Mundo;
@@ -137,15 +140,16 @@ public class ControladorProfesor implements IControladorProfesor{
 		ManejadorMundo mm = ManejadorMundo.getInstancia();
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 
-		String nick = null;
 		
 		Mundo mundo_nivel =  mm.obtenerMundo(id_mundo);
+		int ultimo_nivel = mundo_nivel.getNro_nivel();
 		Nivel nuevo_nivel = new Nivel(new ArrayList<Problema>(), mundo_nivel);
+
 		mundo_nivel.agregarNivel(nuevo_nivel);
 		
 		mm.agregarMundo(mundo_nivel);
 		
-		if(nuevo_nivel.getNro_nivel() == 0 && id_mundo > 0){
+		if(nuevo_nivel.getNro_nivel() == 0 && id_mundo > 0){//Si el nivel es el primer nivel del mundo, desbloqueo el mundo a quien corresponda
 			int id_m_anterior =id_mundo - 1;
 			
 			for(Jugador j : mu.obtenerJugadores()){
@@ -162,7 +166,19 @@ public class ControladorProfesor implements IControladorProfesor{
 					break;
 				}
 			}
-		}	
+		}
+		
+		for (Jugador j : mu.obtenerJugadores()){
+			Map<Integer,Nivel> mapa = j.getEstado().getNiveles_actuales();
+			if (mapa.containsKey(id_mundo) && (mapa.get(id_mundo).getNro_nivel() == ultimo_nivel-1)){
+				if(j.getEstado().nivelCompleto(mapa.get(id_mundo))){
+					j.getEstado().getNiveles_actuales().put(id_mundo,nuevo_nivel);
+					mu.agregarJugador(j);
+				}
+			}
+		}
+
+		
 	}
 	
 	@RequestMapping(value="/agregarmundo", method=RequestMethod.POST)
