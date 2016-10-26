@@ -21,6 +21,7 @@ import Manejadores.ManejadorUsuario;
 import Modelo.Ayuda;
 import Modelo.Contenido;
 import Modelo.Estadistica;
+import Modelo.Mensaje;
 import Modelo.Mundo;
 import Modelo.Nivel;
 import Modelo.Problema;
@@ -49,7 +50,7 @@ public class TestVerAyuda {
 		mundo.agregarNivel(nivel);
 		mm.agregarMundo(mundo);
 		
-		Profesor profesor = new Profesor("Pedro", "pedro04", "1234");
+		Profesor profesor = new Profesor("Pedro", "pedro04", "1234",new ArrayList<Mensaje>(), new ArrayList<Mensaje>());
 		mu.agregarProfesor(profesor);
 		
 		Problema problema = new Problema( "Resolver la siguiente derivada", "8", 1, ayuda, contenido, nivel, profesor, new Estadistica(0,0));

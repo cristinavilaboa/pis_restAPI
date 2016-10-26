@@ -18,6 +18,7 @@ import Manejadores.ManejadorUsuario;
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Logro;
+import Modelo.Mensaje;
 import Modelo.Mundo;
 import Modelo.Nivel;
 import Modelo.Problema;
@@ -38,7 +39,8 @@ public class TestAgregarMundoYNivel {
 		mm.borrar();
 		mu.borrarProfesores();
 		
-		profe = new Profesor("nombre", "nick", "password");
+		//profe = new Profesor("nombre", "nick", "password",new ArrayList<DataMensaje>(),new ArrayList<DataMensaje>());
+		profe = new Profesor("nombre", "nick", "password", new ArrayList<Mensaje>(), new ArrayList<Mensaje>());
 		mu.agregarProfesor(profe);
 	}
 

@@ -23,6 +23,7 @@ import Modelo.Estadistica;
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Logro;
+import Modelo.Mensaje;
 import Modelo.Mundo;
 import Modelo.Nivel;
 import Modelo.Problema;
@@ -65,7 +66,7 @@ public class TestVerEstadisticas {
 		mundo.agregarNivel(nivel);
 		mm.agregarMundo(mundo);
 		
-		profe = new Profesor("nick", "nombre", "password");
+		profe = new Profesor("nick", "nombre", "password",new ArrayList<Mensaje>(), new ArrayList<Mensaje>());
 		mu.agregarProfesor(profe);
 		
 		ayuda = new Ayuda("ayuda al problema");

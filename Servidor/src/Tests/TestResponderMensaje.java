@@ -2,6 +2,7 @@ package Tests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.junit.Before;
@@ -33,7 +34,7 @@ public class TestResponderMensaje {
 		ManejadorMundo mm=ManejadorMundo.getInstancia();
 		mm.borrar();
 		mu.borrarProfesores();
-		profe = new Profesor("nombreProfe", "nickProfe", "passwordProfe");
+		profe = new Profesor("nombreProfe", "nickProfe", "passwordProfe",new ArrayList<Mensaje>(), new ArrayList<Mensaje>());
 		estado = new EstadoJugador(0);
 		
 		j = new Jugador("nombre", "nick", "FBToken", "imagen", estado);

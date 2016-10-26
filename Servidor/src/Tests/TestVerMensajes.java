@@ -43,7 +43,7 @@ public class TestVerMensajes {
 		mm.borrar();
 		mu.borrarProfesores();
 		
-		profe = new Profesor("nombre", "nick", "password");
+		profe = new Profesor("nombre", "nick", "password",new ArrayList<Mensaje>(), new ArrayList<Mensaje>());
 		m1 = new Mensaje("contenido1", "asunto1", new Date(), "id_remitente1");
 		m2 = new Mensaje("contenido2", "asunto2", new Date(), "id_remitente2");
 		m3 = new Mensaje("contenido3", "asunto3", new Date(), "id_remitente3");

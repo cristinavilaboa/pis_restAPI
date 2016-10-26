@@ -5,7 +5,11 @@ import Modelo.Profesor;
 import org.junit.Test;
 
 import Modelo.Jugador;
+import Modelo.Mensaje;
+
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import Manejadores.ManejadorMundo;
@@ -28,7 +32,7 @@ public class TestVerRanking {
 		mm.borrar();
 		manUs.borrarProfesores();
 		
-		Profesor Juliana = new Profesor("Juli", "Juliana", "123456");
+		Profesor Juliana = new Profesor("Juli", "Juliana", "123456",new ArrayList<Mensaje>(), new ArrayList<Mensaje>());
 		
 		manUs.agregarProfesor(Juliana);
 	  
