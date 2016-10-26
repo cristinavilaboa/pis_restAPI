@@ -137,10 +137,10 @@ public class CargarDatosBD {
 		contenidoP22= new Contenido("Preguntas/derivadaEalaX.png");
 		problema22 = new Problema("Resolver la siguiente derivada","e^x",10,ayudaP22,contenidoP22,nivel2,profesor, new Estadistica(0,0));
 		
-		ayudaP31 = new Ayuda("La integral es el area bajo la curva de una funciï¿½n");
+		ayudaP31 = new Ayuda("La integral es el area bajo la curva de una funcion");
 		contenidoP31 = new Contenido("Preguntas/integralde1de1a5.png");
-		problema31 = new Problema("Resolver la siguiente integral","4",10,ayudaP31,contenidoP31,nivel3,profesor, new Estadistica(0,0));
-		ayudaP32 = new Ayuda("La integral es el area bajo la curva de una funciï¿½n");
+		problema31 = new Problema("Resolver la siguiente integral","4",10,ayudaP31,contenidoP31,nivel1,profesor, new Estadistica(0,0));
+		ayudaP32 = new Ayuda("La integral es el area bajo la curva de una funcion");
 		contenidoP32 = new Contenido("Preguntas/integraldexde0a2.png");
 		problema32 = new Problema("Resolver la siguiente integral","2",10,ayudaP32,contenidoP32,nivel3,profesor, new Estadistica(0,0));
 		

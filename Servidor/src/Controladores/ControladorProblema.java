@@ -114,13 +114,16 @@ public class ControladorProblema implements IControladorProblema{
 	}
 	@RequestMapping(value="/reportarproblema", method=RequestMethod.POST)
 	public void reportarProblema(@RequestParam(value="id_problema") int id_problema,@RequestParam(value="nick") String nick,@RequestParam(value="mensaje") String mensaje){
+	try {
 	ManejadorProblema mp = ManejadorProblema.getInstancia();
 	Problema p = mp.buscarProblema(id_problema);
 	Profesor profe = p.getAutor();
-	Mensaje reporte = new Mensaje(mensaje, "Reporte Problema: "+ id_problema, new Date(), nick);
+	Mensaje reporte = new Mensaje( URLDecoder.decode(mensaje, "UTF-8"), "Reporte Problema: "+ id_problema, new Date(), nick);
 	profe.agregarReporte(reporte);
 	ManejadorUsuario.getInstancia().agregarProfesor(profe);
-	
+	}catch(Exception e){
+		e.printStackTrace();
+	}
 	
 	
 	}

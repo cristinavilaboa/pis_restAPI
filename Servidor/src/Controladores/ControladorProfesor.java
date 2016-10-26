@@ -1,5 +1,6 @@
 package Controladores;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -69,16 +70,20 @@ public class ControladorProfesor implements IControladorProfesor{
 	
 	 @RequestMapping(value="/respondermensaje", method=RequestMethod.POST) //Responde un mensaje
 	public void responderMensaje(@RequestParam(value="destinatario")String destinatario,@RequestParam(value="asunto")String asunto,@RequestParam(value="contenido")String contenido,@RequestParam(value="remitente")String remitente){
+		try{
+			Date fecha = new Date();
+			Mensaje m = new Mensaje(URLDecoder.decode(contenido, "UTF-8"), asunto, fecha, remitente);
+			
+			ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+			Usuario u =mu.buscarUsuario(destinatario);
+			u.agregar_mensaje_nuevo(m);
+			
+			mu.guardarMensaje(m);
+			mu.guardarUsuario(u);
 		
-		Date fecha = new Date();
-		Mensaje m = new Mensaje(contenido, asunto, fecha, remitente);
-		
-		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
-		Usuario u =mu.buscarUsuario(destinatario);
-		u.agregar_mensaje_nuevo(m);
-		
-		mu.guardarMensaje(m);
-		mu.guardarUsuario(u);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	
