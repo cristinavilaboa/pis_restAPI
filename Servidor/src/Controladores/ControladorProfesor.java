@@ -65,20 +65,22 @@ public class ControladorProfesor implements IControladorProfesor{
 		Mensaje m = mu.buscarMensaje(id_mensaje);
 		return new DataMensaje(m.getId(), m.getAsunto(), m.getContenido(), m.getFecha(), m.getRemitente());
 	}
+
 	
-	@RequestMapping(value="/respondermensaje", method=RequestMethod.POST) //Responde un mensaje
-	public void responderMensaje(@RequestParam(value="nick_jugador")String nick_jugador,@RequestParam(value="asunto")String asunto,@RequestParam(value="contenido")String contenido,@RequestParam(value="id_profesor")String id_profesor){
+	 @RequestMapping(value="/respondermensaje", method=RequestMethod.POST) //Responde un mensaje
+	public void responderMensaje(@RequestParam(value="destinatario")String destinatario,@RequestParam(value="asunto")String asunto,@RequestParam(value="contenido")String contenido,@RequestParam(value="remitente")String remitente){
 		
 		Date fecha = new Date();
-		Mensaje m = new Mensaje(contenido, asunto, fecha, id_profesor);
+		Mensaje m = new Mensaje(contenido, asunto, fecha, remitente);
 		
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
-		Jugador jugador = mu.buscarJugador(nick_jugador);
-		jugador.agregar_mensaje_nuevo(m);
+		Usuario u =mu.buscarUsuario(destinatario);
+		u.agregar_mensaje_nuevo(m);
 		
 		mu.guardarMensaje(m);
-		mu.guardarUsuario(jugador);
+		mu.guardarUsuario(u);
 	}
+	
 	
 	@RequestMapping(value="/mensajeleido", method=RequestMethod.POST) //Cambia un mensaje de nuevo a viejo.
 	public void mensajeleido(@RequestParam(value="nick")String nick,@RequestParam(value="id_mensaje")int id_mensaje){
@@ -88,7 +90,6 @@ public class ControladorProfesor implements IControladorProfesor{
 			usuario.mensajeLeido(id_mensaje);
 			mu.guardarUsuario(usuario);
 		}
-		
 	}
 	
 	@RequestMapping(value="/listarmundosprofesor", method=RequestMethod.GET)
@@ -124,7 +125,6 @@ public class ControladorProfesor implements IControladorProfesor{
 			DataEstadistica dt = new DataEstadistica(p.getNivel().getMundo().getNombre(), p.getNivel().getNro_nivel(), p.getId(), p.getEstadisticas().getCant_intentos(), p.getEstadisticas().getCant_aciertos(),p.getContenido().getURL());
 			lista.add(dt);
 		}
-		
 		return new DataListEstadisticas(lista);
 	}
 	@RequestMapping(value="/agregarnivel", method=RequestMethod.POST)
@@ -138,7 +138,7 @@ public class ControladorProfesor implements IControladorProfesor{
 		Nivel nuevo_nivel = new Nivel(new ArrayList<Problema>(), mundo_nivel);
 		mundo_nivel.agregarNivel(nuevo_nivel);
 		
-		mm.agregarMundo(mundo_nivel);//NO ESTAMOS SEGUROS DE ESTO
+		mm.agregarMundo(mundo_nivel);
 		
 		if(nuevo_nivel.getNro_nivel() == 0 && id_mundo > 0){
 			int id_m_anterior =id_mundo - 1;
@@ -156,15 +156,8 @@ public class ControladorProfesor implements IControladorProfesor{
 					mu.agregarJugador(j);
 					break;
 				}
-				
 			}
-			
-			
-		}
-		
-		
-		
-		
+		}	
 	}
 	
 	@RequestMapping(value="/agregarmundo", method=RequestMethod.POST)
@@ -184,9 +177,6 @@ public class ControladorProfesor implements IControladorProfesor{
 			m_anterior.getMundos_siguientes().add(nuevo_mundo);	
 			mm.agregarMundo(m_anterior);
 		}
-		
-		
-		
 	}
 	
 }

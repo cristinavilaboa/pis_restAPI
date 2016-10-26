@@ -29,6 +29,7 @@ import Modelo.Problema;
 import Modelo.Profesor;
 
 public class TestVerEstadisticas {
+	
 	Ayuda ayuda;
 	Contenido contenido;
 	Mundo mundo;
@@ -50,8 +51,11 @@ public class TestVerEstadisticas {
 	ManejadorMundo mm = ManejadorMundo.getInstancia();
 	ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 	ManejadorProblema mp = ManejadorProblema.getInstancia();
+	
+	
 	@Before
 	public void setUp() throws Exception {
+		
 		mu.borrar();
 		mm.borrar();
 		mu.borrarProfesores();
@@ -63,7 +67,6 @@ public class TestVerEstadisticas {
 		
 		profe = new Profesor("nick", "nombre", "password");
 		mu.agregarProfesor(profe);
-		
 		
 		ayuda = new Ayuda("ayuda al problema");
 		contenido = new Contenido("Contenio del problema");
@@ -87,8 +90,10 @@ public class TestVerEstadisticas {
 		mu.agregarJugador(j3);
 	}
 
+	
 	@Test
 	public void test() {
+		
 		IControladorProfesor cp = new ControladorProfesor();
 		IControladorProblema cpro = new ControladorProblema();
 		List<DataEstadistica> lista = cp.verEstadisticas().getLista();

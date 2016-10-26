@@ -16,15 +16,18 @@ import Modelo.Profesor;
 import Persistencia.HibernateUtility;
 
 public class ManejadorMundo {
-	private static ManejadorMundo instancia = new ManejadorMundo();
-	//private  Map<Integer,Mundo> mundos= new HashMap<Integer,Mundo>();
 	
+	private static ManejadorMundo instancia = new ManejadorMundo();
+	
+	//----CONSTRUCTOR----//
 	private ManejadorMundo(){};
 	
+	//----GETTERS----//
 	public static ManejadorMundo getInstancia(){
 		return instancia;
 	}
 	
+	//----OPERACIONES----//
 	public Mundo obtenerMundo(int id_mundo){
 		Session session = null;
 		Mundo mundo = null;
@@ -91,11 +94,5 @@ public class ManejadorMundo {
 		System.out.println("successfully borrado mundos");
 		
 	}
-	
-	/*	List<Mundo> lista = new ArrayList<Mundo>();
-		for(Mundo m : mundos.values()){
-			lista.add(m);
-		}
-		return lista;
-	}*/
+
 }

@@ -22,17 +22,16 @@ import Persistencia.HibernateUtility;
 @Table(name = "PROFESOR")
 @PrimaryKeyJoinColumn(name="nick")
 public class Profesor extends Usuario {
-	
-	
-	//private static int num_mensaje = 0;
 
 	private String password;
 	
+
 	@OneToMany(cascade=CascadeType.ALL) 
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@JoinTable(name="profesor_mensajes_reportes", joinColumns={@JoinColumn (name="id_usuario", referencedColumnName= "nick" )},inverseJoinColumns={@JoinColumn(name="id_mensaje",referencedColumnName="id_mensaje")})
 	private List<Mensaje> mensajes_reportes = new ArrayList<Mensaje>();
-	
+
+	//----CONSTRUCTORES----//
 	public Profesor(){
 		super();
 	};
@@ -41,10 +40,12 @@ public class Profesor extends Usuario {
 		this.password = password;
 	}
 
+	//----GETTERS----//
 	public String getPassword() {
 		return password;
 	}
-
+	
+	//----SETTERS----//
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -56,11 +57,12 @@ public class Profesor extends Usuario {
 		this.mensajes_reportes = mensajes_reportes;
 	}
 	//METODOS A IMPLEMENTAR
+
+	//----OPERACIONES----//
+
 	public void enviarMensaje(String mensaje,Date fecha, String asunto,String id_jugador){
-		Mensaje m=new Mensaje(/*num_mensaje,*/mensaje,asunto, fecha,id_jugador);
+		Mensaje m=new Mensaje(mensaje,asunto, fecha,id_jugador);
 		this.getMensajes_nuevos().add(m);
-		//mensajes_nuevos.add(m);
-		
 	}
 	
 	public void agregarReporte(Mensaje reporte){
@@ -74,6 +76,7 @@ public class Profesor extends Usuario {
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

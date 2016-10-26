@@ -21,6 +21,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Entity
 @Table(name = "ESTADO")
 public class EstadoJugador {
+	
 	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_estado_jugador;
 	private int puntos_exp;
@@ -32,17 +33,15 @@ public class EstadoJugador {
 	@MapKeyColumn(name="id_mundo")  @LazyCollection(LazyCollectionOption.FALSE)
 	private Map<Integer, Nivel> niveles_actuales = new HashMap<Integer, Nivel>(); //El int es el id de un mundo,
 																	//y el map representa el nivel actual en cada mundo
-	
 	@ManyToMany  @LazyCollection(LazyCollectionOption.FALSE)
 	private List<Problema> problemas_resueltos = new ArrayList<Problema>();//Lista de problemas resueltos
-	
 	@ElementCollection @LazyCollection(LazyCollectionOption.FALSE)
 	private List<Integer> problemas_tutorial_activo = new ArrayList<Integer>();
 	
+	//----CONSTRUCTORES----//
 	public EstadoJugador(int puntos_exp){
 		this.puntos_exp = puntos_exp;
 	}
-	
 	
 	public EstadoJugador(int puntos_exp, List<Mundo> mundos_completos, List<Logro> logros,
 			Map<Integer, Nivel> niveles_actuales, List<Problema> problemas_resueltos,
@@ -56,72 +55,69 @@ public class EstadoJugador {
 		this.problemas_tutorial_activo = problemas_tutorial_activo;
 	}
 
-
-
 	public EstadoJugador(){
 		
 	}
 
+	//----GETTERS----//
 	public int getId_estado_jugador() {
 		return id_estado_jugador;
-	}
-
-	public void setId_estado_jugador(int id_estado_jugador) {
-		this.id_estado_jugador = id_estado_jugador;
 	}
 
 	public int getPuntos_exp() {
 		return puntos_exp;
 	}
 
-	public void setPuntos_exp(int puntos_exp) {
-		this.puntos_exp = puntos_exp;
-	}
-
 	public List<Mundo> getMundos_completos() {
 		return mundos_completos;
-	}
-
-	public void setMundos_completos(List<Mundo> mundos_completos) {
-		this.mundos_completos = mundos_completos;
 	}
 
 	public List<Logro> getLogros() {
 		return logros;
 	}
 
-	public void setLogros(List<Logro> logros) {
-		this.logros = logros;
-	}
-
 	public Map<Integer, Nivel> getNiveles_actuales() {
 		return niveles_actuales;
-	}
-
-	public void setNiveles_actuales(Map<Integer, Nivel> niveles_actuales) {
-		this.niveles_actuales = niveles_actuales;
 	}
 
 	public List<Problema> getProblemas_resueltos() {
 		return problemas_resueltos;
 	}
 
-	public void setProblemas_resueltos(List<Problema> problemas_resueltos) {
-		this.problemas_resueltos = problemas_resueltos;
-	}
-	
-
 	public List<Integer> getProblemas_tutorial_activo() {
 		return problemas_tutorial_activo;
 	}
 
+	//----SETTERS----//
+	public void setId_estado_jugador(int id_estado_jugador) {
+		this.id_estado_jugador = id_estado_jugador;
+	}
+	
+	public void setPuntos_exp(int puntos_exp) {
+		this.puntos_exp = puntos_exp;
+	}
+	
+	public void setMundos_completos(List<Mundo> mundos_completos) {
+		this.mundos_completos = mundos_completos;
+	}
+	
+	public void setLogros(List<Logro> logros) {
+		this.logros = logros;
+	}
+	
+	public void setNiveles_actuales(Map<Integer, Nivel> niveles_actuales) {
+		this.niveles_actuales = niveles_actuales;
+	}
+	
+	public void setProblemas_resueltos(List<Problema> problemas_resueltos) {
+		this.problemas_resueltos = problemas_resueltos;
+	}
 
 	public void setProblemas_tutorial_activo(List<Integer> problemas_tutorial_activo) {
 		this.problemas_tutorial_activo = problemas_tutorial_activo;
 	}
 
-
-	//METODOS A IMPLEMENTAR
+	//----OPERACIONES----//
 	public void ganarExperiencia(int exp) {
 		int total = exp + this.puntos_exp;
 		setPuntos_exp(total);
@@ -140,7 +136,6 @@ public class EstadoJugador {
 			
 			problemas_resueltos.add(p);
 		}
-		
 	}
 	
 	public void ganarLogro(Logro l){

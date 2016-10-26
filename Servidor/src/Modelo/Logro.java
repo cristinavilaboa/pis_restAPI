@@ -10,11 +10,13 @@ import Datatypes.DataLogro;
 @Entity
 @Table(name = "LOGRO")
 public class Logro {
+	
 	 @Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_logro;
 	private String descripcion;
 	private int id; //habr�a q borrar este
 	
+	//----CONSTRUCTORES----//
 	public Logro(String descripcion){
 		this.descripcion=descripcion;
 	}
@@ -22,22 +24,26 @@ public class Logro {
 	public Logro (){
 		
 	}
+	
+	//----GETTERS----//
 	public int getId() {
 		return id;
-	}
-	
-	public void setId(int id) {
-		this.id = id;
 	}
 	
 	public String getDescripcion() {
 		return descripcion;
 	}
 	
+	//----SETTERS----//
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 	
+	//----OPERACIONES----//
 	public DataLogro obtenerDataLogro(){
 		DataLogro dl = new DataLogro(descripcion, id);
 		return dl;

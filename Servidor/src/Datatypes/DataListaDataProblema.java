@@ -3,6 +3,7 @@ package Datatypes;
 import java.util.List;
 
 public class DataListaDataProblema {
+	
 	private List<DataProblema> problemas_nivel; 
 
 	public DataListaDataProblema(List<DataProblema> problemas_nivel_act) {
@@ -12,6 +13,5 @@ public class DataListaDataProblema {
 	public List<DataProblema> getProblemas_nivel() {
 		return problemas_nivel;
 	}
-	
-	
+
 }

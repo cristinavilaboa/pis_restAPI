@@ -31,13 +31,13 @@ import Modelo.Problema;
 import Modelo.Profesor;
 
 public class TestListarMundosNivelesProblemasClient {
+	
 	ManejadorMundo mm = ManejadorMundo.getInstancia();
 	ManejadorProblema mp = ManejadorProblema.getInstancia();
 	ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 	
 	EstadoJugador estado = new EstadoJugador(0, new ArrayList<Mundo>(), new ArrayList<Logro>(), new HashMap<Integer,Nivel>(), new ArrayList<Problema>(),new ArrayList<Integer>());
 	Jugador jugador = new Jugador("nombre", "nick", "FBToken", "imagen", estado);
-	
 	
 	Profesor profesor = new Profesor("nickProfe", "nombreProfe", "passwordProfe");
 	
@@ -81,6 +81,7 @@ public class TestListarMundosNivelesProblemasClient {
 	
 	@Before
 	public void setUp() throws Exception {
+		
 		mu.borrar();
 		mm.borrar();
 		m1 = new Mundo(1,"Jupiter", "imagen", "descripcion",0,mundos_siguientesM1, nivelesM1);
@@ -204,7 +205,6 @@ public class TestListarMundosNivelesProblemasClient {
 		mu.borrar();		
 		mm.borrar();
 		mu.borrarProfesores();
-		
 	}
 
 }

@@ -22,6 +22,7 @@ import Modelo.Mensaje;
 import Modelo.Profesor;
 
 public class TestVerMensajes {
+	
 	Profesor profe;
 	Jugador jugador;
 	Mensaje m1;
@@ -34,6 +35,7 @@ public class TestVerMensajes {
 	
 	@Before
 	public void setUp() throws Exception {
+		
 		mu = ManejadorUsuario.getInstancia();
 		mm = ManejadorMundo.getInstancia();
 		
@@ -58,12 +60,12 @@ public class TestVerMensajes {
 		profe.agregar_mensaje_nuevo(m3);
 		mu.agregarProfesor(profe);
 		mu.agregarJugador(jugador);
-
-		
 	}
 
+	
 	@Test
 	public void test() {
+		
 		mu = ManejadorUsuario.getInstancia();
 		Profesor p = mu.buscarProfesor("nick");
 		Jugador j = mu.buscarJugador("nickJ");
@@ -89,7 +91,6 @@ public class TestVerMensajes {
 			dlm_viejosJ.add(new DataMensaje(m.getId(), m.getAsunto(), m.getContenido(), m.getFecha(),m.getRemitente()));
 		}
 		
-
 		assertEquals(3,dlm_nuevos.size());
 		assertEquals(0,dlm_viejos.size());
 		
@@ -134,7 +135,6 @@ public class TestVerMensajes {
 		p.mensajeLeido(m3.getId());
 		mu.guardarUsuario(p);
 		
-		
 		List<DataMensaje> dlm2_nuevos = new ArrayList<DataMensaje>();
 		
 		for (Mensaje m: p.getMensajes_nuevos()){
@@ -173,7 +173,6 @@ public class TestVerMensajes {
 		mu.borrar();
 		mm.borrar();
 		mu.borrarProfesores();
-		
 	}
 
 }
