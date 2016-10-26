@@ -43,7 +43,7 @@ public class TestAgregarProblema {
 		mundo.agregarNivel(nivel);
 		mm.agregarMundo(mundo);
 		
-		profe = new Profesor("nick", "nombre", "password");
+		profe = new Profesor("nick", "nombre", "password",new ArrayList<Mensaje>(), new ArrayList<Mensaje>());
 		mu.agregarProfesor(profe);
 		ayuda = new Ayuda("ayuda al problema");
 		contenido = new Contenido("Contenio del problema");

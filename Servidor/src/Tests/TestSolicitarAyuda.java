@@ -35,7 +35,7 @@ public class TestSolicitarAyuda {
 		ManejadorMundo mm=ManejadorMundo.getInstancia();
 		mm.borrar();
 		mu.borrarProfesores();
-		profesor = new Profesor("Juan","nickJuan","123");
+		profesor = new Profesor("Juan","nickJuan","123",new ArrayList<Mensaje>(), new ArrayList<Mensaje>());
 		mu.agregarProfesor(profesor);
 		
 		ArrayList<Nivel> niveles = new ArrayList<Nivel>();

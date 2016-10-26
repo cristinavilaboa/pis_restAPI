@@ -56,7 +56,7 @@ public class CargarDatosBD {
 		//creating transaction object
 		org.hibernate.Transaction t= session.beginTransaction();
 		
-		Profesor profe = new Profesor("Juan","pepe","123");
+		Profesor profe = new Profesor("Juan","pepe","123",new ArrayList<Mensaje>(), new ArrayList<Mensaje>());
 		Problema problema= new Problema("problema1","resp",12,null,null,null,profe,new Estadistica(0,0));
 		
 		session.persist(profe);
@@ -104,7 +104,7 @@ public class CargarDatosBD {
 		Contenido contenidoP1, contenidoP21, contenidoP22, contenidoP31, contenidoP32, contenidoP4, contenidoP5;
 		Logro logJ1,logJ21,logJ22,logJ23;
 		
-		Profesor profesor = new Profesor("Marcelo", "marce_fing", "1234");
+		Profesor profesor = new Profesor("Marcelo", "marce_fing", "1234",new ArrayList<Mensaje>(), new ArrayList<Mensaje>());
 		mu.agregarProfesor(profesor);
 
 		mundo = new Mundo(1,"Calculo", "Mundos/MP-DeathStar.png", "Mundo de Calculo 1",20,mundos_siguientes, niveles);

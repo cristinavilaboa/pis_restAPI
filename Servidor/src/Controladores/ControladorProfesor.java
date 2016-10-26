@@ -178,5 +178,42 @@ public class ControladorProfesor implements IControladorProfesor{
 			mm.agregarMundo(m_anterior);
 		}
 	}
+	@RequestMapping(value="/verreportesnuevos", method=RequestMethod.GET)
+	public DataListaMensajes verReportesNuevos(@RequestParam(value="nick")String nick){
+		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+		Profesor profe = mu.buscarProfesor(nick);
+		ArrayList<DataMensaje> lista = new ArrayList<DataMensaje>();
+		
+		for (Mensaje m: profe.getReportes_nuevos()){
+			lista.add(new DataMensaje(m.getId(), m.getAsunto(), m.getContenido(), m.getFecha(), m.getRemitente()));
+		}
+		
+		return new DataListaMensajes(lista);
+		
+	}
+	@RequestMapping(value="/verreportesviejos", method=RequestMethod.GET)
+	public DataListaMensajes verReportesViejos(@RequestParam(value="nick")String nick){
+		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+		Profesor profe = mu.buscarProfesor(nick);
+		ArrayList<DataMensaje> lista = new ArrayList<DataMensaje>();
+		
+		for (Mensaje m: profe.getReportes_viejos()){
+			lista.add(new DataMensaje(m.getId(), m.getAsunto(), m.getContenido(), m.getFecha(), m.getRemitente()));
+		}
+		
+		return new DataListaMensajes(lista);
+	}
+	
+
+	@RequestMapping(value="/reporteleido", method=RequestMethod.POST) //Cambia un mensaje de nuevo a viejo.
+	public void reporteleido(@RequestParam(value="nick")String nick,@RequestParam(value="id_mensaje")int id_mensaje){
+		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+		Profesor profe = mu.buscarProfesor(nick);	
+		if(profe.esReporteNuevo(id_mensaje)){
+			profe.reporteLeido(id_mensaje);
+			mu.guardarUsuario(profe);
+		}
+	}
+	
 	
 }

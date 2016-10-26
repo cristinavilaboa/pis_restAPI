@@ -28,21 +28,40 @@ public class Profesor extends Usuario {
 
 	@OneToMany(cascade=CascadeType.ALL) 
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@JoinTable(name="profesor_mensajes_reportes", joinColumns={@JoinColumn (name="id_usuario", referencedColumnName= "nick" )},inverseJoinColumns={@JoinColumn(name="id_mensaje",referencedColumnName="id_mensaje")})
-	private List<Mensaje> mensajes_reportes = new ArrayList<Mensaje>();
+	@JoinTable(name="profesor_reportes_nuevos", joinColumns={@JoinColumn (name="id_usuario", referencedColumnName= "nick" )},inverseJoinColumns={@JoinColumn(name="id_mensaje",referencedColumnName="id_mensaje")})
+	private List<Mensaje> reportes_nuevos = new ArrayList<Mensaje>();
+	
+	@OneToMany(cascade=CascadeType.ALL) 
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@JoinTable(name="profesor_reportes_viejos", joinColumns={@JoinColumn (name="id_usuario", referencedColumnName= "nick" )},inverseJoinColumns={@JoinColumn(name="id_mensaje",referencedColumnName="id_mensaje")})
+	private List<Mensaje> reportes_viejos = new ArrayList<Mensaje>();
 
 	//----CONSTRUCTORES----//
 	public Profesor(){
 		super();
 	};
-	public Profesor(String nombre, String nick, String password){
-		super (nombre,nick);
+
+	public Profesor(String nombre, String nick, String password, List<Mensaje> reportes_nuevos,
+			List<Mensaje> reportes_viejos) {
+		super(nombre, nick);
 		this.password = password;
+		this.reportes_nuevos = reportes_nuevos;
+		this.reportes_viejos = reportes_viejos;
 	}
+
+
 
 	//----GETTERS----//
 	public String getPassword() {
 		return password;
+	}
+	
+	public List<Mensaje> getReportes_nuevos() {
+		return reportes_nuevos;
+	}
+
+	public List<Mensaje> getReportes_viejos() {
+		return reportes_viejos;
 	}
 	
 	//----SETTERS----//
@@ -50,12 +69,14 @@ public class Profesor extends Usuario {
 		this.password = password;
 	}
 	
-	public List<Mensaje> getMensajes_reportes() {
-		return mensajes_reportes;
+	public void setReportes_nuevos(List<Mensaje> reportes_nuevos) {
+		this.reportes_nuevos = reportes_nuevos;
 	}
-	public void setMensajes_reportes(List<Mensaje> mensajes_reportes) {
-		this.mensajes_reportes = mensajes_reportes;
+	
+	public void setReportes_viejos(List<Mensaje> reportes_viejos) {
+		this.reportes_viejos = reportes_viejos;
 	}
+	
 	//METODOS A IMPLEMENTAR
 
 	//----OPERACIONES----//
@@ -66,8 +87,28 @@ public class Profesor extends Usuario {
 	}
 	
 	public void agregarReporte(Mensaje reporte){
-		this.mensajes_reportes.add(reporte);
+		this.reportes_nuevos.add(reporte);
 	}
+	
+	public boolean esReporteNuevo(int id_mensaje){
+		for(Mensaje m: reportes_nuevos){
+			if(m.getId() == id_mensaje){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public void reporteLeido(int id_mensaje){ // Se supone que antes se uso la operacion esMensajeNuevo
+		for(Mensaje m: reportes_nuevos){
+			if(m.getId() == id_mensaje){
+				reportes_viejos.add(m);
+				reportes_nuevos.remove(m);
+				break;
+			}
+		}
+	}
+	
 	
 	@Override
 	public int hashCode() {
