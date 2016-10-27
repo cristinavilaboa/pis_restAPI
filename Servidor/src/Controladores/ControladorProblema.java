@@ -72,10 +72,14 @@ public class ControladorProblema implements IControladorProblema{
 	public DataEstadoMensaje enviarMensaje(@RequestParam(value="id_problema") int id_problema,@RequestParam(value="nick") String nick,@RequestParam(value="mensaje") String mensaje,@RequestParam(value="fecha") String fechaStr,@RequestParam(value="asunto") String asunto){ 
 		Date fecha;
 		try {
+			
+			
 			fecha = DataTypeConstants.getDateFormat().parse(fechaStr);
 			ManejadorProblema mp=ManejadorProblema.getInstancia();
 			Problema p=mp.buscarProblema(id_problema);
-			p.enviarMensaje(URLDecoder.decode(mensaje, "UTF-8") , fecha, asunto,nick);
+			
+			String apendice= " - "+p.getNivel().getMundo().getNombre() + " Nivel: " + p.getNivel().getNro_nivel() + " Problema: "+ p.getNro_problema();
+			p.enviarMensaje(URLDecoder.decode(mensaje, "UTF-8") , fecha, asunto+apendice,nick);
 			return new DataEstadoMensaje(true);
 		
 		} catch (ParseException e) {			
@@ -109,6 +113,7 @@ public class ControladorProblema implements IControladorProblema{
 	
 		Problema problema = new Problema( descripcion, respuesta, puntos_exp, ayuda, contenido, nivel, profe, new Estadistica(0,0));
 
+		problema.setNro_problema(nivel.asignarNumeroProblema());
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
 		mp.agregarProblema(problema);
 	}

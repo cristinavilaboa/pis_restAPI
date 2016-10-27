@@ -27,11 +27,13 @@ public class Nivel {
 	private List<Problema> problemas = new ArrayList<Problema>();
 	@ManyToOne @LazyCollection(LazyCollectionOption.FALSE)
 	private Mundo mundo;
+	private int nro_problema;
 	
 	//----CONSTRUCTORES----//
 	public Nivel(List<Problema> problemas, Mundo mundo) {
 		this.problemas = problemas;
 		this.mundo = mundo;
+		this.nro_problema=0;
 	}
 	
 	public Nivel(){}
@@ -71,6 +73,11 @@ public class Nivel {
 	}
 	
 	
+	public int asignarNumeroProblema(){
+		int var=this.nro_problema;
+		this.nro_problema++;
+		return var;
+	}
 	
 	//----OPERACIONES----//
 	public boolean esUltima(int id_problema){//Retorna true si le problema es el ultima del nivel
@@ -88,6 +95,8 @@ public class Nivel {
 	}
 	
 	public void agregarProblema(Problema p){
+		p.setNro_problema(nro_problema);
+		nro_problema++;
 		problemas.add(p);
 	}
 

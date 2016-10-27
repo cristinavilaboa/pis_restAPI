@@ -24,6 +24,7 @@ public class Problema {
 	
 	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id_problema;
+	private Integer nro_problema;
 	private String descripcion;
 	private String respuesta;
 	private int puntos_exp;
@@ -90,6 +91,10 @@ public class Problema {
 		return estadisticas;
 	}
 	
+	public Integer getNro_problema() {
+		return nro_problema;
+	}
+	
 	//----SETTERS----//
 	public void setId(int id) {
 		this.id_problema = id;
@@ -127,6 +132,10 @@ public class Problema {
 		this.estadisticas = estadisticas;
 	}
 
+
+	public void setNro_problema(Integer nro_problema) {
+		this.nro_problema = nro_problema;
+	}
 
 	//----OPERACIONES----//
 	public boolean verificarRespuesta(String respuesta){
