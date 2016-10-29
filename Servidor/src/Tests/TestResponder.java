@@ -20,6 +20,7 @@ import Manejadores.ManejadorUsuario;
 import Modelo.*;
 
 public class TestResponder {
+	
 	ArrayList<Mundo> mundos_siguientes = new ArrayList<Mundo>();
 
 	ArrayList<Mundo> mundos_siguientes2 = new ArrayList<Mundo>();
@@ -146,8 +147,10 @@ public class TestResponder {
 		mu.borrarProfesores();
 	}
 	
+	
 	@Test
 	public void testGeneral() {
+		
 		int id_p1 = mm.obtenerMundo(1).getNiveles().get(0).getProblemas().get(0).getId();
 		cp.responderProblema(id_p1, "respue22sta", "nick");
 		EstadoJugador nuevo_estado = mu.buscarJugador("nick").getEstado();
@@ -234,6 +237,5 @@ public class TestResponder {
 		mm.borrar();
 		mu.borrarProfesores();
 	}
-
 
 }

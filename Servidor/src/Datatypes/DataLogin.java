@@ -12,7 +12,7 @@ public class DataLogin {
 		this.existe_token = existe_token;
 	}
 	
-	
+	//----GETTERS----//
 	public String getNombre() {
 		return nombre;
 	}
@@ -24,7 +24,5 @@ public class DataLogin {
 	public boolean isExiste_token() {
 		return existe_token;
 	}
-	
-	
-	
+
 }

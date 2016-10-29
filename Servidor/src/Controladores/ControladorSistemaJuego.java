@@ -35,12 +35,11 @@ import Modelo.Problema;
 @CrossOrigin
 @RestController
 public class ControladorSistemaJuego implements IControladorSistemaJuego {
+	
 	@RequestMapping(value="/cargardatos", method=RequestMethod.POST)
 	public void CargarDatos() throws SecurityException, HeuristicMixedException, HeuristicRollbackException, RollbackException, SystemException{
 			CargarDatosBD.Cargar();
 	}
-	
-
 	
 	public void avanzarJuego(String id_jugador, int id_problema, int id_mundo){
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
@@ -63,23 +62,16 @@ public class ControladorSistemaJuego implements IControladorSistemaJuego {
 					estado.agregarMundoCompleto(mundo);
 					estado.ganarExperiencia(mundo.getPuntos_exp());
 					Logro mundo_terminado = new Logro("Mundo "+mundo.getNombre()+" completado");
-					estado.ganarLogro(mundo_terminado);		
-;
+					estado.ganarLogro(mundo_terminado);
 				}
 				for(Mundo m: mundos_siguientes){//Desbloqueo todos los mundos siguientes
 					if(!estado.getNiveles_actuales().containsKey(m.getId())){//Solo se desbloque si no esta desbloqueado de antes
 						estado.agregarMundoActivo(m);
 					}
-					
 				}
 			}
-			
 			mu.guardarUsuario(j);
-
 		}
-		
-		
 	}
-
 
 }

@@ -23,34 +23,31 @@ import Modelo.Profesor;
 import Persistencia.HibernateUtility;
 
 public class TestSolicitarAyuda {
+	
 	Profesor profesor;
 	Problema problema;
 
 	@Before
 	public void setUp() throws Exception {
+		
 		ManejadorUsuario mu=ManejadorUsuario.getInstancia();
 		mu.borrar();
 		ManejadorMundo mm=ManejadorMundo.getInstancia();
 		mm.borrar();
 		mu.borrarProfesores();
-		profesor = new Profesor("Juan","nickJuan","123");
+		profesor = new Profesor("Juan","nickJuan","123",new ArrayList<Mensaje>(), new ArrayList<Mensaje>());
 		mu.agregarProfesor(profesor);
-		
-		
 		
 		ArrayList<Nivel> niveles = new ArrayList<Nivel>();
 		ArrayList<Problema> listaP = new ArrayList<Problema>();
-		
 		
 		Mundo mundo = new Mundo(1,"Jupiter", "imagen", "descripcion",50, new ArrayList<Mundo>(), niveles);
 		Nivel nivel = new Nivel(listaP,mundo);
 		
 		mundo.agregarNivel(nivel);
 		
-
 		problema= new Problema("problema1","resp",12,null,null,nivel,profesor, new Estadistica(0,0));
 		listaP.add(problema);
-		
 		
 		ManejadorProblema mp=ManejadorProblema.getInstancia();
 		mm.agregarMundo(mundo);
@@ -60,6 +57,7 @@ public class TestSolicitarAyuda {
 
 	@Test
 	public void test() {
+		
 		@SuppressWarnings("deprecation")
 		Date date =new Date(1,1,1);
 		ManejadorProblema mp=ManejadorProblema.getInstancia();

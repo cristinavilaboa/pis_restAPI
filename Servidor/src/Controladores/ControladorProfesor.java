@@ -1,8 +1,11 @@
 package Controladores;
 
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +25,7 @@ import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
 import Modelo.Estadistica;
+import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Mensaje;
 import Modelo.Mundo;
@@ -65,20 +69,26 @@ public class ControladorProfesor implements IControladorProfesor{
 		Mensaje m = mu.buscarMensaje(id_mensaje);
 		return new DataMensaje(m.getId(), m.getAsunto(), m.getContenido(), m.getFecha(), m.getRemitente());
 	}
+
 	
-	@RequestMapping(value="/respondermensaje", method=RequestMethod.POST) //Responde un mensaje
-	public void responderMensaje(@RequestParam(value="nick_jugador")String nick_jugador,@RequestParam(value="asunto")String asunto,@RequestParam(value="contenido")String contenido,@RequestParam(value="id_profesor")String id_profesor){
+	 @RequestMapping(value="/respondermensaje", method=RequestMethod.POST) //Responde un mensaje
+	public void responderMensaje(@RequestParam(value="destinatario")String destinatario,@RequestParam(value="asunto")String asunto,@RequestParam(value="contenido")String contenido,@RequestParam(value="remitente")String remitente){
+		try{
+			Date fecha = new Date();
+			Mensaje m = new Mensaje(URLDecoder.decode(contenido, "UTF-8"), asunto, fecha, remitente);
+			
+			ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+			Usuario u =mu.buscarUsuario(destinatario);
+			u.agregar_mensaje_nuevo(m);
+			
+			mu.guardarMensaje(m);
+			mu.guardarUsuario(u);
 		
-		Date fecha = new Date();
-		Mensaje m = new Mensaje(contenido, asunto, fecha, id_profesor);
-		
-		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
-		Jugador jugador = mu.buscarJugador(nick_jugador);
-		jugador.agregar_mensaje_nuevo(m);
-		
-		mu.guardarMensaje(m);
-		mu.guardarUsuario(jugador);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
+	
 	
 	@RequestMapping(value="/mensajeleido", method=RequestMethod.POST) //Cambia un mensaje de nuevo a viejo.
 	public void mensajeleido(@RequestParam(value="nick")String nick,@RequestParam(value="id_mensaje")int id_mensaje){
@@ -88,7 +98,6 @@ public class ControladorProfesor implements IControladorProfesor{
 			usuario.mensajeLeido(id_mensaje);
 			mu.guardarUsuario(usuario);
 		}
-		
 	}
 	
 	@RequestMapping(value="/listarmundosprofesor", method=RequestMethod.GET)
@@ -124,7 +133,6 @@ public class ControladorProfesor implements IControladorProfesor{
 			DataEstadistica dt = new DataEstadistica(p.getNivel().getMundo().getNombre(), p.getNivel().getNro_nivel(), p.getId(), p.getEstadisticas().getCant_intentos(), p.getEstadisticas().getCant_aciertos(),p.getContenido().getURL());
 			lista.add(dt);
 		}
-		
 		return new DataListEstadisticas(lista);
 	}
 	@RequestMapping(value="/agregarnivel", method=RequestMethod.POST)
@@ -132,15 +140,16 @@ public class ControladorProfesor implements IControladorProfesor{
 		ManejadorMundo mm = ManejadorMundo.getInstancia();
 		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
 
-		String nick = null;
 		
 		Mundo mundo_nivel =  mm.obtenerMundo(id_mundo);
+		int ultimo_nivel = mundo_nivel.getNro_nivel();
 		Nivel nuevo_nivel = new Nivel(new ArrayList<Problema>(), mundo_nivel);
+
 		mundo_nivel.agregarNivel(nuevo_nivel);
 		
-		mm.agregarMundo(mundo_nivel);//NO ESTAMOS SEGUROS DE ESTO
+		mm.agregarMundo(mundo_nivel);
 		
-		if(nuevo_nivel.getNro_nivel() == 0 && id_mundo > 0){
+		if(nuevo_nivel.getNro_nivel() == 0 && id_mundo > 0){//Si el nivel es el primer nivel del mundo, desbloqueo el mundo a quien corresponda
 			int id_m_anterior =id_mundo - 1;
 			
 			for(Jugador j : mu.obtenerJugadores()){
@@ -156,14 +165,19 @@ public class ControladorProfesor implements IControladorProfesor{
 					mu.agregarJugador(j);
 					break;
 				}
-				
 			}
-			
-			
 		}
 		
-		
-		
+		for (Jugador j : mu.obtenerJugadores()){
+			Map<Integer,Nivel> mapa = j.getEstado().getNiveles_actuales();
+			if (mapa.containsKey(id_mundo) && (mapa.get(id_mundo).getNro_nivel() == ultimo_nivel-1)){
+				if(j.getEstado().nivelCompleto(mapa.get(id_mundo))){
+					j.getEstado().getNiveles_actuales().put(id_mundo,nuevo_nivel);
+					mu.agregarJugador(j);
+				}
+			}
+		}
+
 		
 	}
 	
@@ -184,9 +198,43 @@ public class ControladorProfesor implements IControladorProfesor{
 			m_anterior.getMundos_siguientes().add(nuevo_mundo);	
 			mm.agregarMundo(m_anterior);
 		}
+	}
+	@RequestMapping(value="/verreportesnuevos", method=RequestMethod.GET)
+	public DataListaMensajes verReportesNuevos(@RequestParam(value="nick")String nick){
+		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+		Profesor profe = mu.buscarProfesor(nick);
+		ArrayList<DataMensaje> lista = new ArrayList<DataMensaje>();
 		
+		for (Mensaje m: profe.getReportes_nuevos()){
+			lista.add(new DataMensaje(m.getId(), m.getAsunto(), m.getContenido(), m.getFecha(), m.getRemitente()));
+		}
 		
+		return new DataListaMensajes(lista);
 		
 	}
+	@RequestMapping(value="/verreportesviejos", method=RequestMethod.GET)
+	public DataListaMensajes verReportesViejos(@RequestParam(value="nick")String nick){
+		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+		Profesor profe = mu.buscarProfesor(nick);
+		ArrayList<DataMensaje> lista = new ArrayList<DataMensaje>();
+		
+		for (Mensaje m: profe.getReportes_viejos()){
+			lista.add(new DataMensaje(m.getId(), m.getAsunto(), m.getContenido(), m.getFecha(), m.getRemitente()));
+		}
+		
+		return new DataListaMensajes(lista);
+	}
+	
+
+	@RequestMapping(value="/reporteleido", method=RequestMethod.POST) //Cambia un mensaje de nuevo a viejo.
+	public void reporteleido(@RequestParam(value="nick")String nick,@RequestParam(value="id_mensaje")int id_mensaje){
+		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+		Profesor profe = mu.buscarProfesor(nick);	
+		if(profe.esReporteNuevo(id_mensaje)){
+			profe.reporteLeido(id_mensaje);
+			mu.guardarUsuario(profe);
+		}
+	}
+	
 	
 }

@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 @Entity
 @Table(name = "MUNDO")
 public class Mundo {
+	
 	@Id  // @GeneratedValue(strategy=GenerationType.AUTO)
 	private int id_mundo;
 	private int nro_nivel;
@@ -34,6 +35,7 @@ public class Mundo {
 	@OneToMany (cascade = CascadeType.ALL, mappedBy = "mundo") @LazyCollection(LazyCollectionOption.FALSE)
 	private List<Nivel> niveles = new ArrayList<Nivel>(); 
 	
+	//----CONSTRUCTORES----//
 	public Mundo(int id_mundo,String nombre, String imagen, String descripcion, int puntos_exp,
 			List<Mundo> mundos_siguientes, List<Nivel> niveles) {
 		this.id_mundo=id_mundo;
@@ -48,6 +50,7 @@ public class Mundo {
 	
 	public Mundo(){}
 	
+	//----GETTERS----//
 	public int getId() {
 		return id_mundo;
 	}
@@ -56,6 +59,31 @@ public class Mundo {
 		return nombre;
 	}
 	
+	public String getImagen() {
+		return imagen;
+	}
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
+	
+	public int getPuntos_exp() {
+		return puntos_exp;
+	}
+	
+	public List<Mundo> getMundos_siguientes() {
+		return mundos_siguientes;
+	}
+
+	public List<Nivel> getNiveles() {
+		return niveles;
+	}
+	
+	public int getNro_nivel() {
+		return nro_nivel;
+	}
+
+	//----SETTERS----//
 	public void setId(int id) {
 		this.id_mundo = id;
 	}
@@ -64,57 +92,31 @@ public class Mundo {
 		this.nombre = nombre;
 	}
 	
-	public String getImagen() {
-		return imagen;
-	}
-	
 	public void setImagen(String imagen) {
 		this.imagen = imagen;
-	}
-	
-	public String getDescripcion() {
-		return descripcion;
 	}
 	
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 	
-	public int getPuntos_exp() {
-		return puntos_exp;
-	}
-	
 	public void setPuntos_exp(int puntos_exp) {
 		this.puntos_exp = puntos_exp;
-	}
-
-	public List<Mundo> getMundos_siguientes() {
-		return mundos_siguientes;
 	}
 
 	public void setMundos_siguientes(ArrayList<Mundo> mundos_siguientes) {
 		this.mundos_siguientes = mundos_siguientes;
 	}
 
-	public List<Nivel> getNiveles() {
-		return niveles;
-	}
-
 	public void setNiveles(List<Nivel> niveles) {
 		this.niveles = niveles;
-	}
-	
-	
-	
-	public int getNro_nivel() {
-		return nro_nivel;
 	}
 
 	public void setNro_nivel(int nro_nivel) {
 		this.nro_nivel = nro_nivel;
 	}
 
-	//METODOS A IMPLEMENTAR
+	//----OPERACIONES----//
 	public boolean ultimoNivelMundo(Nivel n){
 
 		if(n.getMundo().getId() == this.id_mundo ){
@@ -126,14 +128,7 @@ public class Mundo {
 		}
 	}
 	
-	
-	
-	//////
-	
 	public Nivel siguienteNivel(Nivel nivel){//PRECONDICION nivel es un Nivel del MUNDO
-		/*int nivel_actual = niveles.indexOf(nivel);
-		return niveles.get(nivel_actual+1);*/
-		
 		return niveles.get(nivel.getNro_nivel() + 1);
 	}
 	

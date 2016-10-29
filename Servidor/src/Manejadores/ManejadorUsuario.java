@@ -35,18 +35,18 @@ import Datatypes.DataJugador;
 public class ManejadorUsuario {
 	
 	private static ManejadorUsuario instancia = new ManejadorUsuario();
-
 	private Map<String, Jugador> jugadores = new HashMap<String, Jugador>();
 	private Map<String, Profesor> profesores = new HashMap<String, Profesor>();
-	
-	//private List<Jugador> jugadores = new ArrayList<Jugador>();
-	
+
+	//----CONSTRUCTOR----//
 	private ManejadorUsuario(){};
 	
+	//----GETTERS----//
 	public static ManejadorUsuario getInstancia(){
 		return instancia;
 	}
 
+	//----OPERACIONES----//
 	public DataJugador obtenerDatosJugador(String id_jugador)
 	{
 		Session session = null;
@@ -62,8 +62,6 @@ public class ManejadorUsuario {
 			}
 		}
 		return j.obtenerDataJugador();
-		
-		
 	}
 	
 	public void agregarJugador(Jugador jugador){
@@ -114,45 +112,23 @@ public class ManejadorUsuario {
 	}
 	
 	public List<DataPuntosJugador> obtenerRanking(){
-		/*
-		List<DataPuntosJugador> list_dpj = new ArrayList<>();
-		for (Entry<String, Jugador> j : jugadores.entrySet()) {
-			String nombreJ = j.getValue().getNombre();
-			DataPuntosJugador dpj = j.getValue().obtenerDataPuntosJugador(nombreJ);
-			list_dpj.add(dpj);
-		}
-		*/
 		
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
 		List<DataPuntosJugador> list_dpj = new ArrayList<>();
 
-	//try{
-			//session = HibernateUtility.getSessionFactory().openSession();
-			List<Jugador> lista = session.createCriteria(Jugador.class).list();	
-			for (Jugador j:lista){
-				String nickJ = j.getNick();
-				DataPuntosJugador dpj = j.obtenerDataPuntosJugador(nickJ);
-				list_dpj.add(dpj);
-			}
-/*
-		} catch (Exception e){
-			System.out.println("error:" + e.getMessage());
-		} finally {
-			if (session != null && session.isOpen()){
-				session.close();
-			}
-		}*/
+		List<Jugador> lista = session.createCriteria(Jugador.class).list();	
+		for (Jugador j:lista){
+			String nickJ = j.getNick();
+			DataPuntosJugador dpj = j.obtenerDataPuntosJugador(nickJ);
+			list_dpj.add(dpj);
+		}
 			
-			session.close();
-		
-		
-		
+		session.close();
 		
 		Collections.sort(list_dpj);
 		return list_dpj;
 	}
-	
 	
 	
 	public Profesor buscarProfesor(String nick){
@@ -182,7 +158,6 @@ public class ManejadorUsuario {
 	}
 
 	
-	
 	public void borrar(){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
@@ -208,7 +183,6 @@ public class ManejadorUsuario {
 		Session session=factory.openSession();
 		org.hibernate.Transaction t= session.beginTransaction();
 		
-		
 		List<Profesor> lista_profe = session.createCriteria(Profesor.class).list();
 		
 		for (Iterator<Profesor> iterator = lista_profe.iterator(); iterator.hasNext();) {
@@ -222,9 +196,6 @@ public class ManejadorUsuario {
 		session.close();
 		System.out.println("successfully borrado jugadores");
 	}
-	
-	
-	
 
 	public void guardarEstado(EstadoJugador estado){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
@@ -234,7 +205,6 @@ public class ManejadorUsuario {
 		t.commit();
 		session.close();
 		System.out.println("successfully saved estado");
-
 	}
 	
 	public void guardarMensaje(Mensaje m){
@@ -245,7 +215,6 @@ public class ManejadorUsuario {
 		t.commit();
 		session.close();
 		System.out.println("successfully saved mensaje");
-
 	}
 	
 	
@@ -257,7 +226,6 @@ public class ManejadorUsuario {
 		t.commit();
 		session.close();
 		System.out.println("successfully saved profe");
-
 	}
 	
 		
@@ -269,7 +237,6 @@ public class ManejadorUsuario {
 		{
 			session = HibernateUtility.getSessionFactory().openSession();
 			lista_jugadores = (List<Jugador>)session.createCriteria(Jugador.class).list();
-			
 		}
 		catch (Exception e)
 		{
@@ -283,7 +250,6 @@ public class ManejadorUsuario {
 			}
 		}
 		return lista_jugadores;				
-
 	}
 	
 	public Usuario buscarUsuario(String nick){

@@ -25,12 +25,14 @@ import Modelo.Estadistica;
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Logro;
+import Modelo.Mensaje;
 import Modelo.Mundo;
 import Modelo.Nivel;
 import Modelo.Problema;
 import Modelo.Profesor;
 
 public class TestListarMundosNivelesProblemasClient {
+	
 	ManejadorMundo mm = ManejadorMundo.getInstancia();
 	ManejadorProblema mp = ManejadorProblema.getInstancia();
 	ManejadorUsuario mu = ManejadorUsuario.getInstancia();
@@ -38,8 +40,7 @@ public class TestListarMundosNivelesProblemasClient {
 	EstadoJugador estado = new EstadoJugador(0, new ArrayList<Mundo>(), new ArrayList<Logro>(), new HashMap<Integer,Nivel>(), new ArrayList<Problema>(),new ArrayList<Integer>());
 	Jugador jugador = new Jugador("nombre", "nick", "FBToken", "imagen", estado);
 	
-	
-	Profesor profesor = new Profesor("nickProfe", "nombreProfe", "passwordProfe");
+	Profesor profesor = new Profesor("nickProfe", "nombreProfe", "passwordProfe",new ArrayList<Mensaje>(), new ArrayList<Mensaje>());
 	
 	Mundo m1;
 	Mundo m2;
@@ -81,6 +82,7 @@ public class TestListarMundosNivelesProblemasClient {
 	
 	@Before
 	public void setUp() throws Exception {
+		
 		mu.borrar();
 		mm.borrar();
 		m1 = new Mundo(1,"Jupiter", "imagen", "descripcion",0,mundos_siguientesM1, nivelesM1);
@@ -204,7 +206,6 @@ public class TestListarMundosNivelesProblemasClient {
 		mu.borrar();		
 		mm.borrar();
 		mu.borrarProfesores();
-		
 	}
 
 }

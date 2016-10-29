@@ -3,6 +3,7 @@ package Datatypes;
 import java.util.ArrayList;
 
 public class DataListaMensajes {
+	
 	private ArrayList<DataMensaje> mensajes = new ArrayList<DataMensaje>();
 	
 	public DataListaMensajes(ArrayList<DataMensaje> mensajes) {
@@ -12,7 +13,5 @@ public class DataListaMensajes {
 	public ArrayList<DataMensaje> getMensajes() {
 		return mensajes;
 	}
-
 	
-		
 }

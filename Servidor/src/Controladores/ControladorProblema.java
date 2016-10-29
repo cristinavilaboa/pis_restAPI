@@ -67,14 +67,19 @@ public class ControladorProblema implements IControladorProblema{
 		
 		return new DataExperiencia(exp_ganada);
 	}
+	
 	@RequestMapping(value="/enviarmensaje", method=RequestMethod.GET)
 	public DataEstadoMensaje enviarMensaje(@RequestParam(value="id_problema") int id_problema,@RequestParam(value="nick") String nick,@RequestParam(value="mensaje") String mensaje,@RequestParam(value="fecha") String fechaStr,@RequestParam(value="asunto") String asunto){ 
 		Date fecha;
 		try {
+			
+			
 			fecha = DataTypeConstants.getDateFormat().parse(fechaStr);
 			ManejadorProblema mp=ManejadorProblema.getInstancia();
 			Problema p=mp.buscarProblema(id_problema);
-			p.enviarMensaje(URLDecoder.decode(mensaje, "UTF-8") , fecha, asunto,nick);
+			
+			String apendice= " - "+p.getNivel().getMundo().getNombre() + " Nivel: " + p.getNivel().getNro_nivel() + " Problema: "+ p.getNro_problema();
+			p.enviarMensaje(URLDecoder.decode(mensaje, "UTF-8") , fecha, asunto+apendice,nick);
 			return new DataEstadoMensaje(true);
 		
 		} catch (ParseException e) {			
@@ -84,8 +89,6 @@ public class ControladorProblema implements IControladorProblema{
 			e.printStackTrace();
 			return new DataEstadoMensaje(false);
 		}
-		
-		
 	}
 	
 	@RequestMapping(value="/getayuda", method=RequestMethod.GET)
@@ -108,12 +111,40 @@ public class ControladorProblema implements IControladorProblema{
 		Profesor profe = mu.buscarProfesor(nick_prof);
 		Nivel nivel = mm.obtenerMundo(id_mundo).buscarNivelPorNro(num_nivel);
 	
-		//Problema problema = new Problema(id_problema, descripcion, respuesta, puntos_exp, ayuda, contenido, nivel, profe);
 		Problema problema = new Problema( descripcion, respuesta, puntos_exp, ayuda, contenido, nivel, profe, new Estadistica(0,0));
 
+		problema.setNro_problema(nivel.asignarNumeroProblema());
 		ManejadorProblema mp = ManejadorProblema.getInstancia();
 		mp.agregarProblema(problema);
 	}
+	@RequestMapping(value="/reportarproblema", method=RequestMethod.POST)
+	public void reportarProblema(@RequestParam(value="id_problema") int id_problema,@RequestParam(value="nick") String nick,@RequestParam(value="mensaje") String mensaje){
+	try {
+	ManejadorProblema mp = ManejadorProblema.getInstancia();
+	Problema p = mp.buscarProblema(id_problema);
+	Profesor profe = p.getAutor();
+	Mensaje reporte = new Mensaje( URLDecoder.decode(mensaje, "UTF-8"), "Reporte Problema: "+ id_problema, new Date(), nick);
+	profe.agregarReporte(reporte);
+	ManejadorUsuario.getInstancia().agregarProfesor(profe);
+	}catch(Exception e){
+		e.printStackTrace();
+	}
 	
+	
+	}
+	
+	@RequestMapping(value="/modificarproblema", method=RequestMethod.POST)
+	public void modificarProblema(@RequestParam(value="id_problema")int id_problema, @RequestParam(value="desc")String descripcion, @RequestParam(value="resp")String respuesta,
+			@RequestParam(value="exp")int puntos_exp, @RequestParam(value="ayuda")String cont_ayuda, @RequestParam(value="cont")String cont){
 
-}// 
+		ManejadorProblema mp = ManejadorProblema.getInstancia();
+		Problema problema = mp.buscarProblema(id_problema);
+		problema.setDescripcion(descripcion);
+		problema.setRespuesta(respuesta);
+		problema.setPuntos_exp(puntos_exp);
+		problema.getAyuda().setInfo(cont_ayuda);
+		problema.getContenido().setURL(cont);
+		mp.agregarProblema(problema);
+	}
+
+} 

@@ -16,16 +16,9 @@ public class Mensaje {
 	private String contenido;
 	private String asunto;
 	private Date fecha;
-
-	//private Usuario destinatario;
 	private String id_remitente;
 	
-	
-	
-	public int getId() {
-		return id_mensaje;
-	}
-	
+	//----CONSTRUCTORES----//
 	public Mensaje(){}
 	
 	public Mensaje(String contenido, String asunto, Date fecha, String id_remitente) {
@@ -35,20 +28,17 @@ public class Mensaje {
 		this.id_remitente = id_remitente;
 	}
 	
+	//----GETTERS----//
+	public int getId() {
+		return id_mensaje;
+	}
+	
 	public String getContenido() {
 		return contenido;
 	}
 	
-	public void setContenido(String contenido) {
-		this.contenido = contenido;
-	}
-	
 	public String getAsunto() {
 		return asunto;
-	}
-	
-	public void setAsunto(String asunto) {
-		this.asunto = asunto;
 	}
 	
 	public Date getFecha() {
@@ -57,6 +47,15 @@ public class Mensaje {
 	
 	public String getRemitente(){
 		return id_remitente;
+	}
+	
+	//----SETTERS----//
+	public void setContenido(String contenido) {
+		this.contenido = contenido;
+	}
+	
+	public void setAsunto(String asunto) {
+		this.asunto = asunto;
 	}
 	
 	public void setFecha(Date fecha) {
@@ -108,21 +107,5 @@ public class Mensaje {
 			return false;
 		return true;
 	}
-
-	/*public Usuario getDestinatario() {
-		return destinatario;
-	}
-
-	public void setDestinatario(Usuario destinatario) {
-		this.destinatario = destinatario;
-	}
-
-	public Usuario getRemitente() {
-		return remitente;
-	}
-
-	public void setRemitente(Usuario remitente) {
-		this.remitente = remitente;
-	}*/
 	
 }

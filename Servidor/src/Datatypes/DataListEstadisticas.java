@@ -3,8 +3,8 @@ package Datatypes;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class DataListEstadisticas {
+	
 	private List<DataEstadistica> lista = new ArrayList<DataEstadistica>();
 
 	public DataListEstadisticas(List<DataEstadistica> lista) {
@@ -18,8 +18,5 @@ public class DataListEstadisticas {
 	public void setLista(List<DataEstadistica> lista) {
 		this.lista = lista;
 	}
-	
-	
-	
 
 }

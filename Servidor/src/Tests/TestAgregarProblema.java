@@ -16,6 +16,7 @@ import Manejadores.ManejadorUsuario;
 import Modelo.*;
 
 public class TestAgregarProblema {
+	
 	Ayuda ayuda;
 	Contenido contenido;
 	Mundo mundo;
@@ -42,19 +43,17 @@ public class TestAgregarProblema {
 		mundo.agregarNivel(nivel);
 		mm.agregarMundo(mundo);
 		
-		profe = new Profesor("nick", "nombre", "password");
+		profe = new Profesor("nick", "nombre", "password",new ArrayList<Mensaje>(), new ArrayList<Mensaje>());
 		mu.agregarProfesor(profe);
 		ayuda = new Ayuda("ayuda al problema");
 		contenido = new Contenido("Contenio del problema");
 		
 		problema = new Problema("Descripcion del problema", "Respuesta del problema", 50 ,ayuda, contenido,	nivel, profe, new Estadistica(0,0));
 		mp.agregarProblema(problema);
-		
 	}
 
 	@Test
 	public void test() {
-		
 		
 		assertEquals(problema, mp.buscarProblema(problema.getId()));
 		

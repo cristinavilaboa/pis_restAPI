@@ -21,8 +21,10 @@ import Persistencia.HibernateUtility;
 @Entity
 @Table(name = "PROBLEMA")
 public class Problema {
+	
 	@Id  @GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id_problema;
+	private Integer nro_problema;
 	private String descripcion;
 	private String respuesta;
 	private int puntos_exp;
@@ -37,20 +39,7 @@ public class Problema {
 	@ManyToOne @LazyCollection(LazyCollectionOption.FALSE)
 	private Profesor autor; 
 	
-	
-	/*
-	public Problema(Integer id, String descripcion, String respuesta, int puntos_exp, Ayuda ayuda, Contenido contenido,
-			Nivel nivel, Profesor autor) {
-		this.id_problema = id;
-		this.descripcion = descripcion;
-		this.respuesta = respuesta;
-		this.puntos_exp = puntos_exp;
-		this.ayuda = ayuda;
-		this.contenido = contenido;
-		this.nivel = nivel;
-		this.autor = autor;
-	}*/
-	
+	//----CONSTRUCTORES----//
 	public Problema(String descripcion, String respuesta, int puntos_exp, Ayuda ayuda, Contenido contenido,
 			Nivel nivel, Profesor autor, Estadistica estadisticas) {
 		this.descripcion = descripcion;
@@ -63,86 +52,92 @@ public class Problema {
 		this.estadisticas = estadisticas;
 	}
 	
-	
 	public Problema(){};
 
+	//----GETTERS----//
 	public int getId() {
 		return id_problema;
-	}
-	
-	
-	public void setId(int id) {
-		this.id_problema = id;
 	}
 	
 	public String getDescripcion() {
 		return descripcion;
 	}
 	
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-	
 	public String getRespuesta() {
 		return respuesta;
-	}
-	
-	public void setRespuesta(String respuesta) {
-		this.respuesta = respuesta;
 	}
 	
 	public int getPuntos_exp() {
 		return puntos_exp;
 	}
 	
-	public void setPuntos_exp(int puntos_exp) {
-		this.puntos_exp = puntos_exp;
-	}
-
 	public Ayuda getAyuda() {
 		return ayuda;
+	}
+	
+	public Contenido getContenido() {
+		return contenido;
+	}
+	
+	public Nivel getNivel() {
+		return nivel;
+	}
+	
+	public Profesor getAutor() {
+		return autor;
+	}
+	
+	public Estadistica getEstadisticas() {
+		return estadisticas;
+	}
+	
+	public Integer getNro_problema() {
+		return nro_problema;
+	}
+	
+	//----SETTERS----//
+	public void setId(int id) {
+		this.id_problema = id;
+	}
+	
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	
+	public void setRespuesta(String respuesta) {
+		this.respuesta = respuesta;
+	}
+	
+	public void setPuntos_exp(int puntos_exp) {
+		this.puntos_exp = puntos_exp;
 	}
 
 	public void setAyuda(Ayuda ayuda) {
 		this.ayuda = ayuda;
 	}
 
-	public Contenido getContenido() {
-		return contenido;
-	}
-
 	public void setContenido(Contenido contenido) {
 		this.contenido = contenido;
-	}
-
-	public Nivel getNivel() {
-		return nivel;
 	}
 
 	public void setNivel(Nivel nivel) {
 		this.nivel = nivel;
 	}
 
-	public Profesor getAutor() {
-		return autor;
-	}
-
 	public void setAutor(Profesor autor) {
 		this.autor = autor;
 	}
 	
-	
-	public Estadistica getEstadisticas() {
-		return estadisticas;
-	}
-
-
 	public void setEstadisticas(Estadistica estadisticas) {
 		this.estadisticas = estadisticas;
 	}
 
 
-	//METODOS A IMPLEMENTAR
+	public void setNro_problema(Integer nro_problema) {
+		this.nro_problema = nro_problema;
+	}
+
+	//----OPERACIONES----//
 	public boolean verificarRespuesta(String respuesta){
 		String sin_espacios = respuesta.replaceAll("\\s","");
 		return sin_espacios.equalsIgnoreCase(this.respuesta.replaceAll("\\s",""));
@@ -158,9 +153,6 @@ public class Problema {
 		t.commit();
 		session.close();
 		System.out.println("successfully saved mensaje");
-		
-		
-		
 	}
 
 
@@ -228,66 +220,5 @@ public class Problema {
 			return false;
 		return true;
 	}
-	
-	/*
-	public DataProblema getDataProblema(){
-		return new DataProblema(this.id_problema, this.descripcion, this.respuesta, this.puntos_exp, this.ayuda.getInfo(), this.contenido.getTexto(), this.autor.getNick());
-	}
-	
-	
-<<<<<<< HEAD
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((ayuda == null) ? 0 : ayuda.hashCode());
-		result = prime * result + ((contenido == null) ? 0 : contenido.hashCode());
-		result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
-		result = prime * result + ((id_problema == null) ? 0 : id_problema.hashCode());
-		result = prime * result + puntos_exp;
-		result = prime * result + ((respuesta == null) ? 0 : respuesta.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Problema other = (Problema) obj;
-		if (ayuda == null) {
-			if (other.ayuda != null)
-				return false;
-		} else if (!ayuda.equals(other.ayuda))
-			return false;
-		if (contenido == null) {
-			if (other.contenido != null)
-				return false;
-		} else if (!contenido.equals(other.contenido))
-			return false;
-		if (descripcion == null) {
-			if (other.descripcion != null)
-				return false;
-		} else if (!descripcion.equals(other.descripcion))
-			return false;
-		if (id_problema == null) {
-			if (other.id_problema != null)
-				return false;
-		} else if (!id_problema.equals(other.id_problema))
-			return false;
-		if (puntos_exp != other.puntos_exp)
-			return false;
-		if (respuesta == null) {
-			if (other.respuesta != null)
-				return false;
-		} else if (!respuesta.equals(other.respuesta))
-			return false;
-		return true;
-	}
-=======
-	}*/
 
 }

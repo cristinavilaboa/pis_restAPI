@@ -17,7 +17,7 @@ public class DataProblema {
 	private boolean resuelto;
 	private boolean tut_activo;
 	
-	
+	//----CONSTRUCTOR----//
 	public DataProblema(Integer id_problema, String descripcion, String respuesta, int puntos_exp, String ayuda,
 			String contenido, String id_autor, boolean resuelto, boolean tut_activo) {
 		this.id_problema = id_problema;
@@ -31,8 +31,7 @@ public class DataProblema {
 		this.tut_activo = tut_activo;
 	}
 	
-	
-
+	//----GETTERS----//
 	public Integer getId_problema() {
 		return id_problema;
 	}
@@ -68,8 +67,5 @@ public class DataProblema {
 	public boolean isTut_activo() {
 		return tut_activo;
 	} 	
-	
-	
-	
-	
+
 }
