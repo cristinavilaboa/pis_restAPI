@@ -1,9 +1,5 @@
 package Datatypes;
 
-import Modelo.Ayuda;
-import Modelo.Contenido;
-import Modelo.Nivel;
-import Modelo.Profesor;
 
 public class DataProblema {
 	

@@ -1,21 +1,17 @@
 package Tests;
 
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import Controladores.ControladorJugador;
 import Controladores.IControladorJugador;
 import Datatypes.DataLogin;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorUsuario;
-
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Logro;

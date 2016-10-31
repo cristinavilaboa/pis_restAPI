@@ -3,16 +3,13 @@ package Controladores;
 import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import Datatypes.DataEstadistica;
 import Datatypes.DataListEstadisticas;
 import Datatypes.DataListaMensajes;
@@ -24,8 +21,6 @@ import Datatypes.DataNivel;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
-import Modelo.Estadistica;
-import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Mensaje;
 import Modelo.Mundo;

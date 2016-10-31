@@ -2,16 +2,13 @@ package Modelo;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-
 import javax.persistence.InheritanceType;
 import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
@@ -75,14 +72,17 @@ public abstract class Usuario {
 	}
 	
 	//----OPERACIONES----//
+	//Agrega el Mensaje mensaje a la lista de mensajes nuevos
 	public void agregar_mensaje_nuevo(Mensaje mensaje) {
 		this.mensajes_nuevos.add(mensaje);
 	}
 	
+	//Agrega el Mensaje mensaje a la lista de mensajes viejos
 	public void agregar_mensaje_viejo(Mensaje mensaje) {
 		this.mensajes_viejos.add(mensaje);
 	}
 	
+	//Retorna TRUE si el Mensaje con id = id_mensaje es un mensaje nuevo
 	public boolean esMensajeNuevo(int id_mensaje){
 		for(Mensaje m: mensajes_nuevos){
 			if(m.getId() == id_mensaje){
@@ -92,7 +92,9 @@ public abstract class Usuario {
 		return false;
 	}
 	
-	public void mensajeLeido(int id_mensaje){ // Se supone que antes se uso la operacion esMensajeNuevo
+	//Cambia el Mensaje con id = id_mensaje de mensajes_nuevos a mensajes_viejos
+	//PRECONDICION: se ejecuta previamente esMensajeNuevo y en caso que de TRUE se ejecuta esta operacion.
+	public void mensajeLeido(int id_mensaje){
 		for(Mensaje m: mensajes_nuevos){
 			if(m.getId() == id_mensaje){
 				mensajes_viejos.add(m);

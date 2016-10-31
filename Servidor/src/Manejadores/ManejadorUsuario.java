@@ -1,42 +1,23 @@
 package Manejadores;
 
-
-
 import java.util.ArrayList;
 import java.util.Collections;
 import Datatypes.DataPuntosJugador;
 import java.util.List;
-
-
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Mensaje;
-import Modelo.Mundo;
 import Modelo.Profesor;
 import Modelo.Usuario;
 import Persistencia.HibernateUtility;
-
-import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
-
 import Datatypes.DataJugador;
 
 public class ManejadorUsuario {
 	
 	private static ManejadorUsuario instancia = new ManejadorUsuario();
-	private Map<String, Jugador> jugadores = new HashMap<String, Jugador>();
-	private Map<String, Profesor> profesores = new HashMap<String, Profesor>();
 
 	//----CONSTRUCTOR----//
 	private ManejadorUsuario(){};
@@ -47,6 +28,7 @@ public class ManejadorUsuario {
 	}
 
 	//----OPERACIONES----//
+	//Retorna el DataJugador correspondiente al Jugador con nick = id_jugador
 	public DataJugador obtenerDatosJugador(String id_jugador)
 	{
 		Session session = null;
@@ -64,6 +46,7 @@ public class ManejadorUsuario {
 		return j.obtenerDataJugador();
 	}
 	
+	//Agrega el Jugador jugador a la BD
 	public void agregarJugador(Jugador jugador){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
@@ -74,11 +57,12 @@ public class ManejadorUsuario {
 		System.out.println("successfully saved jugador");
 	}
 	
-
+	//Retorna TRUE si existe un Jugador con nick = nick en el sistema. En caso contrario retorna FALSE.
 	public boolean existeJugador(String nick){
 		return (buscarJugador(nick)!=null);
 	}
 	
+	//Retorna el Jugador con nick = nick de la BD.
 	public Jugador buscarJugador(String nick){
 		Session session = null;
 		Jugador j = null;
@@ -95,6 +79,7 @@ public class ManejadorUsuario {
 		return j;
 	}
 	
+	//Retorna el mensaje con id = id_mensaje de la BD
 	public Mensaje buscarMensaje(int id_mensaje){
 		Session session = null;
 		Mensaje m = null;
@@ -111,6 +96,8 @@ public class ManejadorUsuario {
 		return m;
 	}
 	
+	//Para cada Jugador del sistema crea un DataPuntosJugador con su nick y sus puntos adquiridos, agregandolo a una lista la cual
+	//es retornada.
 	public List<DataPuntosJugador> obtenerRanking(){
 		
 		SessionFactory factory= HibernateUtility.getSessionFactory();
@@ -130,7 +117,7 @@ public class ManejadorUsuario {
 		return list_dpj;
 	}
 	
-	
+	//Retorna el Profesor con nick = nick de la BD.
 	public Profesor buscarProfesor(String nick){
 		Session session = null;
 		Profesor p = null;
@@ -147,6 +134,7 @@ public class ManejadorUsuario {
 		return p;
 	}
 	
+	//Agrega el Profesor p a la BD.
 	public void agregarProfesor(Profesor p){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
@@ -157,7 +145,7 @@ public class ManejadorUsuario {
 		System.out.println("successfully saved profesor");
 	}
 
-	
+	//Se borra todos los Jugadores de la BD
 	public void borrar(){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
@@ -177,7 +165,7 @@ public class ManejadorUsuario {
 		System.out.println("successfully borrado jugadores");
 	}
 	
-	
+	//Se borran todos los Profesores de la BD.
 	public void borrarProfesores(){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
@@ -196,7 +184,8 @@ public class ManejadorUsuario {
 		session.close();
 		System.out.println("successfully borrado jugadores");
 	}
-
+	
+	//Guarda el EstadoJugador estado correspondiente a una determinado Jugador en la BD.
 	public void guardarEstado(EstadoJugador estado){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
@@ -207,6 +196,7 @@ public class ManejadorUsuario {
 		System.out.println("successfully saved estado");
 	}
 	
+	//Guarda el mensaje m en la BD.
 	public void guardarMensaje(Mensaje m){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
@@ -217,7 +207,7 @@ public class ManejadorUsuario {
 		System.out.println("successfully saved mensaje");
 	}
 	
-	
+	//Guarda el Usuario p en la BD.
 	public void guardarUsuario(Usuario p){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
@@ -228,7 +218,7 @@ public class ManejadorUsuario {
 		System.out.println("successfully saved profe");
 	}
 	
-		
+	//Retorna una lista con todos los Jugadores de la BD.
 	public List<Jugador> obtenerJugadores(){                              
 		
 		Session session = null;
@@ -252,6 +242,7 @@ public class ManejadorUsuario {
 		return lista_jugadores;				
 	}
 	
+	//Retorna el Usuario con nick = nick de la BD.
 	public Usuario buscarUsuario(String nick){
 		Session session = null;
 		Usuario user = null;

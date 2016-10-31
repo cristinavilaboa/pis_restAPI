@@ -2,18 +2,14 @@ package Modelo;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 @Entity
@@ -80,7 +76,9 @@ public class Nivel {
 	}
 	
 	//----OPERACIONES----//
-	public boolean esUltima(int id_problema){//Retorna true si le problema es el ultima del nivel
+	//Retorna TRUE si el Problema con id = id_problema es el ultimo problema de su Nivel
+	//En caso contrario retorna FALSE
+	public boolean esUltima(int id_problema){
 		int it = 0;
 		boolean encontre = false;
 		int tamano = problemas.size();
@@ -94,6 +92,7 @@ public class Nivel {
 		//HAY QUE VER QUE PASA SI NO ENCUENTRA EL id_problema
 	}
 	
+	//Agrega el Problema p a la lista de problemas del Nivel
 	public void agregarProblema(Problema p){
 		p.setNro_problema(nro_problema);
 		nro_problema++;

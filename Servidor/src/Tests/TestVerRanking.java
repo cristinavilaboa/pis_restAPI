@@ -3,21 +3,14 @@ package Tests;
 import Modelo.EstadoJugador;
 import Modelo.Profesor;
 import org.junit.Test;
-
 import Modelo.Jugador;
 import Modelo.Mensaje;
-
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorUsuario;
-import Controladores.ControladorJugador;
-import Controladores.IControladorJugador;
 import Datatypes.DataPuntosJugador;
-
 import org.junit.Before;
 
 public class TestVerRanking {

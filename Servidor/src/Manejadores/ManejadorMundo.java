@@ -1,18 +1,11 @@
 package Manejadores;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
 import Modelo.Mundo;
-import Modelo.Nivel;
-import Modelo.Problema;
-import Modelo.Profesor;
 import Persistencia.HibernateUtility;
 
 public class ManejadorMundo {
@@ -28,6 +21,7 @@ public class ManejadorMundo {
 	}
 	
 	//----OPERACIONES----//
+	//Se obtiene el mundo con id = id_mundo de la BD
 	public Mundo obtenerMundo(int id_mundo){
 		Session session = null;
 		Mundo mundo = null;
@@ -44,6 +38,7 @@ public class ManejadorMundo {
 		return mundo;
 	}
 	
+	//Agrega el mundo m a la BD
 	public void agregarMundo(Mundo m){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();
@@ -55,7 +50,7 @@ public class ManejadorMundo {
 	}
 	
 
-	
+	//Obtiene todos los mundos de la BD
 	public List<Mundo> obtenerMundos(){
 		Session session = null;
 		List<Mundo> mundosQuery= new ArrayList<Mundo>();
@@ -79,7 +74,7 @@ public class ManejadorMundo {
 		return mundosQuery;
 	}
 	
-	
+	//Se borra todos los mundos de la BD, con sus respectivos niveles y problemas.
 	public void borrar(){
 		SessionFactory factory= HibernateUtility.getSessionFactory();
 		Session session=factory.openSession();

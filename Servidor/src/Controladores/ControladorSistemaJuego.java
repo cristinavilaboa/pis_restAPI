@@ -1,36 +1,25 @@
 package Controladores;
 
 
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import org.springframework.web.bind.annotation.RestController;
-
-import Datatypes.DataListaDataProblema;
-import Datatypes.DataProblema;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
-//import Modelo.CargarDatos;
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Logro;
 import Modelo.Mundo;
 import Modelo.Nivel;
-
 import Persistencia.CargarDatosBD;
 
-import Modelo.Problema;
 
 @CrossOrigin
 @RestController

@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import Datatypes.DataLogro;
 @Entity
 @Table(name = "LOGRO")
@@ -44,6 +43,7 @@ public class Logro {
 	}
 	
 	//----OPERACIONES----//
+	//Retorna el DataLogro correspondiente al Logro
 	public DataLogro obtenerDataLogro(){
 		DataLogro dl = new DataLogro(descripcion, id);
 		return dl;

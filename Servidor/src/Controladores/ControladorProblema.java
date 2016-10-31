@@ -2,18 +2,15 @@ package Controladores;
 
 
 import java.io.UnsupportedEncodingException;
-
 import java.net.URLDecoder;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import Datatypes.DataAyuda;
 import Datatypes.DataEstadoMensaje;
 import Datatypes.DataExperiencia;
@@ -24,13 +21,11 @@ import Manejadores.ManejadorUsuario;
 import Modelo.Ayuda;
 import Modelo.Contenido;
 import Modelo.Estadistica;
-import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Mensaje;
 import Modelo.Nivel;
 import Modelo.Problema;
 import Modelo.Profesor;
-import Persistencia.CargarDatosBD;
 
 @CrossOrigin
 @RestController

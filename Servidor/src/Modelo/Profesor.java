@@ -3,7 +3,6 @@ package Modelo;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -11,13 +10,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-
-import Persistencia.HibernateUtility;
 @Entity
 @Table(name = "PROFESOR")
 @PrimaryKeyJoinColumn(name="nick")
@@ -80,16 +74,20 @@ public class Profesor extends Usuario {
 	//METODOS A IMPLEMENTAR
 
 	//----OPERACIONES----//
-
+	// Envia el mensaje con contenido = mensaje, fecha = fecha, asunto = asunto, remitente = id_jugador a 
+	//la lista de mensajes nuevos
 	public void enviarMensaje(String mensaje,Date fecha, String asunto,String id_jugador){
 		Mensaje m=new Mensaje(mensaje,asunto, fecha,id_jugador);
 		this.getMensajes_nuevos().add(m);
 	}
 	
+	//Agrega el Mensaje reporte a la lista de Mensajes reportes_nuevos
 	public void agregarReporte(Mensaje reporte){
 		this.reportes_nuevos.add(reporte);
 	}
 	
+	//Retorna TRUE si el Mensaje con id = id_mensaje es
+	//un mensaje de reporte_nuevo
 	public boolean esReporteNuevo(int id_mensaje){
 		for(Mensaje m: reportes_nuevos){
 			if(m.getId() == id_mensaje){
@@ -99,7 +97,9 @@ public class Profesor extends Usuario {
 		return false;
 	}
 	
-	public void reporteLeido(int id_mensaje){ // Se supone que antes se uso la operacion esMensajeNuevo
+	//Cambia el Mensaje con id = id_mensaje de reportes_nuevos a reportes_viejos
+	//PRECONDICION: se ejecuta previamente esReporteNuevo y en caso que de TRUE se ejecuta esta operacion.
+	public void reporteLeido(int id_mensaje){
 		for(Mensaje m: reportes_nuevos){
 			if(m.getId() == id_mensaje){
 				reportes_viejos.add(m);

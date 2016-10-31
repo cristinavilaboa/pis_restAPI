@@ -1,18 +1,9 @@
 package Tests;
 
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.List;
-
-//import java.awt.List;
-
-//import java.util.List;
-
 import org.junit.*;
-
-import com.sun.xml.internal.ws.resources.ManagementMessages;
-
 import Controladores.ControladorProblema;
 import Controladores.IControladorProblema;
 import Manejadores.ManejadorMundo;
