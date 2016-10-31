@@ -122,7 +122,7 @@ public class EstadoJugador {
 		setPuntos_exp(total);
 	}
 	
-	//Se agrega el Problema p a la lista de problemas resueltos
+	//Se agrega el Problema p a la lista de problemas resueltos, solo se agrega si el problema no fue agregado antes
 	public void agregarProblema(Problema p){
 		
 		boolean encontre=false;
@@ -178,14 +178,16 @@ public class EstadoJugador {
 		mundos_completos.add(m);
 	}
 	
-	//Retorna la lista de Logros obtenidos
+	//Retorna los nuevos logros obtenidos luego de responder correctamete una pregunta
 	public ArrayList<Logro> nuevosLogros(){
 		ArrayList<Logro> nuevos_logros = new ArrayList<Logro>();
 		int cant_correctas = cantCorrectas();
+		//Logro de primer problema resuelto
 		if(cant_correctas == 1){
 			Logro primeraRespuesta = new Logro("Primera respuesta correcta");
 			nuevos_logros.add(primeraRespuesta);
 		}
+		//Cada 5 problemas resueltos hay un nuevo logro
 		if(cant_correctas % 5 == 0){
 			Logro logro = new Logro("Has logrado "+cant_correctas+" problemas correctos");
 			nuevos_logros.add(logro);
