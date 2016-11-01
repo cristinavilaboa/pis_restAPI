@@ -4,22 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.junit.Test;
 import Datatypes.DataJugador;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorUsuario;
-
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Logro;
 import Modelo.Mundo;
 import Modelo.Nivel;
 import Modelo.Problema;
-import Persistencia.HibernateUtility;
-
 import static org.junit.Assert.*;
 
 public class TestVerPerfil {

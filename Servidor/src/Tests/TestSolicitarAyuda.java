@@ -1,16 +1,10 @@
 package Tests;
 
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.Test;
-
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
@@ -20,7 +14,6 @@ import Modelo.Mundo;
 import Modelo.Nivel;
 import Modelo.Problema;
 import Modelo.Profesor;
-import Persistencia.HibernateUtility;
 
 public class TestSolicitarAyuda {
 	

@@ -1,15 +1,12 @@
 package Tests;
 
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.junit.Before;
 import org.junit.Test;
-
 import Controladores.ControladorProblema;
 import Controladores.IControladorProblema;
 import Datatypes.DataJugador;

@@ -1,19 +1,12 @@
 package Tests;
 
 import static org.junit.Assert.*;
-
 import java.util.ArrayList;
 import java.util.Date;
-
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.objenesis.instantiator.sun.MagicInstantiator;
-
-import Controladores.ControladorProfesor;
-import Controladores.IControladorProfesor;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorUsuario;
-
 import Modelo.EstadoJugador;
 import Modelo.Jugador;
 import Modelo.Mensaje;

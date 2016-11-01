@@ -1,20 +1,15 @@
 package Modelo;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-
 import Datatypes.*;
 import Datatypes.DataPuntosJugador;
 import Manejadores.ManejadorMundo;
@@ -71,12 +66,14 @@ public class Jugador extends Usuario{
 	}
 	
 	//----OPERACIONES----//
+	//Retorna el DataPuntosJugador correspondiente al Jugador con nick = nick
 	public DataPuntosJugador obtenerDataPuntosJugador(String nick){
 		int puntos = estado.getPuntos_exp();
 		DataPuntosJugador dpj = new DataPuntosJugador(nick, puntos);
 		return dpj;
 	}
 	
+	//Retorna el DataJugador correspondiente al Jugador
 	public DataJugador obtenerDataJugador()
 	{
 		EstadoJugador e = this.estado;

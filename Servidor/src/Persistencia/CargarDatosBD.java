@@ -5,23 +5,16 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.transaction.HeuristicMixedException;
 import javax.transaction.HeuristicRollbackException;
 import javax.transaction.RollbackException;
 import javax.transaction.SystemException;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import Controladores.ControladorProblema;
-import Controladores.ControladorProfesor;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
 import Modelo.Ayuda;
-
 import Modelo.Contenido;
 import Modelo.Estadistica;
 import Modelo.EstadoJugador;

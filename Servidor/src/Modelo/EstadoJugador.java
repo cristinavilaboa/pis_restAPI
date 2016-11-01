@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -15,7 +14,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.MapKeyColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 @Entity
@@ -118,11 +116,13 @@ public class EstadoJugador {
 	}
 
 	//----OPERACIONES----//
+	//Se suma la cantidad exp a los puntos de experiencia puntos_exp
 	public void ganarExperiencia(int exp) {
 		int total = exp + this.puntos_exp;
 		setPuntos_exp(total);
 	}
 	
+	//Se agrega el Problema p a la lista de problemas resueltos, solo se agrega si el problema no fue agregado antes
 	public void agregarProblema(Problema p){
 		
 		boolean encontre=false;
@@ -138,10 +138,12 @@ public class EstadoJugador {
 		}
 	}
 	
+	//Se agrega el Logro l a la lista de logros
 	public void ganarLogro(Logro l){
 		logros.add(l);
 	}
 	
+	//Agrega el nivel 0 del Mundo mundo al mapa de niveles actuales, con clave = id_mundo y valor = Nivel 0. 
 	public void agregarMundoActivo(Mundo mundo){//Se agrega un nuevo mundo, en su primer nivel
 		if(mundo.getNiveles().size()>0){
 			Nivel primer_nivel = mundo.getNiveles().get(0);
@@ -149,6 +151,11 @@ public class EstadoJugador {
 		}
 	}
 	
+	//Agrega el nivel activo correspondiente al Mundo mundo.
+	//Si no tiene un nivel activo para dicho mundo agrega el primer nivel del mundo.
+	//En el caso que ya exista un nivel activo para el mundo, si el nivel activo actual NO es el ultimo del mundo,
+	//agrega el siguiente nivel de nivel activo del mundo como activo. En caso contrario no hace nada dejando como activo
+	//el ultimo nivel del mundo.
 	public void agregarNivelActivo(Mundo mundo){//PRECONDICION: EL MUNDO PERTENECE A mundo_nivel
 		int id_mundo = mundo.getId();
 		Nivel nivel_actual;
@@ -166,17 +173,21 @@ public class EstadoJugador {
 		}
 	}
 	
+	//Agrega el Mundo m a la lista de mundos completos
 	public void agregarMundoCompleto(Mundo m){
 		mundos_completos.add(m);
 	}
 	
+	//Retorna los nuevos logros obtenidos luego de responder correctamete una pregunta
 	public ArrayList<Logro> nuevosLogros(){
 		ArrayList<Logro> nuevos_logros = new ArrayList<Logro>();
 		int cant_correctas = cantCorrectas();
+		//Logro de primer problema resuelto
 		if(cant_correctas == 1){
 			Logro primeraRespuesta = new Logro("Primera respuesta correcta");
 			nuevos_logros.add(primeraRespuesta);
 		}
+		//Cada 5 problemas resueltos hay un nuevo logro
 		if(cant_correctas % 5 == 0){
 			Logro logro = new Logro("Has logrado "+cant_correctas+" problemas correctos");
 			nuevos_logros.add(logro);
@@ -184,10 +195,13 @@ public class EstadoJugador {
 		return nuevos_logros;
 	}
 	
+	//Retorna la cantidad de problemas resueltos.
 	public int cantCorrectas(){
 		return problemas_resueltos.size();
 	}
 	
+	//Retorna TRUE en caso que el Nivel nivel este completo, es decir, que todos sus problemas hayan sido
+	//resueltos correctamente. En caso contrario retorna FALSE.
 	public boolean nivelCompleto(Nivel nivel){
 		if(!nivel.getProblemas().isEmpty()){	
 			for(Problema p: nivel.getProblemas()){

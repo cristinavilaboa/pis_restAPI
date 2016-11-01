@@ -1,7 +1,6 @@
 package Modelo;
 
 import java.util.Date;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,13 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-
-import Datatypes.DataProblema;
 import Persistencia.HibernateUtility;
 @Entity
 @Table(name = "PROBLEMA")
@@ -138,11 +134,15 @@ public class Problema {
 	}
 
 	//----OPERACIONES----//
+	//Retorna TRUE si la respuesta es la respuesta correcta del problema
+	//En caso contrario retorna FALSE
 	public boolean verificarRespuesta(String respuesta){
 		String sin_espacios = respuesta.replaceAll("\\s","");
 		return sin_espacios.equalsIgnoreCase(this.respuesta.replaceAll("\\s",""));
 	}
 	
+	//Envia el mensaje con contenido = mensaje, fecha = fecha, asunto = asunto, remitente = id_jugador al Profesor autor
+	//de dicho problema.
 	public void enviarMensaje(String mensaje,Date fecha, String asunto,String id_jugador){
 		autor.enviarMensaje(mensaje, fecha, asunto,id_jugador);
 		

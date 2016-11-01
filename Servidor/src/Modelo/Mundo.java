@@ -2,18 +2,12 @@ package Modelo;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
@@ -21,7 +15,7 @@ import javax.persistence.OneToMany;
 @Table(name = "MUNDO")
 public class Mundo {
 	
-	@Id  // @GeneratedValue(strategy=GenerationType.AUTO)
+	@Id 
 	private int id_mundo;
 	private int nro_nivel;
 	private String nombre;
@@ -117,6 +111,7 @@ public class Mundo {
 	}
 
 	//----OPERACIONES----//
+	//Retorna TRUE en caso que el Nivel n sea el ultimo nivel de su Mundo. En caso contrario retorna FALSE.
 	public boolean ultimoNivelMundo(Nivel n){
 
 		if(n.getMundo().getId() == this.id_mundo ){
@@ -128,17 +123,21 @@ public class Mundo {
 		}
 	}
 	
+	//Retorna el Nivel siguiente al Nivel = nivel.
 	public Nivel siguienteNivel(Nivel nivel){//PRECONDICION nivel es un Nivel del MUNDO
 		return niveles.get(nivel.getNro_nivel() + 1);
 	}
 	
+	//Agrega el Nivel n a la lista de Niveles
 	public void agregarNivel(Nivel n){
 		n.setNivel(nro_nivel);
 		nro_nivel++;
 		niveles.add(n);
 	}
 	
-	public Nivel buscarNivel(int id_nivel){//Puede retornar NULL, pasar un id_nivel que exista en el mundo a buscar
+	//Retorna el Nivel con id = id_nivel. 
+	//En caso que no exista el nivel con dicho id retorna NULL.
+	public Nivel buscarNivel(int id_nivel){
 		for(Nivel n: niveles){
 			if(n.getId_nivel() == id_nivel){
 				return n;
@@ -147,7 +146,9 @@ public class Mundo {
 		return null;
 	}
 	
-	public Nivel buscarNivelPorNro(int nro_nivel){//Puede retornar NULL, pasar un id_nivel que exista en el mundo a buscar
+	//Retorna el Nivel con numero = nro_nivel
+	//En caso que no exista el nivel con dicho numero retorna NULL.
+	public Nivel buscarNivelPorNro(int nro_nivel){
 		for(Nivel n: niveles){
 			if(n.getNro_nivel() == nro_nivel){
 				return n;
