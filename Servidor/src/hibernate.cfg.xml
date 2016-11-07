@@ -11,14 +11,14 @@
         <property name="hibernate.connection.password">0ac04e15</property> 
         <property name="hibernate.connection.url">jdbc:mysql://us-cdbr-azure-west-b.cleardb.com:3306/basepis8</property>
         <property name="hibernate.connection.username">be85781dddb399</property> 
-        -->  
+        --> 
         
     <!-- BASE DE AZURE ALEJANDRO - PARA WEB -->      
        	<!--
         <property name="hibernate.connection.password">b2f24c6b</property> 
         <property name="hibernate.connection.url">jdbc:mysql://us-cdbr-azure-west-b.cleardb.com:3306/pisg8</property>
         <property name="hibernate.connection.username">bc2d74ac679b36</property>
-   		--> 
+   		  -->
         
 	<!-- EJEMPLO DE CONEXION PARA BASE LOCAL PARA PROBAR  -->
    		
