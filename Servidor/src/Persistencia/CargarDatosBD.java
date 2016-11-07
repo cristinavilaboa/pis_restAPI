@@ -105,10 +105,15 @@ public class CargarDatosBD {
 		mu.agregarProfesor(profesor);
 
 		
-		mundo2= new Mundo(2,"Derivada","https:////c4.staticflickr.com/6/5322/30710213451_e1f72242bc.jpg", "Mundo de Derivada 1", 20,mundos_siguientes2,niveles2);
-		mundos_siguientes.add(mundo2);
-		mundo = new Mundo(1,"Calculo", "https://c2.staticflickr.com/6/5573/30710215201_f6d4689dd0.jpg", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
+		//mundo2= new Mundo(2,"Derivada","https:////c4.staticflickr.com/6/5322/30710213451_e1f72242bc.jpg", "Mundo de Derivada 1", 20,mundos_siguientes2,niveles2);
 		
+		mundo2= new Mundo(2,"Derivada","http://real28.ru/vozrozhdeniye/images/planet-saturn.png", "Mundo de Derivada 1", 20,mundos_siguientes2,niveles2);
+
+		mundos_siguientes.add(mundo2);
+		//mundo = new Mundo(1,"Calculo", "https://c2.staticflickr.com/6/5573/30710215201_f6d4689dd0.jpg", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
+		
+		mundo = new Mundo(1,"Calculo", "http://vignette3.wikia.nocookie.net/angrybirds/images/c/cc/Death_star_cartoonish.png", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
+
 		
 		
 		
