@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import Datatypes.DataEstadistica;
 import Datatypes.DataListEstadisticas;
+import Datatypes.DataListaDataProblema;
 import Datatypes.DataListaMensajes;
 import Datatypes.DataListaMundos;
 import Datatypes.DataListaNiveles;
 import Datatypes.DataMensaje;
 import Datatypes.DataMundo;
 import Datatypes.DataNivel;
+import Datatypes.DataProblema;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorProblema;
 import Manejadores.ManejadorUsuario;
@@ -272,6 +274,24 @@ public class ControladorProfesor implements IControladorProfesor{
 			profe.reporteLeido(id_mensaje);
 			mu.guardarUsuario(profe);
 		}
+	}
+	
+	@RequestMapping(value="/listarproblemasnivelprofesor", method=RequestMethod.GET)
+	public DataListaDataProblema listarProblemasNivelProfesor(@RequestParam(value="id_mundo")int id_mundo,@RequestParam(value="id_nivel")int id_nivel){
+		List<DataProblema> lista_problemas = new ArrayList<DataProblema>();
+		//Operacion para listar los problemas de un nivel para el profesor
+		ManejadorUsuario mu = ManejadorUsuario.getInstancia();
+		ManejadorMundo mm = ManejadorMundo.getInstancia();
+		//Se busca el nivel
+		Nivel nivel = mm.obtenerMundo(id_mundo).buscarNivel(id_nivel);
+		
+		//Para cada problema del nivel
+		for(Problema p: nivel.getProblemas()){
+			//Se agregan los datos del problema a la lista
+			lista_problemas.add(new DataProblema(p.getId(), p.getDescripcion(), p.getRespuesta(), p.getPuntos_exp(), p.getAyuda().getInfo(), p.getContenido().getURL(), p.getAutor().getNick(), false,false));
+		}
+		//Se retorna la lista
+		return new DataListaDataProblema(lista_problemas);
 	}
 	
 	

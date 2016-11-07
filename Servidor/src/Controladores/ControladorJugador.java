@@ -235,6 +235,7 @@ public class ControladorJugador implements IControladorJugador{
 		return new DataListaDataProblema(lista_problemas);
 	}
 	
+	
 	@RequestMapping(value="/loginjugador", method=RequestMethod.GET)
 	public DataLogin loginJugador(@RequestParam(value="fb_token")String fb_token){
 		//Operacion para realizar el login de un jugador
