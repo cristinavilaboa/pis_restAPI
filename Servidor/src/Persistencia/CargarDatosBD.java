@@ -105,9 +105,9 @@ public class CargarDatosBD {
 		mu.agregarProfesor(profesor);
 
 		
-		mundo2= new Mundo(2,"Derivada","https://www.flickr.com/photos/146309541@N07/30710213451", "Mundo de Derivada 1", 20,mundos_siguientes2,niveles2);
+		mundo2= new Mundo(2,"Derivada","https:////c4.staticflickr.com/6/5322/30710213451_e1f72242bc.jpg", "Mundo de Derivada 1", 20,mundos_siguientes2,niveles2);
 		mundos_siguientes.add(mundo2);
-		mundo = new Mundo(1,"Calculo", "https://www.flickr.com/photos/146309541@N07/30710215201/", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
+		mundo = new Mundo(1,"Calculo", "https://c2.staticflickr.com/6/5573/30710215201_f6d4689dd0.jpg", "Mundo de Calculo 1",20,mundos_siguientes, niveles);
 		
 		
 		
@@ -120,21 +120,21 @@ public class CargarDatosBD {
 		nivel5 = new Nivel(listaPN5,mundo);*/
 		
 		ayudaP1 = new Ayuda("La derivada es cuanto varia la funcion, cuando varia x");
-		contenidoP1 = new Contenido("https://www.flickr.com/photos/146309541@N07/30761793476/");
+		contenidoP1 = new Contenido("https://c5.staticflickr.com/6/5596/30761793476_59e5b95623_m.jpg");
 		problema1 = new Problema("Resolver la siguiente derivada","8",10,ayudaP1,contenidoP1,nivel1,profesor, new Estadistica(0,0));
 		
 		ayudaP21 = new Ayuda("La derivada es cuanto varia la funcion, cuando varia x");
-		contenidoP21 = new Contenido("https://www.flickr.com/photos/146309541@N07/30166690904/");
+		contenidoP21 = new Contenido("https://c1.staticflickr.com/6/5458/30166690904_bdd8b75dd5.jpg");
 		problema21 = new Problema("Resolver la siguiente derivada","x",10,ayudaP21,contenidoP21,nivel2,profesor, new Estadistica(0,0));
 		ayudaP22 = new Ayuda("La derivada es cuanto varia la funcion, cuando varia x");
-		contenidoP22= new Contenido("https://www.flickr.com/photos/146309541@N07/30798468345/");
+		contenidoP22= new Contenido("https://c2.staticflickr.com/6/5471/30798468345_4c8a01b673_m.jpg");
 		problema22 = new Problema("Resolver la siguiente derivada","e^x",10,ayudaP22,contenidoP22,nivel2,profesor, new Estadistica(0,0));
 		
 		ayudaP31 = new Ayuda("La integral es el area bajo la curva de una funcion");
-		contenidoP31 = new Contenido("https://www.flickr.com/photos/146309541@N07/30709763871/");
+		contenidoP31 = new Contenido("https://c8.staticflickr.com/6/5520/30709763871_e1a306f4dd.jpg");
 		problema31 = new Problema("Resolver la siguiente integral","4",10,ayudaP31,contenidoP31,nivel1,profesor, new Estadistica(0,0));
 		ayudaP32 = new Ayuda("La integral es el area bajo la curva de una funcion");
-		contenidoP32 = new Contenido("https://www.flickr.com/photos/146309541@N07/30166691004/");
+		contenidoP32 = new Contenido("https://c5.staticflickr.com/6/5649/30166691004_743043f0d0.jpg");
 		problema32 = new Problema("Resolver la siguiente integral","2",10,ayudaP32,contenidoP32,nivel3,profesor, new Estadistica(0,0));
 		
 		/*ayudaP4 = new Ayuda("La integral es el area bajo la curva de una funci�n");
