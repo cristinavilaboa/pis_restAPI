@@ -144,7 +144,8 @@ public class ControladorProblema implements IControladorProblema{
 		//Se obtiene el profesor autor del problema
 		Profesor profe = p.getAutor();
 		//Se crea el mensaje indicado que el problema fue reportado
-		Mensaje reporte = new Mensaje( URLDecoder.decode(mensaje, "UTF-8"), "Reporte Problema: "+ id_problema, new Date(), nick);
+		String apendice = p.getNro_problema() + " - Nivel: " + p.getNivel().getNro_nivel() + " - Mundo: "+p.getNivel().getMundo().getNombre();
+		Mensaje reporte = new Mensaje( URLDecoder.decode(mensaje, "UTF-8"), "Reporte Problema: "+ apendice, new Date(), nick);
 		//Se agrega el reporte a los reportes del profesor
 		profe.agregarReporte(reporte);
 		//Se guarda el profesor
