@@ -7,6 +7,11 @@ import java.util.Date;
 import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
+
+import Controladores.ControladorJugador;
+import Controladores.ControladorProfesor;
+import Controladores.IControladorJugador;
+import Controladores.IControladorProfesor;
 import Datatypes.DataMensaje;
 import Manejadores.ManejadorMundo;
 import Manejadores.ManejadorUsuario;
@@ -63,16 +68,12 @@ public class TestVerMensajes {
 		mu = ManejadorUsuario.getInstancia();
 		Profesor p = mu.buscarProfesor("nick");
 		Jugador j = mu.buscarJugador("nickJ");
-		List<DataMensaje> dlm_nuevos = new ArrayList<DataMensaje>();
-		for (Mensaje m: p.getMensajes_nuevos()){
-			dlm_nuevos.add(new DataMensaje(m.getId(), m.getAsunto(), m.getContenido(), m.getFecha(),m.getRemitente()));
-		}
+		IControladorProfesor cprofe = new ControladorProfesor();
+		IControladorJugador cjug = new ControladorJugador();
 		
-		List<DataMensaje> dlm_viejos = new ArrayList<DataMensaje>();
-		
-		for (Mensaje m: p.getMensajes_viejos()){
-			dlm_viejos.add(new DataMensaje(m.getId(), m.getAsunto(), m.getContenido(), m.getFecha(),m.getRemitente()));
-		}
+		List<DataMensaje> dlm_nuevos = cprofe.verMensajesNuevos(p.getNick()).getMensajes();
+
+		List<DataMensaje> dlm_viejos = cprofe.verMensajesViejos(p.getNick()).getMensajes();
 		
 		List<DataMensaje> dlm_nuevosJ = new ArrayList<DataMensaje>();
 		for (Mensaje m: j.getMensajes_nuevos()){
